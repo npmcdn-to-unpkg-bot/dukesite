@@ -8,8 +8,9 @@
 
 var duke_blue = "#013088";
 
-$(document).ready(function(){
-  $('.nav-contact li')
+$(function(){
+  var changBgColor = function(button) {
+    $(button)
     .mouseover(function(){
       $(this).css('background-color', duke_blue);
       $("a", this).css('color', 'whiteSmoke');
@@ -19,4 +20,21 @@ $(document).ready(function(){
       $(this).css('background-color', "");
       $("a", this).css('color', '');
     });
+  };
+
+  changBgColor('.nav-contact li');
+  changBgColor('.nav-bar li');  
+
+  // $(nav_button)
+  //   .mouseover(function(){
+  //     $(this).css('background-color', duke_blue);
+  //     $("a", this).css('color', 'whiteSmoke');
+
+  //   })
+  //   .mouseout(function(){
+  //     $(this).css('background-color', "");
+  //     $("a", this).css('color', '');
+  //   });
+
+
 });

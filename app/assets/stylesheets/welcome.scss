@@ -7,11 +7,16 @@
   vertical-align : middle;
 }
 .landing-carousel {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 20px;
+  // margin-right: 20px;
   .carousel-inner { 
   max-height: 420px;
   }
+}
+
+.info_banner {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .showcase {
@@ -39,9 +44,13 @@
   }
 }
 
-.showbox-feature {
+.showcase-feature {
   img {
     min-height: 285px;
     width: auto;
   }
+}
+.showcase-img {
+    min-height: 132px;
+    min-height: 132px;
 }
