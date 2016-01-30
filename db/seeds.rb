@@ -19,6 +19,25 @@ carousel_images = Image.create([{
                           description: 'Existentia quascunque ne collabitur an is ii.'
                           },
                         {
+                          url: 'https://images.unsplash.com/photo-1418479631014-8cbf89db3431?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1150',
+                          title: 'Coffee', 
+                          carousel: true,
+                          description: 'Existentia quascunque ne collabitur an is ii.'
+                          },
+                        {
+                          url: 'https://images.unsplash.com/photo-1422207215953-98b4bc18c3d9?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1150',
+                          title: 'Coffee', 
+                          carousel: true,
+                          description: 'Existentia quascunque ne collabitur an is ii.'
+                          },
+                        {
+                          url: 'https://images.unsplash.com/photo-1449198063792-7d754d6f3c80?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1150',
+                          title: 'Coffee', 
+                          carousel: true,
+                          description: 'Existentia quascunque ne collabitur an is ii.'
+                          },
+
+                        {
                           url: 'https://images.unsplash.com/photo-1452088245938-06c460393db9?crop=entropy&fit=crop&fm=jpg&h=725&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325', 
                           title: 'Coffee',
                           carousel: true, 
