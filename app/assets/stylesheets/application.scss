@@ -7,6 +7,8 @@ $thumbnail-padding: 0;
 @import "bootstrap";
 @import "welcome.scss";
 
+$duke-blue: #013088;
+
 body {
   background-color: #F8F8F8;
   .outter-container {
@@ -19,20 +21,34 @@ body {
   padding-top: 30px;
   margin-left: 30px;
 }
-.nav-bar li {
-  display: inline-block;
-  font-size: 18px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  font-family: $font-family-base;
-  font-weight: $headings-font-weight;
-  padding: 15px;
-  height: $line-height-base;
-  margin-top: 15px;
+.nav-bar {
+  li.hover {
+    background-color: $duke-blue;
+    a { 
+      color: whiteSmoke;
+    }
+  }
+  li {
+    display: inline-block;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: $font-family-base;
+    font-weight: $headings-font-weight;
+    padding: 15px;
+    height: $line-height-base;
+    margin-top: 15px;
+  }
 }
 
 .nav-contact {
   padding-right: 12px;
+  li.hover {
+    background-color: $duke-blue;
+    a { 
+      color: whiteSmoke;
+    }
+  }
   li {
     background-color: $gray-lighter;
     display: inline-block;
