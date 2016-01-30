@@ -23,7 +23,10 @@ body {
 }
 .nav-bar {
   li.hover {
-    text-decoration: underline;
+    background-color: $duke-blue;
+    a { 
+      color: whiteSmoke;
+    }
   }
   li {
     display: inline-block;
