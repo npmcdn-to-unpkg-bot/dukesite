@@ -1,8 +1,4 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-#landing-carousel .carousel img {
+.landing-carousel .carousel img {
   // position: absolute;
   top: 0;
   left: 0;
@@ -10,17 +6,42 @@
   height:auto;
   vertical-align : middle;
 }
-#landing-carousel .carousel-inner { 
+.landing-carousel {
+  margin-left: 20px;
+  margin-right: 20px;
+  .carousel-inner { 
   max-height: 420px;
+  }
+}
+
+.showcase {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .showcase-header {
-  // background-color: $gray-lighter;
-  li {
-    display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: $gray-lighter;
+  p {
     text-transform: uppercase;
-    margin-top: 20px;
-    padding-top: 10px;
+    padding: 20px;
     padding-bottom: 10px;
+
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: $font-family-base;
+    font-weight: $headings-font-weight;
+    height: $line-height-base;
+  }
+}
+
+.showbox-feature {
+  img {
+    min-height: 285px;
+    width: auto;
   }
 }

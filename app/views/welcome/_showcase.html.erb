@@ -1,17 +1,19 @@
 <% @showcases.each do |showcase| %>
-  <div class="row showcase-header col-xs-12">
-    <ul class="pull-left">
-      <li><%= showcase.title %></li>
-    </ul>
-    <ul class="pull-right">
-      <li><%= link_to "More", root_path %></li>
-    </ul>
+  <div class="row showcase-header">
+    <div class="col-sm-4">
+      <p><b><%= showcase.title %></b></p>
+    </div>
+    <div class="col-sm-6">
+    </div>
+    <div class="col-sm-2 pull-right">
+      <p><small><%= link_to "More", root_path %></small></p>
+    </div>
   </div>
   
-  <div class="row showbox-body">
+  <div class="row showcase-body">
     <div class="col-xs-12 col-sm-4 showbox-feature">
       <a href="#" class="thumbnail">
-        <%= image_tag showcase.feature_img, size: "350x350", alt: "showcase-feature" %>
+        <%= image_tag showcase.feature_img, alt: "showcase-feature" %>
       </a>
     </div>
     <% showcase_imgs = showcase.images[0..7] %>
@@ -24,5 +26,6 @@
       </div>
     <% end %>
   </div>
+  <hr>
 
 <% end %>
