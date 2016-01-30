@@ -1,0 +1,26 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#landing-carousel .carousel img {
+  // position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height:auto;
+  vertical-align : middle;
+}
+#landing-carousel .carousel-inner { 
+  max-height: 420px;
+}
+
+.showcase-header {
+  // background-color: $gray-lighter;
+  li {
+    display: inline-block;
+    text-transform: uppercase;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

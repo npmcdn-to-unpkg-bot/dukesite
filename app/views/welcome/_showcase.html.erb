@@ -1,0 +1,28 @@
+<% @showcases.each do |showcase| %>
+  <div class="row showcase-header col-xs-12">
+    <ul class="pull-left">
+      <li><%= showcase.title %></li>
+    </ul>
+    <ul class="pull-right">
+      <li><%= link_to "More", root_path %></li>
+    </ul>
+  </div>
+  
+  <div class="row showbox-body">
+    <div class="col-xs-12 col-sm-4 showbox-feature">
+      <a href="#" class="thumbnail">
+        <%= image_tag showcase.feature_img, size: "350x350", alt: "showcase-feature" %>
+      </a>
+    </div>
+    <% showcase_imgs = showcase.images[0..7] %>
+
+    <% showcase_imgs.each do |img| %>
+      <div class="col-xs-12 col-sm-2">
+        <a href="#" class="thumbnail">
+          <%= image_tag img.url, alt: "showcase-img" %>
+        </a>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>

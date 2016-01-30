@@ -1,0 +1,56 @@
+@import "bootstrap-sprockets";
+
+$link-color: #000;
+$link-hover-color: lighten($link-color, 70%);
+$thumbnail-padding: 0;
+
+@import "bootstrap";
+@import "welcome.scss";
+
+.logo-wrapper {
+  padding-top: 30px;
+  margin-left: 30px;
+}
+.nav-links li { 
+  display: inline-block;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: $font-family-base;
+  font-weight: $headings-font-weight;
+  padding: 15px;
+  height: $line-height-base;
+  margin-top: 15px;
+
+}
+.contact { 
+  background-color: $gray-lighter;
+  li {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: $font-family-base;
+    font-weight: $headings-font-weight;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 25px;
+  }
+}
+.footer { 
+  background-color: $gray-lighter;
+  margin-top: 10%;
+  li {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: $font-family-base;
+    font-weight: $headings-font-weight;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 25px;
+    height: 100px;
+  }
+
+}
