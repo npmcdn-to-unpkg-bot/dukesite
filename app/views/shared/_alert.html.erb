@@ -1,0 +1,16 @@
+<% flash.each do |name, msg| %>
+  <% prefix = "alert alert-"
+     suffix = " alert-dismissible"
+     name = "alert alert-success" if name == "success"
+     name = "alert alert-info" if name == "notice"
+     name = "alert alert-warning" if name == "alert"
+     name = "alert alert-danger" if name == "error" 
+     %>
+
+  <%= content_tag :div, class: alertname, role: 'alert' do %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    msg
+  <% end %>
+<% end %>

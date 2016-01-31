@@ -8,6 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render partial: 'shared/alert' %>
   <div class="container outter-container">
     <%= render partial: "layouts/header" %>
     <%= yield %>
