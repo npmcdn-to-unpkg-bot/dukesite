@@ -16,12 +16,12 @@
         <%= image_tag showcase.feature_img, class: "img-responsive", alt: "Responsive image" %>
       </a>
     </div>
-    <% showcase_imgs = showcase.images[0..7] %>
+    <% showcase_products = showcase.products[0..7] %>
 
-    <% showcase_imgs.each do |img| %>
+    <% showcase_products.each do |product| %>
       <div class="col-xs-12 col-md-2 showcase-img">
         <a href="#" class="thumbnail">
-          <%= image_tag img.url,  class: "img-responsive", alt: "Responsive image" %>
+          <%= image_tag product.url,  class: "img-responsive", alt: "Responsive image" %>
         </a>
       </div>
     <% end %>

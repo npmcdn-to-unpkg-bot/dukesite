@@ -1,3 +1,3 @@
 class Showcase < ActiveRecord::Base
-  has_many :images
+  has_many :products
 end
