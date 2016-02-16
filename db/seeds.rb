@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-carousel_images = Image.create([{
+carousel_products = Product.create([{
                           url: 'https://images.unsplash.com/photo-1432107294469-414527cb5c65?crop=entropy&fit=crop&fm=jpg&h=725&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325', 
                           carousel: true,
                           title: 'Coffee', 
@@ -59,7 +59,7 @@ showcases = Showcase.create([{
                                ])
 
 for i in 1..10 do
-  Image.create([{
+  Products.create([{
                  url: 'https://images.unsplash.com/reserve/F8x8NPwTQEmVdXOHjO8o_Espresso.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=2148c3785d65f5faefa3a386bd3e0c25', 
                  title: 'Coffee', 
                  description: 'test',
