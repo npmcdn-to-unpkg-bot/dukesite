@@ -1,7 +1,12 @@
-<% sum = @products.length 
-   i = 1
-%>
+<div class="page-header">
+  <h1>Products</h1>
+</div>
 
+<p class="pull-right">
+  <%= link_to new_admin_product_path do %>
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add a product
+  <% end %>
+</p>
 
 <table class="table table-hover">
   <tr>
@@ -9,21 +14,42 @@
     <th>Title</th>
     <th>Description</th>
     <th>Url</th>
+    <th>Published</th>
     <th>Created at</th>
     <th>Last updated</th>
+    <th></th>
   </tr>
   
+  <% sum = @products.length 
+     i = 1
+  %> 
+
   <% @products.each do |p| %>
     <% if i < sum %>
-    <tr>
-      <td><%= i %>. </td>
-      <td><%= p.title %></td>
-      <td><%= truncate(p.description) %></td>
-      <td><%= truncate(p.url) %></td>
-      <td><%= p.created_at.to_formatted_s(:long) %></td>
-      <td><%= p.updated_at.to_formatted_s(:long) %></td>
-      <% i += 1%>
-    </tr>
+      <tr>
+        <td><%= i %>. </td>
+        <td><%= p.title %></td>
+        <td><%= truncate(p.description) %></td>
+        <td><%= truncate(p.url) %></td>
+        <td>
+          <% if p.published %>
+            Yes
+          <% else %>
+            No
+          <% end %>
+        </td>
+        <td><%= p.created_at.to_formatted_s(:long) %></td>
+        <td><%= p.updated_at.to_formatted_s(:long) %></td>
+        <td>
+          <%= link_to edit_admin_product_path(p) do %>
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to admin_product_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <% i += 1%>
+      </tr>
     <% end %>
   <% end %>
 </table>
