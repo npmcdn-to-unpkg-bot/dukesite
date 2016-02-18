@@ -1,0 +1,18 @@
+<%= render "shared/error", object: @showcase %>
+
+<%= form_for @showcase, url: admin_showcases_path do |s| %>
+  <p>
+  <%= s.label "Title" %><br>
+  <%= s.text_field :title, class: "form-control", placeholder: "Enter title" %></p>
+  
+  <p>
+  <%= s.label "Feature Image Url" %><br>
+  <%= s.text_field :feature_img, class: "form-control", placeholder: "Enter the url of the feature image" %></p>
+  <p>
+  <%= s.label "Display on the landing_page?" %><br>
+  <%= s.radio_button :show_on_landing_page, false %> No <br>
+  <%= s.radio_button :show_on_landing_page, true %> Yes </p>
+
+  <%= link_to "Cancel", admin_showcases_path, class: "btn btn-danger" %>
+  <%= s.submit "Submit", class: "btn btn-primary" %>
+<% end %>
