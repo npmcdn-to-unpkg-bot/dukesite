@@ -11,6 +11,7 @@ class Admin::ShowcasesController < AdminController
   def create
     @showcase = Showcase.new(showcase_params)
     if @showcase.save
+      flash[:success] = "The showcase was successfully created."
       redirect_to admin_showcases_path
     else
       render :new
@@ -22,7 +23,7 @@ class Admin::ShowcasesController < AdminController
 
   def update
     if @showcase.update(showcase_params)
-      flash[:success] = "The showcase was successfully updated."
+      flash[:success] = "The showcase was successfully edited."
       redirect_to admin_showcases_path
     else
       render :edit
@@ -32,6 +33,7 @@ class Admin::ShowcasesController < AdminController
   def delete
     @showcase = Showcase.find(params[:id])
     @showcase.destroy
+    flash[:success] = "The showcase was successfully deleted."
     redirect_to admin_showcases_path
   end
 

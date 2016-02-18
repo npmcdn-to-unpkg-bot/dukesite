@@ -14,7 +14,7 @@ class Admin::ProductsController < AdminController
     @product = Product.new(product_params)
     @showcases = Showcase.all
     if @product.save
-      flash[:success] = "A product was created successfully."
+      flash[:success] = "A product was successfully created."
       redirect_to admin_products_path
     else
       render :new
@@ -30,7 +30,7 @@ class Admin::ProductsController < AdminController
 
   def update
     if @product.update(product_params)
-      flash[:success] = "A product was edited successfully."
+      flash[:success] = "A product was successfully edited."
       redirect_to admin_products_path
     else
       render :edit
@@ -39,6 +39,7 @@ class Admin::ProductsController < AdminController
 
   def destroy
     @product.destroy
+    flash[:success] = "A product was successfully deleted."
     redirect_to admin_products_path
   end
 
