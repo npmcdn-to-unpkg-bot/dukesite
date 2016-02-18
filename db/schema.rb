@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218081327) do
+ActiveRecord::Schema.define(version: 20160218174339) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name"
@@ -29,11 +29,30 @@ ActiveRecord::Schema.define(version: 20160218081327) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "product_categories", ["category_id"], name: "index_product_categories_on_category_id"
+  add_index "product_categories", ["product_id"], name: "index_product_categories_on_product_id"
+
+  create_table "product_showcases", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "showcase_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "product_showcases", ["product_id"], name: "index_product_showcases_on_product_id"
+  add_index "product_showcases", ["showcase_id"], name: "index_product_showcases_on_showcase_id"
+
   create_table "products", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.text     "url"
-    t.integer  "showcase_id"
     t.boolean  "carousel",    default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
