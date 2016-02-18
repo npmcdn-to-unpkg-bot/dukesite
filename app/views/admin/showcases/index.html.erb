@@ -1,25 +1,50 @@
-<% sum = @showcases.length 
-   i = 1
-%>
+<div class="page-header">
+  <h1>Showcases</h1>
+</div>
 
+<p class="pull-right">
+  <%= link_to new_admin_showcase_path do %>
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add a showcase
+  <% end %>
+</p>
 
 <table class="table table-hover">
   <tr>
     <th></th>
     <th>Title</th>
     <th>Feature Image</th>
+    <th>Display on Landing Page</th>
     <th>Created at</th>
     <th>Last updated</th>
+    <th></th>
   </tr>
-  
+ 
+  <% sum = @showcases.length 
+     i = 1
+  %> 
   <% @showcases.each do |p| %>
     <% if i < sum %>
     <tr>
       <td><%= i %>. </td>
       <td><%= p.title %></td>
-      <td><%= p.feature_img %></td>
+      <td><%= truncate(p.feature_img) %></td>
+      <td>
+        <% if p.show_on_landing_page %>
+          Yes
+        <% else %>
+          No
+        <% end %>
+      </td>
       <td><%= p.created_at.to_formatted_s(:long) %></td>
       <td><%= p.updated_at.to_formatted_s(:long) %></td>
+      <td>
+        <%= link_to edit_admin_showcase_path(p) do %>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <% end %>
+        <%= link_to admin_showcase_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+      </td>
       <% i += 1%>
     </tr>
     <% end %>
