@@ -1,10 +1,12 @@
 @import "bootstrap-sprockets";
+$pink: #FF66CC;
+$duke-blue: #013088;
 $link-color: #000;
 $link-hover-color: lighten($link-color, 70%);
 $thumbnail-padding: 0;
-$duke-blue: #013088;
 $table-bg-hover: #E8E8E8 ;
 
 @import "bootstrap";
 @import "layout.scss";
+@import "admin.scss";
 @import "welcome.scss";
