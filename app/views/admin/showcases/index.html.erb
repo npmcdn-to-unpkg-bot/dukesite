@@ -20,12 +20,12 @@
   </tr>
  
   <% sum = @showcases.length 
-     i = 1
+     i = 0
   %> 
   <% @showcases.each do |p| %>
     <% if i < sum %>
     <tr>
-      <td><%= i %>. </td>
+      <td><%= i+1 %>. </td>
       <td><%= p.title %></td>
       <td><%= truncate(p.feature_img_url) %></td>
       <td>

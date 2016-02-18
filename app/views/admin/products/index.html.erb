@@ -21,13 +21,13 @@
   </tr>
   
   <% sum = @products.length 
-     i = 1
+     i = 0
   %> 
 
   <% @products.each do |p| %>
     <% if i < sum %>
       <tr>
-        <td><%= i %>. </td>
+        <td><%= i+1 %>. </td>
         <td><%= p.title %></td>
         <td><%= truncate(p.description) %></td>
         <td><%= truncate(p.url) %></td>
