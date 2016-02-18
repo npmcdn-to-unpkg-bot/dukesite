@@ -7,12 +7,13 @@ class Admin::ProductsController < AdminController
 
   def new
     @product = Product.new
+    @categories = Category.all
     @showcases = Showcase.all
   end
 
   def create
     @product = Product.new(product_params)
-    @showcases = Showcase.all
+    byebug
     if @product.save
       flash[:success] = "A product was successfully created."
       redirect_to admin_products_path
@@ -25,6 +26,7 @@ class Admin::ProductsController < AdminController
   end
 
   def edit
+    @categories = Category.all
     @showcases = Showcase.all
   end
 
@@ -45,7 +47,7 @@ class Admin::ProductsController < AdminController
 
   private
     def product_params
-      params.require(:product).permit(:title, :url, :description, :showcase_id, :carousel)
+      params.require(:product).permit(:title, :url, :description, :carousel, :showcase_ids => [])
     end
     def find_product
       @product = Product.find(params[:id])

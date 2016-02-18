@@ -14,6 +14,8 @@
     <th>Title</th>
     <th>Description</th>
     <th>Url</th>
+    <th>Categories</th>
+    <th>Showcases</th>
     <th>Published</th>
     <th>Created at</th>
     <th>Last updated</th>
@@ -25,12 +27,18 @@
   %> 
 
   <% @products.each do |p| %>
+    <%# cats = p.categories
+        cats.
+
+        %>
     <% if i < sum %>
       <tr>
         <td><%= i+1 %>. </td>
         <td><%= p.title %></td>
         <td><%= truncate(p.description) %></td>
         <td><%= truncate(p.url) %></td>
+        <td></td>
+        <td></td>
         <td>
           <% if p.published %>
             Yes
