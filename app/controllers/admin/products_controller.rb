@@ -1,4 +1,5 @@
 class Admin::ProductsController < AdminController
+  layout "application", only: [:show]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   def index
     @products = Product.all.order("updated_at DESC")
@@ -18,6 +19,9 @@ class Admin::ProductsController < AdminController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   def edit
