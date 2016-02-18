@@ -1,0 +1,33 @@
+<%= render "shared/error", object: @product %>
+
+<%= form_for [:admin, @product] do |p| %>
+  <p>
+  <%= p.label "Title" %><br>
+  <%= p.text_field :title, class: "form-control", placeholder: "Enter title" %></p>
+  
+  <p>
+  <%= p.label "Product Url" %><br>
+  <%= p.text_field :url, class: "form-control", placeholder: "Enter url" %></p>
+
+  <p>
+  <%= p.label "Choose a Showcase" %><br>
+  <%= p.select :showcase_id, options_from_collection_for_select(@showcases, "id", "title") %>
+  </p>
+  
+  <p>
+  <%= p.label "Set as carousel picture?" %><br>
+  <%= p.radio_button :carousel, true %> Yes <br>
+  <%= p.radio_button :carousel, false %> No </p>
+
+  <p>
+  <%= p.label "Publish?" %><br>
+  <%= p.radio_button :published, false %> No <br>
+  <%= p.radio_button :published, true %> Yes </p>
+
+  <p>
+  <%= p.label "Description" %><br>
+  <%= p.text_area :description, class: "form-control", placeholder: "Describe the product", rows: 3 %></p>
+
+  <%= link_to "Cancel", admin_products_path, class: "btn btn-danger" %>
+  <%= p.submit "Submit", class: "btn btn-primary" %>
+<% end %>
