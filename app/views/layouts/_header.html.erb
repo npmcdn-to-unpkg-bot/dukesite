@@ -1,7 +1,19 @@
+<% if admin_signed_in? %>
+  <div class="row admin_link">
+    <ul class="pull-right">
+      <li>Hi, <%= current_admin.email %></li>
+      <li><%= link_to "Dashboard", admin_index_path %></li>
+    </ul>
+  </div>
+<% end %>
 <div class="row nav-contact pull-right">
   <ul>
-    <li class="hidden-xs"><%= link_to "Blog", root_path %></li>
-    <li class="hidden-xs"><%= link_to "contact", root_path %></li>
+    <%= link_to root_path do %>
+      <li class="hidden-xs">Blog</li>
+    <% end %>
+    <%= link_to root_path do %>
+      <li class="hidden-xs">Contact</li>
+    <% end %>
   </ul>
 </div>
 
@@ -22,9 +34,15 @@
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul>
-      <li><%= link_to "Features", root_path %></li>
-      <li><%= link_to "2016 selection", root_path %></li>
-      <li><%= link_to "Quotes", root_path %></li>
+      <%= link_to root_path do %>
+        <li>Features</li>
+      <% end %>
+      <%= link_to root_path do %>
+        <li>2016 selection</li>
+      <% end %>
+      <%= link_to root_path do %>
+        <li>Quotes</li>
+      <% end %>
     </ul>
   </div>
 </nav>
