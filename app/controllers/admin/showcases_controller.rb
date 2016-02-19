@@ -1,6 +1,6 @@
 class Admin::ShowcasesController < AdminController
   before_action :authenticate_admin!
-  before_action :find_showcase, only: [:edit, :update, :delete]
+  before_action :find_showcase, only: [:edit, :update, :destroy]
   def index
     @showcases = Showcase.all.order("updated_at DESC")
   end
@@ -31,8 +31,7 @@ class Admin::ShowcasesController < AdminController
     end
   end
 
-  def delete
-    @showcase = Showcase.find(params[:id])
+  def destroy
     @showcase.destroy
     flash[:success] = "The showcase was successfully deleted."
     redirect_to admin_showcases_path

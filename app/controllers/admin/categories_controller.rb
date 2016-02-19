@@ -1,6 +1,6 @@
 class Admin::CategoriesController < AdminController
   before_action :authenticate_admin!
-  before_action :find_category, only: [:edit, :update, :delete]
+  before_action :find_category, only: [:edit, :update, :destroy]
   def index
     @categories = Category.all
   end
@@ -31,7 +31,7 @@ class Admin::CategoriesController < AdminController
     end 
   end
 
-  def delete
+  def destroy
     @category.destroy
     flash[:success] = "A new category was succefully deleted."
     redirect_to admin_categories_path
