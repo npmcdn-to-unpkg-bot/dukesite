@@ -57,7 +57,8 @@ showcases = Showcase.create([{
                                feature_img)url: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1400",
                                },
                                ])
-
+Category = Category.create([{ name: "Skirt" }, { name: "hat"])
+  
 for i in 1..10 do
   Products.create([{
                  url: 'https://images.unsplash.com/reserve/F8x8NPwTQEmVdXOHjO8o_Espresso.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=2148c3785d65f5faefa3a386bd3e0c25', 
