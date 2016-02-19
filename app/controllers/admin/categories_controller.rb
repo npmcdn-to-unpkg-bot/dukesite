@@ -1,4 +1,5 @@
 class Admin::CategoriesController < AdminController
+  before_action :authenticate_admin!
   before_action :find_category, only: [:edit, :update, :delete]
   def index
     @categories = Category.all

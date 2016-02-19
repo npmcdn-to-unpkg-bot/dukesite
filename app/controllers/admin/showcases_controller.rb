@@ -1,4 +1,5 @@
 class Admin::ShowcasesController < AdminController
+  before_action :authenticate_admin!
   before_action :find_showcase, only: [:edit, :update, :delete]
   def index
     @showcases = Showcase.all.order("updated_at DESC")

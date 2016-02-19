@@ -1,6 +1,8 @@
 class Admin::ProductsController < AdminController
   layout "application", only: [:show]
+  before_action :authenticate_admin!, except: [:show]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
+
   def index
     @products = Product.all.order("updated_at DESC")
   end
@@ -13,7 +15,6 @@ class Admin::ProductsController < AdminController
 
   def create
     @product = Product.new(product_params)
-    byebug
     if @product.save
       flash[:success] = "A product was successfully created."
       redirect_to admin_products_path
