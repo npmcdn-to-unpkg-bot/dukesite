@@ -1,13 +1,25 @@
+@import "bootstrap-sprockets";
+$pink: #FF99CC;
+$duke-blue: #013088;
+$green: #66CC33;
 
-a { color: $pink; }
+@import "bootstrap";
 
-a:hover { color: $duke-blue; }
+// views/admin/index.html.erb
+
+a { color: $green; }
+a:hover { color: $pink; }
+body { background-color: #F8F8F8; }
 
 .admin-manage-box{
   background-color: white;
-  border: 5px solid $gray-lighter;
+  border: 8px solid $gray-lighter;
+  border-radius: 16px;
   padding: 10px;
   margin: 20px;
+  h4 {
+    padding-left: 15px;
+  }
   hr {
     margin-top: 0;
   }
