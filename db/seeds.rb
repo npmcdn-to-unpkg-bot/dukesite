@@ -36,7 +36,6 @@ carousel_products = Product.create([{
                           carousel: true,
                           description: 'Existentia quascunque ne collabitur an is ii.'
                           },
-
                         {
                           url: 'https://images.unsplash.com/photo-1452088245938-06c460393db9?crop=entropy&fit=crop&fm=jpg&h=725&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325', 
                           title: 'Coffee',
@@ -47,35 +46,35 @@ carousel_products = Product.create([{
 showcases = Showcase.create([{
                                title: "2016 selection",
                                feature_img_url: "https://images.unsplash.com/5/unsplash-bonus.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=bdb8645a7dec56f25f598d1faaa718d3",
+                               show_on_landing_page: true,
                                },
                              {
                                title: "features",
                                feature_img_url: "https://images.unsplash.com/photo-1415226581130-91cb7f52f078?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=276f62cfceb487bafa5b2acdd6c92706",
+                               show_on_landing_page: true,
                                },
                              {
                                title: "New",
                                feature_img_url: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1400",
-                               },
-                               ])
-Category = Category.create([{ name: "Skirt" }, { name: "hat"])
+                               show_on_landing_page: true,
+                               }])
+
+categories = Category.create([{ name: "Skirt" }, { name: "hat"}])
   
 for i in 1..10 do
-  Products.create([{
-                 url: 'https://images.unsplash.com/reserve/F8x8NPwTQEmVdXOHjO8o_Espresso.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=2148c3785d65f5faefa3a386bd3e0c25', 
+  Product.create([{
+                 url: 'http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/4654701_orig.jpg', 
                  title: 'Coffee', 
-                 description: 'test',
-                 showcase_id: 1
+                 description: 'test'
                  },
                {
-                 url: 'https://images.unsplash.com/photo-1422056244210-46cc641fb1fe?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1400', 
+                 url: 'http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/4654701_orig.jpg', 
                  title: 'Coffee', 
-                 description: 'test',
-                 showcase_id: 2
+                 description: 'test'
                  },
                {
-                 url: 'https://images.unsplash.com/4/cuba-cup.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=91970aa8954caa297e0eabc4595987de', 
+                 url: 'http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/4654701_orig.jpg', 
                  title: 'Coffee', 
-                 description: 'test',
-                 showcase_id: 3
+                 description: 'test'
                  }])
 end
