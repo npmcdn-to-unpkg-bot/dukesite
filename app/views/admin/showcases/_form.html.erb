@@ -1,6 +1,6 @@
 <%= render "shared/error", object: @showcase %>
 
-<%= form_for @showcase, url: admin_showcases_path do |s| %>
+<%= form_for [:admin, @showcase] do |s| %>
   <p>
   <%= s.label "Title" %><br>
   <%= s.text_field :title, class: "form-control", placeholder: "Enter title" %></p>
