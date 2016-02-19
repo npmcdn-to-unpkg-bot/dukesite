@@ -39,7 +39,7 @@ class Admin::ShowcasesController < AdminController
 
   private
     def showcase_params
-      params.require(:showcase).permit(:title, :feature_img_url)
+      params.require(:showcase).permit(:title, :feature_img_url, :show_on_landing_page)
     end
 
     def find_showcase
