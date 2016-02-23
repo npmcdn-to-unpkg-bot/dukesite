@@ -6,43 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-carousel_products = Product.create([{
-                          url: 'https://images.unsplash.com/photo-1432107294469-414527cb5c65?crop=entropy&fit=crop&fm=jpg&h=725&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325', 
-                          carousel: true,
-                          title: 'Coffee', 
-                          description: 'Existentia quascunque ne collabitur an is ii.'
-                          },
-                        {
-                          url: 'https://images.unsplash.com/photo-1442975631115-c4f7b05b8a2c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=653bd326afdaa08d7cdda2215ef3ec85', 
-                          title: 'Coffee', 
-                          carousel: true,
-                          description: 'Existentia quascunque ne collabitur an is ii.'
-                          },
-                        {
-                          url: 'https://images.unsplash.com/photo-1418479631014-8cbf89db3431?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1150',
-                          title: 'Coffee', 
-                          carousel: true,
-                          description: 'Existentia quascunque ne collabitur an is ii.'
-                          },
-                        {
-                          url: 'https://images.unsplash.com/photo-1422207215953-98b4bc18c3d9?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1150',
-                          title: 'Coffee', 
-                          carousel: true,
-                          description: 'Existentia quascunque ne collabitur an is ii.'
-                          },
-                        {
-                          url: 'https://images.unsplash.com/photo-1449198063792-7d754d6f3c80?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1150',
-                          title: 'Coffee', 
-                          carousel: true,
-                          description: 'Existentia quascunque ne collabitur an is ii.'
-                          },
-                        {
-                          url: 'https://images.unsplash.com/photo-1452088245938-06c460393db9?crop=entropy&fit=crop&fm=jpg&h=725&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325', 
-                          title: 'Coffee',
-                          carousel: true, 
-                          description: 'Existentia quascunque ne collabitur an is ii.'
-                          }])
-
 showcases = Showcase.create([{
                                title: "2016 selection",
                                feature_img_url: "https://images.unsplash.com/5/unsplash-bonus.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=bdb8645a7dec56f25f598d1faaa718d3",
@@ -63,18 +26,32 @@ categories = Category.create([{ name: "Skirt" }, { name: "hat"}])
   
 for i in 1..10 do
   Product.create([{
-                 url: 'http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/4654701_orig.jpg', 
-                 title: 'Coffee', 
-                 description: 'test'
+                 title: "WASH Duke Blue Devils Basketball Women's T Shirt Short Sleeves", 
+                 description: "Our t-shirts are professionally printed with the eco-friendly ink, the materials are stretch and soft. You deserve to own such a fantastic shirt with reasonable price and great quality. It's adorable and well worth the money. Our shirts are reliable choices for you.",
+                 image_url: 'http://ecx.images-amazon.com/images/I/61SduIacvTL._UL1500_.jpg',
+                 url: "http://www.amazon.com/Devils-Basketball-Womens-Shirt-Sleeves/dp/B01BY3PEUM/ref=sr_1_3?ie=UTF8&qid=1456140250&sr=8-3&keywords=duke+womens+basketball+t-shirts+pink"
                  },
-               {
-                 url: 'http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/4654701_orig.jpg', 
-                 title: 'Coffee', 
-                 description: 'test'
-                 },
-               {
-                 url: 'http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/4654701_orig.jpg', 
-                 title: 'Coffee', 
-                 description: 'test'
+               { 
+                 title: "CHENGXINGDA Women's Duke Basketball Logo Hooded Sweatshirt XXL Pink", 
+                 description: 'ZHENGXING Duke Basketball Logo 50% Cotton 50% Polyester Hooded Sweatshirt, A fantastic printed item you can wear or present as a gift.',
+                 image_url: 'http://ecx.images-amazon.com/images/I/51Qcg6t75lL._UL1500_.jpg',
+                 url: "http://www.amazon.com/CHENGXINGDA-Womens-Basketball-Hoodied-Sweatshirt/dp/B019UU1H98/ref=sr_1_14?ie=UTF8&qid=1456140250&sr=8-14&keywords=duke+womens+basketball+t-shirts+pink"
                  }])
 end
+
+carousel_images = Image.create([{
+                          title: 'cover1',
+                          description: 'Existentia quascunque ne collabitur an is ii.',
+                          url: 'http://thedudeminds.de/images/cover1.jpg', 
+                          set_as_carousel: true,
+                          },{
+                          title: 'cover2',
+                          description: 'Existentia quascunque ne collabitur an is ii.',
+                          url: 'http://thedudeminds.de/images/cover2.jpg', 
+                          set_as_carousel: true,
+                          },{
+                          title: 'cover3',
+                          description: 'Existentia quascunque ne collabitur an is ii.',
+                          url: 'http://thedudeminds.de/images/cover3.jpg', 
+                          set_as_carousel: true,
+                          }])

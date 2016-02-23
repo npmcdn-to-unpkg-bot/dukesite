@@ -9,6 +9,10 @@
   <%= p.label "Product Url" %><br>
   <%= p.text_field :url, class: "form-control", placeholder: "Enter url" %></p>
 
+  <p>
+  <%= p.label "Product Image Url" %><br>
+  <%= p.text_field :image_url, class: "form-control", placeholder: "Enter url" %></p>
+
   <div class="form-group">
   <%= p.label "Select categories" %> <small>(SHIFT + Mouse Click = Multiple Select</small> <br>
   <%= p.collection_select(:category_ids, @categories, :id, :name, {:multiple => true}, {:multiple => true, class: "form-control"}) %>
@@ -18,11 +22,6 @@
   <%= p.label "Select a Showcase" %> <small>(SHIFT + Mouse Click = Multiple Select</small> <br>
   <%= p.collection_select(:showcase_ids, @showcases, :id, :title, {:multiple => true}, {:multiple => true, class: "form-control"}) %>
   </div>
-  
-  <p>
-  <%= p.label "Set as carousel picture?" %><br>
-  <%= p.radio_button :carousel, false %> No <br>
-  <%= p.radio_button :carousel, true %> Yes </p>
 
   <p>
   <%= p.label "Publish?" %><br>
