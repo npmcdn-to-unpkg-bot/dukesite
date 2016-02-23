@@ -16,7 +16,6 @@ $(function(){
       $(this).toggleClass('hover');
     });
   };
-  changBgColor('.nav-contact li');
-  changBgColor('.navbar-collapse li');
+  changBgColor('.navbar-collapse #nav-link');
 
 });

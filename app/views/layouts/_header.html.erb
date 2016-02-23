@@ -6,20 +6,7 @@
     </ul>
   </div>
 <% end %>
-<div class="row nav-contact pull-right">
-  <ul>
-    <%= link_to root_path do %>
-      <li class="hidden-xs">Blog</li>
-    <% end %>
-    <%= link_to root_path do %>
-      <li class="hidden-xs">Contact</li>
-    <% end %>
-  </ul>
-</div>
 
-<div class="row logo-wrapper">
-  <%= link_to image_tag('http://www.fromtourist2local.com/uploads/1/2/9/5/12956618/1452033429.png', width: "300px"), root_path %>
-</div>
 
 <nav class="row nav-bar">
   <div class="container-fluid">
@@ -33,16 +20,15 @@
     </div>
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul>
-      <%= link_to root_path do %>
-        <li>Features</li>
-      <% end %>
-      <%= link_to root_path do %>
-        <li>2016 selection</li>
-      <% end %>
-      <%= link_to root_path do %>
-        <li>Quotes</li>
-      <% end %>
+    <ul class="pull-left">
+      <li class="logo-wrapper">
+      <%= link_to image_tag('http://thedudeminds.de/images/thedukegirls.png', width: "250px"), root_path %>
+      </li>
+    </ul>
+    <ul class="pull-right">
+      <li><%= link_to "Features", root_path, class: "navbar-link" %></li>
+      <li><%= link_to "2016 selection", root_path, class: "navbar-link" %></li>
+      <li><%= link_to "Quotes", root_path, class: "navbar-link" %></li>
     </ul>
   </div>
 </nav>
