@@ -1,8 +1,11 @@
 class Admin::CategoriesController < AdminController
-  before_action :authenticate_admin!
-  before_action :find_category, only: [:edit, :update, :destroy]
+  layout "application", only: [:show]
+  before_action :authenticate_admin!, except: [:show]
+  before_action :find_category, only: [:show, :edit, :update, :destroy]
   def index
-    @categories = Category.all
+  end
+
+  def show
   end
 
   def new
