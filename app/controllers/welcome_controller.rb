@@ -3,4 +3,8 @@ class WelcomeController < ApplicationController
     @carousel_imgs = Image.where(set_as_carousel: true)
     @showcases = Showcase.all.where(:show_on_landing_page => true)
   end
+
+  def our_stroy
+  end
+
 end
