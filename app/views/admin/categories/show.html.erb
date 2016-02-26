@@ -1,1 +1,19 @@
-<%= @category.name %>
+<div class="container">
+  <div class="page-header">
+    <h2><%= @category.name %></h2>
+  </div>
+  <div class="row">
+    <% if @category.products.size == 0 %>
+        No products
+      </div>
+    <% else %>
+      <% @category.products.each do |p| %>
+        <div class="col-xs-12 col-md-2">
+          <%= link_to product_path(p), class:"thumbnail" do %>
+            <%= image_tag p.image_url,  class: "img-responsive", alt: "Responsive image" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

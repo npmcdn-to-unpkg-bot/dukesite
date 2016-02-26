@@ -1,7 +1,7 @@
 <% @showcases.each do |showcase| %>
   <div class="row showcase-header">
     <div class="col-sm-4">
-      <p><b><%= showcase.title %></b></p>
+      <p><b><%= link_to showcase.title, showcase_path(showcase) %></b></p>
     </div>
     <div class="col-sm-6">
     </div>
@@ -19,7 +19,7 @@
       </a>
     </div>
     %>
-    <% showcase_products = showcase.products[0..7] %>
+    <% showcase_products = showcase.products[0..5] %>
 
     <% showcase_products.each do |p| %>
       <div class="col-xs-12 col-md-2 showcase-img">

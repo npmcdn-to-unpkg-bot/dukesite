@@ -1,1 +1,15 @@
-<%= @showcase.title %>
+<div class="container">
+  <div class="page-header">
+    <h2><%= @showcase.title %></h2>
+  </div>
+
+  <div class="row showcase-body">
+    <% @showcase.products.each do |p| %>
+      <div class="col-xs-12 col-md-2">
+        <%= link_to product_path(p), class:"thumbnail" do %>
+          <%= image_tag p.image_url,  class: "img-responsive", alt: "Responsive image" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

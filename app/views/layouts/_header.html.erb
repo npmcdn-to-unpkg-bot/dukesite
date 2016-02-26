@@ -27,9 +27,9 @@
       </li>
     </ul>
     <ul class="pull-right">
-      <li><%= link_to "Features", root_path, class: "navbar-link" %></li>
-      <li><%= link_to "2016 Selection", root_path, class: "navbar-link" %></li>
-      <li><%= link_to "Quotes", root_path, class: "navbar-link" %></li>
+      <% @showcases.each do |s| %>
+        <li><%= link_to s.title, showcase_path(s), class: "navbar-link" %></li>
+      <% end %>
     </ul>
   </div>
 </nav>

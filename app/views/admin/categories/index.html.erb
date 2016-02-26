@@ -30,7 +30,7 @@
       <td><%= p.created_at.to_formatted_s(:long) %></td>
       <td><%= p.updated_at.to_formatted_s(:long) %></td>
       <td>
-        <%= link_to admin_showcase_products_path(p) do %>
+        <%= link_to admin_category_products_path(p) do %>
           <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
         <% end %>
       </td>
