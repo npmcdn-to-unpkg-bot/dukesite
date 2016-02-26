@@ -9,7 +9,6 @@ class Admin::ProductsController < AdminController
 
   def new
     @product = Product.new
-    @categories = Category.all
     @showcases = Showcase.all
   end
 
@@ -27,7 +26,6 @@ class Admin::ProductsController < AdminController
   end
 
   def edit
-    @categories = Category.all
     @showcases = Showcase.all
   end
 
