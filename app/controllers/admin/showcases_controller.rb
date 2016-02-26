@@ -1,12 +1,16 @@
 class Admin::ShowcasesController < AdminController
   layout "application", only: [:show]
   before_action :authenticate_admin!, except: [:show]
-  before_action :find_showcase, only: [:show, :edit, :update, :destroy]
+  before_action :find_showcase, only: [:show, :product_list, :edit, :update, :destroy]
   def index
     @showcases = Showcase.all.order("updated_at DESC")
   end
 
   def show
+  end
+
+  def product_list
+    @products = @showcase.products
   end
 
   def new

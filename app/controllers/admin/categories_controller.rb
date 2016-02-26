@@ -1,11 +1,15 @@
 class Admin::CategoriesController < AdminController
   layout "application", only: [:show]
   before_action :authenticate_admin!, except: [:show]
-  before_action :find_category, only: [:show, :edit, :update, :destroy]
+  before_action :find_category, only: [:show, :product_list, :edit, :update, :destroy]
   def index
   end
 
   def show
+  end
+
+  def product_list
+    @products = @category.products
   end
 
   def new
