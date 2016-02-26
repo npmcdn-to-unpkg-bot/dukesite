@@ -1,9 +1,8 @@
 body {
-  background-color: #F8F8F8;
   .outter-container {
     background-color: white;
     .nav-bar {
-      li {display: inline-block;}
+      li { display: inline-block; }
       .logo-wrapper {
         text-align: center;
         margin-right: 20px;
@@ -17,9 +16,17 @@ body {
           padding: 15px 15px 10px 0px;
           height: $line-height-base;
         }
-        .navbar-link:hover {
-          color: $duke-blue;
-        }
+      }
+    }
+
+    .category_nav {
+      li {
+        display: inline-block; 
+        letter-spacing: 0.5px;
+        font-family: $font-family-base;
+        font-weight: $headings-font-weight;
+        padding: 15px 15px 10px 0px;
+        height: $line-height-base;
       }
     }
   }
@@ -27,8 +34,9 @@ body {
 
 
 .footer { 
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin-top: 1%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   p {
     text-transform: uppercase;
   }
