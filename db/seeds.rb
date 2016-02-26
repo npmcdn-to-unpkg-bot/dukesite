@@ -25,7 +25,7 @@ categories = Category.create([{ name: "Shirts" },
                               { name: "Socks"},
                               { name: "Long Seeve"},
                               { name: "T-shirts"},
-                              { name: "pants"},
+                              { name: "Pants"},
                               { name: "Hats"},
                               { name: "Socks"},
                               { name: "Jerseys"}])
