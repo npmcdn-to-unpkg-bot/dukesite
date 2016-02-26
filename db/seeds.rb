@@ -46,12 +46,11 @@ for i in 1..10 do
                    }])
 end
 
-ProductCategory.create([{ product_id: 1, category_id: 1 }, 
-                        { product_id: 2, category_id: 2 }, 
-                        { product_id: 3, category_id: 3 }])
+for i in 1..20 do
+  ProductCategory.create([{ product_id: i, category_id: 1 }, 
+                          { product_id: i, category_id: 2 }, 
+                          { product_id: i, category_id: 3 }])
 
-
-for i in 1..10 do
   ProductShowcase.create([{ product_id: i, showcase_id: 1 }, 
                           { product_id: i, showcase_id: 2 },
                           { product_id: i, showcase_id: 3 }])
