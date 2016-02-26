@@ -7,12 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 showcases = Showcase.create([{
-                               title: "2016 selection",
+                               title: "2016 Selection",
                                feature_img_url: "https://images.unsplash.com/5/unsplash-bonus.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=bdb8645a7dec56f25f598d1faaa718d3",
                                show_on_landing_page: true,
                                },
                              {
-                               title: "features",
+                               title: "Features",
                                feature_img_url: "https://images.unsplash.com/photo-1415226581130-91cb7f52f078?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=276f62cfceb487bafa5b2acdd6c92706",
                                show_on_landing_page: true,
                                },
@@ -22,7 +22,7 @@ showcases = Showcase.create([{
                                show_on_landing_page: true,
                                }])
 
-categories = Category.create([{ name: "Skirt" }, { name: "hat"}])
+categories = Category.create([{ name: "T-Shirt" }, { name: "Sweatshirt"}, { name: "Hat"}])
   
 for i in 1..10 do
   Product.create([{
@@ -53,5 +53,15 @@ carousel_images = Image.create([{
                           title: 'cover3',
                           description: 'Existentia quascunque ne collabitur an is ii.',
                           url: 'http://thedudeminds.de/images/cover3.jpg', 
+                          set_as_carousel: true,
+                          },{
+                          title: 'cover4',
+                          description: 'Existentia quascunque ne collabitur an is ii.',
+                          url: 'http://thedudeminds.de/images/cover4.jpg', 
+                          set_as_carousel: true,
+                          },{
+                          title: 'cover5',
+                          description: 'Existentia quascunque ne collabitur an is ii.',
+                          url: 'http://thedudeminds.de/images/cover5.jpg', 
                           set_as_carousel: true,
                           }])
