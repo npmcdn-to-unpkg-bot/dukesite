@@ -2,31 +2,29 @@ body {
   background-color: #F8F8F8;
   .outter-container {
     background-color: white;
+    .nav-bar {
+      li {display: inline-block;}
+      .logo-wrapper {
+        text-align: center;
+        margin-right: 20px;
+      }
+      .pull-right {
+        margin-top: 40px;
+        .navbar-link {
+          letter-spacing: 0.5px;
+          font-family: $font-family-base;
+          font-weight: $headings-font-weight;
+          padding: 15px 15px 10px 0px;
+          height: $line-height-base;
+        }
+        .navbar-link:hover {
+          color: $duke-blue;
+        }
+      }
+    }
   }
 }
 
-.logo-wrapper {
-  text-align: center;
-  margin-right: 20px;
-}
-.nav-bar {
-  li {display: inline-block;}
-  .pull-right {
-    margin-top: 40px;
-    .navbar-link {
-      font-size: 18px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      font-family: $font-family-base;
-      font-weight: $headings-font-weight;
-      padding: 15px 15px 10px 0px;
-      height: $line-height-base;
-    }
-    .navbar-link:hover {
-      color: $duke-blue;
-    }
-  }
-}
 
 .footer { 
   margin-top: 3%;
