@@ -5,8 +5,8 @@
     </div>
     <div class="col-sm-6">
     </div>
-    <div class="col-sm-2 hidden-xs pull-right">
-      <p><small><%= link_to "More", root_path %></small></p>
+    <div class="col-sm-1 hidden-xs pull-right">
+      <p><small><%= link_to "More", showcase_path(showcase) %></small></p>
     </div>
   </div>
   
@@ -24,7 +24,7 @@
     <% showcase_products.each do |p| %>
       <div class="col-xs-12 col-md-2 showcase-img">
         <%= link_to product_path(p), class:"thumbnail" do %>
-          <%= image_tag p.image_url,  class: "img-responsive", alt: "Responsive image" %>
+          <%= image_tag p.image_url, class: "img-responsive", alt: "Responsive image" %>
         <% end %>
       </div>
     <% end %>

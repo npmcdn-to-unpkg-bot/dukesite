@@ -1,26 +1,37 @@
 body {
   .outter-container {
     background-color: white;
-    .nav-bar {
+    .admin_link {
+      margin: 15px;
       li { display: inline-block; }
+    }
+    .nav-bar {
+      li { 
+        display: inline-block;
+        text-transform: uppercase;
+      }
       .logo-wrapper {
         text-align: center;
         margin-right: 20px;
       }
       .pull-right {
         margin-top: 40px;
+        margin-right: 40px;
         .navbar-link {
           letter-spacing: 0.5px;
           font-family: $font-family-base;
           font-weight: $headings-font-weight;
-          padding: 15px 15px 10px 0px;
+          padding: 15px 20px 10px 20px;
           height: $line-height-base;
         }
       }
     }
 
     .category_nav {
+      margin-right: 20px;
+      margin-left: 20px;
       li {
+        text-transform: uppercase;
         display: inline-block; 
         letter-spacing: 0.5px;
         font-family: $font-family-base;
@@ -28,6 +39,13 @@ body {
         padding: 15px 15px 10px 0px;
         height: $line-height-base;
       }
+    }
+    .page-header p { 
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: $font-family-base;
+        font-weight: $headings-font-weight;
+        height: $line-height-base;
     }
   }
 }

@@ -1,7 +1,8 @@
 <% if admin_signed_in? %>
   <div class="row admin_link">
     <ul class="pull-right">
-      <li>Hi, <%= current_admin.email %></li>
+      <li>Hi, <%= current_admin.email %> | </li>
+      <li><%= link_to "Log out", destroy_admin_session_path, :method => :delete %> | </li>
       <li><%= link_to "Dashboard", admin_index_path %></li>
     </ul>
   </div>
@@ -42,4 +43,5 @@
     </ul>
     <ul class="pull-right">
       <li>Search</li>
+    </ul>
 </nav>
