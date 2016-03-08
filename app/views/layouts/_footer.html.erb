@@ -1,32 +1,45 @@
 <div class="row footer">
-  <div class="col-sm-2">
-    <ul>
-      <p>Links</p>
-      <li><%= link_to "Duke Basketball", "http://www.goduke.com/SportSelect.dbml?SPID=1845" %></li>
-    </ul>
+  <div class="col-sm-2 col-sm-offset-1">
+    <%= link_to root_path do %>
+      <%= link_to image_tag('http://thedudeminds.de/images/thedukegirls.png', width: "250px"), root_path %>
+    <% end %><br>©2016 Duke For Girls
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-2">
+    <div class="row">
+      <ul>
+        <p>Our belief</p>
+        <li>Lorem ipsum Esse esse aliqua ad voluptate voluptate nisi adipisicing aute qui reprehenderit occaecat fugiat velit.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-2">
     <ul>
       <p>Duke for Girls</p>
       <li><%= link_to "Our Story", story_path %></li>
-      <li><%= link_to "Our Blog", root_path %></li>
+      <li><%= link_to "Blog", root_path %></li>
       <li><%= link_to "Join Us", root_path %></li>
     </ul>
   </div>
   <div class="col-sm-2">
     <p>Follow Us</p>     
     <%= link_to root_path do %>
-      <%= image_tag "http://thedudeminds.de/images/facebook-3-32.png",  size: "32x32", alt: "Responsive image" %>
+      <%= image_tag "http://thedudeminds.de/images/facebook-3-32.png",  size: "32x32" %>
     <% end %>
     <%= link_to root_path do %>
-      <%= image_tag "http://thedudeminds.de/images/pinterest-3-32.png",  size: "32x32", alt: "Responsive image" %>
+      <%= image_tag "http://thedudeminds.de/images/pinterest-3-32.png",  size: "32x32" %>
+    <% end %>
+    <%= link_to root_path do %>
+      <%= image_tag "http://thedudeminds.de/images/twitter-3-32.png",  size: "32x32" %>
+    <% end %>
+    <%= link_to root_path do %>
+      <%= image_tag "http://thedudeminds.de/images/instagram-3-32.png",  size: "32x32" %>
     <% end %>
   </div>
-  <div class="col-sm-4">
-    <ul>
-      <p>Subscribe US</p>
-      <li><%= link_to "Facebook", root_path %></li>
-      <li><%= link_to "Pinterest", root_path %></li>
-    </ul>
+  <div class="col-sm-2">
+    <p>Subscribe for updates</p>
+    <%#= form_tag({:controller=>"application", :action => 'create_subscriber'}, :method=>"put") do %>
+      <%#= email_field_tag 'email', nil , placeholder: "Enter Email" %>
+      <%#= submit_tag "Go" %>
+    <%# end %>
   </div>
 </div>

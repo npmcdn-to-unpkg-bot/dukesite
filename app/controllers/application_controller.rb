@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def get_showcase
     @showcases = Showcase.all
   end
+  def create_subscriber
+    @subscriber = Subscriber.create(email: params[:email])
+    render json: 'ok'.to_json
+  end
 end
