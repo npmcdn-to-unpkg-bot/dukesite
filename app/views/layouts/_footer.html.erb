@@ -1,5 +1,5 @@
 <div class="row footer">
-  <div class="col-sm-3">
+  <div class="col-sm-2">
     <ul>
       <p>Links</p>
       <li><%= link_to "Duke Basketball", "http://www.goduke.com/SportSelect.dbml?SPID=1845" %></li>
@@ -13,16 +13,18 @@
       <li><%= link_to "Join Us", root_path %></li>
     </ul>
   </div>
-  <div class="col-sm-3">
-    <ul>
-      <p>Follow Us</p>
-      <li><%= link_to "Facebook", root_path %></li>
-      <li><%= link_to "Pinterest", root_path %></li>
-    </ul>
+  <div class="col-sm-2">
+    <p>Follow Us</p>     
+    <%= link_to root_path do %>
+      <%= image_tag "http://thedudeminds.de/images/facebook-3-32.png",  size: "32x32", alt: "Responsive image" %>
+    <% end %>
+    <%= link_to root_path do %>
+      <%= image_tag "http://thedudeminds.de/images/pinterest-3-32.png",  size: "32x32", alt: "Responsive image" %>
+    <% end %>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <ul>
-      <p>Subscribe</p>
+      <p>Subscribe US</p>
       <li><%= link_to "Facebook", root_path %></li>
       <li><%= link_to "Pinterest", root_path %></li>
     </ul>

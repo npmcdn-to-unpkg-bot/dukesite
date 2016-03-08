@@ -47,7 +47,7 @@ class Admin::ProductsController < AdminController
 
   private
     def product_params
-      params.require(:product).permit(:title, :slug, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
+      params.require(:product).permit(:title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
     end
     def find_product
       @product = Product.find_by(slug: params[:id])

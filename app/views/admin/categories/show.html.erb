@@ -9,7 +9,7 @@
     <% else %>
       <% @category.products.each do |p| %>
         <div class="col-xs-12 col-md-2">
-          <%= link_to product_path(p), class:"thumbnail" do %>
+          <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
             <%= image_tag p.image_url,  class: "img-responsive", alt: "Responsive image" %>
           <% end %>
         </div>
