@@ -51,6 +51,6 @@ class Admin::ShowcasesController < AdminController
     end
 
     def find_showcase
-      @showcase = Showcase.find(params[:id])
+      @showcase = Showcase.find_by(slug: params[:id])
     end
 end

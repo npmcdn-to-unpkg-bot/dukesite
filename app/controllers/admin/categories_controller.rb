@@ -49,6 +49,6 @@ class Admin::CategoriesController < AdminController
       params.require(:category).permit(:name)
     end
     def find_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by(slug: params[:id])
     end
 end

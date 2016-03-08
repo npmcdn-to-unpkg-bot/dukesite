@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  include SlugGenerator
+
   validates_presence_of :title, :url, :image_url
   
   has_many :product_categories
@@ -6,4 +8,6 @@ class Product < ActiveRecord::Base
 
   has_many :product_showcases
   has_many :showcases, through: :product_showcases
+
+  sluggable_column :title
 end
