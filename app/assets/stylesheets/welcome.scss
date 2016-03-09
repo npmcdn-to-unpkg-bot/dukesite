@@ -1,3 +1,14 @@
+@mixin margin-top-bottom($height: 20px) {
+  margin-top: $height;
+  margin-bottom: $height;
+}
+
+@mixin margin-left-right($width: 5px) {
+  margin-left: $width;
+  margin-right: $width;
+}
+
+
 .landing-carousel .carousel img {
   // position: absolute;
   top: 0;
@@ -13,20 +24,16 @@
 }
 
 .info_banner {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  @include margin-top-bottom(30px);
 }
 
 .showcase {
-  margin-left: 20px;
-  margin-right: 20px;
+  @include margin-top-bottom;
 }
 
 .showcase-header {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 5px;
-  margin-right: 5px;
+  @include margin-top-bottom(30px);
+  @include margin-left-right;
   background-color: $gray-lighter;
   p {
     text-transform: uppercase;
@@ -42,14 +49,9 @@
   }
 }
 
-.showcase-feature {
-  img {
-    min-height: 285px;
-    width: auto;
-  }
-}
-
-.showcase-img {
-    min-height: 132px;
-    min-height: 132px;
-}
+// .showcase-feature {
+//   img {
+//     min-height: 285px;
+//     width: auto;
+//   }
+// }
