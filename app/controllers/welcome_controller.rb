@@ -6,5 +6,4 @@ class WelcomeController < ApplicationController
 
   def our_stroy
   end
-
 end

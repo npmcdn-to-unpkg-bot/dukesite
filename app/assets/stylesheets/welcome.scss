@@ -8,6 +8,11 @@
   margin-right: $width;
 }
 
+@mixin padding-top-bottom($height: 5%) {
+  padding-top: $height;
+  padding-bottom: $height;
+}
+
 
 .landing-carousel .carousel img {
   // position: absolute;
@@ -31,6 +36,13 @@
   @include margin-top-bottom;
 }
 
+.subscribe {
+  @include padding-top-bottom;
+  text-align: center;
+  min-height: 150px;
+  background-color: #FF3399;
+  color: white;
+}
 .showcase-header {
   @include margin-top-bottom(30px);
   @include margin-left-right;
@@ -46,6 +58,13 @@
     font-family: $font-family-base;
     font-weight: $headings-font-weight;
     height: $line-height-base;
+  }
+}
+
+.showcase-body {
+  @include margin-left-right(30px);
+  img:hover{
+    opacity: 0.5;
   }
 }
 

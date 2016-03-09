@@ -6,16 +6,17 @@
 
 
 
-var duke_blue = "#013088";
+// var duke_blue = "#013088";
 
 $(function(){
-  var changBgColor = function(button) {
-    $(button).hover(function(){
-      $(this).toggleClass('hover');
-    }, function() {
-      $(this).toggleClass('hover');
-    });
-  };
-  changBgColor('.navbar-collapse #nav-link');
+  // var changBgColor = function(button) {
+  //   $(button).hover(function(){
+  //     $(this).toggleClass('hover');
+  //   }, function() {
+  //     $(this).toggleClass('hover');
+  //   });
+  // };
+  // changBgColor('.navbar-collapse #nav-link');
+
 });
 

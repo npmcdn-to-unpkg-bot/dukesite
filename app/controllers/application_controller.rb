@@ -9,8 +9,17 @@ class ApplicationController < ActionController::Base
   def get_showcase
     @showcases = Showcase.all
   end
+
   def create_subscriber
-    @subscriber = Subscriber.create(email: params[:email])
-    render json: 'ok'.to_json
+    response = ""
+    status   = 200
+    if params[:email].blank?
+      response = "Please enter email address."
+    else
+      @subscriber = Subscriber.create(email: params[:email])
+      response = "You've subscirbed Newsletter from Duke for Girls."
+    end
+    render json: {response: response},
+           status: status
   end
 end

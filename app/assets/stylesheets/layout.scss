@@ -1,3 +1,8 @@
+@mixin margin-top-bottom($height: 4%) {
+  margin-top: $height;
+  margin-bottom: $height;
+}
+
 body {
   .outter-container {
     background-color: white;
@@ -50,11 +55,8 @@ body {
   }
 }
 
-
 .footer { 
-  margin-top: 1%;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  @include margin-top-bottom;
   p {
     text-transform: uppercase;
   }
