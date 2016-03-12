@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     response = ""
     status   = 200
     if params[:email].blank?
+      status   = 400
       response = "Please enter email address."
     else
       @subscriber = Subscriber.create(email: params[:email])

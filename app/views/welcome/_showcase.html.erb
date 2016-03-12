@@ -19,9 +19,9 @@
       </a>
     </div>
     %>
-    <%# showcase_products = showcase.products[0..5] %>
+    <% showcase_products = showcase.products[0..7] %>
 
-    <% showcase.products.each do |p| %>
+    <% showcase_products.each do |p| %>
       <div class="col-xs-12 col-md-3 showcase-img">
         <%= link_to product_path(p), class:"thumbnail" do %>
           <%= image_tag p.image_url, class: "img-responsive", alt: "Responsive image" %>
