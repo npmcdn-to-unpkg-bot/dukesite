@@ -18,3 +18,4 @@
 secrets.yml
 database.yml
 routes.rb
+.byebug_history
