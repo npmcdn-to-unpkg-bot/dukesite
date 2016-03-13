@@ -37,7 +37,6 @@ class Admin::ProductsController < AdminController
       }
     )
     res_hash = response.to_h
-
     item = res_hash["ItemLookupResponse"]["Items"]["Item"]
 
     @product_details = {
@@ -45,13 +44,15 @@ class Admin::ProductsController < AdminController
       "SmallImageURL"  => item["SmallImage"]["URL"],
       "MediumImageURL" => item["MediumImage"]["URL"],
       "LargeImageURL"  => item["LargeImage"]["URL"],
-      "Price"          => item["OfferSummary"]["TotalNew"],
+      "Price"          => "",
       "Title"          => item["ItemAttributes"]["Title"],
       "Description"    => item["EditorialReviews"]["EditorialReview"]["Content"]
     }
 
     @product_details["Title"] = @product.title unless @product.title.nil?
     @product_details["Description"] = @product.description unless @product.description.nil?
+    @product_details["Price"] = item["ItemAttributes"]["ListPrice"]["FormattedPrice"] unless item["ItemAttributes"]["ListPrice"] == nil
+  
   end
 
   def edit
