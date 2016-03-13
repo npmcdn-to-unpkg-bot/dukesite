@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308091012) do
+ActiveRecord::Schema.define(version: 20160313090837) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160308091012) do
     t.boolean  "published",   default: false
     t.text     "image_url"
     t.string   "slug"
+    t.string   "asin"
   end
 
   create_table "showcases", force: :cascade do |t|

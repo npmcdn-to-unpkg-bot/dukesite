@@ -15,5 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
-secret.yml
-secret.yml
+config/secrets.yml
+config/secrets.yml
+config/environment.yml

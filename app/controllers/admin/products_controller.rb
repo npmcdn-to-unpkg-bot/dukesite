@@ -24,6 +24,34 @@ class Admin::ProductsController < AdminController
   end
 
   def show
+    request = Vacuum.new
+    request.configure(
+      aws_access_key_id: Rails.application.secrets.aws_access_key_id,
+      aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      associate_tag: Rails.application.secrets.associate_tag
+    )
+    response = request.item_lookup(
+      query: {
+        'ItemId': @product.asin,
+        "ResponseGroup": "Medium"
+      }
+    )
+    res_hash = response.to_h
+
+    item = res_hash["ItemLookupResponse"]["Items"]["Item"]
+
+    @product_details = {
+      "DetailPageURL"  => item["DetailPageURL"],
+      "SmallImageURL"  => item["SmallImage"]["URL"],
+      "MediumImageURL" => item["MediumImage"]["URL"],
+      "LargeImageURL"  => item["LargeImage"]["URL"],
+      "Price"          => item["OfferSummary"]["TotalNew"],
+      "Title"          => item["ItemAttributes"]["Title"],
+      "Description"    => item["EditorialReviews"]["EditorialReview"]["Content"]
+    }
+
+    @product_details["Title"] = @product.title unless @product.title.nil?
+    @product_details["Description"] = @product.description unless @product.description.nil?
   end
 
   def edit

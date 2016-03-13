@@ -32,12 +32,14 @@ categories = Category.create([{ name: "Shirts" },
   
 for i in 1..10 do
   Product.create([{
+                   asin: "B01BY3PEUM",
                    title: "WASH Duke Blue Devils Basketball Women's T Shirt Short Sleeves", 
                    description: "Our t-shirts are professionally printed with the eco-friendly ink, the materials are stretch and soft. You deserve to own such a fantastic shirt with reasonable price and great quality. It's adorable and well worth the money. Our shirts are reliable choices for you.",
                    image_url: 'http://ecx.images-amazon.com/images/I/61SduIacvTL._UL1500_.jpg',
                    url: "http://www.amazon.com/Devils-Basketball-Womens-Shirt-Sleeves/dp/B01BY3PEUM/ref=sr_1_3?ie=UTF8&qid=1456140250&sr=8-3&keywords=duke+womens+basketball+t-shirts+pink",
                    published: true,
                    },{ 
+                   asin: "B019RIOJNY",
                    title: "CHENGXINGDA Women's Duke Basketball Logo Hooded Sweatshirt XXL Pink", 
                    description: 'ZHENGXING Duke Basketball Logo 50% Cotton 50% Polyester Hooded Sweatshirt, A fantastic printed item you can wear or present as a gift.',
                    image_url: 'http://ecx.images-amazon.com/images/I/51Qcg6t75lL._UL1500_.jpg',
