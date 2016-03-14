@@ -20,7 +20,6 @@
 /tmp
 secrets.yml
 database.yml
-routes.rb
 .byebug_history
 
 #Add these files if you are running any rspec or capybara tests on your application.
