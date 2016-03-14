@@ -26,9 +26,9 @@ class Admin::ProductsController < AdminController
   def show
     request = Vacuum.new
     request.configure(
-      aws_access_key_id: Rails.application.secrets.aws_access_key_id,
-      aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
-      associate_tag: Rails.application.secrets.associate_tag
+      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      associate_tag: ENV["ASSOCIATE_TAG"]
     )
     response = request.item_lookup(
       query: {
