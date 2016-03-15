@@ -19,6 +19,7 @@
 !/log/.keep
 /tmp
 secrets.yml
+environment_variables.yml
 database.yml
 .byebug_history
 
