@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313090837) do
+ActiveRecord::Schema.define(version: 20160315153654) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -95,6 +95,14 @@ ActiveRecord::Schema.define(version: 20160313090837) do
     t.datetime "updated_at",                           null: false
     t.boolean  "show_on_landing_page", default: false
     t.string   "slug"
+  end
+
+  create_table "social_network_accounts", force: :cascade do |t|
+    t.string   "platform_name"
+    t.text     "platform_url"
+    t.text     "img_url"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "subscribers", force: :cascade do |t|
