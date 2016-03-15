@@ -1,6 +1,19 @@
 @import "bootstrap-sprockets";
 
 $font-family-base: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
-$pink: #F781F3;
+$pink: #FF33CC;
 $duke-blue: #013088;
 $green: #66CC33;
+
+@mixin selection-color {
+  background-color: $pink;
+  color: white;
+}
+
+::selection {
+  @include selection-color;
+}
+
+::-moz-selection {
+  @include selection-color;
+}
