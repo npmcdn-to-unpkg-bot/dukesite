@@ -35,7 +35,7 @@ gem 'devise'
 # gem 'capistrano-rails', group: :development
 
 # Wrapper to Amazon Product Advertising API
-gem 'vacuum', '~> 1.4.0'
+gem 'amazon-ecs'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

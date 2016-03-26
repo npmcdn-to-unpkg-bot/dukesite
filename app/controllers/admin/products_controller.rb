@@ -25,20 +25,9 @@ class Admin::ProductsController < AdminController
 
   def show
     look_up_item_on_amazon
-    @product_details = {
-      "DetailPageURL"  => @item["DetailPageURL"],
-      "SmallImageURL"  => @item["SmallImage"]["URL"],
-      "MediumImageURL" => @item["MediumImage"]["URL"],
-      "LargeImageURL"  => @item["LargeImage"]["URL"],
-      "Price"          => "",
-      "Title"          => @item["ItemAttributes"]["Title"],
-      "Description"    => @item["EditorialReviews"]["EditorialReview"]["Content"]
-    }
 
     @product_details["Title"] = @product.title unless @product.title.nil?
     @product_details["Description"] = @product.description unless @product.description.nil?
-    @product_details["Price"] = @item["ItemAttributes"]["ListPrice"]["FormattedPrice"] unless @item["ItemAttributes"]["ListPrice"] == nil
-  
   end
 
   def edit
@@ -70,19 +59,30 @@ class Admin::ProductsController < AdminController
     end
 
     def look_up_item_on_amazon
-      request = Vacuum.new
-      request.configure(
-        aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-        aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-        associate_tag: ENV["ASSOCIATE_TAG"]
-      )
-      response = request.item_lookup(
-        query: {
-          'ItemId': @product.asin,
-          "ResponseGroup": "Medium"
-        }
-      )
-      res_hash = response.to_h
-      @item = res_hash["ItemLookupResponse"]["Items"]["Item"]
+      require 'amazon/ecs'
+
+      Amazon::Ecs.configure do |options|
+        options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID"]
+        options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
+        options[:associate_tag] = ENV["ASSOCIATE_TAG"]
+      end
+
+      res = Amazon::Ecs.item_lookup(@product.asin, {:response_group => 'Medium'})
+      item = res.get_element("Item")
+      item_attributes = item.get_element('ItemAttributes')
+      price = item_attributes.get("ListPrice/FormattedPrice")
+      price_list = item_attributes.get("ListPrice")
+      item_img = item.get_hash('LargeImage')
+      item_ed_reviews = item.get_element("EditorialReview")
+
+      @product_details = {
+        "DetailPageURL"  => item_attributes.get('DetailPageURL'),
+        "LargeImageURL"  => item_img["URL"],
+        "Price"          => "",
+        "Title"          => item_attributes.get("Title"),
+        "Description"    => item_ed_reviews.get('Content')
+      }
+
+      @product_details["Price"] = price unless price_list == nil
     end
 end
