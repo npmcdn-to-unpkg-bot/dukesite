@@ -24,34 +24,20 @@ class Admin::ProductsController < AdminController
   end
 
   def show
-    request = Vacuum.new
-    request.configure(
-      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-      associate_tag: ENV["ASSOCIATE_TAG"]
-    )
-    response = request.item_lookup(
-      query: {
-        'ItemId': @product.asin,
-        "ResponseGroup": "Medium"
-      }
-    )
-    res_hash = response.to_h
-    item = res_hash["ItemLookupResponse"]["Items"]["Item"]
-
+    look_up_item_on_amazon
     @product_details = {
-      "DetailPageURL"  => item["DetailPageURL"],
-      "SmallImageURL"  => item["SmallImage"]["URL"],
-      "MediumImageURL" => item["MediumImage"]["URL"],
-      "LargeImageURL"  => item["LargeImage"]["URL"],
+      "DetailPageURL"  => @item["DetailPageURL"],
+      "SmallImageURL"  => @item["SmallImage"]["URL"],
+      "MediumImageURL" => @item["MediumImage"]["URL"],
+      "LargeImageURL"  => @item["LargeImage"]["URL"],
       "Price"          => "",
-      "Title"          => item["ItemAttributes"]["Title"],
-      "Description"    => item["EditorialReviews"]["EditorialReview"]["Content"]
+      "Title"          => @item["ItemAttributes"]["Title"],
+      "Description"    => @item["EditorialReviews"]["EditorialReview"]["Content"]
     }
 
     @product_details["Title"] = @product.title unless @product.title.nil?
     @product_details["Description"] = @product.description unless @product.description.nil?
-    @product_details["Price"] = item["ItemAttributes"]["ListPrice"]["FormattedPrice"] unless item["ItemAttributes"]["ListPrice"] == nil
+    @product_details["Price"] = @item["ItemAttributes"]["ListPrice"]["FormattedPrice"] unless @item["ItemAttributes"]["ListPrice"] == nil
   
   end
 
@@ -78,7 +64,25 @@ class Admin::ProductsController < AdminController
     def product_params
       params.require(:product).permit(:title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
     end
+
     def find_product
       @product = Product.find_by(slug: params[:id])
+    end
+
+    def look_up_item_on_amazon
+      request = Vacuum.new
+      request.configure(
+        aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+        aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+        associate_tag: ENV["ASSOCIATE_TAG"]
+      )
+      response = request.item_lookup(
+        query: {
+          'ItemId': @product.asin,
+          "ResponseGroup": "Medium"
+        }
+      )
+      res_hash = response.to_h
+      @item = res_hash["ItemLookupResponse"]["Items"]["Item"]
     end
 end
