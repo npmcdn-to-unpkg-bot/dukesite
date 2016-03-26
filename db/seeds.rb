@@ -23,7 +23,7 @@ showcases = Showcase.create([{
 categories = Category.create([{ name: "Shirts" }, 
                               { name: "Hoodies"}, 
                               { name: "Socks"},
-                              { name: "Long Seeve"},
+                              { name: "Long Sleeve"},
                               { name: "T-shirts"},
                               { name: "Pants"},
                               { name: "Hats"},
