@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :categories, execpt: [:show]
     get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
+    get '/look_up_item', to: 'products#lookup_item_on_amazon'
   end
 
   get '/products/:id', to: 'admin/products#show', as: 'product'
@@ -20,5 +21,4 @@ Rails.application.routes.draw do
   get '/categories/:id', to: 'admin/categories#show', as: 'category'
   get '/our-story', to: 'welcome#our_story', as: 'story'
   put '/subscriber', to: 'application#create_subscriber'
-  get '/look_up_item', to: 'admin/products#look_up_item_on_amazon'
 end

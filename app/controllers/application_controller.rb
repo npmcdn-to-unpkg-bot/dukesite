@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def create_subscriber
-    response = ""
     status   = 200
+    response = ""
     if params[:email].blank?
       status   = 400
       response = "Please enter email address."
