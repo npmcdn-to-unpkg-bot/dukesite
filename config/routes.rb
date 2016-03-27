@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   get '/categories/:id', to: 'admin/categories#show', as: 'category'
   get '/our-story', to: 'welcome#our_story', as: 'story'
   put '/subscriber', to: 'application#create_subscriber'
+  get '/look_up_item', to: 'admin/products#look_up_item_on_amazon'
 end

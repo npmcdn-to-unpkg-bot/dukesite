@@ -24,7 +24,7 @@ class Admin::ProductsController < AdminController
   end
 
   def show
-    look_up_price_on_amazon
+    look_up_price_from_amazon
   end
 
   def edit
@@ -46,6 +46,22 @@ class Admin::ProductsController < AdminController
     redirect_to admin_products_path
   end
 
+  def look_up_item_from_amazon
+    request_amazon('Medium')
+
+    item = @res.get_element("Item")
+    item_attributes = item.get_element('ItemAttributes')
+    item_img = item.get_hash('LargeImage')
+    item_ed_reviews = item.get_element("EditorialReview")
+
+    @product_details = {
+      "Title"          => item_attributes.get("Title"),
+      "DetailPageURL"  => item_attributes.get('DetailPageURL'),
+      "LargeImageURL"  => item_img["URL"],
+      "Description"    => item_ed_reviews.get('Content')
+    }
+  end
+
   private
     def product_params
       params.require(:product).permit(:title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
@@ -55,23 +71,7 @@ class Admin::ProductsController < AdminController
       @product = Product.find_by(slug: params[:id])
     end
 
-    def look_up_item_on_amazon
-      request_amazon('Medium')
-
-      item = @res.get_element("Item")
-      item_attributes = item.get_element('ItemAttributes')
-      item_img = item.get_hash('LargeImage')
-      item_ed_reviews = item.get_element("EditorialReview")
-
-      @product_details = {
-        "Title"          => item_attributes.get("Title"),
-        "DetailPageURL"  => item_attributes.get('DetailPageURL'),
-        "LargeImageURL"  => item_img["URL"],
-        "Description"    => item_ed_reviews.get('Content')
-      }
-    end
-    
-    def look_up_price_on_amazon
+    def look_up_price_from_amazon
       request_amazon('ItemAttributes')
       price_list = @res.get_element("ListPrice")
       if price_list.present?
@@ -81,7 +81,7 @@ class Admin::ProductsController < AdminController
       end
     end
 
-    def request_amazon(string)
+    def request_amazon(str)
       require 'amazon/ecs'
 
       Amazon::Ecs.configure do |options|
@@ -89,6 +89,6 @@ class Admin::ProductsController < AdminController
         options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
-      @res = Amazon::Ecs.item_lookup(@product.asin, {:response_group => string})
+      @res = Amazon::Ecs.item_lookup(@product.asin, {:response_group => str})
     end
 end
