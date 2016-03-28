@@ -51,12 +51,12 @@ class Admin::ProductsController < AdminController
     status   = 200
     if params[:asin].blank?
       status   = 400
-      response = "Please enter ASIN"
+      response = "Please enter ASIN."
     else
       request_amazon('Medium', params[:asin])
       if @res.has_error?
         status   = 400
-        response = res.error
+        response = params[:asin] + " cannot be found. Please check the ASIN."
       else
         response = "Item found."
         item = @res.get_element("Item")

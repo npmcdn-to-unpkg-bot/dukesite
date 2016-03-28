@@ -9,7 +9,7 @@
 // var duke_blue = "#013088";
 
 $(function(){
-
+  // subscribe-form
   $('#subscribe-form').on('ajax:success', function(event, xhr) {
     $('#subscribe-form').hide();
     $('#subscribe-msg').html(xhr.response).removeClass('hide');
@@ -18,6 +18,7 @@ $(function(){
     $('#subscribe-msg').html(response).removeClass('hide');
   });
 
+  // lookup-item-on-amazon
   $('#lookup-item-on-amazon-form').on('ajax:success', function(event, xhr) {
     $('#lookup-item-on-amazon-msg').html(xhr.response).removeClass('hide');
     var item = xhr.data;
@@ -34,7 +35,7 @@ $(function(){
     $('#product_description').val(desc);
     $('#product-img-url').attr('src', img_url);
 
-  }).on('ajax:error', function(event, xhr) {
+  }).on('ajax:error', function(event, xhr, status) {
     var response = xhr.responseJSON.response;
     $('#lookup-item-on-amazon-msg').html(response).removeClass('hide');
   });
