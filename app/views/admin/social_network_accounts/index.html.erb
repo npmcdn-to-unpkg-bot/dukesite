@@ -1,7 +1,8 @@
 <div class="page-header">
-  <h1>Social Media Accounts</h1>
+  <h1>Social Network Accounts</h1>
 </div>
 
+<!-- link to add new social media account item -->
 <p class="pull-right">
   <%= link_to new_admin_category_path do %>
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add a social media account
@@ -20,6 +21,7 @@
     <th></th>
   </tr>
  
+  <!-- iterate through social network account items and show properties in table lines -->
   <% sum = @social_network_accounts.length 
      i = 0
   %> 
@@ -29,7 +31,7 @@
       <td><%= i += 1 %>. </td>
       <td><%= p.platform_name %></td>
       <td><%= image_tag p.img_url,  size: "32x32" %></td>
-      <td><%= p.platform_url %></td>
+      <td><%= link_to p.platform_url, p.platform_url, :target => "_blank" %></td>
       <td>
         <% if p.visible %>
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

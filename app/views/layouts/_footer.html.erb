@@ -21,17 +21,14 @@
   <div class="col-xs-12 col-sm-2">
     <p class="text-center">Follow Us</p>     
     <p class="text-center">
-      <%= link_to root_path do %>
-        <%= image_tag "http://thedudeminds.de/images/facebook-3-32.png",  size: "32x32" %>
-      <% end %>
-      <%= link_to root_path do %>
-        <%= image_tag "http://thedudeminds.de/images/pinterest-3-32.png",  size: "32x32" %>
-      <% end %>
-      <%= link_to root_path do %>
-        <%= image_tag "http://thedudeminds.de/images/twitter-3-32.png",  size: "32x32" %>
-      <% end %>
-      <%= link_to root_path do %>
-        <%= image_tag "http://thedudeminds.de/images/instagram-3-32.png",  size: "32x32" %>
+      
+      <!-- iterate through social network account items and display icon, if account is marked as 'visible' -->
+      <% @social_network_accounts.each do |p| %>
+        <% if p.visible %>
+          <%= link_to p.platform_url, :target => "_blank" do %>
+            <%= image_tag p.img_url, size: "32x32" %>
+          <% end %>
+        <% end %>
       <% end %>
     </p>
   </div>
