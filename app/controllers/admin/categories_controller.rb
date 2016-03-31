@@ -3,17 +3,15 @@ class Admin::CategoriesController < AdminController
   before_action :authenticate_admin!, except: [:show]
   before_action :find_category, only: [:show, :product_list, :edit, :update, :destroy]
   def index
+    @category = Category.new
   end
 
   def show
+    @category = Category.find_by(slug: params[:id])
   end
 
   def product_list
     @products = @category.products
-  end
-
-  def new
-    @category = Category.new
   end
 
   def create
@@ -22,7 +20,7 @@ class Admin::CategoriesController < AdminController
       flash[:success] = "A new category was succefully created."
       redirect_to admin_categories_path
     else
-      render :new
+      render :index
     end
   end
 
@@ -48,6 +46,7 @@ class Admin::CategoriesController < AdminController
     def category_params
       params.require(:category).permit(:name)
     end
+    
     def find_category
       @category = Category.find_by(slug: params[:id])
     end

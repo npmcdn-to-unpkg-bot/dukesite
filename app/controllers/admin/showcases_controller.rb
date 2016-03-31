@@ -3,7 +3,7 @@ class Admin::ShowcasesController < AdminController
   before_action :authenticate_admin!, except: [:show]
   before_action :find_showcase, only: [:show, :product_list, :edit, :update, :destroy]
   def index
-    @showcases = Showcase.all.order("updated_at DESC")
+    @showcase = Showcase.new
   end
 
   def show
@@ -13,17 +13,13 @@ class Admin::ShowcasesController < AdminController
     @products = @showcase.products
   end
 
-  def new
-    @showcase = Showcase.new
-  end
-
   def create
     @showcase = Showcase.new(showcase_params)
     if @showcase.save
       flash[:success] = "The showcase was successfully created."
       redirect_to admin_showcases_path
     else
-      render :new
+      render :index
     end
   end
 

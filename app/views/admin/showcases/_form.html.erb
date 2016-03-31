@@ -1,12 +1,11 @@
 <%= render "shared/error", object: @showcase %>
+
 <div class="col-sm-2">
   <div class="row">
-    <% if @showcase.feature_img_url.nil? %>
-      <%= image_tag "http://thedudeminds.de/images/no_image_available.png", class: "img-responsive thumbnail", alt: "Responsive image" %> 
-    <% else %>
-      <%= image_tag @showcase.feature_img_url, class: "img-responsive thumbnail", alt: "Responsive image" %>
-    <% end %>
+    <% @showcase.feature_img_url.nil? ? feature_img_url = "http://thedudeminds.de/images/no_image_available.png" : feature_img_url = @showcase.feature_img_url %>
+    <%= image_tag feature_img_url, class: "img-responsive thumbnail", alt: "Responsive image" %> 
   </div>
+
   <% unless  @showcase.id.nil? %>
     <div class="row">
       <%= link_to showcase_path(@showcase), target: "_blank" do %>
@@ -19,6 +18,7 @@
     </div>
   <% end %>
 </div>
+
 <div class="col-sm-10">
   <%= form_for [:admin, @showcase] do |s| %>
     <p>
@@ -32,8 +32,7 @@
     <%= s.label "Display on the landing_page?" %><br>
     <%= s.radio_button :show_on_landing_page, false %> No <br>
     <%= s.radio_button :show_on_landing_page, true %> Yes </p>
-
-    <%= link_to "Cancel", admin_showcases_path, class: "btn btn-danger" %>
+    <%= link_to "Cancel", admin_showcases_path, class: "btn btn-warning" if @showcase.id.present? %>
     <%= s.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 </div>

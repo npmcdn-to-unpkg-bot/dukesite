@@ -20,15 +20,15 @@ showcases = Showcase.create([{
                               show_on_landing_page: true,
                               }])
 
-categories = Category.create([{ name: "Shirts" }, 
-                              { name: "Hoodies"}, 
-                              { name: "Socks"},
-                              { name: "Long Sleeve"},
-                              { name: "T-shirts"},
-                              { name: "Pants"},
-                              { name: "Hats"},
-                              { name: "Socks"},
-                              { name: "Jerseys"}])
+categories = Category.create([{ name: "Shirts", visible: "true" }, 
+                              { name: "Hoodies", visible: "true" },
+                              { name: "Socks", visible: "true" },
+                              { name: "Long Sleeve", visible: "true" },
+                              { name: "T-shirts", visible: "true" },
+                              { name: "Pants", visible: "true" },
+                              { name: "Hats", visible: "true" },
+                              { name: "Socks", visible: "true" },
+                              { name: "Jerseys", visible: "true" }])
   
 for i in 1..10 do
   Product.create([{
