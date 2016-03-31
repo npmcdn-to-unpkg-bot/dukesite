@@ -84,3 +84,25 @@ Image.create([{
                url: 'http://thedudeminds.de/images/cover5.jpg', 
                set_as_carousel: true,
                }])
+
+SocialNetworkAccount.create([{
+                              platform_name: 'Facebook',
+                              platform_url: 'https://www.google.de/search?q=facebook',
+                              img_url: 'http://thedudeminds.de/images/facebook-3-32.png',
+                              visible: true,
+                              },{
+                              platform_name: 'Twitter',
+                              platform_url: 'https://www.google.de/search?q=twitter',
+                              img_url: 'http://thedudeminds.de/images/twitter-3-32.png',
+                              visible: true,
+                              },{
+                              platform_name: 'Instagram',
+                              platform_url: 'https://www.google.de/search?q=instagram',
+                              img_url: 'http://thedudeminds.de/images/instagram-3-32.png',
+                              visible: false,
+                              },{
+                              platform_name: 'Pinterest',
+                              platform_url: 'https://www.google.de/search?q=pinterest',
+                              img_url: 'http://thedudeminds.de/images/pinterest-3-32.png',
+                              visible: true,
+                              }])
