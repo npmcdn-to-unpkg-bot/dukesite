@@ -20,20 +20,23 @@
     </tr>
    
     <% sum = @categories.length 
-       i = 0
+       i = 1
     %> 
 
     <% @categories.order("updated_at DESC").each do |p| %>
       <% if i < sum %>
         <tr>
-          <td><%= i+1 %>. </td>
-          <td><%= p.name %></td>
+          <td><%= i %>. </td>
+          <td id ="cat-name-<%= i %>"><%= p.name %></td>
           <td><%= p.created_at.to_formatted_s(:long) %></td>
           <td><%= p.updated_at.to_formatted_s(:long) %></td>
           <td>
             <%= link_to p.products.size, admin_category_products_path(p) %>
           </td>
-          <th><%= p.visible? ? "visible" : "invisible" %>
+          <td>
+
+          <button type="button" class="btn <%= p.visible? ? "btn-success" : "btn-default" %> btn-xs" id="cat-status" data-edit=<%= admin_category_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "visible" : "hidden" %></button>
+          </td>
           <td>
             <%= link_to category_path(p) do %>
               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>

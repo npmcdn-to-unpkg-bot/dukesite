@@ -3,7 +3,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-
+//= require category
 
 
 // var duke_blue = "#013088";
@@ -26,4 +26,3 @@ $(function(){
   });
 
 });
-

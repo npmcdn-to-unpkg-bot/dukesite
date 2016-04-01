@@ -24,16 +24,19 @@ class Admin::CategoriesController < AdminController
     end
   end
 
-  def edit
-  end
-
   def update
+    status = 200
+    response = ""
+    cat_status = ""
     if @category.update(category_params)
-      flash[:success] = "A new category was succefully edited."
-      redirect_to admin_categories_path
+      response = "Successfully"
+      cat_status = @category.visible
     else
-      render :edit
-    end 
+      status = 404
+      response = "Please try again"
+    end
+    render json: { response: response, cat_status: cat_status },
+           status: status
   end
 
   def destroy
@@ -44,7 +47,7 @@ class Admin::CategoriesController < AdminController
 
   private
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :visible)
     end
     
     def find_category

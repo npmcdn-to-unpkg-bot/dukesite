@@ -1,10 +1,20 @@
 <%= render "shared/error", object: @category %>
-
-<%= form_for [:admin, @category], html: {class: "form-inline"} do |p| %>
-  <div class="form-group">
-    <%= p.label "Name" %>
-    <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %>
-    <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
-    <%= p.submit "Submit", class: "btn btn-primary" %>
+<div class="row">
+  <div class="col-xs-10 col-sm-10 col-sm-offset-1 col-xs-offset-1">
+    <%= form_for [:admin, @category], html: {class: "form-horizontal"} do |p| %>
+      <div class="form-group">
+        <%= p.label "Name", class: "control-label" %>
+        <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+      </div>
+      <div class="form-group">
+        <%= p.label "visible", class: "control-label" %>
+        <%= p.radio_button :visible, false %> No  
+          <%= p.radio_button :visible, true %> Yes
+      </div>
+      <div class="form-group">
+        <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
+        <p><%= p.submit "Submit", class: "btn btn-primary" %></p>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
