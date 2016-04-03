@@ -13,8 +13,7 @@
       <th>Title</th>
       <th>Feature Image</th>
       <th>Display on<br>Landing Page</th>
-      <th>Created at</th>
-      <th>Last updated</th>
+      <th>Created at/<br>Last updated at</th>
       <th>Products<br>amount</th>
       <th>View</th>
       <th></th>
@@ -32,8 +31,8 @@
           <td>
             <%= p.show_on_landing_page ? "Yes" : "No" %>
           </td>
-          <td><%= p.created_at.to_formatted_s(:long) %></td>
-          <td><%= p.updated_at.to_formatted_s(:long) %></td>
+          <td><%= p.created_at.to_formatted_s(:db) %><br>
+              <%= p.updated_at.to_formatted_s(:db) %></td>
           <td>
             <%= link_to p.products.size, admin_showcase_products_path(p) %>
           </td>

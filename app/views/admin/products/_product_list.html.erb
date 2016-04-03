@@ -10,14 +10,13 @@
   <table class="table table-hover">
     <tr>
       <th></th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Categories</th>
-      <th>Showcases</th>
-      <th>Published</th>
-      <th>Created at</th>
-      <th>Last updated</th>
-      <th></th>
+      <th class="col-sm-3">Title</th>
+      <th class="col-sm-3">Description</th>
+      <th class="col-sm-1">Categories</th>
+      <th class="col-sm-1">Showcases</th>
+      <th class="col-sm-1">Published</th>
+      <th class="col-sm-2">Created at/<br>Last updated at</th>
+      <th class="col-sm-1"></th>
     </tr>
     
     <% sum = products.length 
@@ -47,8 +46,8 @@
               No
             <% end %>
           </td>
-          <td><%= p.created_at.to_formatted_s(:long) %></td>
-          <td><%= p.updated_at.to_formatted_s(:long) %></td>
+          <td><%= p.created_at.to_formatted_s(:db) %><br>
+              <%= p.updated_at.to_formatted_s(:db) %></td>
           <td>
             <%= link_to admin_product_path(p), target: "_blank" do %>
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
