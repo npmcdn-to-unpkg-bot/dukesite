@@ -8,29 +8,34 @@ $(function(){
   });
 
   // Change visible status
-  $("#cat-status").click(function(){
-    var visible = $( this ).attr( "data-visible" ),
-        edit_url = $( this ).attr( "data-edit" );
-    if (visible == "false" ) {
-      var visible = true;
-    } else {
-      var visible = false;
-    };
-    $.ajax({
-      url: edit_url,
-      method: "PUT",
-      data: { category: 
-              { visible: visible }
-            }
-    })
-    .success( function(data) {
-      var visible = data.cat_status;
-      $("#cat-status").text( function(){
-        return visible ? "visible" : "hidden";
+  $(".category-list #cat-status").each(function(){
+    $( this ).click(function(){
+      var $this    = $( this ),
+          visible  = $this.attr( "data-visible" ),
+          edit_url = $this.attr( "data-edit" );
+      if (visible == "false" ) {
+        var visible = true;
+      } else {
+        var visible = false;
+      };
+      $.ajax({
+        url: edit_url,
+        method: "PUT",
+        data: { category: 
+                { visible: visible }
+              },
+        success: function(data) {
+          var visible = data.cat_status;
+          $this.text( function(){
+            return visible ? "visible" : "hidden";
+          });
+          $this.attr("data-visible", visible.toString() );
+          $this.toggleClass("btn-success");
+          $this.toggleClass("btn-default");
+        }
       });
-      $("#cat-status").attr("data-visible", visible.toString() );
-      $("#cat-status").toggleClass("btn-success");
-      $("#cat-status").toggleClass("btn-default");
+      // end of ajax
     });
+    // end of click 
   });
 });
