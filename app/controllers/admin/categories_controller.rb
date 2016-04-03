@@ -30,11 +30,12 @@ class Admin::CategoriesController < AdminController
     if @category.update(category_params)
       response = "Successfully"
       cat_status = @category.visible
+      cat_name = @category.name
     else
       status = 404
       response = "Please try again"
     end
-    render json: { response: response, cat_status: cat_status },
+    render json: { response: response, cat_status: cat_status, cat_name: cat_name },
            status: status
   end
 

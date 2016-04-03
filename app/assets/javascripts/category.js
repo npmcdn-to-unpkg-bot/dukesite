@@ -1,18 +1,37 @@
 $(function(){
-  var cat_name = "#cat-name-1",
-      cat_name_val =  $(cat_name).val(),
-      cat_input = "<input type='text' class='form-control' placeholder='123'>";
-  $(cat_name).click(function(){
-    console.log("123");
-    $(this).html(cat_input);
+  $(".category-list #cat-name").each(function(){
+    var $this    = $( this ),
+        edit_url = $this.attr( "data-edit" );
+
+    $this.click(function(){
+      var cat_name = $this.text(); // Read category name
+      // In Modal
+      $("#editCatNamebody").attr("placeholder", cat_name);// Show category name in the form
+      // To save the new Category
+      $("#editCatNameConfirm").click(function(){
+        var new_cat_name = $("#editCatNamebody").val(); // Read value from Category form
+        $.ajax({
+          url: edit_url,
+          method: "PUT",
+          data: { category: 
+                  { name: new_cat_name }
+                },
+          success: function(data) {
+            // When the new name is saved
+            var new_cat_name = data.cat_name;
+            $this.text( new_cat_name ); // Show the new name on Category list
+          }
+        });
+      });
+    });
   });
 
   // Change visible status
   $(".category-list #cat-status").each(function(){
-    $( this ).click(function(){
-      var $this    = $( this ),
-          visible  = $this.attr( "data-visible" ),
-          edit_url = $this.attr( "data-edit" );
+    var $this    = $( this );
+    $this.click(function(){
+      visible  = $this.attr( "data-visible" ),
+      edit_url = $this.attr( "data-edit" );
       if (visible == "false" ) {
         var visible = true;
       } else {
@@ -30,7 +49,7 @@ $(function(){
             return visible ? "visible" : "hidden";
           });
           $this.attr("data-visible", visible.toString() );
-          $this.toggleClass("btn-success");
+          $this.toggleClass("btn-primary");
           $this.toggleClass("btn-default");
         }
       });
