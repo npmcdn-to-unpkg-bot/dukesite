@@ -1,10 +1,10 @@
 $(function(){
+  // Change Cat name
   $(".category-list #cat-name").each(function(){
-    var $this    = $( this ),
-        edit_url = $this.attr( "data-edit" );
-
+    var $this    = $( this );
     $this.click(function(){
-      var cat_name = $this.text(); // Read category name
+      var cat_name = $this.text(), // Read category name
+          edit_url = $this.attr( "data-edit" );
       // In Modal
       $("#editCatNamebody").attr("placeholder", cat_name);// Show category name in the form
       // To save the new Category
@@ -21,9 +21,9 @@ $(function(){
             var new_cat_name = data.cat_name;
             $this.text( new_cat_name ); // Show the new name on Category list
           }
-        });
-      });
-    });
+        }); // end of ajax
+      }); // end of click-confirm
+    }); // end of click-show-modal
   });
 
   // Change visible status

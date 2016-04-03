@@ -10,12 +10,12 @@
   <table class="table table-hover">
     <tr>
       <th></th>
-      <th>Name</th>
-      <th>Products<br>Amount</th>
-      <th>Status</th>
-      <th>View</th>
-      <th>Created at/<br>Last updated at</th>
-      <th></th>
+      <th class="col-sm-4">Name</th>
+      <th class="col-sm-2 text-center">Products<br>Amount</th>
+      <th class="col-sm-1">Status</th>
+      <th class="col-sm-1">Frontend</th>
+      <th class="col-sm-2">Created at/<br>Last updated at</th>
+      <th class="col-sm-1 text-center">Delete</th>
     </tr>
    
     <% sum = @categories.length 
@@ -26,20 +26,20 @@
         <tr>
           <td><%= i+1 %>. </td>
           <td data-toggle="modal" data-target="#editCatName" data-edit=<%= admin_category_path(p) %> id="cat-name"><%= p.name %></td>
-          <td>
+          <td class="text-center">
             <%= link_to p.products.size, admin_category_products_path(p) %>
           </td>
           <td>
           <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-xs" id="cat-status" data-edit=<%= admin_category_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "visible" : "hidden" %></button>
           </td>
-          <td>
+          <td class="text-center">
             <%= link_to category_path(p) do %>
               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
             <% end %>
           </td>
           <td><%= p.created_at.to_formatted_s(:db) %><br>
               <%= p.updated_at.to_formatted_s(:db) %></td>
-          <td>
+          <td class="text-center">
             <%= link_to admin_category_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             <% end %>
