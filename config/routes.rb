@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :social_network_accounts
     get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
+    get '/look_up_item', to: 'products#lookup_item_on_amazon'
   end
 
   get '/products/:id', to: 'admin/products#show', as: 'product'

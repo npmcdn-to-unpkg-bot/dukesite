@@ -24,21 +24,7 @@ class Admin::ProductsController < AdminController
   end
 
   def show
-    look_up_item_on_amazon
-    @product_details = {
-      "DetailPageURL"  => @item["DetailPageURL"],
-      "SmallImageURL"  => @item["SmallImage"]["URL"],
-      "MediumImageURL" => @item["MediumImage"]["URL"],
-      "LargeImageURL"  => @item["LargeImage"]["URL"],
-      "Price"          => "",
-      "Title"          => @item["ItemAttributes"]["Title"],
-      "Description"    => @item["EditorialReviews"]["EditorialReview"]["Content"]
-    }
-
-    @product_details["Title"] = @product.title unless @product.title.nil?
-    @product_details["Description"] = @product.description unless @product.description.nil?
-    @product_details["Price"] = @item["ItemAttributes"]["ListPrice"]["FormattedPrice"] unless @item["ItemAttributes"]["ListPrice"] == nil
-  
+    lookup_price_on_amazon
   end
 
   def edit
@@ -60,6 +46,37 @@ class Admin::ProductsController < AdminController
     redirect_to admin_products_path
   end
 
+  def lookup_item_on_amazon
+    response = ""
+    status   = 200
+    if params[:asin].blank?
+      status   = 400
+      response = "Please enter ASIN."
+    else
+      request_amazon('Medium', params[:asin])
+      if @res.has_error?
+        status   = 400
+        response = params[:asin] + " cannot be found. Please check the ASIN."
+      else
+        response = "Item found."
+        item = @res.get_element("Item")
+        item_attributes = item.get_element('ItemAttributes')
+        item_img = item.get_hash('LargeImage')
+        item_ed_reviews = item.get_element("EditorialReview")
+
+        @product_details = {
+          "Asin"           => item.get('ASIN'),
+          "Title"          => item_attributes.get("Title"),
+          "DetailPageURL"  => item.get("DetailPageURL"),
+          "LargeImageURL"  => item_img["URL"],
+          "Description"    => item_ed_reviews.get("Content")
+        }
+      end
+    end
+    render json: {response: response, data: @product_details},
+           status: status
+  end
+
   private
     def product_params
       params.require(:product).permit(:title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
@@ -69,20 +86,24 @@ class Admin::ProductsController < AdminController
       @product = Product.find_by(slug: params[:id])
     end
 
-    def look_up_item_on_amazon
-      request = Vacuum.new
-      request.configure(
-        aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-        aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-        associate_tag: ENV["ASSOCIATE_TAG"]
-      )
-      response = request.item_lookup(
-        query: {
-          'ItemId': @product.asin,
-          "ResponseGroup": "Medium"
-        }
-      )
-      res_hash = response.to_h
-      @item = res_hash["ItemLookupResponse"]["Items"]["Item"]
+    def lookup_price_on_amazon
+      request_amazon('ItemAttributes', @product.asin)
+      price_list = @res.get_element("ListPrice")
+      if price_list.present?
+        @price = price_list.get("FormattedPrice")
+      else
+        @price = "---"
+      end
+    end
+
+    def request_amazon(str, asin)
+      require 'amazon/ecs'
+
+      Amazon::Ecs.configure do |options|
+        options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID"]
+        options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
+        options[:associate_tag] = ENV["ASSOCIATE_TAG"]
+      end
+      @res = Amazon::Ecs.item_lookup(asin, {:response_group => str})
     end
 end
