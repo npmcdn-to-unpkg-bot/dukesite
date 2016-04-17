@@ -122,6 +122,10 @@ class Admin::ProductsController < AdminController
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
       @res = Amazon::Ecs.item_lookup(asin, {:response_group => response_group})
-    end
 
+      # TODO: uncomment these lines for amazon response debug output
+      #count = @res.items.count
+      #xml = @res.marshal_dump.gsub("\\n", "\n")
+      #puts("Amazon response contains " + count.to_s + " item(s):\n\n" + xml)
+    end
 end
