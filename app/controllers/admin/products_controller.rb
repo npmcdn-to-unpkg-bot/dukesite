@@ -107,8 +107,8 @@ class Admin::ProductsController < AdminController
       @res = Amazon::Ecs.item_lookup(asin, {:response_group => str})
 
       # TODO: uncomment these lines for amazon response debug output
-      #@count = @res.items.count
-      #@xml = @res.marshal_dump.gsub("\\n", "\n")
-      #puts("Amazon response contains " + @count.to_s + " item(s):\n\n" + @xml)
+      count = @res.items.count
+      xml = @res.marshal_dump.gsub("\\n", "\n")
+      puts("Amazon response contains " + count.to_s + " item(s):\n\n" + xml)
     end
 end
