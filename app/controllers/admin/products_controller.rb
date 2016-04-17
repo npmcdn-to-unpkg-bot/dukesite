@@ -53,33 +53,50 @@ class Admin::ProductsController < AdminController
       status   = 400
       response = "Please enter ASIN."
     else
-      request_amazon('Medium', params[:asin])
+
+      request_amazon('Variations', params[:asin]) #Check if the ASIN is a parent ASIN
       if @res.has_error?
         status   = 400
         response = params[:asin] + " cannot be found. Please check the ASIN."
       else
+        @product_details = []
+        asins = ""
+        @res.items[0..9].each do |item| # only use the first 10 ASINS
+          asin = item.get('ASIN')
+          asins << asin + ',' # Use ',' and no space " "
+        end
+        asins = asins.slice(0..-2) # get rid of the "," at the end of the asins string
+        request_amazon('Medium', asins) # Performing Multiple ItemLookups in One Request (only upto 10 ASINS are allowed)
         response = "Item found."
-        item = @res.get_element("Item")
-        item_attributes = item.get_element('ItemAttributes')
-        item_img = item.get_hash('LargeImage')
-        item_ed_reviews = item.get_element("EditorialReview")
 
-        @product_details = {
-          "Asin"           => item.get('ASIN'),
-          "Title"          => item_attributes.get("Title"),
-          "DetailPageURL"  => item.get("DetailPageURL"),
-          "LargeImageURL"  => item_img["URL"],
-          "Description"    => item_ed_reviews.get("Content")
-        }
+        @res.items.each do |item|
+          asin = item.get('ASIN')
+          detail_page_url = item.get("DetailPageURL") #get the url to amazon detail page
+          title = item.get('ItemAttributes/Title') #get title
+          item_img = item.get_hash('LargeImage') #get large image url
+          editorial_review = item.get_element('EditorialReview') # get description
+          description = editorial_review.get('Content') # get description
+
+          product_detail = {
+            "asin"           => asin,
+            "title"          => title,
+            "detail_page_url"  => detail_page_url,
+            "large_image_url"  => item_img["URL"],
+            "description"    => description
+          }
+          product_detail = OpenStruct.new(product_detail)
+          @product_details << product_detail
+        end
       end
     end
-    render json: {response: response, data: @product_details},
+    render json: {response: response, 
+                  data: @product_details},
            status: status
   end
 
   private
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
+      params.require(:product).permit(:asin, :title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
     end
 
     def find_product
@@ -96,7 +113,7 @@ class Admin::ProductsController < AdminController
       end
     end
 
-    def request_amazon(str, asin)
+    def request_amazon(response_group, asin)
       require 'amazon/ecs'
 
       Amazon::Ecs.configure do |options|
@@ -104,6 +121,7 @@ class Admin::ProductsController < AdminController
         options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
-      @res = Amazon::Ecs.item_lookup(asin, {:response_group => str})
+      @res = Amazon::Ecs.item_lookup(asin, {:response_group => response_group})
     end
+
 end
