@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   include SlugGenerator
 
   validates_presence_of :title, :url, :image_url
+  validates_uniqueness_of :asin
   
   has_many :product_categories
   has_many :categories, through: :product_categories
