@@ -6,8 +6,7 @@ $(function(){
         returned_items_num = returned_items.length;
 
     $.each(returned_items, function(index, value){
-      var item_index = index,
-          item       = value.table,
+      var item       = value.table,
           asin       = item.asin,
           title = item.title,
           product_page_url = item.detail_page_url,
@@ -15,7 +14,7 @@ $(function(){
           desc = item.description,
           id = 'item-' + asin;
       // Thumbmail for each item
-      $col = $('<div></div>').addClass("col-xs-12 col-sm-2 col-md-2").attr('id', id);
+      $col = $('<div></div>').addClass("col-xs-12 col-sm-3 col-md-2").attr('id', id);
       $thumbnail = $('<div></div>').addClass("thumbnail").appendTo($col);
       $img = $('<img />', { src: img_url}).appendTo($thumbnail);
       $item_info = $('<p></p>').text(title);
@@ -24,6 +23,7 @@ $(function(){
 
       // Click thumbnail & Show in form
       $('#' + id).click(function(){
+        var $form = $('#new_product');
         $('#product_asin').val(asin);
         $('#product_title').val(title);
         $('#product_url').val(product_page_url);
@@ -31,12 +31,18 @@ $(function(){
         $('#product_description').val(desc);
         $('#product-img-url').attr('src', img_url);
         // $(this).parent().children().remove();
+
+        // Scroll to the form
+        $('html,body').animate({
+          scrollTop: $form.offset().top}, 'show');
       });
 
     });
   }).on('ajax:error', function(event, xhr, status) {
     var response = xhr.responseJSON.response;
     $('#lookup-item-on-amazon-msg').html(response).removeClass('hide');
+  }).on('click', function(){
+    $('#returned_items').children().remove();
   });
 });
 
