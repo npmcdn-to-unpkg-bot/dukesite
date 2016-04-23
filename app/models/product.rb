@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :title, :url, :image_url
   validates_uniqueness_of :asin
-  
+
   has_many :product_categories
   has_many :categories, through: :product_categories
 
@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
   sluggable_column :title
 
   def self.lookup_asins_group_on_amazon(asin)
-    search_asins_res = request_amazon('Variations', asin)
+    search_asins_res = Amazon::EcsWrapper.request_amazon('Variations', asin)
     res = OpenStruct.new
     asins = ""
     if search_asins_res.has_error?
@@ -29,13 +29,16 @@ class Product < ActiveRecord::Base
   end
 
   def self.lookup_items_on_amazon(response_group, asin)
+    tmp = Amazon::EcsWrapper.get_item_group(asin)
+    byebug
+
     lookup_asins_res = lookup_asins_group_on_amazon(asin)
     if lookup_asins_res.error?
       return  lookup_asins_res
     else
       product_details = []
       asins = lookup_asins_res.asins
-      items_res = request_amazon(response_group, asins) # Performing Multiple ItemLookups in One Request (only upto 10 ASINS are allowed)
+      items_res = Amazon::EcsWrapper.request_amazon(response_group, asins) # Performing Multiple ItemLookups in One Request (only upto 10 ASINS are allowed)
       res = OpenStruct.new
       if items_res.has_error?
         res.error = items_res.error
@@ -63,36 +66,5 @@ class Product < ActiveRecord::Base
         return res
       end
     end
-  end
-
-  def self.lookup_price_on_amazon(response_group, asin, get_element, get_value)
-    res = request_amazon(response_group, asin)
-    extract_price(res, get_element, get_value)
-  end
-
-
-  def self.extract_price(response_group, get_element, get_value)
-    price_list = response_group.get_element(get_element)
-    if price_list.present?
-      return price_list.get(get_value)
-    else
-      return "---"
-    end
-  end
-
-  def self.request_amazon(response_group, asin)
-    require 'amazon/ecs'
-
-    Amazon::Ecs.configure do |options|
-      options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID"]
-      options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
-      options[:associate_tag] = ENV["ASSOCIATE_TAG"]
-    end
-    res = Amazon::Ecs.item_lookup(asin, {:response_group => response_group})
-    return res
-    # TODO: uncomment these lines for amazon response debug output
-    #count = @res.items.count
-    #xml = @res.marshal_dump.gsub("\\n", "\n")
-    #puts("Amazon response contains " + count.to_s + " item(s):\n\n" + xml)
   end
 end

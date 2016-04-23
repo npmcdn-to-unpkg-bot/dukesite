@@ -24,7 +24,7 @@ class Admin::ProductsController < AdminController
   end
 
   def show
-    @price = Product.lookup_price_on_amazon('ItemAttributes', @product.asin, "ListPrice", "FormattedPrice")
+    @price = Amazon::EcsWrapper.get_item_price('ItemAttributes', @product.asin, "ListPrice", "FormattedPrice")
   end
 
   def edit
@@ -63,7 +63,7 @@ class Admin::ProductsController < AdminController
         @product_details = returned_items
       end
     end
-    render json: {response: response, 
+    render json: {response: response,
                   data: @product_details},
            status: status
   end
