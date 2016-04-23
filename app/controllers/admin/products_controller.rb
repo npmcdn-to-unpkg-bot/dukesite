@@ -51,10 +51,10 @@ class Admin::ProductsController < AdminController
     status   = 200
     if params[:asin].blank?
       status   = 400
-      response = "Please enter ASIN."
+      response = "Please enter ASIN"
     else
       res = Product.lookup_items_on_amazon('Medium', params[:asin])
-      if res.error
+      if res.error.present?
         status   = 400
         response = params[:asin] + " cannot be found on Amazon server. Please check the ASIN."
       else

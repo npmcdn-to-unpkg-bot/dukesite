@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   include SlugGenerator
 
-  validates_presence_of :title, :url, :image_url
+  validates_presence_of :title, :url, :image_url, :asin
   validates_uniqueness_of :asin
   
   has_many :product_categories
@@ -29,14 +29,15 @@ class Product < ActiveRecord::Base
   end
 
   def self.lookup_items_on_amazon(response_group, asin)
-    lookup_asins_res = lookup_asins_group_on_amazon(asin)
-    if lookup_asins_res.error?
-      return  lookup_asins_res
-    else
-      product_details = []
-      asins = lookup_asins_res.asins
+    asins_group = lookup_asins_group_on_amazon(asin)
+    if asins_group.error?
+      return  asins_group.error #return the error msg
+    else # request for details of each ASIN
+      asins = asins_group.asins
       items_res = request_amazon(response_group, asins) # Performing Multiple ItemLookups in One Request (only upto 10 ASINS are allowed)
+      
       res = OpenStruct.new
+      res.product_details = []
       if items_res.has_error?
         res.error = items_res.error
       else
@@ -57,8 +58,8 @@ class Product < ActiveRecord::Base
           }
 
           product_detail = OpenStruct.new(product_detail)
-          product_details << product_detail
-          res.product_details = product_details
+
+          res.product_details << product_detail
         end
         return res
       end
