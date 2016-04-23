@@ -13,7 +13,7 @@ $(function(){
         $.ajax({
           url: edit_url,
           method: "PUT",
-          data: { category: 
+          data: { category:
                   { name: new_cat_name }
                 },
           success: function(data) {
@@ -40,7 +40,7 @@ $(function(){
       $.ajax({
         url: edit_url,
         method: "PUT",
-        data: { category: 
+        data: { category:
                 { visible: visible }
               },
         success: function(data) {
@@ -55,6 +55,6 @@ $(function(){
       });
       // end of ajax
     });
-    // end of click 
+    // end of click
   });
 });
