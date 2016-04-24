@@ -42,6 +42,8 @@ $(function(){
     $('#lookup-item-on-amazon-msg').html(response).removeClass('hide');
   }).on('click', function(){
     $('#returned_items').children().remove();
+  }).on('keypress', function(){
+    $('#returned_items').children().remove();
   });
 });
 
