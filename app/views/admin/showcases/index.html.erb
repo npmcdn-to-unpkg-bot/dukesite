@@ -1,57 +1,32 @@
 <div class="page-header">
-  <h1>Showcase</h1>
+  <h1>Showcase <span class="badge"><%= @showcases.length %></span></h1>
 </div>
 
 <div class="row">
   <%= render "form" %>
 </div>
-
-<div class="row table-responsive showcase-list">
-  <table class="table table-hover">
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Feature Image</th>
-      <th>Display on<br>Landing Page</th>
-      <th>Created at/<br>Last updated at</th>
-      <th>Products<br>amount</th>
-      <th>View</th>
-      <th></th>
-    </tr>
-   
-    <% sum = @showcases.length 
-       i = 0
-    %> 
-    <% @showcases.order("updated_at DESC").each do |p| %>
-      <% if i < sum %>
-        <tr>
-          <td><%= i+1 %>. </td>
-          <td><%= p.title %></td>
-          <td><%= truncate(p.feature_img_url) %></td>
-          <td>
-            <%= p.show_on_landing_page ? "Yes" : "No" %>
-          </td>
-          <td><%= p.created_at.to_formatted_s(:db) %><br>
-              <%= p.updated_at.to_formatted_s(:db) %></td>
-          <td>
-            <%= link_to p.products.size, admin_showcase_products_path(p) %>
-          </td>
-          <td>
-            <%= link_to showcase_path(p) do %>
-              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to edit_admin_showcase_path(p) do %>
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            <% end %>
-            <%= link_to admin_showcase_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            <% end %>
-          </td>
-          <% i += 1%>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
+<hr>
+<div class="row">
+  <% @showcases.order("updated_at DESC").each do |p| %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+        <% p.feature_img_url.nil? ? feature_img_url = "http://thedudeminds.de/images/no_image_available.png" : feature_img_url = p.feature_img_url %>
+        <%= link_to showcase_path(p) do %>
+          <%= image_tag feature_img_url %>
+        <% end %>
+        <div class="caption">
+          <h4><%= p.title %><small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small></h4>
+          <ul>
+            <li>Products amount: <%= link_to p.products.size, admin_showcase_products_path(p) %></li>
+          </ul>
+          <p> <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+              <%= link_to "Edit", edit_admin_showcase_path(p), class: "btn btn-primary btn-sm" %>
+          </p>
+          <small>
+          <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
+          <%= update_time %> <em>(last updated)</em></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

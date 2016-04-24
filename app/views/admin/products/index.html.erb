@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Products</h1>
+  <h1>Products <span class="badge"><%= @products.length %></span></h1>
 </div>
 
 <div class="row">
@@ -27,13 +27,14 @@
             <% end %>
           <% end %>
         </p> 
-        <small class="pull-right"><%= p.updated_at.to_formatted_s(:long) %></small>
+        <% p.updated_at? ? update_time = p.updated_at.to_formatted_s(:long) : update_time = p.created_at.to_formatted_s(:long) %>
+        <small class="pull-right"><%= update_time %></small>
         <%= link_to admin_product_path(p), target: "_blank" do %>
           <%= image_tag p.image_url %>
         <% end %>
         <div class="caption">
           <h4><%= p.title %></h4>
-          <p><%= truncate(p.description, length: 90, omission: '...') %> <em><small>[Created at <%= p.created_at.to_formatted_s(:long) %>]</small></em></p>
+          <p><%= truncate(p.description, length: 90, omission: '...') %></p>
 
           <p> <%= link_to "Delete", admin_product_path(p), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
               <%= link_to "Edit", edit_admin_product_path(p), class: "btn btn-primary btn-sm" %>
