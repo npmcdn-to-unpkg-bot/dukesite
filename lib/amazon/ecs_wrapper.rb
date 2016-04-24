@@ -15,48 +15,65 @@ module Amazon
     res_var = request_amazon("VariationMatrix", p_asin)
     raise res_var.error if res_var.has_error?
     return items if res_var.items.count == 0
+    
+    res_items_amout = res_var.items.count
+    case res_items_amout
+    when 0
+      return items
+    when 1
+      node_var = res_var.get_element("Item")
 
-    # request variation matrix from Amazon
-    # get all colors from variation matrix
-    # create AmazonItem objects for each color
-    node_var = res_var.get_element("Item/Variations")
+      item_asin = node_var.get("ASIN")
+      items[item_asin] = AmazonItem.new(
+        asin: item_asin
+      )
+      # get the attributes of each item
+      get_item_attributes(item_asin, items)
+    else
+      # request variation matrix from Amazon
+      # get all colors from variation matrix
+      # create AmazonItem objects for each color
+      node_var = res_var.get_element("Item/Variations")
+      node_var.get_elements("Item").each do |var_item|
+        item_asin = var_item.get("ASIN")
+        item_color = var_item.get("VariationAttributes/VariationAttribute[Name='Color']/Value")
+        item_color = "" if item_color.nil?
 
-    node_var.get_elements("Item").each do |var_item|
-      item_asin = var_item.get("ASIN")
-      item_color = var_item.get("VariationAttributes/VariationAttribute[Name='Color']/Value")
-      item_color = "" if item_color.nil?
-
-      if items.select {|id,item| item.color == item_color}.length == 0
-        items[item_asin] = AmazonItem.new(
-          asin: item_asin,
-          color: item_color
-        )
-      end
-    end
-
-    # split AmazonItem ASINs into request strings (max. 10 per request)
-    request_strings = split_asins(items.keys, 10)
-
-    # request additional data for each ASIN and add to AmazonItem objects
-    request_strings.each do |s|
-      # get data from 'Medium' request
-      res_attr = request_amazon("Medium", s)
-
-      res_attr.items.each do |node_item|
-        item_asin = node_item.get("ASIN")
-
-        if items.has_key?(item_asin)
-          items[item_asin].title = node_item.get("ItemAttributes/Title")
-          items[item_asin].description = node_item.get("EditorialReview/Content")
-          items[item_asin].brand = node_item.get("ItemAttributes/Brand")
-          items[item_asin].detail_page_url = node_item.get("DetailPageURL")
-          items[item_asin].image_url_large = node_item.get("LargeImage")
-          items[item_asin].image_url_small = node_item.get("SmallImage")
+        if items.select {|id,item| item.color == item_color}.length == 0
+          items[item_asin] = AmazonItem.new(
+            asin: item_asin,
+            color: item_color
+          )
         end
+      end
+      # split AmazonItem ASINs into request strings (max. 10 per request)
+      request_strings = split_asins(items.keys, 10)
+
+      # request additional data for each ASIN and add to AmazonItem objects
+      request_strings.each do |s|
+        # get the attributes of each item
+        get_item_attributes(s, items)
       end
     end
 
     return items
+  end
+
+  def self.get_item_attributes(asin, items)
+    # get data from 'Medium' request
+    res_attr = request_amazon("Medium", asin)
+    # sort attributes
+    res_attr.items.each do |node_item|
+      item_asin = node_item.get("ASIN") if item_asin.nil?
+      if items.has_key?(item_asin)
+        items[item_asin].title = node_item.get("ItemAttributes/Title")
+        items[item_asin].description = node_item.get("EditorialReview/Content")
+        items[item_asin].brand = node_item.get("ItemAttributes/Brand")
+        items[item_asin].detail_page_url = node_item.get("DetailPageURL")
+        items[item_asin].image_url_large = node_item.get("LargeImage")
+        items[item_asin].image_url_small = node_item.get("SmallImage")
+      end
+    end
   end
 
   def self.get_item_price(response_group, asin, get_element, get_value)
