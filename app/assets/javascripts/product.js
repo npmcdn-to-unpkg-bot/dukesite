@@ -4,9 +4,8 @@ $(function(){
     $('#lookup-item-on-amazon-msg').html(xhr.response).removeClass('hide');
     var returned_items = xhr.data,
         returned_items_num = returned_items.length;
-
     $.each(returned_items, function(index, value){
-      var item       = value.table,
+      var item       = value,
           asin       = item.asin,
           title = item.title,
           product_page_url = item.detail_page_url,
