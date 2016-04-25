@@ -30,7 +30,7 @@ categories = Category.create([{ name: "Shirts", visible: "true" },
                               { name: "Socks", visible: "true" },
                               { name: "Jerseys", visible: "true" }])
   
-for i in 1..10 do
+# for i in 1..10 do
   Product.create([{
                    asin: "B01BY3PEUM",
                    title: "WASH Duke Blue Devils Basketball Women's T Shirt Short Sleeves", 
@@ -46,7 +46,7 @@ for i in 1..10 do
                    url: "http://www.amazon.com/CHENGXINGDA-Womens-Basketball-Hoodied-Sweatshirt/dp/B019UU1H98/ref=sr_1_14?ie=UTF8&qid=1456140250&sr=8-14&keywords=duke+womens+basketball+t-shirts+pink",
                    published: true,
                    }])
-end
+# end
 
 for i in 1..20 do
   ProductCategory.create([{ product_id: i, category_id: 1 }, 
