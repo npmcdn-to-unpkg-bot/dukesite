@@ -9,24 +9,27 @@
 <div class="row">
   <% @showcases.order("updated_at DESC").each do |p| %>
     <div class="col-sm-4 col-md-3">
+
       <div class="thumbnail">
         <% p.feature_img_url.nil? ? feature_img_url = "http://thedudeminds.de/images/no_image_available.png" : feature_img_url = p.feature_img_url %>
-        <%= link_to showcase_path(p) do %>
+        <%= link_to admin_showcase_products_path(p) do %>
           <%= image_tag feature_img_url %>
         <% end %>
         <div class="caption">
-          <h4><%= p.title %><small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small></h4>
-          <ul>
-            <li>Products amount: <%= link_to p.products.size, admin_showcase_products_path(p) %></li>
-          </ul>
+          <small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small>
+          <h4><%= p.title %>
+            <span class="badge"><%= p.products.size %></span>
+          </h4>
           <p> <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
-              <%= link_to "Edit", edit_admin_showcase_path(p), class: "btn btn-primary btn-sm" %>
+              <%= link_to "Edit", edit_admin_showcase_path(p), class: "btn btn-info btn-sm" %>
+              <%= link_to "Shop", showcase_path(p), class: "pull-right" %>
           </p>
           <small>
           <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
-          <%= update_time %> <em>(last updated)</em></small>
+          <%= update_time %><em>(last updated)</em></small>
         </div>
       </div>
+
     </div>
   <% end %>
 </div>
