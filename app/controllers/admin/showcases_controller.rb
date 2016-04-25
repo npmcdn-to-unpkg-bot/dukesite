@@ -1,7 +1,7 @@
 class Admin::ShowcasesController < AdminController
   layout "application", only: [:show]
   before_action :authenticate_admin!, except: [:show]
-  before_action :find_showcase, only: [:show, :product_list, :edit, :update, :destroy]
+  before_action :find_showcase, only: [:show, :product_list, :edit, :update, :destroy, :visible_switch]
   def index
     @showcase = Showcase.new
   end
@@ -27,6 +27,15 @@ class Admin::ShowcasesController < AdminController
   end
 
   def update
+    if @showcase.update(showcase_params)
+      flash[:success] = "successfully edited."
+      redirect_to admin_showcases_path
+    else
+      render :edit
+    end
+  end
+
+  def visible_switch
     status = 200
     response = ""
     if @showcase.update(showcase_params)

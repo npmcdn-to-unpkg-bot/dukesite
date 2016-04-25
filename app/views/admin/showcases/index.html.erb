@@ -20,7 +20,7 @@
             <span class="badge"><%= p.products.size %></span>
           </h4>
           <p> 
-            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
+            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
           </p>
           <p>
               <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
