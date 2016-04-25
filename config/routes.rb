@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
     get '/look_up_item', to: 'products#lookup_item_on_amazon'
+    put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
+    put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'    
   end
 
   get '/products/:id', to: 'admin/products#show', as: 'product'
