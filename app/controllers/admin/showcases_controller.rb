@@ -27,12 +27,17 @@ class Admin::ShowcasesController < AdminController
   end
 
   def update
+    status = 200
+    response = ""
     if @showcase.update(showcase_params)
-      flash[:success] = "The showcase was successfully edited."
-      redirect_to admin_showcases_path
+      flash[:success] = "Successfully updated."
+      showcase_status = @showcase.visible
     else
-      render :edit
+      status = 404
+      response = "Please try again"
     end
+    render json: { response: response, showcase_status: showcase_status },
+           status: status
   end
 
   def destroy
@@ -43,7 +48,7 @@ class Admin::ShowcasesController < AdminController
 
   private
     def showcase_params
-      params.require(:showcase).permit(:title, :feature_img_url, :show_on_landing_page)
+      params.require(:showcase).permit(:title, :feature_img_url, :show_on_landing_page, :visible)
     end
 
     def find_showcase
