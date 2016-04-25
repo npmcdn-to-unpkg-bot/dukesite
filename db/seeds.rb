@@ -30,33 +30,29 @@ categories = Category.create([{ name: "Shirts", visible: "true" },
                               { name: "Socks", visible: "true" },
                               { name: "Jerseys", visible: "true" }])
   
-# for i in 1..10 do
-  Product.create([{
-                   asin: "B01BY3PEUM",
-                   title: "WASH Duke Blue Devils Basketball Women's T Shirt Short Sleeves", 
-                   description: "Our t-shirts are professionally printed with the eco-friendly ink, the materials are stretch and soft. You deserve to own such a fantastic shirt with reasonable price and great quality. It's adorable and well worth the money. Our shirts are reliable choices for you.",
-                   image_url: 'http://ecx.images-amazon.com/images/I/61SduIacvTL._UL1500_.jpg',
-                   url: "http://www.amazon.com/Devils-Basketball-Womens-Shirt-Sleeves/dp/B01BY3PEUM/ref=sr_1_3?ie=UTF8&qid=1456140250&sr=8-3&keywords=duke+womens+basketball+t-shirts+pink",
-                   published: true,
-                   },{ 
-                   asin: "B019RIOJNY",
-                   title: "CHENGXINGDA Women's Duke Basketball Logo Hooded Sweatshirt XXL Pink", 
-                   description: 'ZHENGXING Duke Basketball Logo 50% Cotton 50% Polyester Hooded Sweatshirt, A fantastic printed item you can wear or present as a gift.',
-                   image_url: 'http://ecx.images-amazon.com/images/I/51Qcg6t75lL._UL1500_.jpg',
-                   url: "http://www.amazon.com/CHENGXINGDA-Womens-Basketball-Hoodied-Sweatshirt/dp/B019UU1H98/ref=sr_1_14?ie=UTF8&qid=1456140250&sr=8-14&keywords=duke+womens+basketball+t-shirts+pink",
-                   published: true,
-                   }])
-# end
+Product.create([{
+                 asin: "B01BY3PEUM",
+                 title: "WASH Duke Blue Devils Basketball Women's T Shirt Short Sleeves", 
+                 description: "Our t-shirts are professionally printed with the eco-friendly ink, the materials are stretch and soft. You deserve to own such a fantastic shirt with reasonable price and great quality. It's adorable and well worth the money. Our shirts are reliable choices for you.",
+                 image_url: 'http://ecx.images-amazon.com/images/I/61SduIacvTL._UL1500_.jpg',
+                 url: "http://www.amazon.com/Devils-Basketball-Womens-Shirt-Sleeves/dp/B01BY3PEUM/ref=sr_1_3?ie=UTF8&qid=1456140250&sr=8-3&keywords=duke+womens+basketball+t-shirts+pink",
+                 published: true,
+                 },{ 
+                 asin: "B019RIOJNY",
+                 title: "CHENGXINGDA Women's Duke Basketball Logo Hooded Sweatshirt XXL Pink", 
+                 description: 'ZHENGXING Duke Basketball Logo 50% Cotton 50% Polyester Hooded Sweatshirt, A fantastic printed item you can wear or present as a gift.',
+                 image_url: 'http://ecx.images-amazon.com/images/I/51Qcg6t75lL._UL1500_.jpg',
+                 url: "http://www.amazon.com/CHENGXINGDA-Womens-Basketball-Hoodied-Sweatshirt/dp/B019UU1H98/ref=sr_1_14?ie=UTF8&qid=1456140250&sr=8-14&keywords=duke+womens+basketball+t-shirts+pink",
+                 published: true,
+                 }])
 
-for i in 1..20 do
-  ProductCategory.create([{ product_id: i, category_id: 1 }, 
-                          { product_id: i, category_id: 2 }, 
-                          { product_id: i, category_id: 3 }])
+ProductCategory.create([{ product_id: 1, category_id: 1 }, 
+                        { product_id: 1, category_id: 2 }, 
+                        { product_id: 2, category_id: 3 }])
 
-  ProductShowcase.create([{ product_id: i, showcase_id: 1 }, 
-                          { product_id: i, showcase_id: 2 },
-                          { product_id: i, showcase_id: 3 }])
-end
+ProductShowcase.create([{ product_id: 1, showcase_id: 1 }, 
+                        { product_id: 2, showcase_id: 2 },
+                        { product_id: 2, showcase_id: 3 }])
 
 Image.create([{
                title: 'cover1',
