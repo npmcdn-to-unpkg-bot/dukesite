@@ -1,7 +1,7 @@
 class Admin::ProductsController < AdminController
   layout "application", only: [:show]
   before_action :authenticate_admin!, except: [:show]
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy, :publish_switch]
 
   def index
     @products = Product.all.order("updated_at DESC")
@@ -38,6 +38,20 @@ class Admin::ProductsController < AdminController
     else
       render :edit
     end
+  end
+
+  def publish_switch
+    status = 200
+    response = ""
+    if @product.update(product_params)
+      flash[:success] = "Successfully updated."
+      product_status = @product.published
+    else
+      status = 404
+      response = "Please try again"
+    end
+    render json: { response: response, product_status: product_status },
+           status: status
   end
 
   def destroy

@@ -44,5 +44,32 @@ $(function(){
   }).on('click', function(){
     $('#returned_items').children().remove();
   });
+
+  // Change visible status
+  $(".admin-product-thumbnail #product-status").each(function(){
+    var $this    = $( this );
+    $this.click(function updateAttr(){
+      var visible  = $this.attr( "data-visible" ),
+          editUrl = $this.attr( "data-edit" );
+      visible == 'true' ? visible = false : visible = true ;
+      $.ajax({
+        url: editUrl,
+        method: "PUT",
+        data: { product: 
+                { published: visible }
+              },
+        success: function(data) {
+                   var visible = data.product_status;
+                   $this.text( function(){
+                     return visible ? "Visible" : "Hidden";
+                   });
+                   $this.attr("data-visible", visible.toString() );
+                   $this.toggleClass("btn-primary");
+                   $this.toggleClass("btn-default");
+                   $this.parents(".thumbnail").toggleClass("invisible_thumbnail");
+                 }
+      });// end of ajax
+    });// end of click
+  });
 });
 

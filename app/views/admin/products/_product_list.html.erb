@@ -1,7 +1,7 @@
 <div class="row">
   <% products.each do |p| %>
     <div class="col-sm-4 col-md-3">
-      <div class="thumbnail">
+      <div class="thumbnail admin-product-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
         <p>
           <% p.categories.each do |pc| %>
             <%= link_to admin_category_products_path(pc) do %>
@@ -22,7 +22,9 @@
         <div class="caption">
           <h4><%= p.title %></h4>
           <p><%= truncate(p.description, length: 90, omission: '...') %></p>
-
+          <p> 
+            <button type="button" class="btn <%= p.published? ? "btn-primary" : "btn-default" %> btn-sm" id="product-status" data-edit=<%= admin_product_publish_switch_path(p) %> data-visible=<%= p.published? %>><%= p.published? ? "Published" : "Unpublished" %></button>
+          </p>
           <p> <%= link_to "Delete", admin_product_path(p), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
               <%= link_to "Edit", edit_admin_product_path(p), class: "btn btn-info btn-sm" %>
           </p>
