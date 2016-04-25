@@ -30,13 +30,9 @@ $(function(){
   $(".category-list #cat-status").each(function(){
     var $this    = $( this );
     $this.click(function(){
-      visible  = $this.attr( "data-visible" ),
-      edit_url = $this.attr( "data-edit" );
-      if (visible == "false" ) {
-        var visible = true;
-      } else {
-        var visible = false;
-      };
+      var visible  = $this.attr( "data-visible" ),
+          edit_url = $this.attr( "data-edit" );
+      visible == 'true' ? visible = false : visible = true ;
       $.ajax({
         url: edit_url,
         method: "PUT",
