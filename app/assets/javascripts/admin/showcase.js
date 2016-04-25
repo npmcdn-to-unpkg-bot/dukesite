@@ -20,6 +20,7 @@ $(function(){
                    $this.attr("data-visible", visible.toString() );
                    $this.toggleClass("btn-primary");
                    $this.toggleClass("btn-default");
+                   $this.parents(".thumbnail").toggleClass("invisible_thumbnail");
                  }
       });// end of ajax
     });// end of click
