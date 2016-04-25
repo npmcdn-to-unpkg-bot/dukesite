@@ -28,7 +28,7 @@ class Admin::CategoriesController < AdminController
     status = 200
     response = ""
     if @category.update(category_params)
-      response = "Successfully"
+      response = "Successfully updated."
       cat_status = @category.visible
       cat_name = @category.name
     else
