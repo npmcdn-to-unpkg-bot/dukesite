@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   resources :showcases, only: [:show]
   resources :categories, only: [:show]
   get '/our-story', to: 'welcome#our_story', as: 'story'
-  put '/subscriber', to: 'application#create_subscriber'
+  put '/subscriber', to: 'application#create_subscriber', as: 'create_subscriber'
 end
