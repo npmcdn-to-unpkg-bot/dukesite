@@ -5,62 +5,46 @@
 <div class="row">
   <%= render "form" %>
 </div>
+<div class="row">
+  <% @categories.order("updated_at DESC").each do |p| %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail admin-category-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
+        <% p.img_url.nil? ? img_url = "http://thedudeminds.de/images/thedukegirls.png" : img_url = p.img_url  %>
+        <%= link_to admin_category_products_path(p) do %>
+          <%= image_tag img_url %>
+        <% end %>
+        <div class="caption">
+          <h4 data-toggle="modal" data-target="#editCatName" data-edit=<%= admin_category_path(p) %> id="cat-name"><%= p.name %>
+          </h4>
+          <p> 
+            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-xs" id="cat-status" data-edit=<%= admin_category_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "visible" : "hidden" %></button>
+          </td>
+          </p>
+          <p>
+              <%= link_to "Delete", admin_category_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+              <%= link_to "Shop", category_path(p), class: "pull-right" %>
+          </p>
+          <small>
+          <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
+          <%= update_time %> <em>(last updated)</em></small>
+          <span class="badge pull-right"><%= p.products.size %></span>
+        </div>
+      </div>
 
-<div class="row table-responsive category-list ">
-  <table class="table table-hover">
-    <tr>
-      <th></th>
-      <th class="col-sm-4">Name</th>
-      <th class="col-sm-2 text-center">Products<br>Amount</th>
-      <th class="col-sm-1">Status</th>
-      <th class="col-sm-1">Frontend</th>
-      <th class="col-sm-2">Created at/<br>Last updated at</th>
-      <th class="col-sm-1 text-center">Delete</th>
-    </tr>
-   
-    <% sum = @categories.length 
-       i   = 0
-    %> 
-    <% @categories.order("updated_at DESC").each do |p| %>
-      <% if i < sum %>
-        <tr>
-          <td><%= i+1 %>. </td>
-          <td data-toggle="modal" data-target="#editCatName" data-edit=<%= admin_category_path(p) %> id="cat-name"><%= p.name %></td>
-          <td class="text-center">
-            <%= link_to p.products.size, admin_category_products_path(p) %>
-          </td>
-          <td>
-          <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-xs" id="cat-status" data-edit=<%= admin_category_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "visible" : "hidden" %></button>
-          </td>
-          <td class="text-center">
-            <%= link_to category_path(p) do %>
-              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            <% end %>
-          </td>
-          <td><%= p.created_at.to_formatted_s(:db) %><br>
-              <%= p.updated_at.to_formatted_s(:db) %></td>
-          <td class="text-center">
-            <%= link_to admin_category_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            <% end %>
-          </td>
-          <% i += 1%>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
-</div>
-
+    </div>
+  <% end %>
 <!-- Modal -->
 <div class="modal fade" id="editCatName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editCatNameLabel">Change Category Name</h4>
+        <h4 class="modal-title" id="editCatNameLabel">Edit Category</h4>
       </div>
       <div class="modal-body">
-        <input type="text" id="editCatNamebody" placeholder="">
+        Name: <input type="text" id="editCatNameInput" placeholder=""><br>
+        <%
+        Image Url: <input type="text" id="editCatImgUrlInput" placeholder="">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
