@@ -32,27 +32,41 @@ categories = Category.create([{ name: "Shirts", visible: "true" },
   
 Product.create([{
                  asin: "B01BY3PEUM",
-                 title: "WASH Duke Blue Devils Basketball Women's T Shirt Short Sleeves", 
-                 description: "Our t-shirts are professionally printed with the eco-friendly ink, the materials are stretch and soft. You deserve to own such a fantastic shirt with reasonable price and great quality. It's adorable and well worth the money. Our shirts are reliable choices for you.",
+                 title: "Test 1", 
+                 description: "Lorem ipsum Sit ullamco Ut deserunt adipisicing esse nostrud sit enim irure in Ut.",
                  image_url: 'http://ecx.images-amazon.com/images/I/61SduIacvTL._UL1500_.jpg',
                  url: "http://www.amazon.com/Devils-Basketball-Womens-Shirt-Sleeves/dp/B01BY3PEUM/ref=sr_1_3?ie=UTF8&qid=1456140250&sr=8-3&keywords=duke+womens+basketball+t-shirts+pink",
                  published: true,
                  },{ 
                  asin: "B019RIOJNY",
-                 title: "CHENGXINGDA Women's Duke Basketball Logo Hooded Sweatshirt XXL Pink", 
-                 description: 'ZHENGXING Duke Basketball Logo 50% Cotton 50% Polyester Hooded Sweatshirt, A fantastic printed item you can wear or present as a gift.',
+                 title: "Test 2", 
+                 description: "Lorem ipsum In tempor fugiat velit laboris culpa ad et eu aliquip ut Duis.",
                  image_url: 'http://ecx.images-amazon.com/images/I/51Qcg6t75lL._UL1500_.jpg',
                  url: "http://www.amazon.com/CHENGXINGDA-Womens-Basketball-Hoodied-Sweatshirt/dp/B019UU1H98/ref=sr_1_14?ie=UTF8&qid=1456140250&sr=8-14&keywords=duke+womens+basketball+t-shirts+pink",
                  published: true,
+                 }, {
+                 asin: "B0181P6WNY",
+                 title: "Test 3", 
+                 description: 'Lorem ipsum Nisi dolor exercitation pariatur eu ut dolor incididunt labore amet culpa dolor mollit laborum anim.',
+                 image_url: 'http://ecx.images-amazon.com/images/I/41pZ5k7ufxL.jpg',
+                 url: "http://www.amazon.com/Yang-Womens-Devils-Basketball-Sleeve/dp/B0181P6WNY%3Fpsc%3D1%26SubscriptionId%3DAKIAJ65NRQ7WQJUWTDDA%26tag%3Dgermanpudding-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB0181P6WNY",
+                 published: true,
+                 }, {
+                 asin: "B019RIOJNY",
+                 title: "Test 4", 
+                 description: 'Lorem ipsum Adipisicing aute Ut aliquip velit laborum officia reprehenderit eiusmod deserunt occaecat deserunt occaecat.',
+                 image_url: 'http://ecx.images-amazon.com/images/I/41TmUAV92OL.jpg',
+                 url: "http://www.amazon.com/Youth-Online-Unique-Devils-T-Shirt/dp/B018JOC402%3FSubscriptionId%3DAKIAJ65NRQ7WQJUWTDDA%26tag%3Dgermanpudding-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB018JOC402",
+                 published: false,
                  }])
 
 ProductCategory.create([{ product_id: 1, category_id: 1 }, 
-                        { product_id: 1, category_id: 2 }, 
-                        { product_id: 2, category_id: 3 }])
+                        { product_id: 2, category_id: 2 }, 
+                        { product_id: 3, category_id: 3 }])
 
 ProductShowcase.create([{ product_id: 1, showcase_id: 1 }, 
                         { product_id: 2, showcase_id: 2 },
-                        { product_id: 2, showcase_id: 3 }])
+                        { product_id: 3, showcase_id: 3 }])
 
 Image.create([{
                title: 'cover1',
