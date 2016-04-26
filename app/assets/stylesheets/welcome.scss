@@ -36,13 +36,6 @@
   @include margin-top-bottom;
 }
 
-.subscribe {
-  @include padding-top-bottom;
-  text-align: center;
-  min-height: 150px;
-  background-color: #FF3399;
-  color: white;
-}
 .showcase-header {
   @include margin-top-bottom(30px);
   @include margin-left-right;

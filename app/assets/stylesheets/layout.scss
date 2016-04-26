@@ -3,6 +3,12 @@
   margin-bottom: $height;
 }
 
+
+@mixin padding-top-bottom($height: 5%) {
+  padding-top: $height;
+  padding-bottom: $height;
+}
+
 body {
   .outter-container {
     background-color: white;
@@ -53,6 +59,15 @@ body {
         height: $line-height-base;
     }
   }
+}
+
+.subscribe {
+  @include padding-top-bottom;
+  @include margin-top-bottom;
+  text-align: center;
+  min-height: 150px;
+  background-color: #FF3399;
+  color: white;
 }
 
 .footer { 
