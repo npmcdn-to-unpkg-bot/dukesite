@@ -61,7 +61,7 @@ $(function(){
         success: function(data) {
                    var visible = data.product_status;
                    $this.text( function(){
-                     return visible ? "Visible" : "Hidden";
+                     return visible ? "Published" : "Unpublished";
                    });
                    $this.attr("data-visible", visible.toString() );
                    $this.toggleClass("btn-primary");
