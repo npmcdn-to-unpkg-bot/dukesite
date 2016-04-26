@@ -17,7 +17,6 @@
         <div class="caption">
           <small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small>
           <h4><%= p.title %>
-            <span class="badge"><%= p.products.size %></span>
           </h4>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
@@ -30,6 +29,7 @@
           <small>
           <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
           <%= update_time %> <em>(last updated)</em></small>
+          <span class="badge pull-right"><%= p.products.size %></span>
         </div>
       </div>
 

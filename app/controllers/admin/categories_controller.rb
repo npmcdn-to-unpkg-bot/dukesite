@@ -25,6 +25,7 @@ class Admin::CategoriesController < AdminController
       response = "Successfully updated."
       cat_status = @category.visible
       cat_name = @category.name
+      cat_img_url = @category.img_url
     else
       status = 404
       response = "Please try again"
@@ -41,7 +42,7 @@ class Admin::CategoriesController < AdminController
 
   private
     def category_params
-      params.require(:category).permit(:name, :visible)
+      params.require(:category).permit(:name, :visible, :img_url)
     end
     
     def find_category
