@@ -1,7 +1,6 @@
 class Admin::ProductsController < AdminController
-  layout "application", only: [:show]
-  before_action :authenticate_admin!, except: [:show]
-  before_action :find_product, only: [:show, :edit, :update, :destroy, :publish_switch]
+  before_action :authenticate_admin!
+  before_action :find_product, only: [:edit, :update, :destroy, :publish_switch]
 
   def index
     @products = Product.all.order("updated_at DESC")
@@ -21,10 +20,6 @@ class Admin::ProductsController < AdminController
     else
       render :new
     end
-  end
-
-  def show
-    @price = Product.lookup_price_on_amazon('ItemAttributes', @product.asin, "ListPrice", "FormattedPrice")
   end
 
   def edit
@@ -91,5 +86,4 @@ class Admin::ProductsController < AdminController
     def find_product
       @product = Product.find_by(slug: params[:id])
     end
-
 end

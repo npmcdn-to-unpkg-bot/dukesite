@@ -38,7 +38,7 @@
 <nav class="row category_nav">
     <ul class="pull-left">
       <% @categories.each do |c| %>
-        <li><%= link_to c.name, category_path(c.id) %></li>
+        <li><%= link_to c.name, category_path(c) %></li>
       <% end %>
     </ul>
     <ul class="pull-right">

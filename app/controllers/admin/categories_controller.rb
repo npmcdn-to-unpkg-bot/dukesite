@@ -1,13 +1,7 @@
 class Admin::CategoriesController < AdminController
-  layout "application", only: [:show]
-  before_action :authenticate_admin!, except: [:show]
-  before_action :find_category, only: [:show, :product_list, :edit, :update, :destroy]
+  before_action :find_category, only: [:product_list, :edit, :update, :destroy]
   def index
     @category = Category.new
-  end
-
-  def show
-    @category = Category.find_by(slug: params[:id])
   end
 
   def product_list

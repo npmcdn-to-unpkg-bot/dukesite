@@ -18,10 +18,9 @@ Rails.application.routes.draw do
     put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
     put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'    
   end
-
-  get '/products/:id', to: 'admin/products#show', as: 'product'
-  get '/showcases/:id', to: 'admin/showcases#show', as: 'showcase'
-  get '/categories/:id', to: 'admin/categories#show', as: 'category'
+  resources :products, only: [:show]
+  resources :showcases, only: [:show]
+  resources :categories, only: [:show]
   get '/our-story', to: 'welcome#our_story', as: 'story'
   put '/subscriber', to: 'application#create_subscriber'
 end
