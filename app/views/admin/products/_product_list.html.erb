@@ -16,7 +16,7 @@
         </p>
         <% p.updated_at? ? update_time = p.updated_at.to_formatted_s(:long) : update_time = p.created_at.to_formatted_s(:long) %>
         <small class="pull-right"><%= update_time %></small>
-        <%= link_to admin_product_path(p), target: "_blank" do %>
+        <%= link_to product_path(p), target: "_blank" do %>
           <%= image_tag p.image_url %>
         <% end %>
         <div class="caption">
