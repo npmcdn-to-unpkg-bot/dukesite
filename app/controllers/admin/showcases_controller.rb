@@ -1,6 +1,7 @@
 class Admin::ShowcasesController < AdminController
   before_action :find_showcase, only: [:product_list, :edit, :update, :destroy, :visible_switch]
   def index
+    @showcases = Showcase.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 20)
     @showcase = Showcase.new
   end
 

@@ -32,7 +32,9 @@
           <span class="badge pull-right"><%= p.products.size %></span>
         </div>
       </div>
-
     </div>
   <% end %>
 </div>
+
+<%# Pagination %>
+<%= render 'shared/pagination', objects: @showcases %>

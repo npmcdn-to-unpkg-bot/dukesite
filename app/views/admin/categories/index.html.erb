@@ -5,6 +5,7 @@
 <div class="row">
   <%= render "form" %>
 </div>
+
 <div class="row">
   <% @categories.order("updated_at DESC").each do |p| %>
     <div class="col-sm-4 col-md-3">
@@ -33,7 +34,9 @@
 
     </div>
   <% end %>
-<!-- Modal -->
+</div>
+
+<%# Modal %>
 <div class="modal fade" id="editCatName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -52,3 +55,6 @@
     </div>
   </div>
 </div>
+
+<%# Pagination %>
+<%= render 'shared/pagination', objects: @categories %>
