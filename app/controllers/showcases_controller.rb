@@ -1,6 +1,8 @@
 class ShowcasesController < ApplicationController
   before_action :find_showcase, only: [:show]
   def show
+    # Only published products can be seen on the shop
+    @products = @showcase.products.where(published: true).order("updated_at DESC")
   end
 
   private

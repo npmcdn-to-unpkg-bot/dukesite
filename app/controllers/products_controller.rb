@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   private
     def find_product
       @product = Product.find_by(slug: params[:id])
+      # Only published products can be seen on the shop
       render :status => 404 if !@product.published || @product.nil?
     end
 end

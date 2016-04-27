@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show]
   def show
+    @products = @category.products.where(published: true).order("updated_at DESC")
   end
 
   private
