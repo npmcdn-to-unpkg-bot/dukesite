@@ -35,6 +35,7 @@ $(function(){
             var new_cat_name = data.cat_name,
                 new_cat_img_url = data.cat_img_url;
             $this.text( new_cat_name ); // Show the new name on Category list
+            cat_img.attr('src', new_cat_img_url);
           }
         }); // end of ajax
       }); // end of click-confirm

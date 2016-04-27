@@ -30,7 +30,7 @@ class Admin::CategoriesController < AdminController
       status = 404
       response = "Please try again"
     end
-    render json: { response: response, cat_status: cat_status, cat_name: cat_name },
+    render json: { response: response, cat_status: cat_status, cat_name: cat_name, cat_img_url: cat_img_url },
            status: status
   end
 
