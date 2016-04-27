@@ -5,7 +5,9 @@ class Admin::CategoriesController < AdminController
   end
 
   def product_list
-    @products = @category.products
+    # Here, we must use paginate method for the @products,
+    # so the front end can get data for the pagination.
+    @products = @category.products.paginate(:page => params[:page], :per_page => 20)
   end
 
   def create
