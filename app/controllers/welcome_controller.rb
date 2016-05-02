@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @carousel_imgs = Image.where(set_as_carousel: true)
+    @carousel_imgs = Photo.where(carousel: true)
   end
 
   def our_stroy

@@ -2,8 +2,9 @@
 
 <div class="col-sm-2">
   <div class="row">
-    <% @showcase.feature_img_url.nil? ? feature_img_url = "http://thedudeminds.de/images/no_image_available.png" : feature_img_url = @showcase.feature_img_url %>
-    <%= image_tag feature_img_url, class: "img-responsive thumbnail", alt: "Responsive image" %> 
+    <% image = @showcase.image.url
+       image.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = image %>
+    <%= image_tag img_url, class: "img-responsive thumbnail", alt: "Responsive image" %> 
   </div>
 
   <% unless  @showcase.id.nil? %>
@@ -27,8 +28,8 @@
     </div>
     
     <div class="form-group">
-      <%= s.label "Feature Image Url" %>
-      <%= s.text_field :feature_img_url, class: "form-control", placeholder: "Enter the url of the feature image" %>
+      <%= s.label "Upload a Feature Image" %>
+      <%= s.file_field :image %>
     </div>
     <div class="form-group">
       <%= s.label "Display on the landing_page?" %><br>

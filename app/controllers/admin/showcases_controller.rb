@@ -1,7 +1,7 @@
 class Admin::ShowcasesController < AdminController
   before_action :find_showcase, only: [:product_list, :edit, :update, :destroy, :visible_switch]
+  before_action :find_all_showcases, only: [:index, :create]
   def index
-    @showcases = Showcase.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 20)
     @showcase = Showcase.new
   end
 
@@ -36,7 +36,7 @@ class Admin::ShowcasesController < AdminController
   def visible_switch
     status = 200
     response = ""
-    if @showcase.update(showcase_params)
+    if @showcase.update_attribute(:visible, params[:visible])
       flash[:success] = "Successfully updated."
       showcase_status = @showcase.visible
     else
@@ -55,10 +55,14 @@ class Admin::ShowcasesController < AdminController
 
   private
     def showcase_params
-      params.require(:showcase).permit(:title, :feature_img_url, :show_on_landing_page, :visible)
+      params.require(:showcase).permit(:title, :show_on_landing_page, :visible, :image)
     end
 
     def find_showcase
       @showcase = Showcase.find_by(slug: params[:id])
+    end
+
+    def find_all_showcases
+      @showcases = Showcase.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 20)
     end
 end

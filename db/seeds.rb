@@ -8,15 +8,15 @@
 
 showcases = Showcase.create([{
                               title: "2016 Selection",
-                              feature_img_url: "https://images.unsplash.com/5/unsplash-bonus.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=bdb8645a7dec56f25f598d1faaa718d3",
+                              # feature_img_url: "https://images.unsplash.com/5/unsplash-bonus.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=bdb8645a7dec56f25f598d1faaa718d3",
                               show_on_landing_page: true,
                               },{
                               title: "Features",
-                              feature_img_url: "https://images.unsplash.com/photo-1415226581130-91cb7f52f078?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=276f62cfceb487bafa5b2acdd6c92706",
+                              # feature_img_url: "https://images.unsplash.com/photo-1415226581130-91cb7f52f078?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=276f62cfceb487bafa5b2acdd6c92706",
                               show_on_landing_page: true,
                               },{
                               title: "New",
-                              feature_img_url: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1400",
+                              # feature_img_url: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?crop=entropy&fit=crop&fm=jpg&h=775&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1400",
                               show_on_landing_page: true,
                               }])
 
@@ -68,51 +68,24 @@ ProductShowcase.create([{ product_id: 1, showcase_id: 1 },
                         { product_id: 2, showcase_id: 2 },
                         { product_id: 3, showcase_id: 3 }])
 
-Image.create([{
-               title: 'cover1',
-               description: 'Existentia quascunque ne collabitur an is ii.',
-               url: 'http://thedudeminds.de/images/cover1.jpg', 
-               set_as_carousel: true,
-              },{
-               title: 'cover2',
-               description: 'Existentia quascunque ne collabitur an is ii.',
-               url: 'http://thedudeminds.de/images/cover2.jpg', 
-               set_as_carousel: true,
-               },{
-               title: 'cover3',
-               description: 'Existentia quascunque ne collabitur an is ii.',
-               url: 'http://thedudeminds.de/images/cover3.jpg', 
-               set_as_carousel: true,
-               },{
-               title: 'cover4',
-               description: 'Existentia quascunque ne collabitur an is ii.',
-               url: 'http://thedudeminds.de/images/cover4.jpg', 
-               set_as_carousel: true,
-               },{
-               title: 'cover5',
-               description: 'Existentia quascunque ne collabitur an is ii.',
-               url: 'http://thedudeminds.de/images/cover5.jpg', 
-               set_as_carousel: true,
-               }])
-
 SocialNetworkAccount.create([{
                               platform_name: 'Facebook',
                               platform_url: 'https://www.google.de/search?q=facebook',
-                              img_url: 'http://thedudeminds.de/images/facebook-3-32.png',
+                              # img_url: 'http://thedudeminds.de/images/facebook-3-32.png',
                               visible: true,
                               },{
                               platform_name: 'Twitter',
                               platform_url: 'https://www.google.de/search?q=twitter',
-                              img_url: 'http://thedudeminds.de/images/twitter-3-32.png',
+                              # img_url: 'http://thedudeminds.de/images/twitter-3-32.png',
                               visible: true,
                               },{
                               platform_name: 'Instagram',
                               platform_url: 'https://www.google.de/search?q=instagram',
-                              img_url: 'http://thedudeminds.de/images/instagram-3-32.png',
+                              # img_url: 'http://thedudeminds.de/images/instagram-3-32.png',
                               visible: false,
                               },{
                               platform_name: 'Pinterest',
                               platform_url: 'https://www.google.de/search?q=pinterest',
-                              img_url: 'http://thedudeminds.de/images/pinterest-3-32.png',
+                              # img_url: 'http://thedudeminds.de/images/pinterest-3-32.png',
                               visible: true,
                               }])

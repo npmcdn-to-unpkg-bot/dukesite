@@ -22,6 +22,7 @@ secrets.yml
 environment_variables.yml
 database.yml
 .byebug_history
+public/uploads
 
 #Add these files if you are running any rspec or capybara tests on your application.
 #capybara-*.html

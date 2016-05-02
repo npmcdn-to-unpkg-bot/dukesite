@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
     get '/look_up_item', to: 'products#lookup_item_on_amazon'
     put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
+    put '/categories/:id/category_visible', to: 'categories#visible_switch', as: 'category_visible_switch' 
     put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'    
   end
   resources :products, only: [:show]
