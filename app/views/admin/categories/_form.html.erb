@@ -12,8 +12,8 @@
           <%= p.radio_button :visible, true %> Yes
       </div>
       <div class="form-group">
-          <%= p.label "Upload a Image" %>
-          <%= p.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+        <%= p.label "Drop an image here" %>
+        <%= p.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
       </div>
       <div class="form-group">
         <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
