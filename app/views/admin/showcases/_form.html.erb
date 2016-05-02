@@ -29,7 +29,7 @@
     
     <div class="form-group">
       <%= s.label "Upload a Feature Image" %>
-      <%= s.file_field :image %>
+      <%= s.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
     </div>
     <div class="form-group">
       <%= s.label "Display on the landing_page?" %><br>
