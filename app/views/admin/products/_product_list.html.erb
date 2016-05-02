@@ -1,6 +1,6 @@
 <div class="row">
   <% products.each do |p| %>
-    <div class="col-sm-4 col-md-3">
+    <div class="col-xs-12 col-sm-2 col-md-2">
       <div class="thumbnail admin-product-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
         <p>
           <% p.categories.each do |pc| %>
@@ -19,7 +19,7 @@
         <%= link_to product_path(p), target: "_blank" do %>
           <%= image_tag p.image_url %>
         <% end %>
-        <div class="caption">
+        <div class="caption hide">
           <h4><%= p.title %></h4>
           <p><%= truncate(p.description, length: 90, omission: '...') %></p>
           <p> 

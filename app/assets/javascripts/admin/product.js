@@ -71,5 +71,13 @@ $(function(){
       });// end of ajax
     });// end of click
   });
+
+  $(".admin-product-thumbnail").each(function(){
+    var $this    = $( this );
+    $this.hover(
+      function(){
+        $this.find('.caption').toggleClass('hide');
+      })
+  });
 });
 
