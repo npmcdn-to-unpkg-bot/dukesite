@@ -9,9 +9,7 @@ $(function(){
       $.ajax({
         url: editUrl,
         method: "PUT",
-        data: { showcase: 
-                { visible: visible }
-              },
+        data: { visible: visible },
         success: function(data) {
                    var visible = data.showcase_status;
                    $this.text( function(){

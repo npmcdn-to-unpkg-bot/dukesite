@@ -2,34 +2,40 @@ $(function(){
   // Change Cat name
   $(".admin-category-thumbnail #cat-name").each(function(){
     var $this    = $( this );
-    $this.click(function(){
-      var 
+    $this.click(function readURL(input){
+      var cat_name = $this.data('title'),
+          cat_img_name = $this.data('img-name'),
+          cat_img_url  = $this.data('img'),
+          edit_url = $this.data( 'edit' );
           cat_img = $this.parents(".admin-category-thumbnail").find('img'),
-          cat_img_url = cat_img.attr('src'),
-          cat_name = $this.text(), // Read category name
-          edit_url = $this.attr( "data-edit" );
-
-      // In Modal
-      $("#editCatNameInput").attr("placeholder", cat_name);// Show category name
-      $("#editCatImgUrlInput").attr("placeholder", cat_img_url);
-      // To save the new Category
-      $("#editCatNameConfirm").click(function(){
-
-        var new_cat_name = $("#editCatNameInput").val(),
-            new_cat_img_url  = $("#editCatImgUrlInput").val(); // Read value from Category form
-        if (new_cat_name == "") {
-          new_cat_name = cat_name;
+      // Show category name and img in Modal
+      $("#editCatNameInput").val(cat_name);
+      $("#cat_img_preview").attr('src', cat_img_url);
+      
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#cat_img_preview').attr('src', e.target.result);
         }
-        if (new_cat_img_url == "") {
-          new_cat_img_url = cat_img_url;
-        }
+        reader.readAsDataURL(input.files[0]);
+      }
+      $("#editCatName #category_image").change(function(){
+          readURL(this);
+      });
+
+      $("#editCatNameConfirm").click(function(){ // To save the new Category
+        var category = new FormData(),
+            new_cat_name = $("#editCatNameInput").val(), // cat name value
+            new_cat_img  = $("#editCatName #category_image").val(); // cat img
+        category.append('category[name]', new_cat_name);
+        category.append('category[image]', new_cat_img);
         $.ajax({
           url: edit_url,
           method: "PUT",
-          data: { category: 
-                  { name: new_cat_name,
-                    img_url: new_cat_img_url }
-                },
+          data: category,
+          cache: false,
+          contentType: false,
+          processData: false,
           success: function(data) {
             // When the new name is saved
             var new_cat_name = data.cat_name,
@@ -52,9 +58,7 @@ $(function(){
       $.ajax({
         url: edit_url,
         method: "PUT",
-        data: { category: 
-                { visible: visible }
-              },
+        data: { visible: visible },
         success: function(data) {
           var visible = data.cat_status;
           $this.text( function(){

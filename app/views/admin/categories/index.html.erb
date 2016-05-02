@@ -13,12 +13,12 @@
         <% image = p.image.url
            image.nil? ? ((img_url = "http://thedudeminds.de/images/no_image_available.png") && thumb_img_url = img_url) : (img_url = image && thumb_img_url = p.image.thumb.url)
           %>
-        <%# img_url = "http://thedudeminds.de/images/no_image_available.png" && thumb_img_url = img_url %>
         <%= link_to admin_category_products_path(p) do %>
           <%= image_tag thumb_img_url %>
         <% end %>
         <div class="caption">
-          <h4 data-toggle="modal" data-target="#editCatName" data-edit=<%= admin_category_path(p) %> data-title=<%=p.name %> data-img=<%= thumb_img_url %>  id="cat-name"><%= p.name %>
+          <h4 id="cat-name" data-toggle="modal" data-target="#editCatName" data-edit=<%= admin_category_path(p) %> data-title=<%=p.name %> data-img=<%= thumb_img_url %> data-img-name=<%= p.image_identifier %>>
+            <%= p.name %>
           </h4>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="cat-status" data-edit=<%= admin_category_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "visible" : "hidden" %></button>
@@ -55,7 +55,7 @@
           </div>
           <div class="col-xs-12 col-sm-6">
             <%= image_tag "http://thedudeminds.de/images/thedukegirls.png", width: "150", id: "cat_img_preview", class: "thumbnail" %>
-            <%= file_field :category, :photo, accept: 'image/png,image/gif,image/jpeg' %>
+            <%= file_field :category, :image, accept: 'image/png,image/gif,image/jpeg' %>
           </div>
         </div>
       </div>
