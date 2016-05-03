@@ -6,11 +6,11 @@ $(function(){
         returned_items_num = returned_items.length;
 
     $.each(returned_items, function(index, value){
-      var item       = value.table,
+      var item       = value,
           asin       = item.asin,
           title = item.title,
           product_page_url = item.detail_page_url,
-          img_url = item.large_image_url,
+          img_url = item.image_url_large,
           desc = item.description,
           id = 'item-' + asin;
       // Thumbmail for each item
@@ -42,6 +42,8 @@ $(function(){
     var response = xhr.responseJSON.response;
     $('#lookup-item-on-amazon-msg').html(response).removeClass('hide');
   }).on('click', function(){
+    $('#returned_items').children().remove();
+  }).on('keypress', function(){
     $('#returned_items').children().remove();
   });
 
