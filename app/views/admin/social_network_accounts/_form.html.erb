@@ -11,12 +11,12 @@
 <div class="col-sm-8">
   <%= form_for [:admin, @sna] do |s| %>
     <div class="form-group">
-      <%= s.label "Name *" %>
+      <%= s.label "Name*" %>
       <%= s.text_field :platform_name, class: "form-control", placeholder: "Give this a link name" %>
     </div>
 
     <div class="form-group">
-      <%= s.label "Url" %>
+      <%= s.label "Url*" %>
       <%= s.text_field :platform_url, class: "form-control", placeholder: "Link Url" %>
     </div>
     
