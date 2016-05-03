@@ -1,0 +1,37 @@
+<div class="row">
+  <% products.each do |p| %>
+    <div class="col-xs-12 col-sm-3">
+      <div class="thumbnail admin-product-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
+        <p>
+          <% p.categories.each do |pc| %>
+            <%= link_to admin_category_products_path(pc) do %>
+              <span class="label label-warning"><%= pc.name %></span> 
+            <% end %> 
+          <% end %>
+          <% p.showcases.each do |s| %>
+            <%= link_to admin_showcase_products_path(s) do %>
+              <span class="label label-info"><%= s.title %></span>
+            <% end %>
+          <% end %>
+        </p>
+        <% p.updated_at? ? update_time = p.updated_at.to_formatted_s(:long) : update_time = p.created_at.to_formatted_s(:long) %>
+        <small class="pull-right"><%= update_time %></small>
+        <%= link_to product_path(p), target: "_blank" do %>
+          <%= image_tag p.image_url %>
+        <% end %>
+        <div class="caption hide">
+          <h4><%= p.title %></h4>
+          <p><%= truncate(p.description, length: 90, omission: '...') %></p>
+          <p> 
+            <button type="button" class="btn <%= p.published? ? "btn-primary" : "btn-default" %> btn-sm" id="product-status" data-edit=<%= admin_product_publish_switch_path(p) %> data-visible=<%= p.published? %>><%= p.published? ? "Published" : "Unpublished" %></button>
+          </p>
+          <p> <%= link_to "Delete", admin_product_path(p), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+              <%= link_to "Edit", edit_admin_product_path(p), class: "btn btn-info btn-sm" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'shared/pagination', objects: products %>

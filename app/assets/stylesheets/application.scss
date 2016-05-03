@@ -1,4 +1,3 @@
-
 @import "stylebase";
 
 $link-color: $duke-blue;
@@ -8,5 +7,6 @@ $thumbnail-padding: 0;
 $table-bg-hover: #E8E8E8 ;
 
 @import "bootstrap";
+@import "jquery.fileupload-ui";
 @import "layout.scss";
 @import "welcome.scss";

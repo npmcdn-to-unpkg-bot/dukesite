@@ -30,7 +30,7 @@
     <tr>
       <td><%= i += 1 %>. </td>
       <td><%= p.platform_name %></td>
-      <td><%= image_tag p.img_url,  size: "32x32" %></td>
+      <td><%= image_tag p.image.url,  size: "32x32" %></td>
       <td><%= link_to p.platform_url, p.platform_url, :target => "_blank" %></td>
       <td>
         <% if p.visible %>

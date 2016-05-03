@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+# Solve the loading problem between Turbolinks & jQuery
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -35,7 +37,15 @@ gem 'devise'
 # gem 'capistrano-rails', group: :development
 
 # Wrapper to Amazon Product Advertising API
-gem 'vacuum', '~> 1.4.0'
+gem 'amazon-ecs'
+
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+
+# File Uploader
+gem 'carrierwave'
+gem 'mini_magick'
+gem "jquery-fileupload-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

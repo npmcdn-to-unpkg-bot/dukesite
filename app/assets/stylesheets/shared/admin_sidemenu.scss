@@ -1,0 +1,46 @@
+.adminSideMenu {
+  margin-top: 50px;
+  margin-right: 20px;
+  
+  ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li > a { display: block; }
+  
+  // First Layer
+  .panel > a {
+    opacity: 0.8;
+    line-height: 3em;
+    color: white;
+    padding: 5px 10px 5px;
+    background: #E91E63;
+  }
+
+  .panel > a:hover {
+    color: white;
+    text-decoration: none;
+    background: #42A5F5;
+  }
+
+  // Second Layer
+  .panel > ul {
+    background: #F8BBD0;
+  }
+
+  .panel > ul > li {
+    line-height: 3em;
+  }
+
+  .panel > ul > li > a {
+    color: #424242;
+    padding: 0 0 0 20px;
+  }
+
+  .panel > ul > li > a:hover {
+    color: white;
+    background: #42A5F5;
+  }
+}

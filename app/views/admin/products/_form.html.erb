@@ -1,92 +1,94 @@
 <%= render "shared/error", object: @product %>
-
-<div class="col-sm-10">
-<%= form_for [:admin, @product], :html => {:class => "form-horizontal"} do |p| %>
-
-  <div class="form-group">
-    <%= p.label "Title*", :class=>"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= p.text_field :title, class: "form-control", placeholder: "Enter title" %>
-      <%#https://agile-hollows-15578.herokuapp.com/
-      <%= p.text_field :title, class: "form-control", placeholder: "slug (optional)" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= p.label "Purchase Link*", :class=>"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= p.url_field :url, class: "form-control", placeholder: "Enter the url of the purchase page" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= p.label "Product Image Url*", :class=>"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= p.url_field :image_url, class: "form-control", placeholder: "Enter the url of the product's image" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= p.label "Description", :class=>"col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= p.text_area :description, class: "form-control", placeholder: "Describe the product", rows: 3 %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= p.label "Categories", :class=>"col-sm-2 control-label" do %>
-      Categories
-    <% end %>
-
-    <div class="col-sm-10">
-      <%= p.collection_select(:category_ids, @categories, :id, :name, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(SHIFT + Mouse Click = Multiple Select</em></small>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= p.label "Showcase", :class=>"col-sm-2 control-label" do %>
-      Showcases
-    <% end %>
-
-    <div class="col-sm-10">
-      <%= p.collection_select(:showcase_ids, @showcases, :id, :title, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(SHIFT + Mouse Click = Multiple Select</em></small>
-    </div>
-  </div>
-
-  <div class="ratio">
-    <%= p.label "Publish?", :class=>"col-sm-2 control-label" %>
-
-    <div class="col-sm-10">
-      <%= p.radio_button :published, false %> No <br>
-      <%= p.radio_button :published, true %> Yes
-    </div>
-  </div>
-
-  <div class="pull-right">
-  <%= link_to "Cancel", admin_products_path, class: "btn btn-danger" %>
-  <%= p.submit "Submit", class: "btn btn-primary" %>
+<%= render "look_up_form" %>
+<hr>
+<% if @product.id.present? %>
+  <div class="row well">
+    <p class="pull-left">Created at: <em><%= @product.created_at.to_formatted_s(:db) %></em></br>Last updated at: <em><%= @product.updated_at.to_formatted_s(:db) %></em></br>
+    </p>
+    <p class="pull-right">
+      <% @product.published? ? ((status = "Published") && (label = "label-success")) : ((status = "Unpublished") && (label = "label-default")) %>
+      <span class="label <%= label %>"><%= status %></span><br>
+      <%= link_to product_path(@product), target: "_blank" do %>
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Product<br>
+      <% end %>
+    </p>
   </div>
 <% end %>
-
-</div>
-<div class="col-sm-2">
-  <div class="row">
-    <% if @product.image_url.nil? %>
-      <%= image_tag "http://thedudeminds.de/images/no_image_available.png", class: "img-responsive thumbnail", alt: "Responsive image" %> 
-    <% else %>
-      <%= image_tag @product.image_url, class: "img-responsive thumbnail", alt: "Responsive image" %>
-    <% end %>
-  </div>
-  <% unless  @product.id.nil? %>
-    <div class="row">
-      <%= link_to product_path(@product), target: "_blank" do %>
-        <p class="pull-right"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Product</p>
-      <% end %>
+<div class="col-sm-10">
+  <%= form_for [:admin, @product], :html => {:class => "form-horizontal"} do |p| %>
+    <div class="form-group">
+      <%= p.label "ASIN*", :class=>"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= p.text_field :asin, class: "form-control" %>
+      </div>
     </div>
-    <div class="row">
-      <p>Created at: <br><%= @product.created_at.to_formatted_s(:db) %></p>
-      <p>Last updated at: <br><%= @product.updated_at.to_formatted_s(:db) %></p>
-      <p>Published: <br><%= @product.published? ? "Yes" : "NO" %></p> 
+    <div class="form-group">
+      <%= p.label "Title*", :class=>"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= p.text_field :title, class: "form-control", placeholder: "Enter title" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= p.label "Purchase Link*", :class=>"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= p.url_field :url, class: "form-control", placeholder: "Enter the url of the purchase page" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= p.label "Product Image Url*", :class=>"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= p.url_field :image_url, class: "form-control", placeholder: "Enter the url of the product's image" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= p.label "Description", :class=>"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= p.text_area :description, class: "form-control", placeholder: "Describe the product", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= p.label "Categories", :class=>"col-sm-2 control-label" do %>
+        Categories
+      <% end %>
+
+      <div class="col-sm-10">
+        <%= p.collection_select(:category_ids, @categories, :id, :name, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(SHIFT + Mouse Click = Multiple Select</em></small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= p.label "Showcase", :class=>"col-sm-2 control-label" do %>
+        Showcases
+      <% end %>
+
+      <div class="col-sm-10">
+        <%= p.collection_select(:showcase_ids, @showcases, :id, :title, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(SHIFT + Mouse Click = Multiple Select</em></small>
+      </div>
+    </div>
+
+    <div class="ratio">
+      <%= p.label "Publish?", :class=>"col-sm-2 control-label" %>
+
+      <div class="col-sm-10">
+        <%= p.radio_button :published, false %> No <br>
+        <%= p.radio_button :published, true %> Yes
+      </div>
+    </div>
+
+    <div class="pull-right">
+    <%= link_to "Cancel", admin_products_path, class: "btn btn-danger" %>
+    <%= p.submit "Submit", class: "btn btn-primary" %>
     </div>
   <% end %>
+</div>
+
+<div class="col-sm-2">
+  <div class="row">
+    <% @product.image_url.blank? ? img_url = 'http://thedudeminds.de/images/no_image_available.png' : img_url = @product.image_url %>
+    <%= image_tag img_url, class: "img-responsive thumbnail", alt: "Responsive image", id: "product-img-url" %> 
+  </div>
 </div>

@@ -26,7 +26,7 @@
       <% @social_network_accounts.each do |p| %>
         <% if p.visible %>
           <%= link_to p.platform_url, :target => "_blank" do %>
-            <%= image_tag p.img_url, size: "32x32" %>
+            <%= image_tag p.image.url, size: "32x32" %>
           <% end %>
         <% end %>
       <% end %>

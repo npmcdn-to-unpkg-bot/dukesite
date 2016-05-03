@@ -1,10 +1,25 @@
 <%= render "shared/error", object: @category %>
-
-<%= form_for [:admin, @category] do |p| %>
-  <p>
-  <%= p.label "Name" %><br>
-  <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %></p>
-
-  <%= link_to "Cancel", admin_products_path, class: "btn btn-danger" %>
-  <%= p.submit "Submit", class: "btn btn-primary" %>
-<% end %>
+<div class="row">
+  <div class="col-xs-10 col-sm-10 col-sm-offset-1 col-xs-offset-1">
+    <%= form_for [:admin, @category], html: {class: "form-horizontal"} do |p| %>
+      <div class="form-group">
+        <%= p.label "Name", class: "control-label" %>
+        <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+      </div>
+      <div class="form-group">
+        <%= p.label "visible", class: "control-label" %>
+        <%= p.radio_button :visible, false %> No  
+          <%= p.radio_button :visible, true %> Yes
+      </div>
+      <div class="form-group">
+        <%= p.label "Drop an image here" %>
+        <%= p.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+      </div>
+      <div class="form-group">
+        <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
+        <p><%= p.submit "Submit", class: "btn btn-primary" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+<hr>

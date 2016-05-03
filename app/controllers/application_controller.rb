@@ -1,21 +1,23 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  before_action :get_category, :get_showcase, :get_social_network_account
+  before_action :get_visible_category, :get_landing_page_showcase, :get_social_network_account
   protect_from_forgery with: :exception
-  def get_category
-    @categories = Category.all
+
+  def get_visible_category
+    @categories = Category.where(:visible => true)
   end
-  def get_showcase
-    @showcases = Showcase.all
+
+  def get_landing_page_showcase
+    @showcases = Showcase.where({:visible => true, :show_on_landing_page => true})
   end
   def get_social_network_account
     @social_network_accounts = SocialNetworkAccount.all
   end
 
   def create_subscriber
-    response = ""
     status   = 200
+    response = ""
     if params[:email].blank?
       status   = 400
       response = "Please enter email address."
