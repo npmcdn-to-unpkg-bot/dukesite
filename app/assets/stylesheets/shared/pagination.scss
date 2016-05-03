@@ -1,5 +1,6 @@
 .apple_pagination {
-  background: #f1f1f1;
+  opacity: 0.8;
+  background: #E91E63;
   border: 1px solid #e5e5e5;
   text-align: center;
   padding: 1em;
@@ -9,12 +10,12 @@
   padding: 0.2em 0.3em; 
 }
 .apple_pagination .disabled {
-  color: #aaaaaa; 
+  color: #F8BBD0; 
 }
 .apple_pagination .current {
   font-style: normal;
   font-weight: bold;
-  background-color: #bebebe;
+  background-color: #42A5F5;
   display: inline-block;
   width: 1.4em;
   height: 1.4em;
@@ -26,7 +27,7 @@
 }
 .apple_pagination a {
   text-decoration: none;
-  color: black; 
+  color: white; 
 }
 .apple_pagination a:hover, .apple_pagination a:focus {
   text-decoration: underline; 
