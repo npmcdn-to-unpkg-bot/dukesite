@@ -9,7 +9,7 @@ $(function(){
           asin       = item.asin,
           title = item.title,
           product_page_url = item.detail_page_url,
-          img_url = item.large_image_url,
+          img_url = item.image_url_large,
           desc = item.description,
           id = 'item-' + asin;
       // Thumbmail for each item

@@ -15,7 +15,7 @@ module Amazon
     res_var = request_amazon("VariationMatrix", p_asin)
     raise res_var.error if res_var.has_error?
     return items if res_var.items.count == 0
-    
+
     res_items_amout = res_var.items.count
     case res_items_amout
     when 0
@@ -67,11 +67,11 @@ module Amazon
       item_asin = node_item.get("ASIN") if item_asin.nil?
       if items.has_key?(item_asin)
         items[item_asin].title = node_item.get("ItemAttributes/Title")
-        items[item_asin].description = node_item.get("EditorialReview/Content")
+        items[item_asin].description = node_item.get("EditorialReviews/EditorialReview/Content")
         items[item_asin].brand = node_item.get("ItemAttributes/Brand")
         items[item_asin].detail_page_url = node_item.get("DetailPageURL")
-        items[item_asin].image_url_large = node_item.get("LargeImage")
-        items[item_asin].image_url_small = node_item.get("SmallImage")
+        items[item_asin].image_url_large = node_item.get("LargeImage/URL")
+        items[item_asin].image_url_small = node_item.get("SmallImage/URL")
       end
     end
   end
