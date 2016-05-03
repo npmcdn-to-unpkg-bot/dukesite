@@ -2,10 +2,19 @@
   <h1>Showcase <span class="badge"><%= @showcases.length %></span></h1>
 </div>
 
-<div class="row">
-  <%= render "form" %>
+<p>
+  <a data-toggle="collapse" href="#collapseAddShowcaseForm" aria-expanded="false">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+     Add Showcase
+  </a>
+</p>
+
+<div class="collapse" id="collapseAddShowcaseForm">
+  <div class="row well">
+    <%= render "form" %>
+  </div>
 </div>
-<hr>
+
 <div class="row">
   <% @showcases.order("updated_at DESC").each do |p| %>
     <div class="col-sm-4 col-md-3">

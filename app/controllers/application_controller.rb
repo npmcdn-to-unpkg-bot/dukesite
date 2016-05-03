@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     @showcases = Showcase.where({:visible => true, :show_on_landing_page => true})
   end
   def get_social_network_account
-    @social_network_accounts = SocialNetworkAccount.all
+    @visible_snas = SocialNetworkAccount.where(:visible => true)
   end
 
   def create_subscriber

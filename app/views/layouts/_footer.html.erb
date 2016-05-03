@@ -23,11 +23,9 @@
     <p class="text-center">
       
       <!-- iterate through social network account items and display icon, if account is marked as 'visible' -->
-      <% @social_network_accounts.each do |p| %>
-        <% if p.visible %>
-          <%= link_to p.platform_url, :target => "_blank" do %>
-            <%= image_tag p.image.url, size: "32x32" %>
-          <% end %>
+      <% @visible_snas.each do |p| %>
+        <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
+          <%= image_tag p.image.url, size: "32x32" %>
         <% end %>
       <% end %>
     </p>

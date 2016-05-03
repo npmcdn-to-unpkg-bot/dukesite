@@ -2,8 +2,17 @@
   <h1>Categories <span class="badge"><%= @categories.size %></span></h1>
 </div>
 
-<div class="row">
-  <%= render "form" %>
+<p>
+  <a data-toggle="collapse" href="#collapseAddCatForm" aria-expanded="false">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+     Add Category
+  </a>
+</p>
+
+<div class="collapse" id="collapseAddCatForm">
+  <div class="row well">
+    <%= render "form" %>
+  </div>
 </div>
 
 <div class="row">

@@ -21,7 +21,7 @@
       <dd><%= @price %> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></dd>
       <hr>  
       <dt></dt>
-      <dd><%= link_to "Buy me on Amazon", @product.url, class: "btn btn-danger", target: "_blank" %></dd>
+      <dd><%= link_to "Buy me on Amazon", url_with_protocol(@product.url), class: "btn btn-danger", target: "_blank" %></dd>
     </dl>
   </div>
 </div>

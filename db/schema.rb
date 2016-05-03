@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429210638) do
+ActiveRecord::Schema.define(version: 20160503103844) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -44,19 +44,13 @@ ActiveRecord::Schema.define(version: 20160429210638) do
     t.datetime "updated_at",                 null: false
     t.string   "slug"
     t.boolean  "visible",    default: false
+    t.string   "image"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.text     "url"
-    t.boolean  "set_as_carousel", default: false
-    t.boolean  "quote",           default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "slug"
-    t.boolean  "visible",    default: false
-    t.string   "image"
+  create_table "photos", force: :cascade do |t|
+    t.boolean "carousel",       default: false
+    t.integer "imageable_id"
+    t.string  "imageable_type"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -108,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160429210638) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.boolean  "visible",       default: false
+    t.string   "slug"
   end
 
   create_table "subscribers", force: :cascade do |t|

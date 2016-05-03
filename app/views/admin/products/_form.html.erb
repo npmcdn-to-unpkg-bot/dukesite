@@ -1,6 +1,6 @@
 <%= render "shared/error", object: @product %>
 <%= render "look_up_form" %>
-<hr>
+
 <% if @product.id.present? %>
   <div class="row well">
     <p class="pull-left">Created at: <em><%= @product.created_at.to_formatted_s(:db) %></em></br>Last updated at: <em><%= @product.updated_at.to_formatted_s(:db) %></em></br>
@@ -14,7 +14,7 @@
     </p>
   </div>
 <% end %>
-<div class="col-sm-10">
+<div class="col-sm-9">
   <%= form_for [:admin, @product], :html => {:class => "form-horizontal"} do |p| %>
     <div class="form-group">
       <%= p.label "ASIN*", :class=>"col-sm-2 control-label" %>
