@@ -41,8 +41,6 @@
         </div>
       </div>
       <div class="panel-body collapse" id="editSnaForm-<%= p.slug %>">
-        <%#= render "form", obj: p %>
-        <%= render "shared/error", object: p %>
         <%= form_for [:admin, p] do |s| %>
           <div class="col-sm-6">
             <div class="form-group">
