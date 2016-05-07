@@ -1,0 +1,24 @@
+<%= render "shared/error", object: @quote %>
+
+<div class="col-sm-8">
+  <%= form_for [:admin, @quote] do |s| %>
+    <div class="form-group">
+      <%= s.label "Title" %>
+      <%= s.text_field :title, class: "form-control", placeholder: "Enter title" %>
+    </div>
+    <div class="form-group">
+      <%= s.label "Description" %>
+      <%= s.text_field :description, class: "form-control", placeholder: "Describe the quote" %>
+    </div>
+    
+    <div class="form-group">
+      <%= s.label "Upload Image" %>
+      <%= s.fields_for :photos do |c| %>
+        <%= c.file_field :image, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+      <% end %>
+    </div>
+
+    <%= link_to "Cancel", admin_quotes_path, class: "btn btn-warning" if @quote.id.present? %>
+    <%= s.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>

@@ -8,10 +8,13 @@
      Add Category
   </a>
 </p>
-
+<%= render "shared/error", object: @category %>
 <div class="collapse" id="collapseAddCatForm">
-  <div class="row well">
-    <%= render "form" %>
+  <div class="row">
+  
+    <div class="col-xs-12 col-sm-8 well">
+      <%= render "form" %>
+    </div>
   </div>
 </div>
 
