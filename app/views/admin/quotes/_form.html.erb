@@ -14,7 +14,7 @@
     <div class="form-group">
       <%= s.label "Upload Image" %>
       <%= s.fields_for :photos do |c| %>
-        <%= c.file_field :image, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+        <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
       <% end %>
     </div>
 

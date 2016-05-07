@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504154702) do
+ActiveRecord::Schema.define(version: 20160507201809) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160504154702) do
     t.boolean "carousel",       default: false
     t.integer "imageable_id"
     t.string  "imageable_type"
+    t.string  "image"
   end
 
   create_table "product_categories", force: :cascade do |t|
@@ -88,7 +89,6 @@ ActiveRecord::Schema.define(version: 20160504154702) do
   create_table "quotes", force: :cascade do |t|
     t.string "title"
     t.text   "description"
-    t.string "image"
   end
 
   create_table "showcases", force: :cascade do |t|

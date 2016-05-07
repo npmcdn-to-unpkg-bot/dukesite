@@ -9,6 +9,7 @@ class Admin::QuotesController < AdminController
   end
 
   def create
+    byebug
     @quote = Quote.new(params_quote)
     if @quote.save
       flash[:success] = "A new quote was succefully created."
@@ -23,6 +24,6 @@ class Admin::QuotesController < AdminController
       @quote = Quote.find_by(slug: params[:id])
     end
     def params_quote
-      params.require(:quote).permit(:title, :description, photos_attributes: [:image => []])
+      params.require(:quote).permit(:title, :description, photos_attributes: [:image])
     end
 end
