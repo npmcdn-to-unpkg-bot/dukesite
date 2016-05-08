@@ -1,5 +1,5 @@
 class Admin::QuotesController < AdminController
-  before_action :find_quote, only: [:edit, :show, :update, :destroy]
+  before_action :find_quote, only: [:edit, :show, :update, :destroy, :visible_switch]
   before_action :find_all_quotes, only: [:index, :create]
   def index
     @quote = Quote.new
@@ -36,7 +36,7 @@ class Admin::QuotesController < AdminController
     response = ""
     if @quote.update_attribute(:visible, params[:visible])
       flash[:success] = "Successfully updated."
-      quote = @quote.visible
+      quote_status = @quote.visible
     else
       status = 404
       response = "Please try again"

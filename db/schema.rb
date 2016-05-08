@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508134501) do
+ActiveRecord::Schema.define(version: 20160508143311) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,10 +48,12 @@ ActiveRecord::Schema.define(version: 20160508134501) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.boolean "carousel",       default: false
-    t.integer "imageable_id"
-    t.string  "imageable_type"
-    t.string  "image"
+    t.boolean  "carousel",       default: false
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "product_categories", force: :cascade do |t|

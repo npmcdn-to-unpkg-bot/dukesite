@@ -19,7 +19,7 @@
 </div>
 
 <div class="row">
-  <% @categories.order("updated_at DESC").each do |p| %>
+  <% @categories.each do |p| %>
     <div class="col-sm-4 col-md-3">
       <div class="thumbnail admin-category-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
         <% image = p.image.url

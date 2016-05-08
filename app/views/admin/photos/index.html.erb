@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>Images <span class="badge"><%= @photos.size %></span></h1>
+</div>
+
+<div class="row">
+<% @photos.each do |p| %>
+  <div class="col-xs-12 col-sm-3">
+    <div class="thumbnail">
+      <%= image_tag p.image.url %>
+    </div>
+  </div>
+<% end %>
