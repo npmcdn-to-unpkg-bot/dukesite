@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     ## Visible/Publish Switch
     put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
     put '/categories/:id/category_visible', to: 'categories#visible_switch', as: 'category_visible_switch' 
-    put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'    
+    put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'
+    put '/quotes/:id/quote_visible', to: 'quotes#visible_switch', as: 'quote_visible_switch'
   end
   resources :products, only: [:show]
   resources :showcases, only: [:show]
