@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Quotes <span class="badge"><%= @quotes.size %></span></h1>
+  <h1>Quotes <span class="badge"><%#= @quotes.size %></span></h1>
 </div>
 
 <p>
@@ -24,3 +24,31 @@
     <%= p.image.url %>
   <% end %>
 <% end %>
+<div class="row">
+  <% @quotes.order("updated_at DESC").each do |p| %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail admin-quote-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
+        <%# image = p.image.url
+           image.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = image %>
+        <%= link_to admin_quote_path(p) do %>
+          img<%#= image_tag img_url %>
+        <% end %>
+        <div class="caption">
+          <h4><%= p.title %>
+          </h4>
+          <p> 
+            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_quote_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
+          </p>
+          <p>
+              <%= link_to "Delete", admin_quote_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+              <%= link_to "Edit", edit_admin_quote_path(p), class: "btn btn-info btn-sm" %>
+              <%#= link_to "Shop", showcase_path(p), class: "pull-right" %>
+          </p>
+          <small>
+          <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
+          <%= update_time %> <em>(last updated)</em></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
