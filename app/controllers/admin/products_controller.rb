@@ -1,5 +1,4 @@
 class Admin::ProductsController < AdminController
-  before_action :authenticate_admin!
   before_action :find_product, only: [:edit, :update, :destroy, :publish_switch]
 
   def index
