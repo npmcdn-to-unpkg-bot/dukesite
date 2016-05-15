@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1>Carousels <span class="badge"><%= @carousels.size %></span></h1>
+</div>
+
+<div class="row">
+<% @carousels.each do |p| %>
+  <div class="col-xs-12 col-sm-3">
+    <div class="thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
+      <%= image_tag p.image.url %>
+      <div class="caption">
+        <h3><%= p.title %></h3>
+        <p><%= p.description %></p>
+      </div>
+    </div>
+
+  </div>
+<% end %>

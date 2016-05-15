@@ -1,0 +1,25 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Admin", admin_index_path %></li>
+  <li><%= link_to "Quotes", admin_quotes_path %></li>
+  <li class="active"><%= @quote.title %></li>
+</ol>
+
+<div class="page-header">
+  <h1><%= @quote.title %></h1>
+</div>
+
+<div class="row well well-sm"> 
+  <p class="pull-left">Created at: <em><%= @quote.created_at.to_formatted_s(:db) %></em></br>Last updated at: <em><%= @quote.updated_at.to_formatted_s(:db) %></em></br>
+  </p>
+  <p class="pull-right">
+    <% @quote.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Hidden") && (label = "label-default")) %>
+    <span class="label <%= label %>"><%= status %></span><br>
+  </p>
+</div>
+
+<%= render "form" %>
+
+<% @quote.photos.each do |p| %>
+  <%= image_tag p.image.thumb.url %>
+<% end %>
+

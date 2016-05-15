@@ -11,19 +11,12 @@
 <%= render "shared/error", object: @quote %>
 <div class="collapse" id="collapseAddQuoteForm">
   <div class="row">
-    <div class="col-xs-12 col-sm-8 well">
+    <div class="col-xs-12 col-sm-12 well">
       <%= render "form" %>
     </div>
   </div>
 </div>
 
-<% @quotes.each do |q| %>
-  <%= q.title %>
-  <%= q.description %>
-  <% q.photos.each do |p| %>
-    <%= p.image.url %>
-  <% end %>
-<% end %>
 <div class="row">
   <% @quotes.order("updated_at DESC").each do |p| %>
     <div class="col-sm-4 col-md-3">
@@ -34,13 +27,12 @@
           else
             img_url = p.photos.first.image.url
           end
-         %>
-        <%= link_to admin_quote_path(p) do %>
-          <%= image_tag img_url %>
-        <% end %>
+        %>
+        <%# put a link_to shop_quote path %>
+        <%= image_tag img_url %>
         <div class="caption">
-          <h4><%= p.title %>
-          </h4>
+          <h4><%= p.title %></h4>
+          <p><%= p.description %></p>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="quote-status" data-edit=<%= admin_quote_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
           </p>

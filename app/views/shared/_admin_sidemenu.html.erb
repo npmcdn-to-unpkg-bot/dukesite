@@ -19,10 +19,10 @@
     </ul>
   </li>
   <li class="panel">
-    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-4">Quotes</a>
+    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-4">Images</a>
     <ul id="sideMenu-4" class="collapse">
-      <li><%= link_to "All Quotes", admin_quotes_path %></li>
-      <li><%= link_to "All Images", admin_photos_path %></li>
+      <li><%= link_to "Quotes", admin_quotes_path %></li>
+      <li><%= link_to "Carousels", admin_carousels_path %></li>
     </ul>
   </li>
   <li class="panel">
@@ -30,7 +30,7 @@
     <ul id="sideMenu-5" class="collapse">
       <% @subscriber_num.nil? ? subscriber_num = 0 : subscriber_num = @subscriber_num %>
       <li><%= link_to "Subscribers: #{subscriber_num}", root_path %></li>
-      <li><%= link_to "Sent Newsletters", root_path %></li>
+      <li><%= link_to "Newsletter", root_path %></li>
     </ul>
   </li>
   <li class="panel">

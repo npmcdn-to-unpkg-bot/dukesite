@@ -16,9 +16,6 @@ class Admin::QuotesController < AdminController
     end
   end
 
-  def show
-  end
-
   def edit
   end
 
