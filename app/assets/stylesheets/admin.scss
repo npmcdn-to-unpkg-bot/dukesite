@@ -34,7 +34,7 @@ ul, menu, dir {
 .navbar-default .navbar-nav > li > a {
   color: white;
 }
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus  {
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
   background-color: #42A5F5;
   color: white;
 }
@@ -48,3 +48,15 @@ ul, menu, dir {
   color: white;
 }
 
+//dropmenu open
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background: #E91E63;
+  color: white;
+}
+
+.dropdown-menu {
+  background: #F8BBD0;
+  li > a:hover, .dropdown-menu > li > a:focus {
+    background: #42A5F5;
+  }
+}
