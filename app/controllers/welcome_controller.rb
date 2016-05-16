@@ -5,4 +5,7 @@ class WelcomeController < ApplicationController
 
   def our_stroy
   end
+
+  def join_us
+  end
 end
