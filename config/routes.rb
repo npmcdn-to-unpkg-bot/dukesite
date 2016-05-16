@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :social_network_accounts, except: [:show]
     resources :quotes, execpt: [:new, :show]
     resources :carousels, execpt: [:new]
+    resources :site_configs, :only:[:index, :update]
     ## Show a list of those products under a category/showcase 
     get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
@@ -29,5 +30,6 @@ Rails.application.routes.draw do
   resources :showcases, only: [:show]
   resources :categories, only: [:show]
   get '/our-story', to: 'welcome#our_story', as: 'story'
+  get '/join-us', to: 'welcome#join_us', as: 'join_us'
   put '/subscriber', to: 'application#create_subscriber', as: 'create_subscriber'
 end

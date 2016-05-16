@@ -97,6 +97,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     mime-types (2.99)
     mini_magick (4.3.6)
     mini_portile2 (2.0.0)
@@ -202,6 +204,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   jquery-turbolinks
+  meta-tags
   mini_magick
   pg
   rails (= 4.2.4)

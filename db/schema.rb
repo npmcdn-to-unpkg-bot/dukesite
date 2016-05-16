@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515140354) do
+ActiveRecord::Schema.define(version: 20160516111056) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20160515140354) do
     t.string   "slug"
     t.boolean  "visible",    default: false
     t.string   "image"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "keywordable_id"
+    t.string   "keywordable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -114,6 +122,16 @@ ActiveRecord::Schema.define(version: 20160515140354) do
     t.boolean  "show_on_landing_page", default: false
     t.string   "slug"
     t.boolean  "visible",              default: false
+  end
+
+  create_table "site_configs", force: :cascade do |t|
+    t.string   "key"
+    t.text     "value"
+    t.string   "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "note"
+    t.integer  "maxlength"
   end
 
   create_table "social_network_accounts", force: :cascade do |t|
