@@ -1,6 +1,8 @@
 class Admin::SiteConfigsController < AdminController
   def index
-    @site_configs = SiteConfig.all
+    @site_configs = SiteConfig.web_settings
+    @seo = SiteConfig.find_by(slug: "seo")
+    @keywords = @seo.keywords.where.not(value: nil).order("created_at DESC")
   end
 
   def update 
@@ -15,4 +17,7 @@ class Admin::SiteConfigsController < AdminController
     # end
   end
 
+  def keyword_params
+    params.require(:keyword).permit(:value)
+  end
 end

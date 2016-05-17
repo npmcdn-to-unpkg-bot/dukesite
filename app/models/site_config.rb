@@ -1,4 +1,5 @@
 class SiteConfig< ActiveRecord::Base
+  scope :web_settings, -> { where(slug: ['title', 'description', 'our-belief']) }
   include SlugGenerator
   validates_uniqueness_of :key
 
