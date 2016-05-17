@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     resources :social_network_accounts, except: [:show]
     resources :quotes, execpt: [:new, :show]
     resources :carousels, execpt: [:new]
-    resources :site_configs, only:[:index, :update]
+    resources :site_configs, only:[:index]
+
+    put '/site_configs/update', to: 'site_configs#update', as: 'general_site_configs'
     ## Show a list of those products under a category/showcase 
     get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
