@@ -97,4 +97,8 @@ SiteConfig.create([{
                     key: "Our Belief", 
                     value: "Lorem ipsum Veniam quis fugiat laborum veniam sit magna nisi in pariatur laborum consequat nulla aliquip occaecat nulla ea eiusmod dolore ut.",
                     maxlength: 160
+                    },{
+                    key: "SEO",
+                    maxlength: 255,
+                    note: "Recommended keywords tag length: up to 255 characters, 20 words."
                     }])

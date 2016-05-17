@@ -10,6 +10,8 @@ class Product < ActiveRecord::Base
   has_many :product_showcases
   has_many :showcases, through: :product_showcases
 
+  has_many :keywords, :as => :keywordable, dependent: :destroy
+
   sluggable_column :title
 
   def self.lookup_asins_group_on_amazon(asin)

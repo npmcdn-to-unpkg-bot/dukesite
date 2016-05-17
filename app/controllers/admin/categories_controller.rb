@@ -39,7 +39,7 @@ class Admin::CategoriesController < AdminController
     status = 200
     response = ""
     if @category.update_attribute(:visible, params[:visible])
-      flash[:success] = "Successfully updated."
+      response "Successfully updated."
       cat_status = @category.visible
     else
       status = 404
