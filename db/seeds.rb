@@ -91,7 +91,7 @@ SiteConfig.create([{
                     },{ 
                     key: "description",
                     value: "Lorem ipsum Eu officia occaecat.",
-                    maxlength: 160
+                    maxlength: 160,
                     note: "A good and simple description helps SEO."
                     },{ 
                     key: "Our Belief", 
