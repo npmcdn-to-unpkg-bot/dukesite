@@ -11,20 +11,12 @@
   </div>
   
   <div class="row showcase-body">
-    <%#
-    <div class="col-xs-12 col-md-3 showcase-feature">
-      <a href="#" class="thumbnail">
-        <%#= image_tag showcase.image.url, class: "img-responsive", alt: "Responsive image" %>
-    <%#
-      </a>
-    </div>
-    %>
     <% showcase_products = showcase.products[0..7] %>
 
     <% showcase_products.each do |p| %>
       <div class="col-xs-12 col-md-3 showcase-img">
         <%= link_to product_path(p), class:"thumbnail" do %>
-          <%= image_tag p.image_url, class: "img-responsive", alt: "Responsive image" %>
+          <%= image_tag p.image_url, class: "img-responsive" %>
         <% end %>
           <p class="text-center"><%= p.title %></p>
       </div>

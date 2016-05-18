@@ -1,4 +1,23 @@
 $(function(){
+
+  function readURL(input){
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#cat_form_img_preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    };
+  }
+
+  // Image Preview
+  
+  $("#category_image").change(function(){
+    readURL(this);
+  });
+
+
+
   // Change Visible Status
   $('.admin-category-thumbnail').on('click', "#cat-status", function(){
     var $this    = $( this ),
