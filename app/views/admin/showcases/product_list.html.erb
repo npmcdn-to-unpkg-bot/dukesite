@@ -8,6 +8,12 @@
   <li class="active"><%= @showcase.title %></li>
 </ol>
 
+<div class="row">
+  <div class="col-xs-12 col-sm-12 well">
+    <%= render "form" %>
+  </div>
+</div>
+
 <%= render "admin/products/product_list", products: @products %>
 <%# Don't change @products to @showcase.products. 
     Otherwise, pagination won't work %>

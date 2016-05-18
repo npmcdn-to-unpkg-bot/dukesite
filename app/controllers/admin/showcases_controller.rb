@@ -27,7 +27,7 @@ class Admin::ShowcasesController < AdminController
   def update
     if @showcase.update(showcase_params)
       flash[:success] = "successfully edited."
-      redirect_to admin_showcases_path
+      redirect_to admin_showcase_products_path(@showcase)
     else
       render :edit
     end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   namespace "admin" do
     resources :products, execpt: [:show]
-    resources :showcases, execpt: [:show, :new]
+    resources :showcases, execpt: [:show, :new, :edit]
     resources :categories, execpt: [:show, :new, :edit]
     resources :social_network_accounts, except: [:show]
     resources :quotes, execpt: [:new, :show]

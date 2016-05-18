@@ -22,25 +22,19 @@ class Admin::CategoriesController < AdminController
   end
 
   def update
-    status = 200
-    response = ""
     if @category.update(category_params)
-      response = "Successfully updated."
-      cat_img_url = @category.image.thumb.url
+      flash[:success] = "successfully edited."
+      redirect_to admin_category_products_path(@category)
     else
-      status = 404
-      response = "Please try again"
+      render :edit
     end
-    render json: { response: response, cat_name: @category.name, cat_img_url: cat_img_url},
-           status: status
   end
 
   def visible_switch
     status = 200
     response = ""
     if @category.update_attribute(:visible, params[:visible])
-      response "Successfully updated."
-      cat_status = @category.visible
+      cat_status = @category.visible.to_s
     else
       status = 404
       response = "Please try again"
