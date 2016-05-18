@@ -1,5 +1,5 @@
 $(function(){
-
+  // Image Preview
   function readURL(input){
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -9,14 +9,10 @@ $(function(){
       reader.readAsDataURL(input.files[0]);
     };
   }
-
-  // Image Preview
-  
+  // Trigger Image Preview
   $("#category_image").change(function(){
     readURL(this);
   });
-
-
 
   // Change Visible Status
   $('.admin-category-thumbnail').on('click', "#cat-status", function(){

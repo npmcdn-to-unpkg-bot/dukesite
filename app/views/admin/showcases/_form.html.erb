@@ -15,7 +15,7 @@
   <div class="row">
     <% image = @showcase.image.url
        image.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = image %>
-    <%= image_tag img_url, class: "img-responsive thumbnail" %> 
+    <%= image_tag img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview" %> 
   </div>
 </div>
 
