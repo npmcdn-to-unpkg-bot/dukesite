@@ -1,16 +1,5 @@
 <%= render "shared/error", object: @showcase %>
-<% unless  @showcase.id.nil? %>
-  <div class="row">
-    <p class="text-left">
-      <small class="help-block"><%= @showcase.updated_at.to_formatted_s(:db) %> (last updated)</small>
-      <% @showcase.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Invisible") && (label = "label-default")) %>
-      <span class="label <%= label %>"><%= status %></span>
-      <%= link_to showcase_path(@showcase), target: "_blank" do %>
-        <span class="pull-right">Go to Shop <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> </span>
-      <% end %>
-    </p>
-  </div>
-<% end %>
+
 <div class="col-sm-2">
   <div class="row">
     <% image = @showcase.image.url

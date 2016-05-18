@@ -4,6 +4,7 @@ class Admin::QuotesController < AdminController
   def index
     @quote = Quote.new
     @quote.photos.build
+    @quote_img_url = nil
   end
 
   def create
@@ -17,6 +18,7 @@ class Admin::QuotesController < AdminController
   end
 
   def edit
+    @quote_img_url = @quote.photos.order("created_at").last.image.url
   end
 
   def update

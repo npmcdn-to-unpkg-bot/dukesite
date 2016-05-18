@@ -25,7 +25,7 @@
           if p.photos.size == 0
             img_url = "http://thedudeminds.de/images/no_image_available.png"
           else
-            img_url = p.photos.first.image.url
+            img_url = p.photos.order("created_at").last.image.url
           end
         %>
         <%# put a link_to shop_quote path %>

@@ -1,16 +1,5 @@
 <%= render "shared/error", object: @category %>
-<% unless  @category.id.nil? %>
-  <div class="row">
-    <p class="text-left">
-      <small class="help-block"><%= @category.updated_at.to_formatted_s(:db) %> (last updated)</small>
-      <% @category.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Invisible") && (label = "label-default")) %>
-      <span class="label <%= label %>"><%= status %></span>
-      <%= link_to category_path(@category), target: "_blank" do %>
-        <span class="pull-right">Go to Shop <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> </span>
-      <% end %>
-    </p>
-  </div>
-<% end %>
+
 <div class="col-sm-2">
   <div class="row">
     <% image = @category.image.thumb.url
@@ -35,7 +24,7 @@
       <%= p.radio_button :visible, true %> Yes
     </div>
     <div class="form-group">
-      <%= p.label "Drop an image here" %>
+      <%= p.label "Upload Image", class: "control-label" %>
       <%= p.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
     </div>
     <div class="form-group">
