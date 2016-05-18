@@ -1,41 +1,39 @@
 <%= render "shared/error", object: @category %>
+
 <div class="col-sm-2">
   <div class="row">
     <% image = @category.image.thumb.url
        image.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = image %>
-    <%= image_tag img_url, class: "img-responsive thumbnail", alt: "Responsive image" %> 
+    <%= image_tag img_url, class: "img-responsive thumbnail", id: "cat_form_img_preview" %> 
   </div>
-
-  <% unless  @category.id.nil? %>
-    <div class="row">
-      <%= link_to category_path(@category), target: "_blank" do %>
-        <p class="pull-right"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Shop</p>
-      <% end %>
-    </div>
-    <div class="row">
-      <p>Created at: <br><%= @category.created_at.to_formatted_s(:db) %></p>
-      <p>Last updated at: <br><%= @category.updated_at.to_formatted_s(:db) %></p>
-    </div>
-  <% end %>
 </div>
-<div class="col-sm-8">
+
+<div class="col-sm-9 col-sm-offset-1">
   <%= form_for [:admin, @category], html: {class: "form-horizontal"} do |p| %>
     <div class="form-group">
       <%= p.label "Name", class: "control-label" %>
-      <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+      <div class="row">
+        <div class="col-xs-8">
+          <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <%= p.label "visible", class: "control-label" %>
-      <%= p.radio_button :visible, false %> No  
-        <%= p.radio_button :visible, true %> Yes
+      <%= p.label "visible", class: "control-label" %><br />
+      <%= p.radio_button :visible, false %> No
+      <%= p.radio_button :visible, true %> Yes
     </div>
     <div class="form-group">
-      <%= p.label "Drop an image here" %>
+      <%= p.label "Upload Image", class: "control-label" %>
       <%= p.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
     </div>
     <div class="form-group">
       <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
-      <p><%= p.submit "Submit", class: "btn btn-primary" %></p>
+      <%= p.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
+
+<% if !@category.id.nil? %>
+  <small class="text-right help-block"><em><%= @category.created_at.to_formatted_s(:db) %> (created)</em></small>
+<% end %>

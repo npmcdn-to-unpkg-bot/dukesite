@@ -4,7 +4,7 @@
   <div class="row">
     <% image = @sna.image.thumb.url
        image.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = image %>
-    <%= image_tag img_url, class: "img-responsive thumbnail", alt: "Responsive image" %> 
+    <%= image_tag img_url, class: "img-responsive thumbnail" %> 
   </div>
 </div>
 
@@ -30,6 +30,6 @@
       <%= s.radio_button :visible, true %> Yes
     </div>
     <%= link_to "Cancel", admin_social_network_accounts_path, class: "btn btn-warning" if @sna.id.present? %>
-    <%= s.submit "Submit", class: "btn btn-primary" %>
+    <%= s.submit "Save", class: "btn btn-primary" %>
   <% end %>
 </div>

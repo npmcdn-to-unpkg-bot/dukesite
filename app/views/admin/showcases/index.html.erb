@@ -3,15 +3,17 @@
 </div>
 
 <p>
-  <a data-toggle="collapse" href="#collapseAddShowcaseForm" aria-expanded="false">
+  <a data-toggle="collapse" href="#collapseShowcaseForm">
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
      Add Showcase
   </a>
 </p>
-
-<div class="collapse" id="collapseAddShowcaseForm">
-  <div class="row well">
-    <%= render "form" %>
+<%= render "shared/error", object: @showcase %>
+<div class="collapse" id="collapseShowcaseForm">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 well">
+      <%= render "form" %>
+    </div>
   </div>
 </div>
 
@@ -30,11 +32,8 @@
           </h4>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
-          </p>
-          <p>
-              <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
-              <%= link_to "Edit", edit_admin_showcase_path(p), class: "btn btn-info btn-sm" %>
-              <%= link_to "Shop", showcase_path(p), class: "pull-right" %>
+            <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+            <%= link_to "Shop", showcase_path(p), class: "pull-right" %>
           </p>
           <small>
           <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>

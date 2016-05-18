@@ -81,7 +81,7 @@
 
     <div class="pull-right">
     <%= link_to "Cancel", admin_products_path, class: "btn btn-danger" %>
-    <%= p.submit "Submit", class: "btn btn-primary" %>
+    <%= p.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
@@ -89,6 +89,6 @@
 <div class="col-sm-2">
   <div class="row">
     <% @product.image_url.blank? ? img_url = 'http://thedudeminds.de/images/no_image_available.png' : img_url = @product.image_url %>
-    <%= image_tag img_url, class: "img-responsive thumbnail", alt: "Responsive image", id: "product-img-url" %> 
+    <%= image_tag img_url, class: "img-responsive thumbnail", id: "product-img-url" %> 
   </div>
 </div>

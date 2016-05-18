@@ -1,0 +1,51 @@
+<div class="page-header">
+  <h1>Quotes <span class="badge"><%= @quotes.size %></span></h1>
+</div>
+
+<p>
+  <a data-toggle="collapse" href="#collapseAddQuoteForm" aria-expanded="false">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+     Add Quote
+  </a>
+</p>
+<%= render "shared/error", object: @quote %>
+<div class="collapse" id="collapseAddQuoteForm">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 well">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <% @quotes.order("updated_at DESC").each do |p| %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail admin-quote-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
+        <%  
+          if p.photos.size == 0
+            img_url = "http://thedudeminds.de/images/no_image_available.png"
+          else
+            img_url = p.photos.order("created_at").last.image.url
+          end
+        %>
+        <%# put a link_to shop_quote path %>
+        <%= image_tag img_url %>
+        <div class="caption">
+          <h4><%= p.title %></h4>
+          <p><%= p.description %></p>
+          <p> 
+            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="quote-status" data-edit=<%= admin_quote_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
+          </p>
+          <p>
+              <%= link_to "Delete", admin_quote_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "When you delete this quote, the images related to this quote will also be deleted. Are you sure?" } %>
+              <%= link_to "Edit", edit_admin_quote_path(p), class: "btn btn-info btn-sm" %>
+              <%#= link_to "Shop", showcase_path(p), class: "pull-right" %>
+          </p>
+          <small>
+          <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
+          <%= update_time %> <em>(last updated)</em></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
