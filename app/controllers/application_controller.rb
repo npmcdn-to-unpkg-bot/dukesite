@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def default_meta_tags
-    @site_name = SiteConfig.find_by(key: "Site Name").value
-    @description = SiteConfig.find_by(key: "description").value
-    # keywords = SiteConfig.find_by(key: "keywords").keywords
+    @site_name = SiteConfig.find_by(slug: "title").value
+    @description = SiteConfig.find_by(slug: "description").value
+    keyword_entries = SiteConfig.find_by(slug: "seo").keywords
+    @keywords = keyword_entries.map(&:value)
   end
 
   def layout_text
