@@ -3,13 +3,13 @@
 </div>
 
 <p>
-  <a data-toggle="collapse" href="#collapseAddCatForm" aria-expanded="false">
+  <a data-toggle="collapse" href="#collapseCatForm" aria-expanded="false">
     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
      Add Category
   </a>
 </p>
 <%= render "shared/error", object: @category %>
-<div class="collapse" id="collapseAddCatForm">
+<div class="collapse" id="collapseCatForm">
   <div class="row">
     <div class="col-xs-12 col-sm-12 well">
       <%= render "form" %>
