@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     @site_name = SiteConfig.find_by(slug: "site-name").value
     @description = SiteConfig.find_by(slug: "description").value
     keyword_entries = SiteConfig.find_by(slug: "seo").keywords
-    keyword_entries.nil? ? @keywords = keyword_entries.map(&:value) : @keywords = ""
+    keyword_entries.nil? ? @keywords = "" : @keywords = keyword_entries.map(&:value)
   end
 
   def layout_text
