@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
   def show
-    @price = Product.lookup_price_on_amazon('ItemAttributes', @product.asin, "ListPrice", "FormattedPrice")
+    @price = Amazon::EcsWrapper.get_item_price('ItemAttributes', @product.asin, "ListPrice", "FormattedPrice")
   end
   private
     def find_product
