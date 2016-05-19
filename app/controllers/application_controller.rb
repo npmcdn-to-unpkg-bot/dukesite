@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
 
   def layout_text
     @our_belief = SiteConfig.find_by(key: "Our Belief").value
+    # icon
+    icon = SiteConfig.find_by(slug: "icon").photo
+    icon.nil? ? @icon = "http://thedudeminds.de/images/thedukegirls.png" : @icon = icon.image.url
   end
 
   def get_visible_category
