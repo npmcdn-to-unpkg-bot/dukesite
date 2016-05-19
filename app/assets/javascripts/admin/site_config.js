@@ -1,23 +1,32 @@
 $(function(){
 
   // Image Preview
-  function readURL(input){
+  function readIconURL(input){
     if (input.files && input.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
         $('#icon-form-img-preview').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    };
+  }
+
+  function readFavIconURL(input){
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
         $('#favorite-icon-form-img-preview').attr('src', e.target.result);
       }
       reader.readAsDataURL(input.files[0]);
     };
   }
   // Trigger Image Preview
-  $("#icon_image").change(function(){
-    readURL(this);
+  $("#icon-image").change(function(){
+    readIconURL(this);
   });
 
-  $("#favorite-icon_image").change(function(){
-    readURL(this);
+  $("#favorite-icon-image").change(function(){
+    readFavIconURL(this);
   });
 
   // Add Keywords
