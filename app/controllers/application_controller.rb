@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   def default_meta_tags
     @site_name = SiteConfig.find_by(slug: "site-name").value
     @description = SiteConfig.find_by(slug: "description").value
+    # favicon
+    favicon = SiteConfig.find_by(slug: "favorite-icon").photo
+    favicon.nil? ? @favicon = "" : @favicon = favicon.image.url
+    # keywords
     keyword_entries = SiteConfig.find_by(slug: "seo").keywords
     keyword_entries.nil? ? @keywords = "" : @keywords = keyword_entries.map(&:value)
   end
