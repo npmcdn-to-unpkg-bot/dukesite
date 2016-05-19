@@ -2,10 +2,8 @@
 
 
 <div class="col-sm-2">
-  <div class="row">
-    <% @quote_img_url.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = @quote_img_url %>
-    <%= image_tag img_url, class: "img-responsive thumbnail", id: "cat_form_img_preview" %> 
-  </div>
+  <% @quote_img_url.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = @quote_img_url %>
+  <%= image_tag img_url, class: "img-responsive thumbnail", id: "cat_form_img_preview" %>
 </div>
 
 <div class="col-sm-9 col-sm-offset-1">

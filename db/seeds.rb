@@ -101,4 +101,10 @@ SiteConfig.create([{
                     key: "SEO",
                     maxlength: 255,
                     note: "Recommended keywords tag length: up to 255 characters, 20 words."
+                    },{
+                    key: "Favorite icon",
+                    note: "Add a browser tab icon (16 x 16 pixel)."
+                    },{
+                    key: "Icon",
+                    note: "Add a webiste icon."
                     }])
