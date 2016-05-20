@@ -1,4 +1,6 @@
 class Carousel < ActiveRecord::Base
+  scope :visible, -> { where(visible: [true]) }
+
   include SlugGenerator
   validates_presence_of :title
   has_one :photo, :as => :imageable, dependent: :destroy

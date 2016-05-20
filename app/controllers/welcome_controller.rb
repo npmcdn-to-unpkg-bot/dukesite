@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @visible_carousels = Carousel.where(visible: true)
+    @visible_carousels = Carousel.visible.order("updated_at DESC")
   end
 
   def our_stroy
