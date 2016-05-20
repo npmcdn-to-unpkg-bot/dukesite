@@ -18,7 +18,11 @@ class Admin::QuotesController < AdminController
   end
 
   def edit
-    @quote_img_url = @quote.photo.image.url if ! @quote.photo.nil?
+    if @quote.photo.nil?
+      @quote.photo = Photo.new
+    else
+      @quote_img_url = @quote.photo.image.url
+    end
   end
 
   def update

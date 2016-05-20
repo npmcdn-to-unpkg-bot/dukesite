@@ -13,8 +13,8 @@
       <dd><%= @product.description %></dd>
       <dt>Category</dt>
       <dd>
-        <% @product.showcases.each do |s| %>
-          <%= link_to s.title, showcase_path(s) %> | 
+        <% @product.categories.each do |s| %>
+          <%= link_to s.name, category_path(s) if s.visible? %> | 
         <% end %>
       </dd>
       <dt>Price</dt>

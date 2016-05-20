@@ -1,7 +1,7 @@
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
   <!-- Indicators -->
   <% 
-      first_img = @visible_carousels.first
+      first_carousel = @visible_carousels.first
       num = @visible_carousels.size
       i = 0
   %>
@@ -15,9 +15,9 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <% @visible_carousels.each do |img| %>
-      <div class="item <%= "active" if img.id == first_img.id %>">
-        <img src="<%= img.url %>">
+    <% @visible_carousels.each do |carousel| %>
+      <div class="item <%= "active" if carousel.id == first_carousel.id %>">
+        <%= image_tag carousel.photo.image.url %>
       </div>
     <% end %>
   </div>
