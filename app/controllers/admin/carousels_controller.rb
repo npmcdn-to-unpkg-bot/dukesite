@@ -18,7 +18,7 @@ class Admin::CarouselsController < AdminController
   end
 
   def edit
-    @carousel_img_url = @carousel.photo.image.url
+    @carousel_img_url = @carousel.photo.image.url if !@carousel.photo.nil?
   end
 
   def update
