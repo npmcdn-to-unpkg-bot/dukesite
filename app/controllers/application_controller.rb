@@ -24,14 +24,14 @@ class ApplicationController < ActionController::Base
   end
 
   def get_visible_category
-    @categories = Category.where(:visible => true)
+    @categories = Category.visible
   end
 
   def get_landing_page_showcase
-    @showcases = Showcase.where({:visible => true, :show_on_landing_page => true})
+    @showcases = Showcase.visible_on_landing_page
   end
   def get_social_network_account
-    @visible_snas = SocialNetworkAccount.where(:visible => true)
+    @visible_snas = SocialNetworkAccount.visible
   end
 
   def create_subscriber

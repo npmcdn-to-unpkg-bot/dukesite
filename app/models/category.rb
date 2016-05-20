@@ -1,4 +1,6 @@
 class Category < ActiveRecord::Base
+  scope :visible, -> { where(visible: true) }
+  
   include SlugGenerator
   validates_presence_of :name
 
