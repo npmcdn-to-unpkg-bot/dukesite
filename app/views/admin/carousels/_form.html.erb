@@ -1,12 +1,13 @@
-<%= render "shared/error", object: @quote %>
+<%= render "shared/error", object: @carousel %>
+
 
 <div class="col-sm-2">
-  <% @quote_img_url.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = @quote_img_url %>
-  <%= image_tag img_url, class: "img-responsive thumbnail", id: "quote-form-img-preview" %>
+  <% @carousel_img_url.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = @carousel_img_url %>
+  <%= image_tag img_url, class: "img-responsive thumbnail", id: "carousel-form-img-preview" %>
 </div>
 
 <div class="col-sm-9 col-sm-offset-1">
-  <%= form_for [:admin, @quote], html: {class: "form-horizontal"} do |s| %>
+  <%= form_for [:admin, @carousel], html: {class: "form-horizontal"} do |s| %>
     <div class="form-group">
       <%= s.label "Title", class: "control-label" %>
       <div class="row">
@@ -20,7 +21,7 @@
       <%= s.label "Description" %>
       <div class="row">
         <div class="col-xs-8">
-          <%= s.text_area :description, class: "form-control", placeholder: "Describe the quote", rows: 2 %>
+          <%= s.text_area :description, class: "form-control", placeholder: "Describe the carousel", rows: 2 %>
         </div>
       </div>
     </div>
@@ -32,7 +33,7 @@
       <% end %>
     </div>
 
-    <%= link_to "Cancel", admin_quotes_path, class: "btn btn-warning" if @quote.id.present? %>
+    <%= link_to "Cancel", admin_carousels_path, class: "btn btn-warning" if @carousel.id.present? %>
     <%= s.submit "Save", class: "btn btn-primary" %>
   <% end %>
 </div>

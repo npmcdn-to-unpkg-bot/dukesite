@@ -22,10 +22,10 @@
     <div class="col-sm-4 col-md-3">
       <div class="thumbnail admin-quote-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
         <%  
-          if p.photos.size == 0
+          if p.photo.image.nil?
             img_url = "http://thedudeminds.de/images/no_image_available.png"
           else
-            img_url = p.photos.order("created_at").last.image.url
+            img_url = p.photo.image.url
           end
         %>
         <%# put a link_to shop_quote path %>

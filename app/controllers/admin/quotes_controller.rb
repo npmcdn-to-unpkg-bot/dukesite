@@ -3,7 +3,7 @@ class Admin::QuotesController < AdminController
   before_action :find_all_quotes, only: [:index, :create]
   def index
     @quote = Quote.new
-    @quote.photos.build
+    @quote.photo = Photo.new
     @quote_img_url = nil
   end
 
@@ -18,7 +18,7 @@ class Admin::QuotesController < AdminController
   end
 
   def edit
-    @quote_img_url = @quote.photos.order("created_at").last.image.url
+    @quote_img_url = @quote.photo.image.url
   end
 
   def update
@@ -55,7 +55,7 @@ class Admin::QuotesController < AdminController
       @quote = Quote.find_by(slug: params[:id])
     end
     def quote_params
-      params.require(:quote).permit(:title, :description, photos_attributes: [:image])
+      params.require(:quote).permit(:title, :description, photo_attributes: [:image])
     end
 
     def find_all_quotes

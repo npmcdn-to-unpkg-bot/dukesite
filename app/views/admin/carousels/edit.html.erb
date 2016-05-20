@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1><%= @carousel.title %></h1>
+  <% @carousel.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Hidden") && (label = "label-default")) %>
+  <span class="label <%= label %>"><%= status %></span>
+</div>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Admin", admin_index_path %></li>
+  <li><%= link_to "Carousels", admin_carousels_path %></li>
+  <li class="active"><%= @carousel.title %></li>
+</ol>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= render "form" %>
+    <p class="text-right">
+      <small class="help-block"><em>
+        Last updated: <%= @carousel.updated_at.to_formatted_s(:db) %><br>
+        Created: <%= @carousel.updated_at.to_formatted_s(:db) %>
+      </em></small>
+    </p>
+  </div>
+</div>

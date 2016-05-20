@@ -2,16 +2,48 @@
   <h1>Carousels <span class="badge"><%= @carousels.size %></span></h1>
 </div>
 
+<p>
+  <a data-toggle="collapse" href="#collapseAddCarouselForm" aria-expanded="false">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+     Add Carousel
+  </a>
+</p>
+<%= render "shared/error", object: @carousel %>
+<div class="collapse" id="collapseAddCarouselForm">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 well">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
+
 <div class="row">
-<% @carousels.each do |p| %>
-  <div class="col-xs-12 col-sm-3">
-    <div class="thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
-      <%= image_tag p.image.url %>
-      <div class="caption">
-        <h3><%= p.title %></h3>
-        <p><%= p.description %></p>
+  <% @carousels.order("updated_at DESC").each do |p| %>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail admin-carousel-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
+        <%  
+          if p.photo.image.nil?
+            img_url = "http://thedudeminds.de/images/no_image_available.png"
+          else
+            img_url = p.photo.image.url
+          end
+        %>
+        <%= image_tag img_url %>
+        <div class="caption">
+          <h4><%= p.title %></h4>
+          <p><%= p.description %></p>
+          <p> 
+            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="carousel-status" data-edit=<%= admin_carousel_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
+          </p>
+          <p>
+              <%= link_to "Delete", admin_carousel_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "When you delete this carousel, the images related to this carousel will also be deleted. Are you sure?" } %>
+              <%= link_to "Edit", edit_admin_carousel_path(p), class: "btn btn-info btn-sm" %>
+          </p>
+          <small>
+          <% p.updated_at.nil? ? update_time = p.created_at.to_formatted_s(:db) : update_time = p.updated_at.to_formatted_s(:db) %>
+          <%= update_time %> <em>(last updated)</em></small>
+        </div>
       </div>
     </div>
-
-  </div>
-<% end %>
+  <% end %>
+</div>
