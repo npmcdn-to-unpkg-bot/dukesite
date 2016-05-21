@@ -1,17 +1,8 @@
 $(function(){
-  // Image Preview
-  function readURL(input){
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#quote-form-img-preview').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    };
-  }
   // Trigger Image Preview
   $("#quote_photo_attributes_image").change(function(){
-    readURL(this);
+    var $img_preview = $('#quote-form-img-preview');
+    readURL(this, $img_preview);
   });
   // Change visible status
   $(".admin-quote-thumbnail #quote-status").each(function(){

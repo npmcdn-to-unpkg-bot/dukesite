@@ -1,32 +1,13 @@
 $(function(){
-
-  // Image Preview
-  function readIconURL(input){
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#icon-form-img-preview').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    };
-  }
-
-  function readFavIconURL(input){
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#favorite-icon-form-img-preview').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    };
-  }
   // Trigger Image Preview
   $("#icon-image").change(function(){
-    readIconURL(this);
+    var $img_preview = $('#icon-form-img-preview');
+    readURL(this, $img_preview);
   });
 
   $("#favorite-icon-image").change(function(){
-    readFavIconURL(this);
+    var $img_preview = $('#favorite-icon-form-img-preview');
+    readURL(this, $img_preview);
   });
 
   // Add Keywords

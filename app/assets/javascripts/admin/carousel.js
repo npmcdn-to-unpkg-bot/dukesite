@@ -1,17 +1,8 @@
 $(function(){
-  // Image Preview
-  function readURL(input){
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#carousel-form-img-preview').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    };
-  }
   // Trigger Image Preview
   $("#carousel_photo_attributes_image").change(function(){
-    readURL(this);
+    var $img_preview = $('#carousel-form-img-preview');
+    readURL(this, $img_preview);
   });
   
   // Change visible status

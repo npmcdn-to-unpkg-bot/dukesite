@@ -1,17 +1,8 @@
 $(function(){
-  // Image Preview
-  function readURL(input){
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#cat-form-img-preview').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    };
-  }
   // Trigger Image Preview
   $("#category_image").change(function(){
-    readURL(this);
+    var $img_preview = $('#cat-form-img-preview');
+    readURL(this, $img_preview);
   });
 
   // Change Visible Status

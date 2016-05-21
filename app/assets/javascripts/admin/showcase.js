@@ -1,17 +1,8 @@
 $(function(){
-  // Image Preview
-  function readURL(input){
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#showcase_form_img_preview').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    };
-  }
   // Trigger Image Preview
   $("#showcase_image").change(function(){
-    readURL(this);
+    var $img_preview = $('#showcase_form_img_preview');
+    readURL(this, $img_preview);
   });
   // Change visible status
   $(".admin-showcase-thumbnail").on('click', "#showcase-status", function(){
