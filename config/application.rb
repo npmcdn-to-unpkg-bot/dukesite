@@ -25,5 +25,15 @@ module Dukesite
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += %W(#{config.root}/app/uploaders)
     config.assets.initialize_on_precompile = false
+
+    config.before_configuration do
+      env_file = Rails.root.join("config", 'environment_variables.yml').to_s
+
+      if File.exists?(env_file)
+        YAML.load_file(env_file)[Rails.env].each do |key, value|
+          ENV[key.to_s] = value
+        end
+      end
+    end
   end
 end
