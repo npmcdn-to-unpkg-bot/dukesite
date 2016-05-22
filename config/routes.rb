@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  devise_for :admins do
+  devise_for :admin do
     get '/admin/sign_out' => 'devise/sessions#destroy'
   end
 
