@@ -1,0 +1,16 @@
+@import "stylebase";
+@import "bootstrap";
+
+body{
+  background-image: url("http://thedudeminds.de/images/typer_2048.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  .devise {
+    padding: 2% 7% 4% 7%;
+    border-radius: 25px;
+    background-color: #FFFAFA;
+    opacity: 0.8;
+    margin-top: 25%;
+  }
+}

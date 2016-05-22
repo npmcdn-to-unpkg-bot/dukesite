@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'devise', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
@@ -9,7 +9,10 @@
 <body>
   <%= render partial: 'shared/alert' %>
   <div class="container">
-    <%= yield %>
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4 devise">
+      <%= yield %>
+    </div>
+  </div>
   </div>
 </body>
 </html>
