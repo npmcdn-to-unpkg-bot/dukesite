@@ -17,19 +17,36 @@ Rails.application.routes.draw do
     resources :site_configs, only:[:index, :update] do
       resources :keywords, only: [:create, :destroy]
     end
+
+    # Newsletters
+    # ------------------------------------------------------------------------------
+    resources :newsletters do
+      put :send_newsletter
+    end
+
+
+    # Site configurations
+    # ------------------------------------------------------------------------------
     put '/site_configs/update', to: 'site_configs#update', as: 'general_site_configs'
-    ## Show a list of those products under a category/showcase 
+    
+    # Show a list of those products under a category/showcase 
+    # ------------------------------------------------------------------------------
     get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
-    ## Look up product via Amazon API
+    
+    # Look up product via Amazon API
+    # ------------------------------------------------------------------------------
     get '/look_up_item', to: 'products#lookup_item_on_amazon'
-    ## Visible/Publish Switch
+    
+    # Visible/Publish Switch
+    # ------------------------------------------------------------------------------
     put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
     put '/categories/:id/category_visible', to: 'categories#visible_switch', as: 'category_visible_switch' 
     put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'
     put '/quotes/:id/quote_visible', to: 'quotes#visible_switch', as: 'quote_visible_switch'
     put '/quotes/:id/carousel_visible', to: 'carousels#visible_switch', as: 'carousel_visible_switch'
   end
+
   resources :products, only: [:show]
   resources :showcases, only: [:show]
   resources :categories, only: [:show]

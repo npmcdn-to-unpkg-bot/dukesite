@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>Newsletters</h1>
+</div>
+<div class="well">
+  <p>Subscribers: <%= @confirmed_subscriber.length %> (confirmed) | <%= @unconfirmed_subscriber.length %> (unconfirmed)</p>
+  <p>Newsletters: <%= @sent_newsletter.length %> (sent) | <%= @unsent_newsletter.length %> (Draft)</p>
+</div>
+
+<h3> Sent </h3>
+
+<%= render 'newsletter_panel', newsletters: @sent_newsletter %>
+
+<hr>
+<h3> Drafts </h3>
+<%= render 'newsletter_panel', newsletters: @unsent_newsletter %>

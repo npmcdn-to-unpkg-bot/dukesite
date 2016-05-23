@@ -12,4 +12,9 @@ class UserMailer < ApplicationMailer
     @email = subscriber.email
     mail :to=> subscriber.email, :subject => "Newsletter Subscribed"
   end
+
+  def send_newsletter(receiver_email, subject, content)
+    @content = content
+    mail :to=> receiver_email, :subject => subject
+  end
 end

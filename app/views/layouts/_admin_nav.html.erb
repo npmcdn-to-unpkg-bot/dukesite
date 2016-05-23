@@ -25,14 +25,14 @@
           </ul>
         </li>
         <li class="<%= active_class(admin_showcases_path) %>">
-          <%= link_to "Showcases", admin_showcases_path %>
+          <%= link_to "Showcase", admin_showcases_path %>
         </li>
         <li class="<%= active_class(admin_categories_path) %>">
-          <%= link_to "Categories", admin_categories_path %>
+          <%= link_to "Category", admin_categories_path %>
         </li>
         <li class="dropdown <%= active_class(admin_quotes_path, admin_carousels_path) %>">
           <%= link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"}, 'aria-haspopup': 'true', 'aria-expanded': "false" do %>
-            Images <span class="caret"></span>
+            Image <span class="caret"></span>
           <% end %>
           <ul class="dropdown-menu">
             <li><%= link_to 'Products', admin_quotes_path %></li>

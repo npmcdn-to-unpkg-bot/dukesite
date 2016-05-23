@@ -1,0 +1,44 @@
+<%= render "shared/error", object: newsletter %>
+<%= form_for [:admin, newsletter] do |f| %>
+  <% newsletter.id.nil? ? subject = "Enter Subject" : subject = newsletter.subject %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-9">
+      <div class="page-header">
+        <h1><%= f.text_field :subject, class: "form-control", placeholder: subject %></h1>
+      </div>
+      <%= f.text_area :content, class: 'tinymce', rows: 20, cols: 120 %>
+    </div>
+    <div class="col-xs-12 col-sm-3 newsletter_info">
+      <div class="panel panel-default">
+        <div class="panel-heading">Information</div>
+        <div class="panel-body">
+          <table>
+            <tr>
+              <td class="col-xs-5 text-right">Created time</td>
+              <td class="col-xs-7"><%= newsletter.created_at.nil? ? 'Not Saved Yet' : newsletter.created_at.to_formatted_s(:long) %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-5 text-right">Last updated</td>
+              <td class="col-xs-7"><%= newsletter.updated_at.nil? ? 'Not Saved Yet' : newsletter.updated_at.to_formatted_s(:long) %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-5 text-right">Status</td>
+              <td class="col-xs-7"><%= newsletter.sent? ? "Sent" : "Draft" %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= link_to "Cancel", admin_newsletters_path, class: "btn btn-warning" %>
+          <%= f.submit "Save", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<% end %>
+  
+<%= tinymce :alternate %>
+
+<%= tinymce_assets %>

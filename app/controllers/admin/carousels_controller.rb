@@ -27,7 +27,7 @@ class Admin::CarouselsController < AdminController
 
   def update
     if @carousel.update(carousel_params)
-      flash[:success] = "successfully edited."
+      flash[:success] = "successfully updated."
       redirect_to admin_carousels_path
     else
       render :edit

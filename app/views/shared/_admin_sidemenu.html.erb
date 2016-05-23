@@ -7,19 +7,19 @@
     </ul>
   </li>
   <li class="panel">
-    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-2">Showcases</a>
+    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-2">Showcase</a>
     <ul id="sideMenu-2" class="collapse <%= collapse_class(admin_showcases_path) %>">
       <li><%= link_to "All Showcases", admin_showcases_path %></li>
     </ul>
   </li>
   <li class="panel">
-    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-3">Categories</a>
+    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-3">Category</a>
     <ul id="sideMenu-3" class="collapse <%= collapse_class(admin_categories_path) %>">
       <li><%= link_to "All Categories", admin_categories_path %></li>
     </ul>
   </li>
   <li class="panel">
-    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-4">Images</a>
+    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-4">Image</a>
     <ul id="sideMenu-4" class="collapse">
       <li><%= link_to "Quotes", admin_quotes_path %></li>
       <li><%= link_to "Carousels", admin_carousels_path %></li>
@@ -28,9 +28,8 @@
   <li class="panel">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-5">Marketing</a>
     <ul id="sideMenu-5" class="collapse">
-      <% @subscriber_num.nil? ? subscriber_num = 0 : subscriber_num = @subscriber_num %>
-      <li><%= link_to "Subscribers: #{subscriber_num}", root_path %></li>
-      <li><%= link_to "Newsletter", root_path %></li>
+      <li><%= link_to "Newsletter", admin_newsletters_path %></li>
+      <li><%= link_to "New Newsletter", new_admin_newsletter_path %></li>
     </ul>
   </li>
   <li class="panel">
