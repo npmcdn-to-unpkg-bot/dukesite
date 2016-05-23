@@ -4,7 +4,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#newsletters-<%= n.id %>">
         <h4 class="panel-title"><%= n.subject %></h4>
-          <p class="help-block"><em>Last updated: <%= n.updated_at.to_formatted_s(:long) %></em></p>
+          <p class="help-block"><em><%= "Sent at: #{n.sent_at.to_formatted_s(:long)}" %></em></p>
       </div>
 
       <div class="panel-collapse collapse" id="newsletters-<%= n.id %>">
@@ -13,7 +13,7 @@
           <hr>
           <%= link_to 'Edit', edit_admin_newsletter_path(n), class: 'btn btn-info' %>
           <%= link_to 'Send Newsletter', admin_newsletter_send_newsletter_path(n), :method => :put, class: 'btn btn-danger' %>
-          <p class="help-block">Created time: <%= n.created_at.to_formatted_s(:long) %><p>
+          <p class="help-block"><em>Created time: <%= n.created_at.to_formatted_s(:long) %><br/>Last updated: <%= n.updated_at.to_formatted_s(:long) %></em></p>
         </div>
       </div>
     </div>
