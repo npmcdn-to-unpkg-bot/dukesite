@@ -1,0 +1,9 @@
+<p class="lead">
+  Hi <%= @email %>,
+</p>
+
+<p>
+Thanks for subscribing newsletter from <em> The Duke Girls</em>.
+
+<p>To confirm your subscription, please click <strong><%= link_to 'Confirm Subscription', newsletter_confirm_email_url(@token)%></strong>.
+</p>

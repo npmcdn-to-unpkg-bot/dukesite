@@ -35,5 +35,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   get '/our-story', to: 'welcome#our_story', as: 'story'
   get '/join-us', to: 'welcome#join_us', as: 'join_us'
-  put '/subscriber', to: 'application#create_subscriber', as: 'create_subscriber'
+
+  ## Subscriber Newsletter
+  put '/subscribe_newsletter', to: 'subscribers#create'
+  get '/subscribe_newsletter/confirm_email/:id', to: 'subscribers#confirm_email', as: 'newsletter_confirm_email'
 end
