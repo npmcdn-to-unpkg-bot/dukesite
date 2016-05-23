@@ -1,6 +1,8 @@
 module ApplicationHelper
-  def active_class(link_path)
-    current_page?(link_path) ? "active" : ""
+  def active_class(*link_paths)
+    active_status = false
+    link_paths.each { |link_path| active_status ||= current_page?(link_path) }    
+    active_status ? 'active' : nil
   end
 
   def collapse_class(*link_paths)

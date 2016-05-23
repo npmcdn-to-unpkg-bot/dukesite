@@ -14,11 +14,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="<%= active_class(admin_products_path) %>">
-          <%= link_to admin_products_path do %>
-            Products 
-            <span class="sr-only">(current)</span>
+        <li class="dropdown <%= active_class(admin_products_path, new_admin_product_path) %>">
+          <%= link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"}, 'aria-haspopup': 'true', 'aria-expanded': "false" do %>
+            Product <span class="caret"></span>
           <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Products', admin_products_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Add Product", new_admin_product_path %></li>
+          </ul>
         </li>
         <li class="<%= active_class(admin_showcases_path) %>">
           <%= link_to "Showcases", admin_showcases_path %>
@@ -26,10 +30,28 @@
         <li class="<%= active_class(admin_categories_path) %>">
           <%= link_to "Categories", admin_categories_path %>
         </li>
-
+        <li class="dropdown <%= active_class(admin_quotes_path, admin_carousels_path) %>">
+          <%= link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"}, 'aria-haspopup': 'true', 'aria-expanded': "false" do %>
+            Images <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Products', admin_quotes_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Add Product", admin_carousels_path %></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Duke Girls", root_path %></li>
+        <li class="dropdown <%= active_class(admin_site_configs_path, admin_social_network_accounts_path) %>">
+          <%= link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"}, 'aria-haspopup': 'true', 'aria-expanded': "false" do %>
+            Settings <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'General', admin_site_configs_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Links", admin_social_network_accounts_path %></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_admin.email %><span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -38,6 +60,7 @@
             <li><%= link_to "Log out", destroy_admin_session_path, :method => :delete %></li>
           </ul>
         </li>
+        <li><%= link_to "Duke Girls Shop", root_path %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
