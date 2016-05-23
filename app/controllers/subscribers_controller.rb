@@ -9,7 +9,7 @@ class SubscribersController < ApplicationController
     else
       subscriber = Subscriber.create(email: params[:email])
       UserMailer.notify_subscription(subscriber).deliver_later
-      response = "You've subscirbed Newsletter from Duke for Girls."
+      response = "You've subscirbed Newsletter from The Duke Girls."
     end
     render json: {response: response},
            status: status

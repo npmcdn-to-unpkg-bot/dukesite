@@ -7,20 +7,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
 
-  # def create_subscriber
-  #   status   = 200
-  #   response = ""
-  #   if params[:email].blank?
-  #     status   = 400
-  #     response = "Please enter email address."
-  #   else
-  #     @subscriber = Subscriber.create(email: params[:email])
-  #     response = "You've subscirbed Newsletter from Duke for Girls."
-  #   end
-  #   render json: {response: response},
-  #          status: status
-  # end
-
   private
     def default_meta_tags
       @site_name = SiteConfig.find_by(slug: "site-name").value
