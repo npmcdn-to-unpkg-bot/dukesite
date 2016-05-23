@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-9">
       <div class="page-header">
-        <h1><%= f.text_field :subject, class: "form-control", placeholder: subject %></h1>
+        <h1><%= f.text_field :subject, class: "form-control input-lg", placeholder: subject %></h1>
       </div>
       <%= f.text_area :content, class: 'tinymce', rows: 20, cols: 120 %>
     </div>
@@ -26,10 +26,7 @@
               <td class="col-xs-7"><%= newsletter.sent? ? "Sent" : "Draft" %></td>
             </tr>
           </table>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-body">
+          <hr>
           <%= link_to "Cancel", admin_newsletters_path, class: "btn btn-warning" %>
           <%= f.submit "Save", class: "btn btn-primary" %>
         </div>
