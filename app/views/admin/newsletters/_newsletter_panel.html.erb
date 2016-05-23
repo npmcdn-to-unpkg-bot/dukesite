@@ -13,6 +13,7 @@
           <hr>
           <%= link_to 'Edit', edit_admin_newsletter_path(n), class: 'btn btn-info' %>
           <%= link_to 'Send Newsletter', admin_newsletter_send_newsletter_path(n), :method => :put, class: 'btn btn-danger' %>
+          <%= link_to 'Delete', admin_newsletter_path(n), method: :delete, data: { confirm: "Are you sure?" } %>
           <p class="help-block"><em>Created time: <%= n.created_at.to_formatted_s(:long) %><br/>Last updated: <%= n.updated_at.to_formatted_s(:long) %></em></p>
         </div>
       </div>

@@ -8,19 +8,19 @@ Rails.application.routes.draw do
   resources :admin, only: [:index]
   
   namespace "admin" do
-    resources :products, execpt: [:show]
-    resources :showcases, execpt: [:show, :new, :edit]
-    resources :categories, execpt: [:show, :new, :edit]
+    resources :products, except: [:show]
+    resources :showcases, except: [:show, :new, :edit]
+    resources :categories, except: [:show, :new, :edit]
     resources :social_network_accounts, except: [:show]
-    resources :quotes, execpt: [:new, :show]
-    resources :carousels, execpt: [:new, :show]
+    resources :quotes, except: [:new, :show]
+    resources :carousels, except: [:new, :show]
     resources :site_configs, only:[:index, :update] do
       resources :keywords, only: [:create, :destroy]
     end
 
     # Newsletters
     # ------------------------------------------------------------------------------
-    resources :newsletters do
+    resources :newsletters, except: [:show] do
       put :send_newsletter
     end
 
