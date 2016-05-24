@@ -6,14 +6,7 @@
   <%= display_meta_tags keywords: @object_keywords %>
   <%= display_meta_tags keywords: @keywords %>
   <%= display_meta_tags icon: @favicon %>
-  <%= display_meta_tags og: {
-      title: @title,
-      type:  'website',
-      url:  @url,
-      image:    [{
-        _: @logo,
-      }]}
-  %>
+  <%= display_meta_tags og: @og %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">

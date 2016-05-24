@@ -11,8 +11,13 @@ class ApplicationController < ActionController::Base
     def default_meta_tags
       @site_name = SiteConfig.find_by(slug: "site-name").value
       @description = SiteConfig.find_by(slug: "description").value
-      @url = root_url
-      @logo = SiteConfig.find_by(slug: "icon").photo.image.url
+      # og
+      # ------------------------------------------------------------------------------
+      @image = SiteConfig.find_by(slug: "icon").photo.image.url
+      @og = { title: @title,
+              type:  'website',
+              url:  root_url,
+              image:  @image }
       # favicon
       # ------------------------------------------------------------------------------# favicon
       favicon = SiteConfig.find_by(slug: "favorite-icon").photo
