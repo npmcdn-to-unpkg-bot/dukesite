@@ -24,7 +24,7 @@
 }
 .landing-carousel {
   .carousel-inner { 
-  max-height: 620px;
+  max-height: 480px;
   }
 }
 
@@ -32,14 +32,16 @@
   @include margin-top-bottom(30px);
 }
 
-.showcase {
-  @include margin-top-bottom;
+.showcase-body {
+  @include margin-left-right(30px);
 }
 
 .showcase-header {
   @include margin-top-bottom(30px);
   @include margin-left-right;
-  background-color: $gray-lighter;
+  background: -webkit-linear-gradient(left top, #FF3399, #F8BBD0);
+  a { color: white; }
+  // background-color: $gray-lighter;
   p {
     text-transform: uppercase;
     padding: 20px;
@@ -54,16 +56,6 @@
   }
 }
 
-.showcase-body {
-  @include margin-left-right(30px);
-  img:hover{
-    opacity: 0.5;
-  }
+.product > a > img:hover {
+  opacity: 0.5;
 }
-
-// .showcase-feature {
-//   img {
-//     min-height: 285px;
-//     width: auto;
-//   }
-// }
