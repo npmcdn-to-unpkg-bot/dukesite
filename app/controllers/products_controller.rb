@@ -9,6 +9,14 @@ class ProductsController < ApplicationController
     def prepare_meta_tags(object)
       @title = object.title
       @description = object.description
+      # og
+      # ------------------------------------------------------------------------------
+      @image = object.image_url
+      @image = SiteConfig.find_by(slug: "icon").photo.image.url if @image.nil?
+      @og = { title: @title,
+              type:  'website',
+              url:  product_url(object),
+              image:  @image }
       # keywords
       # ------------------------------------------------------------------------------
       keyword_entries = object.keywords

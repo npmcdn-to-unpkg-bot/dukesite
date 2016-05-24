@@ -8,6 +8,14 @@ class CategoriesController < ApplicationController
   private
     def prepare_meta_tags(object)
       @title = object.name
+      # og
+      # ------------------------------------------------------------------------------
+      @image = object.image.url 
+      @image = SiteConfig.find_by(slug: "icon").photo.image.url if @image.nil?
+      @og = { title: @title,
+              type:  'website',
+              url:  category_url(object),
+              image:  @image }
       # keywords
       # ------------------------------------------------------------------------------
       keyword_entries = object.keywords

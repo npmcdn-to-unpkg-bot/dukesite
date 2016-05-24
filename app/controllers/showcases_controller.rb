@@ -10,6 +10,14 @@ class ShowcasesController < ApplicationController
   private
     def prepare_meta_tags(object)
       @title = object.title
+      # og
+      # ------------------------------------------------------------------------------
+      @image = object.image.url
+      @image = SiteConfig.find_by(slug: "icon").photo.image.url if @image.nil?
+      @og = { title: @title,
+              type:  'website',
+              url:  showcase_url(object),
+              image:  @image }
       # keywords
       # ------------------------------------------------------------------------------
       keyword_entries = object.keywords
