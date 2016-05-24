@@ -92,7 +92,7 @@
     <%= image_tag img_url, class: "img-responsive thumbnail", id: "product-img-url" %> 
   </div>
   <div class="row">
-    <%= render 'admin/shared/keyword_form', object: @product %>
+    <%= render 'admin/shared/keyword_form', object: @product if @product.id.present?%>
   </div>
   <div class="row">
     <%= render 'admin/shared/keyword_list' if @product.id.present? %>
