@@ -9,15 +9,19 @@ Rails.application.routes.draw do
   
   namespace "admin" do
     resources :products, except: [:show] do
-      resources :keywords, only: [:create, :destroy]
+      resources :keywords, only: [:create]
     end
-    resources :showcases, except: [:show, :new, :edit]
-    resources :categories, except: [:show, :new, :edit]
+    resources :showcases, except: [:show, :new, :edit] do
+      resources :keywords, only: [:create]
+    end
+    resources :categories, except: [:show, :new, :edit] do
+      resources :keywords, only: [:create]
+    end
     resources :social_network_accounts, except: [:show]
     resources :quotes, except: [:new, :show]
     resources :carousels, except: [:new, :show]
     resources :site_configs, only:[:index, :update] do
-      resources :keywords, only: [:create, :destroy]
+      resources :keywords, only: [:create]
     end
     resources :keywords, only: [:destroy]
 

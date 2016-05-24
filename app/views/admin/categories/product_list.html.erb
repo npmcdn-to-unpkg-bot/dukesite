@@ -20,6 +20,7 @@
   <li class="active"><%= @category.name %></li>
 </ol>
 
+<%= render "shared/error", object: @category %>
 <div class="collapse" id="collapseCatForm">
   <div class="row">
     <div class="col-xs-12 col-sm-12 well">
@@ -28,8 +29,26 @@
   </div>
 </div>
 
-<%= render "admin/products/product_list", products: @products %>
-  <%# Don't change @products to @category.products. 
-      Otherwise, pagination won't work %>
+<div class="col-sm-9">
+  <%= render "admin/products/product_list", products: @products %>
+    <%# Don't change @products to @category.products. 
+        Otherwise, pagination won't work %>
 
-<p class="text-right"><small class="help-block"><%= @category.updated_at.to_formatted_s(:db) %> (last updated)</small></p>
+  <p class="text-right"><small class="help-block"><%= @category.updated_at.to_formatted_s(:db) %> (last updated)</small></p>
+</div>
+
+<div class="col-sm-3">
+  <% if @category.id.present? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Add SEO</div>
+    <div class="panel-body">
+      <div class="row">
+        <%= render 'admin/shared/keyword_form', object: @category %>
+      </div>
+      <div class="row">
+        <%= render 'admin/shared/keyword_list' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
