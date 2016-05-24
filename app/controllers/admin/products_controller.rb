@@ -63,13 +63,13 @@ class Admin::ProductsController < AdminController
       response = "Please enter ASIN"
     else
       res = Amazon::EcsWrapper.get_item_group(params[:asin])
-      #if res.error.present?
-      #  status   = 400
-      #  response = params[:asin] + " cannot be found on Amazon server. Please check the ASIN."
-      #else
-      response = res.length.to_s + " item(s) are found."
-      @product_details = res
-      #end
+      if res.respond_to? ('error')
+        status   = 400
+        response = res.error
+      else
+        response = res.length.to_s + " item(s) are found."
+        @product_details = res
+      end
     end
     render json: {response: response,
                   data: @product_details},

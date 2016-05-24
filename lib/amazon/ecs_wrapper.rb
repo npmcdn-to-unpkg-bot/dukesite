@@ -10,7 +10,7 @@ module Amazon
 
     # request parent ID from Amazon
     p_asin = request_parent_asin(asin)
-    return items if (p_asin.nil? || p_asin.empty?)
+    return p_asin unless p_asin.is_a? String
 
     res_var = request_amazon("VariationMatrix", p_asin)
     raise res_var.error if res_var.has_error?
@@ -110,13 +110,12 @@ module Amazon
       p_asin = nil
 
       res_id = request_amazon("ItemIds", asin)
-      raise res_id.error if res_id.has_error?
-
-      if res_id.items.count >= 1
-        p_asin = res_id.items[0].get("ParentASIN")
+      if res_id.has_error?
+        return res_id 
+      else 
+        p_asin = res_id.items[0].get("ParentASIN") if res_id.items.count >= 1
+        return p_asin
       end
-
-      return p_asin
     end
 
     def self.split_asins(list_asin, max_length)
