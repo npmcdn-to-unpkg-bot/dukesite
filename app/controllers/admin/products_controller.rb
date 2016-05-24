@@ -23,6 +23,7 @@ class Admin::ProductsController < AdminController
 
   def edit
     @showcases = Showcase.all
+    @keywords = @product.keywords.where.not(value: nil).order("created_at DESC")
   end
 
   def update

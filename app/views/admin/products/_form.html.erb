@@ -91,4 +91,10 @@
     <% @product.image_url.blank? ? img_url = 'http://thedudeminds.de/images/no_image_available.png' : img_url = @product.image_url %>
     <%= image_tag img_url, class: "img-responsive thumbnail", id: "product-img-url" %> 
   </div>
+  <div class="row">
+    <%= render 'admin/shared/keyword_form', object: @product %>
+  </div>
+  <div class="row">
+    <%= render 'admin/shared/keyword_list' if @product.id.present? %>
+  </div>
 </div>

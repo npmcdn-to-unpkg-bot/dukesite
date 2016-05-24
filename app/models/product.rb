@@ -13,5 +13,4 @@ class Product < ActiveRecord::Base
   has_many :keywords, :as => :keywordable, dependent: :destroy
 
   sluggable_column :title
-
 end

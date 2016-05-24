@@ -6,6 +6,8 @@ class Showcase < ActiveRecord::Base
 
   has_many :product_showcases
   has_many :products, through: :product_showcases
+  
+  has_many :keywords, :as => :keywordable, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   sluggable_column :title

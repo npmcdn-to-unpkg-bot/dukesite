@@ -43,29 +43,15 @@
     <h3 class="panel-title">SEO</h3>
   </div>
   <div class="panel-body">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <%= form_for [:admin, @seo, @seo.keywords.new], remote: true, :html => {class: "form-inline"} do |keyword| %>
-          <div class="form-group">
-            <%= keyword.text_field :value, class: "form-control", placeholder: "SEO" %>
-          </div>
-          <%= submit_tag "Add", class: "btn btn-default" %>
-        <% end %>
-        <p class="help-block"><%= @seo.note %></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <p class="hide" id="seo-msg"></p>
-        <div id="seo-list">
-        <% @keywords.each do |keyword| %>
-          <p><span class="label label-default">
-            <%= keyword.value %>
-            <span class="glyphicon glyphicon-remove" aria-hidden="true" id="remove-keyword" data-url="<%= admin_site_config_keyword_path(@seo, keyword) %>"></span>
-          </span></p>
-        <% end %>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <%= render 'admin/shared/keyword_form', object: @seo %>
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <%= render 'admin/shared/keyword_list' %>
+        </div>
+      </div>
   </div>
 </div>

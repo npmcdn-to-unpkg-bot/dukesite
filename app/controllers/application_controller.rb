@@ -12,22 +12,19 @@ class ApplicationController < ActionController::Base
       @site_name = SiteConfig.find_by(slug: "site-name").value
       @description = SiteConfig.find_by(slug: "description").value
       # favicon
+      # ------------------------------------------------------------------------------# favicon
       favicon = SiteConfig.find_by(slug: "favorite-icon").photo
       favicon.nil? ? @favicon = "" : @favicon = favicon.image.url
       # keywords
+      # ------------------------------------------------------------------------------
       keyword_entries = SiteConfig.find_by(slug: "seo").keywords
       keyword_entries.nil? ? @keywords = "" : @keywords = keyword_entries.map(&:value)
     end
 
-    # def generate_confirm_token
-    #   if self.confirm_token.blank?
-    #     self.confirm_token = SecureRandom.urlsafe_base64.to_s
-    #   end
-    # end
-
     def layout_text
       @our_belief = SiteConfig.find_by(key: "Our Belief").value
       # icon
+      # ------------------------------------------------------------------------------
       icon = SiteConfig.find_by(slug: "icon").photo
       icon.nil? ? @icon = "http://thedudeminds.de/images/thedukegirls.png" : @icon = icon.image.url
     end

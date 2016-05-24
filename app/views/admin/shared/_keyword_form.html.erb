@@ -1,0 +1,7 @@
+<%= form_for [:admin, object, object.keywords.new], remote: true, :html => {class: "form-inline"} do |keyword| %>
+  <div class="form-group">
+    <%= keyword.text_field :value, class: "form-control", placeholder: "SEO" %>
+  </div>
+  <%= submit_tag "Add", class: "btn btn-default" %>
+<% end %>
+<p class="help-block"><%= object.note if object == @seo %></p>

@@ -1,0 +1,10 @@
+<p class="hide" id="seo-msg"></p>
+
+<div id="seo-list">
+  <% @keywords.each do |keyword| %>
+    <p><span class="label label-default">
+      <%= keyword.value %>
+      <span class="glyphicon glyphicon-remove" aria-hidden="true" id="remove-keyword" data-url="<%= admin_keyword_path(keyword) %>"></span>
+    </span></p>
+  <% end %>
+</div>

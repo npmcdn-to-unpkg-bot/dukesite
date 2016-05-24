@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :admin, only: [:index]
   
   namespace "admin" do
-    resources :products, except: [:show]
+    resources :products, except: [:show] do
+      resources :keywords, only: [:create, :destroy]
+    end
     resources :showcases, except: [:show, :new, :edit]
     resources :categories, except: [:show, :new, :edit]
     resources :social_network_accounts, except: [:show]
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
     resources :site_configs, only:[:index, :update] do
       resources :keywords, only: [:create, :destroy]
     end
+    resources :keywords, only: [:destroy]
 
     # Newsletters
     # ------------------------------------------------------------------------------

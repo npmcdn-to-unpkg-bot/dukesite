@@ -3,14 +3,28 @@ class Admin::KeywordsController < AdminController
   def create
     status = 200
     response = ""
-    site_config = SiteConfig.find_by(slug: params[:site_config_id])
-    keyword = site_config.keywords.new(keyword_params)
-    if keyword.save
-      keyword = keyword.value
-      delete_url = admin_site_config_keyword_path(site_config, keyword)
-    else
-      status = 404
-      response = "Please try again."
+
+    if params[:site_config_id].present?
+      byebug
+      site_config = SiteConfig.find_by(slug: params[:site_config_id])
+      keyword = site_config.keywords.new(keyword_params)
+      if keyword.save
+        keyword = keyword.value
+        delete_url = admin_site_config_keyword_path(site_config, keyword)
+      else
+        status = 404
+        response = "Please try again."
+      end
+    elsif params[:product_id].present?
+      product = Product.find_by(slug: params[:product_id])
+      keyword = product.keywords.new(keyword_params)
+      if keyword.save
+        keyword = keyword.value
+        delete_url = admin_product_keyword_path(product, keyword)
+      else
+        status = 404
+        response = "Please try again."
+      end
     end
     render json: { response: response, new_keyword: keyword, url: delete_url },
            status: status
