@@ -8,7 +8,6 @@ class Admin::ShowcasesController < AdminController
   def product_list
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
-    @keywords = @showcase.keywords.where.not(value: nil).order("created_at DESC")
     @products = @showcase.products.paginate(:page => params[:page], :per_page => 20)
   end
 
