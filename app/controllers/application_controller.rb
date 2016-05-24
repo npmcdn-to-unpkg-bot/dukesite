@@ -11,14 +11,16 @@ class ApplicationController < ActionController::Base
     def default_meta_tags
       @site_name = SiteConfig.find_by(slug: "site-name").value
       @description = SiteConfig.find_by(slug: "description").value
+      @url = root_url
+      @logo = SiteConfig.find_by(slug: "icon").photo.image.url
       # favicon
       # ------------------------------------------------------------------------------# favicon
       favicon = SiteConfig.find_by(slug: "favorite-icon").photo
-      favicon.nil? ? @favicon = "" : @favicon = favicon.image.url
+      favicon.nil? ? @favicon = nil : @favicon = favicon.image.url
       # keywords
       # ------------------------------------------------------------------------------
       keyword_entries = SiteConfig.find_by(slug: "seo").keywords
-      keyword_entries.nil? ? @keywords = "" : @keywords = keyword_entries.map(&:value)
+      @keywords = keyword_entries.map(&:value) if keyword_entries.present?
     end
 
     def layout_text
