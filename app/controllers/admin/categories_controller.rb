@@ -8,6 +8,7 @@ class Admin::CategoriesController < AdminController
   def product_list
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
+    @keywords = @category.keywords.where.not(value: nil).order("created_at DESC")
     @products = @category.products.paginate(:page => params[:page], :per_page => 20)
   end
 
@@ -15,7 +16,7 @@ class Admin::CategoriesController < AdminController
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "A new category was succefully created."
-      redirect_to admin_categories_path
+      redirect_to :back
     else
       render :index
     end
@@ -24,7 +25,7 @@ class Admin::CategoriesController < AdminController
   def update
     if @category.update(category_params)
       flash[:success] = "successfully edited."
-      redirect_to admin_category_products_path(@category)
+      redirect_to :back
     else
       render :edit
     end

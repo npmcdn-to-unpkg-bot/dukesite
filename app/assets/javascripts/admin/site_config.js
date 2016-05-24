@@ -12,7 +12,7 @@ $(function(){
 
   // Add Keywords
   $('#new_keyword').on('ajax:success', function(event, xhr) {
-    $("#seo-list").load(location.href + " #seo-list");
+    $("#seo-list-block").load(location.href + " #seo-list");
   }).on('ajax:error', function(event, xhr) {
     var response = xhr.responseJSON.response;
     $('#seo-msg').html(response).toggleClass('hide');
