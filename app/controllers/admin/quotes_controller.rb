@@ -1,5 +1,5 @@
 class Admin::QuotesController < AdminController
-  before_action :find_quote, only: [:edit, :show, :update, :destroy, :visible_switch]
+  before_action :find_quote, only: [:edit, :update, :destroy, :visible_switch]
   before_action :find_quote_by_quote_id, only: [:update_image]
   before_action :find_all_quotes, only: [:index, :create]
 
@@ -9,11 +9,15 @@ class Admin::QuotesController < AdminController
   end
 
   def create
-    @quote = Quote.new(quote_params)
-    if @quote.save
-      flash[:success] = "A new quote was succefully created."
+    # Don't create photo if no image is uploaded.
+    if params[:quote][:photo].nil? && Quote.create(quote_params)
+      flash[:success] = "A quote was successfully created."
+      redirect_to admin_quotes_path
+    elsif Quote.update(quote_params(:update_photo => true))
+      flash[:success] = "successfully updated."
       redirect_to admin_quotes_path
     else
+      flash[:danger] = "Please try again."
       render :index
     end
   end
@@ -27,10 +31,15 @@ class Admin::QuotesController < AdminController
   end
 
   def update
-    if @quote.update(quote_params)
-      flash[:success] = "successfully edited."
+    # Don't update photo attributes if no image is uploaded.
+    if params[:quote][:photo].nil? && @caroquoteusel.update(quote_params)
+      flash[:success] = "Successfully updated."
+      redirect_to admin_quotes_path
+    elsif @quote.update(quote_params(:update_photo => true))
+      flash[:success] = "Successfully updated."
       redirect_to admin_quotes_path
     else
+      flash[:danger] = "Please try again."
       render :edit
     end
   end
@@ -78,8 +87,12 @@ class Admin::QuotesController < AdminController
       @quote = Quote.find_by(slug: params[:quote_id])
     end
 
-    def quote_params
-      params.require(:quote).permit(:title, :description, photo_attributes: [:image])
+    def quote_params(options = {:update_photo => false})
+      if options[:update_photo] 
+        params.require(:quote).permit(:title, :description, photo_attributes: [:image])
+      else
+        params.require(:carousel).permit(:title, :description)
+      end
     end
 
     def find_all_quotes

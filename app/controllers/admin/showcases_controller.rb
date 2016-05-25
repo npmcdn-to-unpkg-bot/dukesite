@@ -21,11 +21,15 @@ class Admin::ShowcasesController < AdminController
   end
 
   def create
-    @showcase = Showcase.new(showcase_params)
-    if @showcase.save
-      flash[:success] = "The showcase was successfully created."
+    # Don't create photo if no image is uploaded.
+    if params[:showcase][:photo].nil? && Showcase.create(showcaseparams)
+      flash[:success] = "A showcase was successfully created."
+      redirect_to admin_showcases_path
+    elsif Showcase.update(showcase_params(:update_photo => true))
+      flash[:success] = "A showcase was successfully created."
       redirect_to admin_showcases_path
     else
+      flash[:danger] = "Please try again."
       render :index
     end
   end
@@ -34,10 +38,15 @@ class Admin::ShowcasesController < AdminController
   end
 
   def update
-    if @showcase.update(showcase_params)
-      flash[:success] = "Successfully edited."
+    # Don't update photo attributes if no image is uploaded.
+    if params[:showcase][:photo].nil? && @showcase.update(showcase_params)
+      flash[:success] = "Successfully updated."
+      redirect_to admin_showcase_products_path(@showcase)
+    elsif @showcase.update(showcase_params(:update_photo => true))
+      flash[:success] = "Successfully updated."
       redirect_to admin_showcase_products_path(@showcase)
     else
+      flash[:danger] = "Please try again."
       render :edit
     end
   end
@@ -77,8 +86,12 @@ class Admin::ShowcasesController < AdminController
       params.require(:showcase).permit(:image)
     end
     
-    def showcase_params
-      params.require(:showcase).permit(:title, :show_on_landing_page, :visible, photo_attributes: [:image])
+    def showcase_params(options = {:update_photo => false})
+      if options[:update_photo] 
+        params.require(:showcase).permit(:title, :show_on_landing_page, :visible, photo_attributes: [:image])
+      else
+        params.require(:showcase).permit(:title, :show_on_landing_page, :visible)
+      end
     end
 
     def find_showcase

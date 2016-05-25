@@ -22,10 +22,10 @@
     <div class="col-sm-4 col-md-3">
       <div class="thumbnail admin-carousel-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
         <%  
-          if p.photo.nil?
-            img_url = "http://thedudeminds.de/images/no_image_available.png"
-          else
+          if !p.photo.nil? && p.photo.image.thumb.url.present?
             img_url = p.photo.image.url
+          else
+            img_url = "http://thedudeminds.de/images/no_image_available.png"
           end
         %>
         <%= image_tag img_url %>

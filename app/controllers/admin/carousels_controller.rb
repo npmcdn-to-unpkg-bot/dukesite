@@ -1,5 +1,5 @@
 class Admin::CarouselsController < AdminController
-  before_action :find_carousel, only: [:edit, :show, :update, :destroy, :visible_switch]
+  before_action :find_carousel, only: [:edit, :update, :destroy, :visible_switch]
   before_action :find_carousel_by_carousel_id, only: [:update_image]
   before_action :find_all_carousels, only: [:index, :create]
 
@@ -9,11 +9,15 @@ class Admin::CarouselsController < AdminController
   end
 
   def create
-    @carousel = Carousel.new(carousel_params)
-    if @carousel.save
-      flash[:success] = "A new quote was succefully created."
+    # Don't create photo if no image is uploaded.
+    if params[:carousel][:photo].nil? && Carousel.create(carousel_params)
+      flash[:success] = "A carousel was successfully created."
+      redirect_to admin_carousels_path
+    elsif Carousel.update(carousel_params(:update_photo => true))
+      flash[:success] = "successfully updated."
       redirect_to admin_carousels_path
     else
+      flash[:danger] = "Please try again."
       render :index
     end
   end
@@ -27,10 +31,15 @@ class Admin::CarouselsController < AdminController
   end
 
   def update
-    if @carousel.update(carousel_params)
-      flash[:success] = "successfully updated."
+    # Don't update photo attributes if no image is uploaded.
+    if params[:carousel][:photo].nil? && @carousel.update(carousel_params)
+      flash[:success] = "Successfully updated."
+      redirect_to admin_carousels_path
+    elsif @carousel.update(carousel_params(:update_photo => true))
+      flash[:success] = "Successfully updated."
       redirect_to admin_carousels_path
     else
+      flash[:danger] = "Please try again."
       render :edit
     end
   end
@@ -73,9 +82,13 @@ class Admin::CarouselsController < AdminController
     def find_carousel
       @carousel = Carousel.find_by(slug: params[:id])
     end
-
-    def carousel_params
-      params.require(:carousel).permit(:title, :description, photo_attributes: [:image])
+    
+    def carousel_params(options = {:update_photo => false})
+      if options[:update_photo] 
+        params.require(:carousel).permit(:title, :description, photo_attributes: [:image])
+      else
+        params.require(:carousel).permit(:title, :description)
+      end
     end
 
     def find_carousel_by_carousel_id

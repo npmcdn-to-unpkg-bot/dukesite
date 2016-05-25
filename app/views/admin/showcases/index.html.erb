@@ -21,7 +21,12 @@
   <% @showcases.order("updated_at DESC").each do |p| %>
     <div class="col-sm-4 col-md-3">
       <div class="thumbnail admin-showcase-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
-        <% p.photo.present? ? thumb_img_url = p.photo.image.thumb.url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
+        <%  
+          if !p.photo.nil? && p.photo.image.thumb.url.present?
+            img_url = p.photo.image.thumb.url
+          else
+            img_url = "http://thedudeminds.de/images/no_image_available.png"
+          end
         %>
         <%= link_to admin_showcase_products_path(p) do %>
           <%= image_tag thumb_img_url %>
