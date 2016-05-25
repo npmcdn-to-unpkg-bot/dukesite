@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
     resources :categories, except: [:show, :new, :edit] do
       resources :keywords, only: [:create]
+      get '/list', to: 'categories#product_list', as: 'products'
+      put '/update_image', to: 'categories#update_image', as: 'update_image'
     end
     resources :social_network_accounts, except: [:show]
     resources :quotes, except: [:new, :show]
@@ -31,14 +33,13 @@ Rails.application.routes.draw do
       put :send_newsletter
     end
 
-
     # Site configurations
     # ------------------------------------------------------------------------------
     put '/site_configs/update', to: 'site_configs#update', as: 'general_site_configs'
     
     # Show a list of those products under a category/showcase 
     # ------------------------------------------------------------------------------
-    get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
+    # get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
     get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
     
     # Look up product via Amazon API

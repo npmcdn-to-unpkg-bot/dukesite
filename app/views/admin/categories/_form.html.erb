@@ -1,8 +1,12 @@
 <div class="col-sm-2">
   <div class="row">
-    <% @thumb_img_url.nil? ? thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" : thumb_img_url = @thumb_img_url %>
-    
-    <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "cat-form-img-preview" %> 
+    <% @thumb_img_url.present? ? thumb_img_url = @thumb_img_url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" %>
+    <% if @thumb_img_url.present? %>
+      <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "cat-form-img-preview", data: {toggle: "modal", target: "#imageUploader"} %>
+      <p class="help-block text-center">Click image to edit</p>
+    <% else %>
+      <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "cat-form-img-preview" %>
+    <% end %>
   </div>
 </div>
 
@@ -11,7 +15,7 @@
     <div class="form-group">
       <%= p.label "Name", class: "control-label" %>
       <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-12 col-sm-8">
           <%= p.text_field :name, class: "form-control", placeholder: "Enter Name" %>
         </div>
       </div>
@@ -21,12 +25,14 @@
       <%= p.radio_button :visible, false %> No
       <%= p.radio_button :visible, true %> Yes
     </div>
-    <div class="form-group">
-      <%= p.label "Upload Image", class: "control-label" %>
-      <%= p.fields_for :photo do |c| %>
-        <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
-      <% end %>
-    </div>
+    <% unless @thumb_img_url.present? %>
+      <div class="form-group">
+        <%= p.label "Upload Image", class: "control-label" %>
+        <%= p.fields_for :photo do |c| %>
+          <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="form-group">
       <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
       <%= p.submit "Save", class: "btn btn-primary" %>
@@ -37,3 +43,6 @@
 <% if !@category.id.nil? %>
   <small class="text-right help-block"><em><%= @category.created_at.to_formatted_s(:db) %> (created)</em></small>
 <% end %>
+
+<!-- Modal -->
+<%= render 'image_uploader_modal', object: @category %>

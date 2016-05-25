@@ -1,5 +1,7 @@
 class Admin::CategoriesController < AdminController
-  before_action :find_category, only: [:product_list, :edit, :update, :destroy, :visible_switch]
+  before_action :find_category, only: [:edit, :update, :destroy, :visible_switch]
+  before_action :find_category_by_category_id, only: [:product_list, :update_image]
+
   before_action :find_all_categories, only: [:index, :create]
   def index
     @category = Category.new
@@ -21,7 +23,6 @@ class Admin::CategoriesController < AdminController
   def create
     @category = Category.new(category_params)
     if @category.save
-      byebug
       flash[:success] = "A new category was succefully created."
       redirect_to :admin_categories_products_path
     else
@@ -51,6 +52,16 @@ class Admin::CategoriesController < AdminController
            status: status
   end
 
+  def update_image
+    if @category.photo.update(photo_params)
+      flash[:success] = "A new category was succefully created."
+      redirect_to admin_category_products_path(@category)
+    else
+      flash[:alert] = "Please upload an image."
+      render :product_list
+    end
+  end
+
   def destroy
     @category.destroy
     flash[:success] = "A new category was succefully deleted."
@@ -58,6 +69,9 @@ class Admin::CategoriesController < AdminController
   end
 
   private
+    def photo_params
+      params.require(:category).permit(:image)
+    end
     def category_params
       params.require(:category).permit(:name, :visible, photo_attributes: [:image])
     end
@@ -65,6 +79,11 @@ class Admin::CategoriesController < AdminController
     def find_category
       @category = Category.find_by(slug: params[:id])
     end
+
+    def find_category_by_category_id
+      @category = Category.find_by(slug: params[:category_id])
+    end
+
     def find_all_categories
       @categories = Category.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 20)
     end
