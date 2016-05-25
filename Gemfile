@@ -46,6 +46,8 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem "jquery-fileupload-rails"
+# Use fog for Amazon S3 storage
+gem "fog"
 
 # SEO
 gem 'meta-tags'
