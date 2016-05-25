@@ -47,5 +47,4 @@ class Admin::SocialNetworkAccountsController < AdminController
     def find_sna
       @sna = SocialNetworkAccount.find_by(slug: params[:id])
     end
-
 end

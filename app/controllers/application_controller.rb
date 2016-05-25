@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
       @description = SiteConfig.find_by(slug: "description").value
       # og
       # ------------------------------------------------------------------------------
-      @image = SiteConfig.find_by(slug: "icon").photo.image.url
+      icon_image = SiteConfig.find_by(slug: "icon").photo
+      @image = icon_image.image.url if icon_image.present?
       @og = { title: @title,
               type:  'website',
               url:  root_url,

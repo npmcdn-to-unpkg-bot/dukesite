@@ -21,6 +21,7 @@ class Admin::CategoriesController < AdminController
   def create
     @category = Category.new(category_params)
     if @category.save
+      byebug
       flash[:success] = "A new category was succefully created."
       redirect_to :admin_categories_products_path
     else
