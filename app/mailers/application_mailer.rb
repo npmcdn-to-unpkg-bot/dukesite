@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: '"The Duke Girls" <jill@chiocciola.de>',
-          bcc: '"The Duke Girls" <jill@chiocciola.de>'
+  default from: '"The Duke Girls" <service@mg.thedukegirls.com>',
+          bcc: '"The Duke Girls" <service@mg.thedukegirls.com>'
   layout 'mailer'
 end
