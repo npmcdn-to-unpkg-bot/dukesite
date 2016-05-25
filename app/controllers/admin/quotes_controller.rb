@@ -1,10 +1,11 @@
 class Admin::QuotesController < AdminController
   before_action :find_quote, only: [:edit, :show, :update, :destroy, :visible_switch]
+  before_action :find_quote_by_quote_id, only: [:update_image]
   before_action :find_all_quotes, only: [:index, :create]
+
   def index
     @quote = Quote.new
     @quote.photo = Photo.new
-    @quote_img_url = nil
   end
 
   def create
@@ -21,7 +22,7 @@ class Admin::QuotesController < AdminController
     if @quote.photo.nil?
       @quote.photo = Photo.new
     else
-      @quote_img_url = @quote.photo.image.url
+      @thumb_img_url = @quote.photo.image.thumb.url
     end
   end
 
@@ -48,6 +49,16 @@ class Admin::QuotesController < AdminController
            status: status
   end
 
+  def update_image
+    if params[:quote].present? && @quote.photo.update(photo_params)
+      flash[:success] = "A new image was succefully uploaded."
+      redirect_to admin_quotes_path(@quote)
+    else
+      flash[:danger] = "Please try again."
+      render :edit
+    end
+  end
+
   def destroy
     @quote.destroy
     flash[:success] = "The quote was successfully deleted."
@@ -55,9 +66,18 @@ class Admin::QuotesController < AdminController
   end
 
   private
+    def photo_params
+      params.require(:quote).permit(:image)
+    end
+
     def find_quote
       @quote = Quote.find_by(slug: params[:id])
     end
+
+    def find_quote_by_quote_id
+      @quote = Quote.find_by(slug: params[:quote_id])
+    end
+
     def quote_params
       params.require(:quote).permit(:title, :description, photo_attributes: [:image])
     end

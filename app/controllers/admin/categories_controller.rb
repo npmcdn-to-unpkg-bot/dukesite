@@ -1,8 +1,8 @@
 class Admin::CategoriesController < AdminController
   before_action :find_category, only: [:edit, :update, :destroy, :visible_switch]
   before_action :find_category_by_category_id, only: [:product_list, :update_image]
-
   before_action :find_all_categories, only: [:index, :create]
+  
   def index
     @category = Category.new
     @category.photo = Photo.new

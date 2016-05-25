@@ -1,6 +1,6 @@
 class Admin::SocialNetworkAccountsController < AdminController
   before_action :find_sna, only: [:edit, :update, :destroy]
-  before_action :find_category_by_sna_id, only: [:update_image]
+  before_action :find_sna_by_sna_id, only: [:update_image]
   def index
     @all_snas = SocialNetworkAccount.all
     @sna = SocialNetworkAccount.new
@@ -63,7 +63,7 @@ class Admin::SocialNetworkAccountsController < AdminController
       @sna = SocialNetworkAccount.find_by(slug: params[:id])
     end
 
-    def find_category_by_sna_id
+    def find_sna_by_sna_id
       @sna = SocialNetworkAccount.find_by(slug: params[:social_network_account_id])
     end
 end

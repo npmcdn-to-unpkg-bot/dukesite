@@ -24,8 +24,12 @@ Rails.application.routes.draw do
     resources :social_network_accounts, except: [:show] do
       put :update_image, as: 'update_image'
     end
-    resources :quotes, except: [:new, :show]
-    resources :carousels, except: [:new, :show]
+    resources :quotes, except: [:new, :show] do
+      put :update_image, as: 'update_image'
+    end
+    resources :carousels, except: [:new, :show] do
+      put :update_image, as: 'update_image'
+    end
     resources :site_configs, only:[:index, :update] do
       resources :keywords, only: [:create]
     end

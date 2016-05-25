@@ -1,10 +1,11 @@
 class Admin::CarouselsController < AdminController
   before_action :find_carousel, only: [:edit, :show, :update, :destroy, :visible_switch]
+  before_action :find_carousel_by_carousel_id, only: [:update_image]
   before_action :find_all_carousels, only: [:index, :create]
+
   def index
     @carousel = Carousel.new
     @carousel.photo = Photo.new
-    @carousel_img_url = nil
   end
 
   def create
@@ -21,7 +22,7 @@ class Admin::CarouselsController < AdminController
     if @carousel.photo.nil?
       @carousel.photo = Photo.new
     else
-      @carousel_img_url = @carousel.photo.image.url
+      @thumb_img_url = @carousel.photo.image.thumb.url
     end
   end
 
@@ -48,6 +49,16 @@ class Admin::CarouselsController < AdminController
            status: status
   end
 
+  def update_image
+    if params[:carousel].present? && @carousel.photo.update(photo_params)
+      flash[:success] = "A new image was succefully uploaded."
+      redirect_to admin_carousel_path(@carousel)
+    else
+      flash[:danger] = "Please try again."
+      render :edit
+    end
+  end
+
   def destroy
     @carousel.destroy
     flash[:success] = "The carousel was successfully deleted."
@@ -55,11 +66,20 @@ class Admin::CarouselsController < AdminController
   end
 
   private
+    def photo_params
+      params.require(:carousel).permit(:image)
+    end
+
     def find_carousel
       @carousel = Carousel.find_by(slug: params[:id])
     end
+
     def carousel_params
       params.require(:carousel).permit(:title, :description, photo_attributes: [:image])
+    end
+
+    def find_carousel_by_carousel_id
+      @carousel = Carousel.find_by(slug: params[:carousel_id])
     end
 
     def find_all_carousels
