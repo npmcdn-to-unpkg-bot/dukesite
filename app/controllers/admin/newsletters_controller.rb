@@ -54,7 +54,7 @@ class Admin::NewslettersController < AdminController
       flash[:success] = "Succefully delivered."
       redirect_to admin_newsletters_path
     else
-      flash[:alert] = "Succefully delivered."
+      flash[:danger] = "Please try again."
       render :index
     end
 

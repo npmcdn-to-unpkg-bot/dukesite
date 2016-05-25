@@ -20,6 +20,8 @@
 <div id="snaThumbnails">
   <% if @all_snas.present? %>
     <% @all_snas.each do |p| %>
+      <%= render "shared/error", object: p %>
+
       <% p.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
          p.updated_at? ? time = p.updated_at : time = p.created_at %>
       <div class="panel panel-default">
