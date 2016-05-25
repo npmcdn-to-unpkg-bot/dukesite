@@ -26,9 +26,10 @@
       <% @visible_snas.each do |p| %>
         <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
           <% if p.photo.present? && p.photo.image.url.present? %>
-            <%= image_tag p.photo.image.url, size: "32x32" %>
+            <%= image_tag p.photo.image.thumb.url, size: "32x32" %>
           < else %>
             <%= p.platform_name %>
+          <% end %>
         <% end %>
       <% end %>
     </p>
