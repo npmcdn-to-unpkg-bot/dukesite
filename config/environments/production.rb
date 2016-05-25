@@ -85,12 +85,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: ENV["CHIOCCIOLA_ADDRESS"],
-    port: 465,
-    domain: ENV["CHIOCCIOLA_DOMAIN"],
+    address: ENV["MAILGUN_ADDRESS"],
+    port: 587,
+    domain: ENV["MAILGUN_DOMAIN"],
     authentication: 'plain',
-    ssl: true,
-    user_name: ENV["CHIOCCIOLA_USERNAME"],
-    password: ENV["CHIOCCIOLA_PASSWORD"]
+    user_name: ENV["MAILGUN_USERNAME"],
+    password: ENV["MAILGUN_PASSWORD"]
   }
 end
