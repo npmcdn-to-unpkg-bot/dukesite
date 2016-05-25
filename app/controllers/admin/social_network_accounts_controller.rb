@@ -3,6 +3,7 @@ class Admin::SocialNetworkAccountsController < AdminController
   def index
     @all_snas = SocialNetworkAccount.all
     @sna = SocialNetworkAccount.new
+    @sna.photo = Photo.new
   end
 
   def new
@@ -40,7 +41,7 @@ class Admin::SocialNetworkAccountsController < AdminController
 
   private
     def sna_params
-      params.require(:social_network_account).permit(:platform_name, :platform_url, :image, :visible)
+      params.require(:social_network_account).permit(:platform_name, :platform_url, :visible, photo_attributes: [:image])
     end
 
     def find_sna

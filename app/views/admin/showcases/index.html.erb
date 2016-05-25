@@ -21,14 +21,14 @@
   <% @showcases.order("updated_at DESC").each do |p| %>
     <div class="col-sm-4 col-md-3">
       <div class="thumbnail admin-showcase-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
-        <% image = p.image.url
-           image.nil? ? img_url = "http://thedudeminds.de/images/no_image_available.png" : img_url = image %>
+        <% p.photo.present? ? thumb_img_url = p.photo.image.thumb.url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
+        %>
         <%= link_to admin_showcase_products_path(p) do %>
-          <%= image_tag img_url %>
+          <%= image_tag thumb_img_url %>
         <% end %>
         <div class="caption">
           <small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small>
-          <h4><%= p.title %>
+          <h4><%= link_to p.title, admin_showcase_products_path(p) %>
           </h4>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>

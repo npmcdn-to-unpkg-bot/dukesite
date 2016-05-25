@@ -1,6 +1,6 @@
 $(function(){
   // Trigger Image Preview
-  $("#showcase_image").change(function(){
+  $("#showcase_photo_attributes_image").change(function(){
     var $img_preview = $('#showcase_form_img_preview');
     readURL(this, $img_preview);
   });

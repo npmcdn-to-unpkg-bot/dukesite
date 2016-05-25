@@ -18,58 +18,66 @@
 
 <%# Links list %>
 <div id="snaThumbnails">
-  <% @all_snas.each do |p| %>
-    <% p.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
-       p.updated_at? ? time = p.updated_at : time = p.created_at %>
-    <div class="panel panel-default">
-      <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#editSnaForm-<%= p.slug %>">
-        <div class="media-left">
-          <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
-            <%= image_tag p.image.url,  size: "32x32" %>
+  <% if @all_snas.present? %>
+    <% @all_snas.each do |p| %>
+      <% p.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
+         p.updated_at? ? time = p.updated_at : time = p.created_at %>
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#editSnaForm-<%= p.slug %>">
+          <div class="media-left">
+            <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
+              <%= image_tag p.photo.image.url,  size: "32x32" %>
+            <% end %>
+          </div>
+          <div class="media-body">
+            <h3 class="panel-title"><%= p.platform_name %><small> <span class="label label-<%= label %>"><%= status %></span><span class="pull-right"><%= time.to_formatted_s(:long) %></span></small></h3>
+
+            <%= link_to url_with_protocol(p.platform_url), p.platform_url, :target => "_blank" %>
+            <small class="pull-right">
+              <%# collapse trigger%>
+              <%= link_to admin_social_network_account_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
+            </small>
+          </div>
+        </div>
+        <div class="panel-body collapse" id="editSnaForm-<%= p.slug %>">
+          <%= form_for [:admin, p] do |s| %>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= s.label "Name*" %>
+                <%= s.text_field :platform_name, class: "form-control", placeholder: "Give this a link name" %>
+              </div>
+
+              <div class="form-group">
+                <%= s.label "Url*" %>
+                <%= s.text_field :platform_url, class: "form-control", placeholder: "Link Url" %>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <% if p.photo.present? %>
+                  <%= image_tag p.photo.image.url,  size: "32x32" %>
+                <% else %>
+                  <%= s.label "Upload an Image*" %>
+                    <%= s.fields_for :photo do |c| %>
+                    <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="form-group">
+                <%= s.label "Visible?" %><br>
+                <%= s.radio_button :visible, false %> No <br>
+                <%= s.radio_button :visible, true %> Yes
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <%= link_to "Cancel", admin_social_network_accounts_path, class: "btn btn-warning" %>
+              <%= s.submit "Submit", class: "btn btn-primary" %>
+            </div>
           <% end %>
         </div>
-        <div class="media-body">
-          <h3 class="panel-title"><%= p.platform_name %><small> <span class="label label-<%= label %>"><%= status %></span><span class="pull-right"><%= time.to_formatted_s(:long) %></span></small></h3>
-
-          <%= link_to url_with_protocol(p.platform_url), p.platform_url, :target => "_blank" %>
-          <small class="pull-right">
-            <%# collapse trigger%>
-            <%= link_to admin_social_network_account_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            <% end %>
-          </small>
-        </div>
       </div>
-      <div class="panel-body collapse" id="editSnaForm-<%= p.slug %>">
-        <%= form_for [:admin, p] do |s| %>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <%= s.label "Name*" %>
-              <%= s.text_field :platform_name, class: "form-control", placeholder: "Give this a link name" %>
-            </div>
-
-            <div class="form-group">
-              <%= s.label "Url*" %>
-              <%= s.text_field :platform_url, class: "form-control", placeholder: "Link Url" %>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <%= s.label "Upload an Image" %>
-              <%= s.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
-            </div>
-            <div class="form-group">
-              <%= s.label "Visible?" %><br>
-              <%= s.radio_button :visible, false %> No <br>
-              <%= s.radio_button :visible, true %> Yes
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <%= link_to "Cancel", admin_social_network_accounts_path, class: "btn btn-warning" %>
-            <%= s.submit "Submit", class: "btn btn-primary" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

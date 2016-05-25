@@ -8,8 +8,8 @@ class Category < ActiveRecord::Base
   has_many :products, through: :product_categories
   
   has_many :keywords, :as => :keywordable, dependent: :destroy
-  
-  mount_uploader :image, ImageUploader
-  
+  has_one :photo, :as => :imageable, dependent: :destroy
+
+  accepts_nested_attributes_for :photo
   sluggable_column :name
 end

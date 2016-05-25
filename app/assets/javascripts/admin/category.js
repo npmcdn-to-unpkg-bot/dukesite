@@ -1,6 +1,6 @@
 $(function(){
   // Trigger Image Preview
-  $("#category_image").change(function(){
+  $("#category_photo_attributes_image").change(function(){
     var $img_preview = $('#cat-form-img-preview');
     readURL(this, $img_preview);
   });

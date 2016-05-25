@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523140714) do
+ActiveRecord::Schema.define(version: 20160525123440) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20160523140714) do
     t.datetime "updated_at",                 null: false
     t.string   "slug"
     t.boolean  "visible",    default: false
-    t.string   "image"
   end
 
   create_table "keywords", force: :cascade do |t|
@@ -126,7 +125,6 @@ ActiveRecord::Schema.define(version: 20160523140714) do
 
   create_table "showcases", force: :cascade do |t|
     t.string   "title"
-    t.string   "image"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.boolean  "show_on_landing_page", default: false
@@ -147,7 +145,6 @@ ActiveRecord::Schema.define(version: 20160523140714) do
   create_table "social_network_accounts", force: :cascade do |t|
     t.string   "platform_name"
     t.text     "platform_url"
-    t.string   "image"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.boolean  "visible",       default: false

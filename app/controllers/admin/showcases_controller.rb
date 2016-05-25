@@ -3,9 +3,15 @@ class Admin::ShowcasesController < AdminController
   before_action :find_all_showcases, only: [:index, :create]
   def index
     @showcase = Showcase.new
+    @showcase.photo = Photo.new
   end
 
   def product_list
+    if @showcase.photo.present?
+      @thumb_img_url = @showcase.photo.image.thumb.url 
+    else
+      @showcase.photo = Photo.new
+    end
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
     @keywords = @showcase.keywords.where.not(value: nil).order("created_at DESC")
@@ -56,7 +62,7 @@ class Admin::ShowcasesController < AdminController
 
   private
     def showcase_params
-      params.require(:showcase).permit(:title, :show_on_landing_page, :visible, :image)
+      params.require(:showcase).permit(:title, :show_on_landing_page, :visible, photo_attributes: [:image])
     end
 
     def find_showcase

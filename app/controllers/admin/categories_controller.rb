@@ -3,9 +3,15 @@ class Admin::CategoriesController < AdminController
   before_action :find_all_categories, only: [:index, :create]
   def index
     @category = Category.new
+    @category.photo = Photo.new
   end
 
   def product_list
+    if @category.photo.present?
+      @thumb_img_url = @category.photo.image.thumb.url 
+    else
+      @category.photo = Photo.new
+    end
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
     @keywords = @category.keywords.where.not(value: nil).order("created_at DESC")
@@ -16,7 +22,7 @@ class Admin::CategoriesController < AdminController
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "A new category was succefully created."
-      redirect_to :back
+      redirect_to :admin_categories_products_path
     else
       render :index
     end
@@ -25,7 +31,7 @@ class Admin::CategoriesController < AdminController
   def update
     if @category.update(category_params)
       flash[:success] = "successfully edited."
-      redirect_to :back
+      redirect_to admin_category_products_path(@category)
     else
       render :edit
     end
@@ -52,7 +58,7 @@ class Admin::CategoriesController < AdminController
 
   private
     def category_params
-      params.require(:category).permit(:name, :visible, :image)
+      params.require(:category).permit(:name, :visible, photo_attributes: [:image])
     end
     
     def find_category

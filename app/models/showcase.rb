@@ -8,7 +8,8 @@ class Showcase < ActiveRecord::Base
   has_many :products, through: :product_showcases
   
   has_many :keywords, :as => :keywordable, dependent: :destroy
+  has_one :photo, :as => :imageable, dependent: :destroy
 
-  mount_uploader :image, ImageUploader
+  accepts_nested_attributes_for :photo
   sluggable_column :title
 end
