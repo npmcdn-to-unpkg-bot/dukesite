@@ -1,4 +1,6 @@
-<div class="col-sm-2">
+<%= render "shared/error", object: @category %>
+
+<div class="col-xs-12 col-sm-2">
   <div class="row">
     <% @thumb_img_url.present? ? thumb_img_url = @thumb_img_url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" %>
     <% if @thumb_img_url.present? %>
@@ -10,7 +12,7 @@
   </div>
 </div>
 
-<div class="col-sm-9 col-sm-offset-1">
+<div class="col-xs-12 col-sm-9 col-sm-offset-1">
   <%= form_for [:admin, @category], html: {class: "form-horizontal"} do |p| %>
     <div class="form-group">
       <%= p.label "Name", class: "control-label" %>
@@ -34,7 +36,7 @@
       </div>
     <% end %>
     <div class="form-group">
-      <%= link_to "Cancel", admin_categories_path, class: "btn btn-warning" if @category.id.present? %>
+      <%= link_to "Cancel", admin_category_products_path(@category), class: "btn btn-warning" if @category.id.present? %>
       <%= p.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>
@@ -45,4 +47,4 @@
 <% end %>
 
 <!-- Modal -->
-<%= render 'image_uploader_modal', object: @category %>
+<%= render 'admin/shared/image_uploader_modal', object: @category, img_url: @thumb_img_url, image_update_url: admin_category_update_image_path(@category), return_path: admin_category_products_path(@category), preview_id: "cat-form-img-preview" if @thumb_img_url.present? %>

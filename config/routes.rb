@@ -13,13 +13,17 @@ Rails.application.routes.draw do
     end
     resources :showcases, except: [:show, :new, :edit] do
       resources :keywords, only: [:create]
+      get :product_list, as: 'products'
+      put :update_image, as: 'update_image'
     end
     resources :categories, except: [:show, :new, :edit] do
       resources :keywords, only: [:create]
-      get '/list', to: 'categories#product_list', as: 'products'
-      put '/update_image', to: 'categories#update_image', as: 'update_image'
+      get :product_list, as: 'products'
+      put :update_image, as: 'update_image'
     end
-    resources :social_network_accounts, except: [:show]
+    resources :social_network_accounts, except: [:show] do
+      put :update_image, as: 'update_image'
+    end
     resources :quotes, except: [:new, :show]
     resources :carousels, except: [:new, :show]
     resources :site_configs, only:[:index, :update] do
@@ -37,16 +41,11 @@ Rails.application.routes.draw do
     # ------------------------------------------------------------------------------
     put '/site_configs/update', to: 'site_configs#update', as: 'general_site_configs'
     
-    # Show a list of those products under a category/showcase 
-    # ------------------------------------------------------------------------------
-    # get '/categories/:id/list', to: 'categories#product_list', as: 'category_products'
-    get '/showcases/:id/list', to: 'showcases#product_list', as: 'showcase_products'
-    
     # Look up product via Amazon API
     # ------------------------------------------------------------------------------
     get '/look_up_item', to: 'products#lookup_item_on_amazon'
     
-    # Visible/Publish Switch
+    # Visible/Publish Switch -->Need to cleanup
     # ------------------------------------------------------------------------------
     put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
     put '/categories/:id/category_visible', to: 'categories#visible_switch', as: 'category_visible_switch' 

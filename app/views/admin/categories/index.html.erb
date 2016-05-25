@@ -9,7 +9,6 @@
   </a>
 </p>
 
-<%= render "shared/error", object: @category %>
 <div class="collapse" id="collapseCatForm">
   <div class="row">
     <div class="col-xs-12 col-sm-12 well">
@@ -22,7 +21,7 @@
   <% @categories.each do |p| %>
     <div class="col-sm-4 col-md-3">
       <div class="thumbnail admin-category-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
-        <% p.photo.present? ? thumb_img_url = p.photo.image.thumb.url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
+        <% p.photo.nil? ? thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" : thumb_img_url = p.photo.image.thumb.url
         %>
         <%= link_to admin_category_products_path(p) do %>
           <%= image_tag thumb_img_url %>

@@ -1,5 +1,7 @@
 class Admin::ShowcasesController < AdminController
   before_action :find_showcase, only: [:product_list, :edit, :update, :destroy, :visible_switch]
+  before_action :find_showcase_by_showcase_id, only: [:product_list, :update_image]
+
   before_action :find_all_showcases, only: [:index, :create]
   def index
     @showcase = Showcase.new
@@ -33,7 +35,7 @@ class Admin::ShowcasesController < AdminController
 
   def update
     if @showcase.update(showcase_params)
-      flash[:success] = "successfully edited."
+      flash[:success] = "Successfully edited."
       redirect_to admin_showcase_products_path(@showcase)
     else
       render :edit
@@ -48,10 +50,20 @@ class Admin::ShowcasesController < AdminController
       showcase_status = @showcase.visible
     else
       status = 404
-      response = "Please try again"
+      response = "Please try again."
     end
     render json: { response: response, showcase_status: showcase_status },
            status: status
+  end
+
+  def update_image
+    if params[:showcase].present? && @showcase.photo.update(photo_params)
+      flash[:success] = "A new image was succefully uploaded."
+      redirect_to admin_showcase_products_path(@showcase)
+    else
+      flash[:danger] = "Please try again."
+      render :product_list
+    end
   end
 
   def destroy
@@ -61,12 +73,20 @@ class Admin::ShowcasesController < AdminController
   end
 
   private
+    def photo_params
+      params.require(:showcase).permit(:image)
+    end
+    
     def showcase_params
       params.require(:showcase).permit(:title, :show_on_landing_page, :visible, photo_attributes: [:image])
     end
 
     def find_showcase
       @showcase = Showcase.find_by(slug: params[:id])
+    end
+
+    def find_showcase_by_showcase_id
+      @showcase = Showcase.find_by(slug: params[:showcase_id])
     end
 
     def find_all_showcases

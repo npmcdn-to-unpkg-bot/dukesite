@@ -53,11 +53,11 @@ class Admin::CategoriesController < AdminController
   end
 
   def update_image
-    if @category.photo.update(photo_params)
-      flash[:success] = "A new category was succefully created."
+    if params[:category].present? && @category.photo.update(photo_params)
+      flash[:success] = "A new image was succefully uploaded."
       redirect_to admin_category_products_path(@category)
     else
-      flash[:alert] = "Please upload an image."
+      flash[:danger] = "Please try again."
       render :product_list
     end
   end
@@ -72,6 +72,7 @@ class Admin::CategoriesController < AdminController
     def photo_params
       params.require(:category).permit(:image)
     end
+
     def category_params
       params.require(:category).permit(:name, :visible, photo_attributes: [:image])
     end
