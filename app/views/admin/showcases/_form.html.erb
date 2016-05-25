@@ -4,7 +4,7 @@
   <div class="row">
     <% @thumb_img_url.present? ? thumb_img_url = @thumb_img_url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" %>
     <% if @thumb_img_url.present? %>
-      <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview", data: {toggle: "modal", target: "#imageUploader"} %>
+      <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview", data: {toggle: "modal", target: "#imageUploaderModal"} %>
       <p class="help-block text-center">Click image to edit</p>
     <% else %>
       <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview" %>

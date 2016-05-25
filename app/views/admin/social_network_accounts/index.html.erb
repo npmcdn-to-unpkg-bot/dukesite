@@ -3,32 +3,26 @@
 </div>
 
 <!-- link to add new social media account item -->
-<p>
-  <a data-toggle="collapse" href="#collapseAddAnaForm" aria-expanded="false">
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-     Add a link
-  </a>
+<p data-toggle="modal" data-target="#addAnaFormModal">
+  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+   Add a link
 </p>
 <%= render "shared/error", object: @sna %>
-<div class="collapse" id="collapseAddAnaForm">
-  <div class="row well">
-    <%= render "form" %>
-  </div>
-</div>
+<%= render "modal", object: @sna %>
 
 <%# Links list %>
 <div id="snaThumbnails">
   <% if @all_snas.present? %>
     <% @all_snas.each do |p| %>
-      <%= render "shared/error", object: p %>
-
       <% p.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
-         p.updated_at? ? time = p.updated_at : time = p.created_at %>
+         p.updated_at? ? time = p.updated_at : time = p.created_at
+         sna_image = p.photo.image.url 
+          %>
       <div class="panel panel-default">
         <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#editSnaForm-<%= p.slug %>">
           <div class="media-left">
             <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
-              <%= image_tag p.photo.image.url,  size: "32x32" %>
+              <%= image_tag sna_image,  size: "32x32" %>
             <% end %>
           </div>
           <div class="media-body">
@@ -42,44 +36,13 @@
               <% end %>
             </small>
           </div>
-        </div>
+        </div>   
         <div class="panel-body collapse" id="editSnaForm-<%= p.slug %>">
-          <%= form_for [:admin, p] do |s| %>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <%= s.label "Name*" %>
-                <%= s.text_field :platform_name, class: "form-control", placeholder: "Give this a link name" %>
-              </div>
-
-              <div class="form-group">
-                <%= s.label "Url*" %>
-                <%= s.text_field :platform_url, class: "form-control", placeholder: "Link Url" %>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="form-group">
-                <% if p.photo.present? %>
-                  <%= image_tag p.photo.image.url,  size: "32x32" %>
-                <% else %>
-                  <%= s.label "Upload an Image*" %>
-                    <%= s.fields_for :photo do |c| %>
-                    <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="form-group">
-                <%= s.label "Visible?" %><br>
-                <%= s.radio_button :visible, false %> No <br>
-                <%= s.radio_button :visible, true %> Yes
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <%= link_to "Cancel", admin_social_network_accounts_path, class: "btn btn-warning" %>
-              <%= s.submit "Submit", class: "btn btn-primary" %>
-            </div>
-          <% end %>
+          <%= render "form", object: p %>
         </div>
       </div>
+      <!-- Modal -->
+      <%= render 'admin/shared/image_uploader_modal', object: p, img_url: sna_image, image_update_url: admin_social_network_account_update_image_path(p), return_path: admin_social_network_accounts_path, preview_id: "sna_form_img_preview" if sna_image.present? %>
     <% end %>
   <% end %>
 </div>
