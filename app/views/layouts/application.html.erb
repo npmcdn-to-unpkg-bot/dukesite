@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <%= display_meta_tags site: @site_name, title: @title  %>
-  <%= display_meta_tags description: @description %>
-  <%= display_meta_tags keywords: @object_keywords %>
-  <%= display_meta_tags keywords: @keywords %>
-  <%= display_meta_tags icon: @favicon %>
-  <%= display_meta_tags og: @og %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= render partial: 'shared/alert' %>
-  <div class="container-fluid outter-container">
-    <%= render partial: "layouts/nav" %>
-    <%= yield %>
-    <%= render partial: "layouts/subscribe" %>
-    <%= render partial: "layouts/footer" %>
-  </div>
-</body>
+  <head>
+    <%= display_meta_tags site: @site_name, title: @title  %>
+    <%= display_meta_tags description: @description %>
+    <%= display_meta_tags keywords: @object_keywords %>
+    <%= display_meta_tags keywords: @keywords %>
+    <%= display_meta_tags icon: @favicon %>
+    <%= display_meta_tags og: @og %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= render 'shared/alert' %>
+    <div class="container-fluid outter-container">
+      <%= render "layouts/nav" %>
+      <%= yield %>
+      <%= render "layouts/subscribe" %>
+    </div>
+  </body>
+
+  <footer>
+    <%= render "layouts/footer" %>
+    <%= render "layouts/google_analytics" %>
+  </footer>
+
 </html>
