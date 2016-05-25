@@ -12,8 +12,7 @@ class ShowcasesController < ApplicationController
       @title = object.title
       # og
       # ------------------------------------------------------------------------------
-      @image = object.image.url
-      @image = SiteConfig.find_by(slug: "icon").photo.image.url if @image.nil?
+      @image = object.photo.image.url if object.photo.present?
       @og = { title: @title,
               type:  'website',
               url:  showcase_url(object),

@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
       # og
       # ------------------------------------------------------------------------------
       @image = object.image_url
-      @image = SiteConfig.find_by(slug: "icon").photo.image.url if @image.nil?
       @og = { title: @title,
               type:  'website',
               url:  product_url(object),

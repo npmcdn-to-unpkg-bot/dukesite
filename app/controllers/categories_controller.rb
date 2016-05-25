@@ -10,8 +10,7 @@ class CategoriesController < ApplicationController
       @title = object.name
       # og
       # ------------------------------------------------------------------------------
-      @image = object.image.url 
-      @image = SiteConfig.find_by(slug: "icon").photo.image.url if @image.nil?
+      @image = object.photo.image.url if object.photo.present?
       @og = { title: @title,
               type:  'website',
               url:  category_url(object),
