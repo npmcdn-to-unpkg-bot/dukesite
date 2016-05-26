@@ -39,7 +39,7 @@
 .showcase-header {
   @include margin-top-bottom(30px);
   @include margin-left-right;
-  background: -webkit-linear-gradient(left top, #FF3399, #F8BBD0);
+  background: -webkit-linear-gradient(left top, #f6a4c0, #F8BBD0);
   a { color: white; }
   // background-color: $gray-lighter;
   p {

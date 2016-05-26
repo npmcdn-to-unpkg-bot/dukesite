@@ -107,4 +107,8 @@ SiteConfig.create([{
                     },{
                     key: "Icon",
                     note: "Add a webiste icon."
+                    },{
+                    key: "Our Story"
+                    },{
+                    key: "Join Us"
                     }])
