@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :carousels, except: [:new, :show] do
       put :update_image, as: 'update_image'
     end
-    resources :site_configs, only:[:index, :update] do
+    resources :site_configs, only:[:index, :update, :edit] do
       resources :keywords, only: [:create]
     end
     resources :keywords, only: [:destroy]
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     # ------------------------------------------------------------------------------
     get '/look_up_item', to: 'products#lookup_item_on_amazon'
     
-    # Visible/Publish Switch -->Need to cleanup
+    # Visible/Publish Switch
     # ------------------------------------------------------------------------------
     put '/products/:id/publish_product', to: 'products#publish_switch', as: 'product_publish_switch'
     put '/categories/:id/category_visible', to: 'categories#visible_switch', as: 'category_visible_switch' 

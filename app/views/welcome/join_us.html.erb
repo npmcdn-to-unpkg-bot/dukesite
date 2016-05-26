@@ -4,7 +4,11 @@
       <div class="page-header">
         <h1>Become a Duke Girl</h1>
       </div>
-      <p>Lorem ipsum Irure labore do ad sed cillum in in occaecat consequat cupidatat nulla proident veniam enim non in amet consequat labore Ut ut ex ad minim nisi aliquip magna enim ut dolore voluptate ullamco amet est voluptate tempor enim consequat proident in nulla eiusmod nulla dolore non nulla pariatur sed velit sed in ad sint sint do ullamco laboris ut esse minim sint in nostrud sunt sit nulla sunt consectetur nulla Excepteur dolore in ut officia anim occaecat quis eiusmod nulla in consectetur esse ea culpa culpa Duis aliqua occaecat consequat Ut voluptate do sunt sit fugiat labore magna amet ut deserunt fugiat est culpa laboris proident elit cupidatat magna aliquip tempor aute dolor exercitation dolor id minim deserunt reprehenderit laboris incididunt dolor labore in pariatur in veniam proident elit ea laborum proident magna exercitation dolore et nostrud cupidatat commodo.</p>
+      <% if @join_us.nil? %>      
+        <p>Lorem ipsum Irure labore do ad sed cillum in in occaecat consequat cupidatat nulla proident veniam enim non in amet consequat labore Ut ut ex ad minim nisi aliquip magna enim ut dolore voluptate ullamco amet est voluptate tempor enim consequat proident in nulla eiusmod nulla dolore non nulla pariatur sed velit sed in ad sint sint do ullamco laboris ut esse minim sint in nostrud sunt sit nulla sunt consectetur nulla Excepteur dolore in ut officia anim occaecat quis eiusmod nulla in consectetur esse ea culpa culpa Duis aliqua occaecat consequat Ut voluptate do sunt sit fugiat labore magna amet ut deserunt fugiat est culpa laboris proident elit cupidatat magna aliquip tempor aute dolor exercitation dolor id minim deserunt reprehenderit laboris incididunt dolor labore in pariatur in veniam proident elit ea laborum proident magna exercitation dolore et nostrud cupidatat commodo.</p>
+      <% else %>
+        <%= sanitize @join_us %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 class SiteConfig< ActiveRecord::Base
   scope :web_settings, -> { where(slug: ['title', 'description', 'our-belief']) }
-  scope :icons, -> { where(slug: ['favorite-icon', 'icon']) }
+  scope :site_intros, -> { where(slug: ['our-story', 'join-us']) }
+  scope :icons, -> { where(slug: ['favorite-icon', 'join-us']) }
   include SlugGenerator
 
   validates_uniqueness_of :key

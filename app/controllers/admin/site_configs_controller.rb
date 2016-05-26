@@ -1,7 +1,9 @@
 class Admin::SiteConfigsController < AdminController
+  before_action :find_site_config, only: [:edit]
   def index
     @site_configs = SiteConfig.web_settings
     @seo = SiteConfig.find_by(slug: "seo")
+
     # Favorite Icon
     @favicon = SiteConfig.find_by(slug: "favorite-icon")
     ## Show existed icon img
@@ -22,9 +24,16 @@ class Admin::SiteConfigsController < AdminController
 
     # Keywords
     @keywords = @seo.keywords.where.not(value: nil).order("created_at DESC")
+
+    #Out Story & Join US
+    @site_intros = SiteConfig.site_intros
   end
 
-  def update 
+  def edit
+
+  end
+
+  def update
     if params["site_configs"].present?
       params["site_configs"].each do |key, value|
         site_config = SiteConfig.find_by(slug: key)
@@ -39,7 +48,7 @@ class Admin::SiteConfigsController < AdminController
   end
 
   def site_config_params
-    params.require(:site_config).permit(photo_attributes: [:image])
+    params.require(:site_config).permit(:value, photo_attributes: [:image])
   end
 
   def find_site_config
