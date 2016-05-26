@@ -16,8 +16,8 @@
     <% @all_snas.each do |p| %>
       <% p.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
          p.updated_at? ? time = p.updated_at : time = p.created_at
-         sna_image = p.photo.image.url 
-          %>
+         p.photo.present? && !p.photo.image.url.nil? ? sna_image = p.photo.image.url : sna_image = "http://thedudeminds.de/images/no_image_available.png"
+        %>
       <div class="panel panel-default">
         <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#editSnaForm-<%= p.slug %>">
           <div class="media-left">

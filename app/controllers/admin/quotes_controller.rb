@@ -88,7 +88,7 @@ class Admin::QuotesController < AdminController
     end
 
     def quote_params(options = {:update_photo => false})
-      if options[:update_photo] 
+      if options[:update_photo]
         params.require(:quote).permit(:title, :description, photo_attributes: [:image])
       else
         params.require(:carousel).permit(:title, :description)
