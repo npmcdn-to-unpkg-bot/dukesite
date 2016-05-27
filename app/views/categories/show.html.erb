@@ -1,21 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12">
-      <div class="page-header">
-        <p><%= @category.name %></p>
-      </div>
-
-      <% if @products.size == 0 %>
-          No products
-      <% else %>
-        <% @products.each do |p| %>
-          <div class="col-xs-12 col-sm-3 product">
-            <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
-              <%= image_tag p.image_url,  class: "img-responsive" %>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <div class="page-header">
+      <p><%= @category.name %></p>
     </div>
+
+    <% if @products.size == 0 %>
+        No products
+    <% else %>
+      <% @products.each do |p| %>
+        <div class="col-xs-12 col-sm-3 product">
+          <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
+            <%= image_tag p.image_url,  class: "img-responsive" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -1,16 +1,18 @@
-@mixin margin-top-bottom($height: 4%) {
-  margin-top: $height;
-  margin-bottom: $height;
-}
-
-
-@mixin padding-top-bottom($height: 5%) {
-  padding-top: $height;
-  padding-bottom: $height;
-}
-
 body {
-  .outter-container {
+  background-color: $bg-pink;
+  a { 
+    color: $gray-darker;
+    border-bottom: 1px solid white;
+  }
+  a:hover { 
+    color: $gray;
+    // text-decoration: underline;
+    border-bottom-color: $base-pink;
+  }
+
+  .container {
+    border-left: 1px solid $gray-lighter;
+    border-right: 1px solid $gray-lighter;
     background-color: white;
     .admin_link {
       margin: 15px;
@@ -63,15 +65,30 @@ body {
 
 .subscribe {
   @include padding-top-bottom;
-  @include margin-top-bottom;
+  @include margin-top-bottom(4%);
   text-align: center;
   min-height: 150px;
-  background-color: #FF3399;
+  background-color: $base-pink;
   color: white;
 }
 
-footer { 
-  @include margin-top-bottom;
+footer {
+  .footer-logo {
+    padding-bottom: 2%;
+    img[alt="Thedukegirls"] {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .footer-links {
+    @include padding-top-bottom(2%);
+    border-top: $border-solid;
+    border-bottom: $border-solid;
+    .col-sm-4:not(:last-child) {
+      border-right: $border-solid;
+    }
+  }
   p {
     text-transform: uppercase;
   }
@@ -81,5 +98,9 @@ footer {
     font-family: $font-family-base;
     font-weight: $headings-font-weight;
     list-style-type: none;
+  }
+  .copy-right {
+    padding-bottom: 4%;
+    p { padding-top: 2%; }
   }
 }

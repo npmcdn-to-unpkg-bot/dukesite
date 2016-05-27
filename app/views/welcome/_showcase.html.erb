@@ -1,12 +1,10 @@
 <% @showcases.each do |showcase| %>
   <div class="row showcase-header">
     <div class="col-xs-12 col-sm-4">
-      <p><b><%= link_to showcase.title, showcase_path(showcase) %></b></p>
+      <p><strong><%= link_to showcase.title, showcase_path(showcase) %></strong><br/ ><small><em><%= showcase.subtitle %></em></small></p>
     </div>
-    <div class="col-sm-6  hidden-xs">
-    </div>
-    <div class="col-xs-12 col-sm-1 hidden-xs pull-right">
-      <p><small><%= link_to "More", showcase_path(showcase) %></small></p>
+    <div class="col-xs-12 col-sm-2 hidden-xs pull-right more-button">
+      <p><%= link_to "More", showcase_path(showcase) %></p>
     </div>
   </div>
   

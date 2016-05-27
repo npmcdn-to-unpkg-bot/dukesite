@@ -1,13 +1,16 @@
 @import "bootstrap-sprockets";
 
 $font-family-base: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
-$pink: #FF33CC;
+$bg-pink: #fdf8fa;
+$base-pink: #f48db0;
 $duke-blue: #013088;
 $green: #66CC33;
+$border-solid: 1px solid #e5e5e5;
+$border-solid-white: 1px solid white;
 
 
 @mixin selection-color {
-  background-color: $pink;
+  background-color: $base-pink;
   color: white;
 }
 
@@ -17,4 +20,32 @@ $green: #66CC33;
 
 ::-moz-selection {
   @include selection-color;
+}
+
+@mixin botton($color: white) { 
+  font-size: 12px;
+  @include padding-top-bottom(10px);
+  @include padding-left-right(12px);
+  background-color: $color;
+  border: 1px solid $gray-light;
+  border-radius: 5px;
+}
+
+@mixin margin-top-bottom($height: 20px) {
+  margin-top: $height;
+  margin-bottom: $height;
+}
+
+@mixin margin-left-right($width: 3%) {
+  margin-left: $width;
+  margin-right: $width;
+}
+
+@mixin padding-top-bottom($height: 5%) {
+  padding-top: $height;
+  padding-bottom: $height;
+}
+@mixin padding-left-right($width: 5%) {
+  padding-left: $width;
+  padding-right: $width;
 }

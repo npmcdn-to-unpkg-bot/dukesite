@@ -1,17 +1,15 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12">
-      <div class="page-header">
-        <p><%= @showcase.title %></p>
-      </div>
-
-      <% @products.each do |p| %>
-        <div class="col-xs-12 col-sm-3 product">
-          <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
-            <%= image_tag p.image_url,  class: "img-responsive" %>
-          <% end %>
-        </div>
-      <% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12">
+    <div class="page-header">
+      <p><%= @showcase.title %></p>
     </div>
+
+    <% @products.each do |p| %>
+      <div class="col-xs-12 col-sm-3 product">
+        <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
+          <%= image_tag p.image_url,  class: "img-responsive" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,28 +1,27 @@
-<div class="row footer-logo">
-  <%= link_to root_path do %>
-    <%= link_to image_tag(@icon, width: "150px", class: "img-responsive"), root_path %>
-  <% end %>
-</div>
-
-<div class="row footer-links">
-  <div class="col-xs-12 col-sm-4">
+<div class="row">
+  <div class="col-xs-12 col-sm-2 col-sm-offset-1">
+    <%= link_to root_path do %>
+      <%= link_to image_tag(@icon, width: "250px", class: "img-responsive text-center"), root_path %>
+    <% end %><p class="text-center">©2016 The Duke Girls</p>
+  </div>
+  <div class="col-xs-12 col-sm-2">
+    <p class="text-center">Our belief</p>
     <ul>
-      <p>Our belief</p>
       <li><%= @our_belief %></li>
     </ul>
   </div>
-  <div class="col-xs-12 col-sm-4">
+  <div class="col-xs-12 col-sm-2">
+    <p class="text-center">The Duke Girls</p>
     <ul>
-      <p>The Duke Girls</p>
       <li><%= link_to "Our Story", story_path %></li>
       <li><%= link_to "Blog", root_path %></li>
       <li><%= link_to "Join Us", join_us_path %></li>
     </ul>
   </div>
-  <div class="col-xs-12 col-sm-4">
-    <ul>
-      <p>Follow Us</p>
-      <li>
+  <div class="col-xs-12 col-sm-2">
+    <p class="text-center">Follow Us</p>     
+    <p class="text-center">
+      
       <!-- iterate through social network account items and display icon, if account is marked as 'visible' -->
       <% @visible_snas.each do |p| %>
         <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
@@ -33,11 +32,6 @@
           <% end %>
         <% end %>
       <% end %>
-      </li>
-    </ul>
+    </p>
   </div>
-</div>
-
-<div class="row copy-right">
-  <p class="text-center">©2016 The Duke Girls</p>
 </div>

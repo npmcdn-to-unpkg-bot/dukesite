@@ -15,7 +15,7 @@
 
   <body>
     <%= render 'shared/alert' %>
-    <div class="container-fluid outter-container">
+    <div class="container">
       <%= render "layouts/nav" %>
       <%= yield %>
       <%= render "layouts/subscribe" %>
@@ -23,7 +23,9 @@
   </body>
 
   <footer>
-    <%= render "layouts/footer" %>
+    <div class="container">
+      <%= render "layouts/footer" %>
+    </div>
     <%= render "layouts/google_analytics" %>
   </footer>
 </html>
