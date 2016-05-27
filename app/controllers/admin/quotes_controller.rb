@@ -10,11 +10,16 @@ class Admin::QuotesController < AdminController
 
   def create
     # Don't create photo if no image is uploaded.
-    if params[:quote][:photo].nil? && Quote.create(quote_params)
+    if !params[:quote][:photo_attributes].nil? 
+      if Quote.Create(quote_params(:update_photo => true))
+        flash[:success] = "A quote was successfully created."
+        redirect_to admin_quotes_path
+      else
+        flash[:danger] = "Please try again."
+        render :index
+      end
+    elsif Quote.create(quote_params)
       flash[:success] = "A quote was successfully created."
-      redirect_to admin_quotes_path
-    elsif Quote.update(quote_params(:update_photo => true))
-      flash[:success] = "successfully updated."
       redirect_to admin_quotes_path
     else
       flash[:danger] = "Please try again."
@@ -32,10 +37,15 @@ class Admin::QuotesController < AdminController
 
   def update
     # Don't update photo attributes if no image is uploaded.
-    if params[:quote][:photo].nil? && @caroquoteusel.update(quote_params)
-      flash[:success] = "Successfully updated."
-      redirect_to admin_quotes_path
-    elsif @quote.update(quote_params(:update_photo => true))
+    if !params[:quote][:photo_attributes].nil?
+      if @caroquoteusel.update(quote_params(:update_photo => true))
+        flash[:success] = "Successfully updated."
+        redirect_to admin_quotes_path
+      else
+        flash[:danger] = "Please try again."
+        render :edit
+      end
+    elsif @quote.update(quote_params)
       flash[:success] = "Successfully updated."
       redirect_to admin_quotes_path
     else
@@ -61,7 +71,7 @@ class Admin::QuotesController < AdminController
   def update_image
     if params[:quote].present? && @quote.photo.update(photo_params)
       flash[:success] = "A new image was succefully uploaded."
-      redirect_to admin_quotes_path(@quote)
+      redirect_to edit_admin_quote_path(@quote)
     else
       flash[:danger] = "Please try again."
       render :edit

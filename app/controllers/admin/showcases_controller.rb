@@ -22,10 +22,15 @@ class Admin::ShowcasesController < AdminController
 
   def create
     # Don't create photo if no image is uploaded.
-    if params[:showcase][:photo].nil? && Showcase.create(showcaseparams)
-      flash[:success] = "A showcase was successfully created."
-      redirect_to admin_showcases_path
-    elsif Showcase.update(showcase_params(:update_photo => true))
+    if !params[:showcase][:photo_attributes].nil?
+      if Showcase.create(showcaseparams(:update_photo => true))
+        flash[:success] = "A showcase was successfully created."
+        redirect_to admin_showcases_path
+      else
+        flash[:danger] = "Please try again."
+        render :index
+      end
+    elsif Showcase.create(showcase_params)
       flash[:success] = "A showcase was successfully created."
       redirect_to admin_showcases_path
     else
@@ -39,10 +44,15 @@ class Admin::ShowcasesController < AdminController
 
   def update
     # Don't update photo attributes if no image is uploaded.
-    if params[:showcase][:photo].nil? && @showcase.update(showcase_params)
-      flash[:success] = "Successfully updated."
-      redirect_to admin_showcase_products_path(@showcase)
-    elsif @showcase.update(showcase_params(:update_photo => true))
+    if !params[:showcase][:photo_attributes].nil?
+      if @showcase.update(showcase_params(:update_photo => true))
+        flash[:success] = "Successfully updated."
+        redirect_to admin_showcase_products_path(@showcase)
+      else
+        flash[:danger] = "Please try again."
+        render :edit
+      end
+    elsif @showcase.update(showcase_params)
       flash[:success] = "Successfully updated."
       redirect_to admin_showcase_products_path(@showcase)
     else

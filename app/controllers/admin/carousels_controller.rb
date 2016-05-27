@@ -10,11 +10,16 @@ class Admin::CarouselsController < AdminController
 
   def create
     # Don't create photo if no image is uploaded.
-    if params[:carousel][:photo].nil? && Carousel.create(carousel_params)
+    if !params[:carousel][:photo_attributes].nil?
+      if Carousel.create(carousel_params(:update_photo => true))
+        flash[:success] = "successfully updated."
+        redirect_to admin_carousels_path
+      else
+        flash[:danger] = "Please try again."
+        render :index
+      end
+    elsif Carousel.create(carousel_params)
       flash[:success] = "A carousel was successfully created."
-      redirect_to admin_carousels_path
-    elsif Carousel.update(carousel_params(:update_photo => true))
-      flash[:success] = "successfully updated."
       redirect_to admin_carousels_path
     else
       flash[:danger] = "Please try again."
@@ -32,10 +37,15 @@ class Admin::CarouselsController < AdminController
 
   def update
     # Don't update photo attributes if no image is uploaded.
-    if params[:carousel][:photo].nil? && @carousel.update(carousel_params)
-      flash[:success] = "Successfully updated."
-      redirect_to admin_carousels_path
-    elsif @carousel.update(carousel_params(:update_photo => true))
+    if !params[:carousel][:photo_attributes].nil?
+      if @carousel.update(carousel_params(:update_photo => true))
+        flash[:success] = "Successfully updated."
+        redirect_to admin_carousels_path
+      else
+        flash[:danger] = "Please try again."
+        render :edit
+      end
+    elsif @carousel.update(carousel_params)
       flash[:success] = "Successfully updated."
       redirect_to admin_carousels_path
     else
@@ -61,7 +71,7 @@ class Admin::CarouselsController < AdminController
   def update_image
     if params[:carousel].present? && @carousel.photo.update(photo_params)
       flash[:success] = "A new image was succefully uploaded."
-      redirect_to admin_carousel_path(@carousel)
+      redirect_to edit_admin_carousel_path(@carousel)
     else
       flash[:danger] = "Please try again."
       render :edit
