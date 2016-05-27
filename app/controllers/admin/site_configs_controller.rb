@@ -30,7 +30,6 @@ class Admin::SiteConfigsController < AdminController
   end
 
   def edit
-
   end
 
   def update
@@ -41,14 +40,30 @@ class Admin::SiteConfigsController < AdminController
       end
     else
       find_site_config
-      @site_config.update(site_config_params)
+      if params[:id] == ("our-story" || "join-us")
+        if @site_config.update(site_config_params)
+          flash[:success] = "Successfully updated."
+          redirect_to admin_site_configs_path
+        else
+          flash[:danger] = "Please try again."
+          render :back
+        end
+      elsif @site_config.update(site_config_params(:update_photo => true))
+        flash[:success] = "Successfully updated."
+        redirect_to admin_site_configs_path
+      else
+        flash[:danger] = "Please try again."
+        render :back
+      end
     end
-    flash[:success] = "Successfully updated."
-    redirect_to admin_site_configs_path
   end
 
-  def site_config_params
-    params.require(:site_config).permit(:value, photo_attributes: [:image])
+  def site_config_params(options = { :update_photo => false })
+    if options[:update_photo]
+      params.require(:site_config).permit(:value, photo_attributes: [:image])
+    else
+      params.require(:site_config).permit(:value)
+    end
   end
 
   def find_site_config
