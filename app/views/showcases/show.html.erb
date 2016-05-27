@@ -1,15 +1,16 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-12">
+<div class="row showcase">
+  <div class="col-xs-12 col-sm-2">
     <div class="page-header">
-      <p><%= @showcase.title %></p>
+      <h4><%= @showcase.title %></h4>
     </div>
-
-    <% @products.each do |p| %>
-      <div class="col-xs-12 col-sm-3 product">
-        <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
-          <%= image_tag p.image_url,  class: "img-responsive" %>
-        <% end %>
-      </div>
-    <% end %>
+    <p><%= @showcase.subtitle %></p>
   </div>
+  <% @products.each do |p| %>
+    <div class="col-xs-12 col-sm-3 product">
+      <%= link_to product_path(p), class:"thumbnail", target: "_blank" do %>
+        <%= image_tag p.image_url,  class: "img-responsive" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+

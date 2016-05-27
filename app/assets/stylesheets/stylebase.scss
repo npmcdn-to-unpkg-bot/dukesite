@@ -1,13 +1,15 @@
 @import "bootstrap-sprockets";
 
 $font-family-base: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+$link-hover-decoration: none;
 $bg-pink: #fdf8fa;
 $base-pink: #f48db0;
-$duke-blue: #013088;
-$green: #66CC33;
+$gray-light: #777;
+$gray-lighter: #eee;
 $border-solid: 1px solid #e5e5e5;
 $border-solid-white: 1px solid white;
-
+$border-solid-gray-light: 1px solid $gray-light;
+$border-solid-gray-lighter: 1px solid $gray-lighter;
 
 @mixin selection-color {
   background-color: $base-pink;
@@ -22,12 +24,12 @@ $border-solid-white: 1px solid white;
   @include selection-color;
 }
 
-@mixin botton($color: white) { 
+@mixin button($color: white) { 
   font-size: 12px;
   @include padding-top-bottom(10px);
   @include padding-left-right(12px);
   background-color: $color;
-  border: 1px solid $gray-light;
+  border: $border-solid-gray-light;
   border-radius: 5px;
 }
 

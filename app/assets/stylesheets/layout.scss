@@ -6,10 +6,11 @@ body {
   }
   a:hover { 
     color: $gray;
-    // text-decoration: underline;
     border-bottom-color: $base-pink;
   }
-
+  a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
+    border-color: $gray-light;
+  }
   .container {
     border-left: 1px solid $gray-lighter;
     border-right: 1px solid $gray-lighter;
@@ -19,38 +20,38 @@ body {
       li { display: inline-block; }
     }
     .nav-bar {
-      li { 
+      @include margin-top-bottom(30px);
+      li {
         display: inline-block;
         text-transform: uppercase;
       }
       .logo-wrapper {
-        text-align: center;
-        margin-right: 20px;
-      }
-      .pull-right {
-        margin-top: 40px;
-        margin-right: 40px;
-        .navbar-link {
-          letter-spacing: 0.5px;
-          font-family: $font-family-base;
-          font-weight: $headings-font-weight;
-          padding: 15px 20px 10px 20px;
-          height: $line-height-base;
+        img {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          border-bottom: 1px dotted $gray-lighter;;
         }
       }
-    }
-
-    .category_nav {
-      margin-right: 20px;
-      margin-left: 20px;
-      li {
-        text-transform: uppercase;
-        display: inline-block; 
-        letter-spacing: 0.5px;
-        font-family: $font-family-base;
-        font-weight: $headings-font-weight;
-        padding: 15px 15px 10px 0px;
-        height: $line-height-base;
+      .nav-link-bar {
+        @include margin-left-right;
+        @include padding-left-right(2%);
+        @include padding-top-bottom(1%);
+        margin-bottom: 2%;
+        border-bottom: $border-solid-gray-light;
+        ul { 
+          text-align: center;
+          margin:0;
+          padding: 0;
+          @include padding-top-bottom(1%);
+        }
+        li {
+          letter-spacing: 2px;
+          font-family: $font-family-base;
+          font-weight: $headings-font-weight;
+          height: $line-height-base;
+          @include padding-left-right(1.5%);
+        }
       }
     }
     .page-header p { 
@@ -61,21 +62,43 @@ body {
         height: $line-height-base;
     }
   }
-}
+  .product {
+    @include margin-top-bottom(10%);
+    @include padding-left-right(4%);
+    .btn-buy {
+      @include button;
+      font-size: 14px;
+    }
+    .btn-buy:hover {
+      background-color: $base-pink;
+      color: white;
+      border: $border-solid-white;
+    }
+    p { margin-top: 10%;}
+  }
+  .subscribe {
+    @include padding-top-bottom;
+    @include margin-top-bottom(4%);
+    text-align: center;
+    min-height: 150px;
+    background-color: $base-pink;
+    color: white;
+  }
 
-.subscribe {
-  @include padding-top-bottom;
-  @include margin-top-bottom(4%);
-  text-align: center;
-  min-height: 150px;
-  background-color: $base-pink;
-  color: white;
+  .msg_panel {
+    margin-top: 8%;
+    margin-bottom: 8%;
+    .panel {
+      padding-left: 2%;
+      padding-right: 2%;
+    }
+  }
 }
 
 footer {
   .footer-logo {
     padding-bottom: 2%;
-    img[alt="Thedukegirls"] {
+    img {
       display: block;
       margin-left: auto;
       margin-right: auto;

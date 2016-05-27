@@ -1,33 +1,30 @@
-.landing-carousel .carousel img {
-  // position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height:auto;
-  vertical-align : middle;
-}
 .landing-carousel {
+  @include margin-top-bottom(2%);
   .carousel-inner { 
   max-height: 480px;
   }
+  .carousel img {
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height:auto;
+    vertical-align : middle;
+  }
 }
 
-.showcase {
+.showcase, .category {
   @include margin-top-bottom(30px);
   @include margin-left-right;
   @include padding-left-right(2%);
-  // border-left: 1px solid $gray-light;
 }
 
 .showcase-header {
   @include margin-top-bottom(30px);
   @include padding-top-bottom(1%);
-  // background: -webkit-linear-gradient(left top, #f6a4c0, #F8BBD0);
-  // background-color: $base-pink;
-  border-top: 1px solid $gray-light;
-  border-bottom: 1px solid $gray-light;
+  border-top: $border-solid-gray-light;
+  border-bottom: $border-solid-gray-light;
   a { 
-    border-bottom: 1px solid $gray-lighter;
+    border-bottom: $border-solid-gray-lighter;
   }
   p {
     text-transform: uppercase;
@@ -40,14 +37,16 @@
   }
   .more-button {
     p { margin-top: 12px; }
-    a {
-      @include botton;
-    }
+    a { @include button; }
     a:hover {
       background-color: $bg-pink;
       color: $base-pink;
     }
   }
+}
+
+.showcase-body {
+  @include margin-top-bottom(5%);
 }
 
 .product > a > img:hover {

@@ -1,29 +1,23 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-3">
-      <%= image_tag @product.image_url, class: "img-responsive", size: '550' %>
-    </div>
-    <div class="col-xs-12 col-sm-5">
-
-      <h3>
-        <%= @product.title %>
-      </h3>
+<div class="row product">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+    <%= image_tag @product.image_url, class: "img-responsive", size: '550' %>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+    <dl class="dl-horizontal">
+      <h3><%= @product.title %></h3>
       <hr>
-      <dl class="dl-horizontal">
-        <dt>Description</dt>
-        <dd><%= @product.description %></dd>
-        <dt>Category</dt>
-        <dd>
-          <% @product.categories.each do |s| %>
-            <%= link_to s.name, category_path(s) if s.visible? %> | 
-          <% end %>
-        </dd>
-        <dt>Price</dt>
-        <dd><%= @price %> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></dd>
-        <hr>  
-        <dt></dt>
-        <dd><%= link_to "Buy me on Amazon", url_with_protocol(@product.url), class: "btn btn-danger", target: "_blank" %></dd>
-      </dl>
-    </div>
+      <dt>Description</dt>
+      <dd><%= @product.description %></dd>
+      <dt>Category</dt>
+      <dd>
+        <% @product.categories.each do |s| %>
+          <%= link_to s.name, category_path(s) if s.visible? %> | 
+        <% end %>
+      </dd>
+      <dt>Price</dt>
+      <dd><%= @price %> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></dd>
+      <hr>  
+    </dl>
+    <p class="text-center"><%= link_to "Buy Me on Amazon", url_with_protocol(@product.url), class: "btn-buy", target: "_blank" %></p>
   </div>
 </div>

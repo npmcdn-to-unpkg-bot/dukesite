@@ -1,21 +1,5 @@
 @import "stylebase";
-
-$link-color: $duke-blue;
-$link-hover-decoration: none;
-$thumbnail-padding: 0;
-$table-bg-hover: #E8E8E8 ;
-
 @import "bootstrap";
 @import "jquery.fileupload-ui";
 @import "layout.scss";
 @import "welcome.scss";
-
-
-.msg_panel {
-  margin-top: 8%;
-  margin-bottom: 8%;
-  .panel {
-    padding-left: 2%;
-    padding-right: 2%;
-  }
-}

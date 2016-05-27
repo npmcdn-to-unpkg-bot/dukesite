@@ -22,28 +22,20 @@
   </div>
 
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul class="pull-left">
-      <li class="logo-wrapper">
+    <div class="row logo-wrapper">
       <%= link_to image_tag(@icon, width: "250px"), root_path %>
-      </li>
-    </ul>
-    <ul class="pull-right">
-      <% @showcases.each do |s| %>
-        <li><%= link_to s.title, showcase_path(s), class: "navbar-link" %></li>
-      <% end %>
-    </ul>
+    </div>
+    <div class="row nav-link-bar">
+      <ul>
+        <% @showcases.each do |s| %>
+          <li><%= link_to s.title, showcase_path(s) %></li>
+        <% end %>
+      </ul>
+      <ul>
+        <% @categories.each do |c| %>
+          <li><%= link_to c.name, category_path(c) %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</nav>
-
-<nav class="row category_nav">
-    <ul class="pull-left">
-      <% @categories.each do |c| %>
-        <li><%= link_to c.name, category_path(c) %></li>
-      <% end %>
-    </ul>
-    <%#
-    <ul class="pull-right">
-      <li>Search</li>
-    </ul>
-    %>
 </nav>
