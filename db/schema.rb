@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525123440) do
+ActiveRecord::Schema.define(version: 20160527153908) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160525123440) do
     t.boolean  "show_on_landing_page", default: false
     t.string   "slug"
     t.boolean  "visible",              default: false
+    t.string   "subtitle"
   end
 
   create_table "site_configs", force: :cascade do |t|
