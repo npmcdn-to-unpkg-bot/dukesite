@@ -19,16 +19,18 @@
 }
 
 .showcase-header {
+  // background: -webkit-linear-gradient(left top, #fdf8fa, $bg-pink);
   @include margin-top-bottom(30px);
   @include padding-top-bottom(1%);
   border-top: $border-solid-gray-light;
   border-bottom: $border-solid-gray-light;
+  // border-radius: 10px;
   a { 
     border-bottom: $border-solid-gray-lighter;
   }
   p {
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 17px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     font-family: $font-family-base;

@@ -11,7 +11,7 @@ body {
   a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     border-color: $gray-light;
   }
-  .container {
+  .container-fluid {
     border-left: 1px solid $gray-lighter;
     border-right: 1px solid $gray-lighter;
     background-color: white;
@@ -21,10 +21,6 @@ body {
     }
     .nav-bar {
       @include margin-top-bottom(30px);
-      li {
-        display: inline-block;
-        text-transform: uppercase;
-      }
       .logo-wrapper {
         img {
           display: block;
@@ -39,18 +35,47 @@ body {
         @include padding-top-bottom(1%);
         margin-bottom: 2%;
         border-bottom: $border-solid-gray-light;
-        ul { 
+        ul {
           text-align: center;
           margin:0;
-          padding: 0;
           @include padding-top-bottom(1%);
         }
         li {
+          list-style-type: none;
+          text-transform: uppercase;
           letter-spacing: 2px;
           font-family: $font-family-base;
           font-weight: $headings-font-weight;
           height: $line-height-base;
           @include padding-left-right(1.5%);
+        }
+      }
+    }
+    @media (min-width: 768px) {
+      .nav-link-bar li {
+        display: inline;
+      }
+    }
+    @media (max-width: 767px) {
+      .navbar-collapse {
+        padding: 0;
+        margin: 0;
+      }
+      .nav-link-bar {
+        ul {
+          -webkit-margin-before: 0;
+          -webkit-padding-start: 0;
+          -webkit-margin-after: 0;
+        }
+        li {
+          display: block;
+          background-color: $bg-pink;
+          @include padding-left-right(2%);
+          @include padding-top-bottom(15px);
+        }
+        li:hover{
+          background-color: $base-pink;
+          color: white;
         }
       }
     }

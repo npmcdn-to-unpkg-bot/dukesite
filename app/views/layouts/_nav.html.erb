@@ -19,12 +19,12 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-  </div>
-
-  <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <div class="row logo-wrapper">
       <%= link_to image_tag(@icon, width: "250px"), root_path %>
     </div>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <div class="row nav-link-bar">
       <ul>
         <% @showcases.each do |s| %>
