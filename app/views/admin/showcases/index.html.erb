@@ -35,6 +35,7 @@
           <small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small>
           <h4><%= link_to p.title, admin_showcase_products_path(p) %>
           </h4>
+          <p><%= p.subtitle %></p>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
             <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>

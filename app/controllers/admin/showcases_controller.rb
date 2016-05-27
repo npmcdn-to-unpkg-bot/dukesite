@@ -98,9 +98,9 @@ class Admin::ShowcasesController < AdminController
     
     def showcase_params(options = {:update_photo => false})
       if options[:update_photo] 
-        params.require(:showcase).permit(:title, :show_on_landing_page, :visible, photo_attributes: [:image])
+        params.require(:showcase).permit(:title, :subtitle, :show_on_landing_page, :visible, photo_attributes: [:image])
       else
-        params.require(:showcase).permit(:title, :show_on_landing_page, :visible)
+        params.require(:showcase).permit(:title, :subtitle, :show_on_landing_page, :visible)
       end
     end
 

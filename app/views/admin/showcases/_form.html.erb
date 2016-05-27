@@ -22,6 +22,14 @@
         </div>
       </div>
     </div>
+    <div class="form-group">
+      <%= s.label "Subtitle" %>
+      <div class="row">
+        <div class="col-xs-8">
+          <%= s.text_field :subtitle, class: "form-control", placeholder: "Enter subtitle" %>
+        </div>
+      </div>
+    </div>
     
     <% unless @thumb_img_url.present? %>
       <div class="form-group">
