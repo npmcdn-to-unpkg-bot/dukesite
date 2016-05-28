@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       title       = options[:title] || SiteConfig.find_by(slug: "site-name").value
       description = SiteConfig.find_by(slug: "description").value
       icon        = SiteConfig.find_by(slug: "icon").photo
-      image       = icon.image.url if (icon.image.present? && !icon.image.url.nil?)
+      image       = icon.image.thumb.url if (icon.image.present? && !icon.image.url.nil?)
       current_url = request.url
 
       # # keywords
