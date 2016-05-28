@@ -10,7 +10,7 @@
     </div>
     
     <div class="row showcase-body">
-      <% showcase_products = showcase.products[0..7] %>
+      <% showcase_products = showcase.products.order("updated_at DESC")[0..7] %>
 
       <% showcase_products.each do |p| %>
         <div class="col-xs-12 col-sm-3">
