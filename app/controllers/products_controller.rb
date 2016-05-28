@@ -1,27 +1,23 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
   def show
-    prepare_meta_tags(@product)
     @price = Amazon::EcsWrapper.get_item_price(@product.asin)
+    # meta-tags
+    # ------------------------------------------------------------------------------
+    title       = @product.title
+    description = @product.description
+    image       = @product.image_url
+    keywords = @product.keywords.map(&:value) if @product.keywords.present?
+
+    prepare_meta_tags title:       title,
+                      description: description,
+                      keywords:    keywords,
+                      og: { title:       title,
+                            description: description,
+                            image:       image }
   end
 
   private
-    def prepare_meta_tags(object)
-      @title = object.title
-      @description = object.description
-      # og
-      # ------------------------------------------------------------------------------
-      @image = object.image_url
-      @og = { title: @title,
-              type:  'website',
-              url:  product_url(object),
-              image:  @image }
-      # keywords
-      # ------------------------------------------------------------------------------
-      keyword_entries = object.keywords
-      @object_keywords = keyword_entries.map(&:value) if keyword_entries.present?
-    end
-
     def find_product
       @product = Product.find_by(slug: params[:id])
       # Only published products can be seen on the shop

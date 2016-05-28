@@ -2,58 +2,74 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
-  before_action :default_meta_tags, if: "request.get?"
-  before_action :get_visible_category, :get_landing_page_showcase, :get_social_network_account, :layout_text
+  before_action :prepare_meta_tags, if: "request.get?"
+  before_action :get_default_variables
   protect_from_forgery with: :exception
   layout :layout_by_resource
 
   private
-    def default_meta_tags
-      @site_name = SiteConfig.find_by(slug: "site-name").value
-      @description = SiteConfig.find_by(slug: "description").value
-      # og
-      # ------------------------------------------------------------------------------
-      icon_image = SiteConfig.find_by(slug: "icon").photo
-      @image = icon_image.image.url if icon_image.present?
+    def prepare_meta_tags( options = {} )
+      site_name   = SiteConfig.find_by(slug: "site-name").value
+      title       = options[:title] || SiteConfig.find_by(slug: "site-name").value
+      description = SiteConfig.find_by(slug: "description").value
+      icon        = SiteConfig.find_by(slug: "icon").photo
+      image       = icon.image.url if (icon.image.present? && !icon.image.url.nil?)
+      current_url = request.url
+
+      # # keywords
+      # # ------------------------------------------------------------------------------
+      keyword_entries = SiteConfig.find_by(slug: "seo").keywords
+      keywords = keyword_entries.map(&:value) if keyword_entries.present?
+
+      # # og
+      # # ------------------------------------------------------------------------------
       @og = { title: @title,
               type:  'website',
-              url:  root_url,
-              image:  @image }
-      # favicon
+              image: image,
+              url:   current_url
+            }
+
+      # # favicon
       # ------------------------------------------------------------------------------# favicon
       favicon = SiteConfig.find_by(slug: "favorite-icon").photo
-      favicon.nil? ? @favicon = nil : @favicon = favicon.image.url
-      # keywords
-      # ------------------------------------------------------------------------------
-      keyword_entries = SiteConfig.find_by(slug: "seo").keywords
-      @keywords = keyword_entries.map(&:value) if keyword_entries.present?
+      favicon = favicon.image.url if (favicon.image.present? && !favicon.image.url.nil?)
+
+      defaults = {
+        site:        site_name,
+        title:       title,
+        image:       image,
+        icon:        favicon,
+        description: description,
+        canonical:   current_url,
+        keywords:    keywords,
+        og:          {url: current_url,
+                      site_name: site_name,
+                      title: title,
+                      image: image,
+                      description: description,
+                      type: 'website'}
+      }
+      options.reverse_merge!(defaults)
+      set_meta_tags options
     end
 
-    def layout_text
+    def get_default_variables
       @our_belief = SiteConfig.find_by(key: "Our Belief").value
       # icon
       # ------------------------------------------------------------------------------
       icon = SiteConfig.find_by(slug: "icon").photo
       icon.nil? ? @icon = "http://thedudeminds.de/images/thedukegirls.png" : @icon = icon.image.url
-    end
 
-    def get_visible_category
       @categories = Category.visible
-    end
-
-    def get_landing_page_showcase
       @showcases = Showcase.visible_on_landing_page
-    end
-
-    def get_social_network_account
       @visible_snas = SocialNetworkAccount.visible
     end
     
     def layout_by_resource
-    if devise_controller? && resource_name == :admin
-      "devise"
-    else
-      "application"
+      if devise_controller? && resource_name == :admin
+        "devise"
+      else
+        "application"
+      end
     end
-  end
 end

@@ -3,25 +3,22 @@ class ShowcasesController < ApplicationController
   def show
     # Only published products can be seen on the shop
     # ------------------------------------------------------------------------------
-    prepare_meta_tags(@showcase)
     @products = @showcase.products.where(published: true).order("updated_at DESC")
+    # meta-tags
+    # ------------------------------------------------------------------------------
+    title       = @showcase.title
+    description = @showcase.subtitle
+    image       = @showcase.photo.image.url if (@showcase.photo.present? && !@showcase.photo.image.url.nil?)
+    keywords    = @showcase.keywords.map(&:value) if @showcase.keywords.present?
+
+    prepare_meta_tags  title:       title,
+                       keywords:    keywords,
+                       og: { title:       title,
+                             description: description,
+                             image:       image }
   end
 
   private
-    def prepare_meta_tags(object)
-      @title = object.title
-      # og
-      # ------------------------------------------------------------------------------
-      @image = object.photo.image.url if object.photo.present?
-      @og = { title: @title,
-              type:  'website',
-              url:  showcase_url(object),
-              image:  @image }
-      # keywords
-      # ------------------------------------------------------------------------------
-      keyword_entries = object.keywords
-      @object_keywords = keyword_entries.map(&:value) if keyword_entries.present?
-    end
     def find_showcase
       @showcase = Showcase.find_by(slug: params[:id])
       render :status => 404 if !@showcase.visible || @showcase.nil?
