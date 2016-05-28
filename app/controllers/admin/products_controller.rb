@@ -62,7 +62,8 @@ class Admin::ProductsController < AdminController
       status   = 400
       response = "Please enter ASIN"
     else
-      res = Amazon::EcsWrapper.get_item_group(params[:asin])
+      asin  = params[:asin].strip!
+      res = Amazon::EcsWrapper.get_item_group(asin)
       if res.respond_to? ('error')
         status   = 400
         response = res.error
