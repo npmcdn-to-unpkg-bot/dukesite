@@ -12,7 +12,7 @@ module Amazon
     p_asin = request_parent_asin(asin)
     return p_asin unless p_asin.is_a? String
 
-    res_var = request_amazon("VariationMatrix", p_asin)
+    res_var = request_amazon({:response_group => "VariationMatrix"}, p_asin)
     raise res_var.error if res_var.has_error?
     return items if res_var.items.count == 0
 
@@ -61,7 +61,7 @@ module Amazon
 
   def self.get_item_attributes(asin, items)
     # get data from 'Medium' request
-    res_attr = request_amazon("Medium", asin)
+    res_attr = request_amazon({:response_group => "Medium"}, asin)
     # sort attributes
     res_attr.items.each do |node_item|
       item_asin = node_item.get("ASIN") if item_asin.nil?
@@ -76,32 +76,37 @@ module Amazon
     end
   end
 
-  def self.get_item_price(response_group, asin, get_element, get_value)
-    res_price = request_amazon(response_group, asin)
+  def self.get_item_price(asin)
+    #'ItemAttributes', @product.asin, "ListPrice", "FormattedPrice"
 
-    price_list = res_price.get_element(get_element)
-    if price_list.present?
-      return price_list.get(get_value)
+    # request Amazon price first
+    res_price_amazon = request_amazon({:response_group => "ItemAttributes"}, asin)
+    node_price = res_price_amazon.get_element("ListPrice")
+
+    if !node_price.present?
+      # request offer price if Amazon price is not available
+      res_price_offer = request_amazon({:response_group => "OfferSummary"}, asin)
+      node_price = res_price_offer.get_element("LowestNewPrice")
+    end
+
+    if node_price.present?
+      return node_price.get("FormattedPrice")
     else
       return "---"
     end
   end
 
-
-  def self.extract_price(response_group, get_element, get_value)
-  end
-
   private
     # sends a request to Amazon Web Service using configured AWS credentials
     # returns: the corresponding Amazon::Ecs response
-    def self.request_amazon(response_group, asin)
+    def self.request_amazon(parameters, asin)
       Amazon::Ecs.configure do |options|
         options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID"]
         options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
 
-      return Amazon::Ecs.item_lookup(asin, {:response_group => response_group})
+      return Amazon::Ecs.item_lookup(asin, parameters)
     end
 
     # requests the parent ASIN for a given ASIN
@@ -109,10 +114,10 @@ module Amazon
     def self.request_parent_asin(asin)
       p_asin = nil
 
-      res_id = request_amazon("ItemIds", asin)
+      res_id = request_amazon({:response_group => "ItemIds"}, asin)
       if res_id.has_error?
-        return res_id 
-      else 
+        return res_id
+      else
         p_asin = res_id.items[0].get("ParentASIN") if res_id.items.count >= 1
         return p_asin
       end

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
   def show
     prepare_meta_tags(@product)
-    @price = Amazon::EcsWrapper.get_item_price('ItemAttributes', @product.asin, "ListPrice", "FormattedPrice")
+    @price = Amazon::EcsWrapper.get_item_price(@product.asin)
   end
 
   private
@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
       keyword_entries = object.keywords
       @object_keywords = keyword_entries.map(&:value) if keyword_entries.present?
     end
+
     def find_product
       @product = Product.find_by(slug: params[:id])
       # Only published products can be seen on the shop
