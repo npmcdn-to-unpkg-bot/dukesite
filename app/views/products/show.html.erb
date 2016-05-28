@@ -1,11 +1,10 @@
-<div class="row product">
-  <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+<div class="row product-details">
+  <div class="col-xs-12 col-sm-4 col-sm-offset-2">
     <%= image_tag @product.image_url, class: "img-responsive", size: '550' %>
   </div>
-  <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+  <div class="col-xs-12 col-sm-6">
     <dl class="dl-horizontal">
       <h3><%= @product.title %></h3>
-      <hr>
       <dt>Description</dt>
       <dd><%= @product.description %></dd>
       <dt>Category</dt>
@@ -15,8 +14,7 @@
         <% end %>
       </dd>
       <dt>Price</dt>
-      <dd><%= @price %> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></dd>
-      <hr>  
+      <dd><%= @price %> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span></dd> 
     </dl>
     <p class="text-center"><%= link_to "Buy Me on Amazon", url_with_protocol(@product.url), class: "btn-buy", target: "_blank" %></p>
   </div>

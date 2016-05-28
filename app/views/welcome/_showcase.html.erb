@@ -2,7 +2,12 @@
   <% @showcases.each do |showcase| %>
     <div class="row showcase-header">
       <div class="col-xs-12 col-sm-4">
-        <p><strong><%= link_to showcase.title, showcase_path(showcase) %></strong><br/ ><small><em><%= showcase.subtitle %></em></small></p>
+        <p>
+          <%= link_to showcase_path(showcase) do %>
+          <strong><%= showcase.title %></strong><br/ >
+          <small><em><%= showcase.subtitle %></em></small>
+          <% end %>
+        </p>
       </div>
       <div class="col-xs-12 col-sm-2 hidden-xs pull-right more-button">
         <p><%= link_to "More", showcase_path(showcase) %></p>
@@ -17,7 +22,9 @@
           <%= link_to product_path(p), class:"thumbnail" do %>
             <%= image_tag p.image_url, class: "img-responsive" %>
           <% end %>
-            <p class="text-center"><%= p.title %></p>
+            <div class="caption">
+              <p class="text-center"><%= p.title %></p>
+            </div>
         </div>
       <% end %>
     </div>

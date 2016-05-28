@@ -100,8 +100,24 @@ body {
   }
   .product-box {
     @include margin-top-bottom(5%);
+    .product > a > img:hover {
+      opacity: 0.5;
+    }
   }
-  .product {
+  .product-details {
+    margin-top :5%;
+    margin-bottom :10%;
+    .dl-horizontal {
+      margin-right: 10%;
+      h3 { 
+        border-bottom: $border-solid-gray-lighter;
+        padding-bottom: 3%;
+      }
+      dd { margin-right: 10%; }
+      dt, dd { @include padding-top-bottom(1%); }
+      dt:first-child, dd:first-child { padding-top: 3%; }
+      dt:last-child, dd:last-child { padding-bottom: 3%; }
+    }
     .btn-buy {
       @include button;
       font-size: 14px;
@@ -111,7 +127,10 @@ body {
       color: white;
       border: $border-solid-white;
     }
-    p { margin-top: 10%;}
+    p {
+      @include padding-top-bottom(5%);
+      border-top: $border-solid-gray-lighter;
+    }
     a > img:hover {
       opacity: 0.5;
     }

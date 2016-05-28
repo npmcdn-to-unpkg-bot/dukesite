@@ -47,10 +47,19 @@
     }
   }
 }
+@media (max-width: 767px) {
+  .showcase-header a {
+    width: 100%;
+    display: block;
+  }
+}
 
 .showcase-body {
   @include margin-top-bottom(5%);
-  img:hover {
-    opacity: 0.5;
+  div {
+    margin-bottom: 4%;
+    img:hover {
+      opacity: 0.5;
+    }
   }
 }
