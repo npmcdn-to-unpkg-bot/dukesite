@@ -49,3 +49,52 @@ $border-solid-gray-lighter: 1px solid $gray-lighter;
   padding-left: $width;
   padding-right: $width;
 }
+
+// LG Desktop
+@media (min-width: 1200px) {
+  .thumbnail > img, .thumbnail a > img {
+    width: auto;
+    max-height: 392px;
+  }
+  .product > .thumbnail > img {
+    width: auto;
+    max-height: 271px;
+  }
+}
+
+// MD Desktop
+@media (min-width: 992px) and (max-width: 1199px){
+  .thumbnail > img, .thumbnail a > img {
+    width: auto;
+    max-height: 282px;
+  }
+  .product > .thumbnail > img {
+    width: auto;
+    max-height: 188px;
+  }
+
+}
+
+// Tablet
+@media (min-width: 768px) and (max-width: 991px) {
+  .thumbnail > img, .thumbnail a > img {
+    width: auto;
+    max-height: 133px;
+  }
+  .product > .thumbnail > img {
+    width: auto;
+    max-height: 76px;
+  }
+}
+
+// Phone
+@media (max-width: 767px) {
+  .thumbnail > img, .thumbnail a > img {
+    max-width: 100%;
+    height: auto;
+  }
+  .product > .thumbnail > img {
+    max-width: 100%;
+    height: auto;
+  }
+}

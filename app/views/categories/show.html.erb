@@ -11,7 +11,7 @@
     <% @products.each do |p| %>
       <div class="col-xs-12 col-sm-3 product">
       <%= link_to product_path(p), class:"thumbnail" do %>
-          <%= image_tag p.image_url,  class: "img-responsive", size: '204x204' %>
+          <%= image_tag p.image_url,  class: "img-responsive" %>
       <% end %>
       </div>
     <% end %>
