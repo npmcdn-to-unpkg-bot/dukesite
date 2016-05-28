@@ -2,7 +2,7 @@
   <% products.each do |p| %>
     <div class="col-xs-12 col-sm-3">
       <div class="thumbnail admin-product-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
-        <p>
+        <p class="tags">
           <% p.categories.each do |pc| %>
             <%= link_to admin_category_products_path(pc) do %>
               <span class="label label-warning"><%= pc.name %></span> 
@@ -14,7 +14,7 @@
             <% end %>
           <% end %>
         </p>
-        <% p.updated_at? ? update_time = p.updated_at.to_formatted_s(:long) : update_time = p.created_at.to_formatted_s(:long) %>
+          <% p.updated_at? ? update_time = p.updated_at.to_formatted_s(:long) : update_time = p.created_at.to_formatted_s(:long) %>
         <small class="pull-right"><%= update_time %></small>
         <%= link_to product_path(p), target: "_blank" do %>
           <%= image_tag p.image_url %>

@@ -24,7 +24,6 @@ Category.create([{ name: "Shirts", visible: "true" },
                   { name: "T-shirts", visible: "true" },
                   { name: "Pants", visible: "true" },
                   { name: "Hats", visible: "true" },
-                  { name: "Socks", visible: "true" },
                   { name: "Jerseys", visible: "true" }])
   
 Product.create([{
