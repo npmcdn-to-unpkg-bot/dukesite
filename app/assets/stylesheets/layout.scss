@@ -2,7 +2,7 @@ body {
   background-color: $bg-pink;
   a { 
     color: $gray-darker;
-    border-bottom: 1px solid white;
+    border-bottom: $border-solid-white;
   }
   a:hover { 
     color: $gray;
@@ -30,8 +30,6 @@ body {
         }
       }
       .nav-link-bar {
-        @include margin-left-right;
-        @include padding-left-right(2%);
         @include padding-top-bottom(1%);
         margin-bottom: 2%;
         border-bottom: $border-solid-gray-light;
@@ -52,8 +50,15 @@ body {
       }
     }
     @media (min-width: 768px) {
+      .nav-link-bar {
+        @include margin-left-right;
+        @include padding-left-right(2%);
+      }
       .nav-link-bar li {
         display: inline;
+      }
+      .nav-link-bar a.home-link {
+        display: none;
       }
     }
     @media (max-width: 767px) {
@@ -62,18 +67,24 @@ body {
         margin: 0;
       }
       .nav-link-bar {
+        @include margin-left-right(0);
+        @include padding-left-right(0);
+      }
+      .nav-link-bar {
         ul {
           -webkit-margin-before: 0;
           -webkit-padding-start: 0;
           -webkit-margin-after: 0;
         }
-        li {
+        a, a.home-link {
           display: block;
+          text-align: left;
           background-color: $bg-pink;
-          @include padding-left-right(2%);
+          @include padding-left-right(4%);
           @include padding-top-bottom(15px);
+          border-bottom: 1px dotted white;;
         }
-        li:hover{
+        a:hover, a.active, a:focus {
           background-color: $base-pink;
           color: white;
         }
@@ -87,9 +98,10 @@ body {
         height: $line-height-base;
     }
   }
+  .product-box {
+    @include margin-top-bottom(5%);
+  }
   .product {
-    @include margin-top-bottom(10%);
-    @include padding-left-right(4%);
     .btn-buy {
       @include button;
       font-size: 14px;
@@ -100,6 +112,9 @@ body {
       border: $border-solid-white;
     }
     p { margin-top: 10%;}
+    a > img:hover {
+      opacity: 0.5;
+    }
   }
   .subscribe {
     @include padding-top-bottom;

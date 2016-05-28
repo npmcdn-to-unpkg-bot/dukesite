@@ -27,13 +27,20 @@
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <div class="row nav-link-bar">
       <ul>
+          <%= link_to root_path, class: "home-link #{ active_class(root_path) }" do %>
+            <li>Home</li>
+          <% end %>
         <% @showcases.each do |s| %>
-          <li><%= link_to s.title, showcase_path(s) %></li>
+          <%= link_to showcase_path(s), class: active_class(showcase_path(s)) do %>
+            <li><%= s.title %></li>
+          <% end %>
         <% end %>
       </ul>
       <ul>
         <% @categories.each do |c| %>
-          <li><%= link_to c.name, category_path(c) %></li>
+          <%= link_to category_path(c), class: active_class(category_path(c)) do %>
+            <li><%= c.name %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>

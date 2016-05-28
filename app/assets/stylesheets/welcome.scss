@@ -49,8 +49,7 @@
 
 .showcase-body {
   @include margin-top-bottom(5%);
-}
-
-.product > a > img:hover {
-  opacity: 0.5;
+  img:hover {
+    opacity: 0.5;
+  }
 }
