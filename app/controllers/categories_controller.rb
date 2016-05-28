@@ -11,7 +11,6 @@ class CategoriesController < ApplicationController
     prepare_meta_tags  title:       title,
                        keywords:    keywords,
                        og: { title:       title,
-                             description: description,
                              image:       image
                            }
   end
