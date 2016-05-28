@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
     @products = @category.products.where(published: true).order("updated_at DESC")
     # meta-tags
     # ------------------------------------------------------------------------------
-    title       = @category.title
+    title       = @category.name
     image       = @category.photo.image.thumb.url if (@category.photo.present? && !@category.photo.image.url.nil?)
     keywords    = @category.keywords.map(&:value) if @category.keywords.present?
     
