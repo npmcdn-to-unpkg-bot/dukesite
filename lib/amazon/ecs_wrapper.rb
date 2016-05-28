@@ -106,7 +106,9 @@ module Amazon
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
 
-      return Amazon::Ecs.item_lookup(asin, parameters)
+      result = Amazon::Ecs.item_lookup(asin, parameters)
+
+      return result
     end
 
     # requests the parent ASIN for a given ASIN
