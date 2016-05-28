@@ -8,7 +8,7 @@ class ShowcasesController < ApplicationController
     # ------------------------------------------------------------------------------
     title       = @showcase.title
     description = @showcase.subtitle
-    image       = @showcase.photo.image.url if (@showcase.photo.present? && !@showcase.photo.image.url.nil?)
+    image       = @showcase.photo.image.thumb.url if (@showcase.photo.present? && !@showcase.photo.image.url.nil?)
     keywords    = @showcase.keywords.map(&:value) if @showcase.keywords.present?
 
     prepare_meta_tags  title:       title,
