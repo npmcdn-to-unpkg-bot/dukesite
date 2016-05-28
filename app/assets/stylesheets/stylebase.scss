@@ -54,11 +54,11 @@ $border-solid-gray-lighter: 1px solid $gray-lighter;
 @media (min-width: 1200px) {
   .thumbnail > img, .thumbnail a > img {
     width: auto;
-    max-height: 392px;
+    max-height: 230px;
   }
   .product > .thumbnail > img {
     width: auto;
-    max-height: 249px;
+    max-height: 171px;
   }
 }
 
@@ -66,11 +66,11 @@ $border-solid-gray-lighter: 1px solid $gray-lighter;
 @media (min-width: 992px) and (max-width: 1199px){
   .thumbnail > img, .thumbnail a > img {
     width: auto;
-    max-height: 282px;
+    max-height: 183px;
   }
   .product > .thumbnail > img {
     width: auto;
-    max-height: 188px;
+    max-height: 132px;
   }
 
 }

@@ -15,7 +15,7 @@
     </div>
     
     <div class="row showcase-body">
-      <% showcase_products = showcase.products.order("updated_at DESC")[0..7]
+      <% showcase_products = showcase.products.where(published: true).order("updated_at DESC")[0..7]
        %>
       <% showcase_products.each do |p| %>
         <div class="col-xs-12 col-sm-3">
@@ -23,7 +23,7 @@
             <%= image_tag p.image_url, class: "img-responsive" %>
           <% end %>
             <div class="caption">
-              <p class="text-center"><%= p.title %></p>
+              <p class="text-center"><%= truncate p.title, length: 41, omission: '...' %></p>
             </div>
         </div>
       <% end %>
