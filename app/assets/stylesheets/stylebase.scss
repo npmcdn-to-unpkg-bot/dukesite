@@ -1,5 +1,6 @@
 $font-family-base: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
 $link-hover-decoration: none;
+$header-pink: #fdeaf3;
 $bg-pink: #fdf8fa;
 $base-pink: #f48db0;
 $gray-light: #777;
@@ -8,6 +9,8 @@ $border-solid: 1px solid #e5e5e5;
 $border-solid-white: 1px solid white;
 $border-solid-gray-light: 1px solid $gray-light;
 $border-solid-gray-lighter: 1px solid $gray-lighter;
+$border-dotted-gray-light: 1px dotted $gray-light;
+$border-dotted-white: 1px dotted white;
 
 @mixin selection-color {
   background-color: $base-pink;

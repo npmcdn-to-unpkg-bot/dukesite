@@ -82,7 +82,7 @@ body {
           background-color: $bg-pink;
           @include padding-left-right(4%);
           @include padding-top-bottom(15px);
-          border-bottom: 1px dotted white;;
+          border-bottom: $border-dotted-white;
         }
         a:hover, a.active, a:focus {
           background-color: $base-pink;
@@ -120,7 +120,11 @@ body {
     }
     .btn-buy {
       @include button;
-      font-size: 14px;
+      font-size: 16px;
+      @include padding-left-right(6%);
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 4px;
     }
     .btn-buy:hover {
       background-color: $base-pink;

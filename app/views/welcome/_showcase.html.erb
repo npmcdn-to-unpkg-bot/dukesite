@@ -1,23 +1,24 @@
 <div class="row showcase">
   <% @showcases.each do |showcase| %>
+    <% showcase_products = showcase.products.where(published: true)
+      products = showcase_products.order("updated_at DESC")[0..7]
+       %>
     <div class="row showcase-header">
       <div class="col-xs-12 col-sm-4">
         <p>
           <%= link_to showcase_path(showcase) do %>
-          <strong><%= showcase.title %></strong><br/ >
+          <strong class="title"><%= showcase.title %></strong><br/ >
           <small><em><%= showcase.subtitle %></em></small>
           <% end %>
         </p>
       </div>
-      <div class="col-xs-12 col-sm-2 hidden-xs pull-right more-button">
-        <p><%= link_to "More", showcase_path(showcase) %></p>
+      <div class="col-xs-12 col-sm-3 hidden-xs pull-right more-button">
+        <p><%= link_to "View #{showcase_products.size} Products", showcase_path(showcase) %></p>
       </div>
     </div>
     
     <div class="row showcase-body">
-      <% showcase_products = showcase.products.where(published: true).order("updated_at DESC")[0..7]
-       %>
-      <% showcase_products.each do |p| %>
+      <% products.each do |p| %>
         <div class="col-xs-12 col-sm-3">
           <%= link_to product_path(p), class:"thumbnail" do %>
             <%= image_tag p.image_url, class: "img-responsive" %>
