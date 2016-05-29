@@ -20,6 +20,6 @@ class CategoriesController < ApplicationController
   private
 
     def find_category
-      @category = Category.find_by(slug: params[:id]], visible: true)
+      @category = Category.find_by(slug: params[:id], visible: true)
     end
 end
