@@ -18,7 +18,7 @@
     <div class="carousel-inner" role="listbox">
       <% @visible_carousels.each do |carousel| %>
         <div class="item <%= "active" if carousel.id == first_carousel.id %>">
-          <%= image_tag carousel.photo.image.url if carousel.photo.present? %>
+          <%= image_tag carousel.photo.image.url, alt: carousel.title if carousel.photo.present? %>
         </div>
       <% end %>
     </div>
