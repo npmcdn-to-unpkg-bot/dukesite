@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     # meta-tags
     # ------------------------------------------------------------------------------
     title       = @category.name
-    image       = @category.products.where(published: true)[0..5].map(&:image_url)
+    image       = @category.products.where(published: true).order("updated_at DESC")[0..5].map(&:image_url)
     image       << @category.photo.image.thumb.url if (@category.photo.present? && !@category.photo.image.url.nil?)
     keywords    = @category.keywords.map(&:value) if @category.keywords.present?
     
@@ -20,7 +20,6 @@ class CategoriesController < ApplicationController
   private
 
     def find_category
-      @category = Category.find_by(slug: params[:id])
-      render :status => 404 if !@category.visible || @category.nil?
+      @category = Category.find_by(slug: params[:id]], visible: true)
     end
 end

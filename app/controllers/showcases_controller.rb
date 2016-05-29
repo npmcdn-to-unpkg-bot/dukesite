@@ -8,7 +8,7 @@ class ShowcasesController < ApplicationController
     # ------------------------------------------------------------------------------
     title       = @showcase.title
     description = @showcase.subtitle
-    image       = @showcase.products.where(published: true)[0..5].map(&:image_url)
+    image       = @showcase.products.where(published: true).order("updated_at DESC")[0..5].map(&:image_url)
     image       << @showcase.photo.image.thumb.url if (@showcase.photo.present? && !@showcase.photo.image.url.nil?)
     keywords    = @showcase.keywords.map(&:value) if @showcase.keywords.present?
 
@@ -22,7 +22,6 @@ class ShowcasesController < ApplicationController
 
   private
     def find_showcase
-      @showcase = Showcase.find_by(slug: params[:id])
-      render :status => 404 if !@showcase.visible || @showcase.nil?
+      @showcase = Showcase.find_by(slug: params[:id], visible: true)
     end
 end
