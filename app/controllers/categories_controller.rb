@@ -5,11 +5,13 @@ class CategoriesController < ApplicationController
     # meta-tags
     # ------------------------------------------------------------------------------
     title       = @category.name
-    image       = @category.photo.image.thumb.url if (@category.photo.present? && !@category.photo.image.url.nil?)
+    image       = @category.products.where(published: true)[0..5].map(&:image_url)
+    image       << @category.photo.image.thumb.url if (@category.photo.present? && !@category.photo.image.url.nil?)
     keywords    = @category.keywords.map(&:value) if @category.keywords.present?
     
     prepare_meta_tags  title:       title,
                        keywords:    keywords,
+                       image:       image,
                        og: { title:       title,
                              image:       image
                            }

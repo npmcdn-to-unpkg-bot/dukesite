@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
     prepare_meta_tags title:       title,
                       description: description,
                       keywords:    keywords,
+                      image:       image,
                       og: { title:       title,
                             description: description,
                             image:       image }
