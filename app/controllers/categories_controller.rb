@@ -20,7 +20,6 @@ class CategoriesController < ApplicationController
   private
 
     def find_category
-      @category = Category.find_by(slug: params[:id])
-      render :status => 404 if !@category.visible || @category.nil?
+      @category = Category.find_by(slug: params[:id]], visible: true)
     end
 end
