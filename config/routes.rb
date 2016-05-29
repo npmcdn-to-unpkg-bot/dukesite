@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   root 'welcome#index'
 
   devise_for :admin do
@@ -67,4 +71,8 @@ Rails.application.routes.draw do
   ## Subscriber Newsletter
   put '/subscribe_newsletter', to: 'subscribers#create'
   get '/subscribe_newsletter/confirm_email/:id', to: 'subscribers#confirm_email', as: 'newsletter_confirm_email'
+  # error page
+  # ------------------------------------------------------------------------------
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 end
