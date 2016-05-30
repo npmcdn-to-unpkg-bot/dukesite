@@ -1,42 +1,68 @@
 <ul class="adminSideMenu" id="adminSideMenu">
-  <li class="panel">
+  <li class="panel first-layer">
+    <%= link_to admin_index_path do %>
+      <span class="glyphicon glyphicon-home" aria-hidden="true"> </span>
+      Dashboard
+    <% end %>
+  </li>
+  
+  <li class="panel second-layer">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="true" href="#sideMenu-1">Product</a>
     <ul id="sideMenu-1" class="collapse <%= collapse_class(admin_products_path, new_admin_product_path) %>">
       <li><%= link_to "All Products", admin_products_path %></li>
       <li><%= link_to "Add Product", new_admin_product_path %></li>
     </ul>
   </li>
-  <li class="panel">
+  <li class="panel second-layer">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-2">Showcase</a>
     <ul id="sideMenu-2" class="collapse <%= collapse_class(admin_showcases_path) %>">
       <li><%= link_to "All Showcases", admin_showcases_path %></li>
     </ul>
   </li>
-  <li class="panel">
+  <li class="panel second-layer">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-3">Category</a>
     <ul id="sideMenu-3" class="collapse <%= collapse_class(admin_categories_path) %>">
       <li><%= link_to "All Categories", admin_categories_path %></li>
     </ul>
   </li>
-  <li class="panel">
+  <li class="panel second-layer">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-4">Image</a>
     <ul id="sideMenu-4" class="collapse">
       <li><%= link_to "Quotes", admin_quotes_path %></li>
       <li><%= link_to "Carousels", admin_carousels_path %></li>
     </ul>
   </li>
-  <li class="panel">
+  <li class="panel second-layer">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-5">Marketing</a>
-    <ul id="sideMenu-5" class="collapse">
+    <ul id="sideMenu-5" class="collapse <%= collapse_class(admin_newsletters_path, new_admin_newsletter_path) %>">
       <li><%= link_to "Newsletter", admin_newsletters_path %></li>
       <li><%= link_to "New Newsletter", new_admin_newsletter_path %></li>
     </ul>
   </li>
-  <li class="panel">
-    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-6">Settings</a>
-    <ul id="sideMenu-6" class="collapse <%= collapse_class(admin_social_network_accounts_path) %>">
+  <li class="panel second-layer">
+    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-6">Blog</a>
+    <ul id="sideMenu-6" class="collapse <%= collapse_class(admin_blog_index_path, new_admin_blog_article_path) %>">
+      <li><%= link_to "Articles", admin_blog_index_path %></li>
+      <li><%= link_to "New Articles", new_admin_blog_article_path %></li>
+    </ul>
+  </li>
+  <li class="panel second-layer">
+    <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-7">Settings</a>
+    <ul id="sideMenu-7" class="collapse <%= collapse_class(admin_social_network_accounts_path, admin_site_configs_path) %>">
       <li><%= link_to "General", admin_site_configs_path %></li>
       <li><%= link_to "Links", admin_social_network_accounts_path %></li>
     </ul>
+  </li>
+  <li class="panel first-layer">
+    <%= link_to root_path do %>
+      <span class="glyphicon glyphicon-globe" aria-hidden="true"> </span>
+      Duke Girls Shop
+    <% end %>
+  </li>
+  <li class="panel first-layer">
+    <%= link_to destroy_admin_session_path, :method => :delete do %>
+      <span class="glyphicon glyphicon-log-out" aria-hidden="true"> </span>
+      Log out
+    <% end %>
   </li>
 </ul>

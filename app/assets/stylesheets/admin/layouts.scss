@@ -1,0 +1,47 @@
+@import "admin/admin_sidemenu";
+@import "admin/admin_nav";
+
+// Phone
+@media (max-width: 767px) {
+  body { 
+    margin-top: 70px;
+    .adminSideMenu {
+      display: none;
+    }
+    .admin_main {
+      width: auto;
+      @include margin-left-right($width: 2.5%);
+      float: none;
+    }
+  }
+}
+// Tablet ~ Desktop
+@media (min-width: 768px) {
+  body {
+    margin-bottom: 70px;
+    .navbar {
+      display: none;
+    }
+    .admin_main {
+      width: 80%;
+      @include margin-left-right($width: 2.5%);
+      float: right;
+    }
+  }
+}
+
+// General layout
+.invisible_thumbnail {
+  -webkit-filter: opacity(50%);
+  filter: opacity(50%);
+}
+
+.admin-product-thumbnail > p.tags {
+  min-height: 40px;
+  max-height: 60px;
+  border-bottom: $border-solid-gray-lighter;
+}
+
+ul, menu, dir {
+  -webkit-padding-start: 0;
+}

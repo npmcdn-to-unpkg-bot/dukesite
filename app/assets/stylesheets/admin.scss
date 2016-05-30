@@ -1,9 +1,8 @@
 @import "stylebase";
 @import "bootstrap-sprockets";
-@import "shared/admin_sidemenu";
-$grid-gutter-width: 20px;
 @import "bootstrap";
-@import "admin/layout";
+@import "admin/layouts";
 @import "shared/pagination";
 @import "admin/newsletter";
 @import "admin/product";
+
