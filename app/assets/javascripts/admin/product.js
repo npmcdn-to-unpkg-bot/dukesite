@@ -57,9 +57,7 @@ $(function(){
       $.ajax({
         url: editUrl,
         method: "PUT",
-        data: { product: 
-                { published: visible }
-              },
+        data: { published: visible },
         success: function(data) {
                    var visible = data.product_status;
                    $this.text( function(){
