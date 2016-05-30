@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'errors/not_found'
-
-  get 'errors/internal_server_error'
-
   root 'welcome#index'
 
   devise_for :admin do
@@ -38,11 +34,16 @@ Rails.application.routes.draw do
       resources :keywords, only: [:create]
     end
     resources :keywords, only: [:destroy]
-
     # Newsletters
     # ------------------------------------------------------------------------------
     resources :newsletters, except: [:show] do
       put :send_newsletter
+    end
+    # Blog in Dashboard
+    # ------------------------------------------------------------------------------
+    resources :blog, only: [:index]
+    namespace "blog" do
+      resources :articles
     end
 
     # Site configurations
@@ -65,12 +66,23 @@ Rails.application.routes.draw do
   resources :products, only: [:show]
   resources :showcases, only: [:show]
   resources :categories, only: [:show]
+
+  # Blog Routes
+  # ------------------------------------------------------------------------------
+  resources :blog, only: [:index]
+  namespace "blog" do
+    get '/id', to: '#show', as: 'article'
+  end
+
+  # Others
+  # ------------------------------------------------------------------------------
   get '/our-story', to: 'welcome#our_story', as: 'story'
   get '/join-us', to: 'welcome#join_us', as: 'join_us'
 
   ## Subscriber Newsletter
   put '/subscribe_newsletter', to: 'subscribers#create'
   get '/subscribe_newsletter/confirm_email/:id', to: 'subscribers#confirm_email', as: 'newsletter_confirm_email'
+  
   # error page
   # ------------------------------------------------------------------------------
   match "/404", :to => "errors#not_found", :via => :all
