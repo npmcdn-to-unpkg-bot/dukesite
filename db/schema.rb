@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529235530) do
+ActiveRecord::Schema.define(version: 20160530121143) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20160529235530) do
     t.string   "slug"
     t.integer  "articleable_id"
     t.string   "articleable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "carousels", force: :cascade do |t|

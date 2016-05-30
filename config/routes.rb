@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :blog, only: [:index]
     namespace "blog" do
       resources :articles
+      put '/:id/publish_article', to: 'articles#publish_switch', as: 'article_publish_switch'
     end
 
     # Site configurations
@@ -60,7 +61,7 @@ Rails.application.routes.draw do
     put '/categories/:id/category_visible', to: 'categories#visible_switch', as: 'category_visible_switch' 
     put '/showcases/:id/showcase_visible', to: 'showcases#visible_switch', as: 'showcase_visible_switch'
     put '/quotes/:id/quote_visible', to: 'quotes#visible_switch', as: 'quote_visible_switch'
-    put '/quotes/:id/carousel_visible', to: 'carousels#visible_switch', as: 'carousel_visible_switch'
+    put '/carousels/:id/carousel_visible', to: 'carousels#visible_switch', as: 'carousel_visible_switch'
   end
 
   resources :products, only: [:show]
@@ -69,10 +70,7 @@ Rails.application.routes.draw do
 
   # Blog Routes
   # ------------------------------------------------------------------------------
-  resources :blog, only: [:index]
-  namespace "blog" do
-    get '/id', to: '#show', as: 'article'
-  end
+  resources :blog, only: [:index, :show]
 
   # Others
   # ------------------------------------------------------------------------------

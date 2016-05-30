@@ -1,7 +1,5 @@
 class Admin::Blog::ArticlesController < AdminController
-  before_action :find_article, only: [:show, :edit, :update, :delete]
-  def show
-  end
+  before_action :find_article, only: [:show, :edit, :update, :delete, :publish_switch]
 
   def new
     @article = Article.new
@@ -11,7 +9,7 @@ class Admin::Blog::ArticlesController < AdminController
     @article = Article.new(article_params)
     if @article.save
       flash[:success] = "An article was successfully created."
-      redirect_to admin_articles_path
+      redirect_to admin_blog_index_path
     else
       render :new
     end
@@ -22,8 +20,8 @@ class Admin::Blog::ArticlesController < AdminController
 
   def update
     if @article.update(article_params)
-      flash[:success] = "The article was successfully updated."
-      redirect_to admin_articles_path(@article)
+      flash[:success] = "An Article was successfully updated."
+      redirect_to admin_blog_index_path
     else
       render :edit
     end
@@ -31,11 +29,25 @@ class Admin::Blog::ArticlesController < AdminController
 
   def destroy
     if @article.destroy
-      flash[:success] = "The article was successfully deleted."
-      redirect_to admin_articles_path
+      flash[:success] = "An Article was successfully deleted."
+      redirect_to admin_blog_index_path
     else
       render :show
     end
+  end
+
+  def publish_switch
+    status = 200
+    response = ""
+    if @article.update_attributes(published: params[:published], published_at: Time.now)
+      flash[:success] = "Successfully updated."
+      article_status = @article.published
+    else
+      status = 404
+      response = "Please try again"
+    end
+    render json: { response: response, article_status: article_status },
+           status: status
   end
 
   private

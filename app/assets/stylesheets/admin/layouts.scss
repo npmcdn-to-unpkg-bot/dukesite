@@ -3,14 +3,15 @@
 
 // Phone
 @media (max-width: 767px) {
-  body { 
-    margin-top: 70px;
+  body {
+    @include margin-top-bottom(70px);
+
     .adminSideMenu {
       display: none;
     }
     .admin_main {
       width: auto;
-      @include margin-left-right($width: 2.5%);
+      @include margin-left-right(2.5%);
       float: none;
     }
   }
@@ -18,13 +19,13 @@
 // Tablet ~ Desktop
 @media (min-width: 768px) {
   body {
-    margin-bottom: 70px;
     .navbar {
       display: none;
     }
     .admin_main {
       width: 80%;
-      @include margin-left-right($width: 2.5%);
+      @include margin-left-right(2.5%);
+      margin-bottom: 10%;
       float: right;
     }
   }
@@ -44,4 +45,8 @@
 
 ul, menu, dir {
   -webkit-padding-start: 0;
+}
+
+.article_info_box {
+  margin-top: 3%;
 }
