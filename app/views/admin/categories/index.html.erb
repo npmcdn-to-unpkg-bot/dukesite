@@ -19,7 +19,7 @@
 
 <div class="row">
   <% @categories.each do |p| %>
-    <div class="col-sm-4 col-md-3">
+    <div class="col-xs-12 col-sm-4 col-md-3">
       <div class="thumbnail admin-category-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
         <%  
           if !p.photo.nil? && p.photo.image.thumb.url.present?
