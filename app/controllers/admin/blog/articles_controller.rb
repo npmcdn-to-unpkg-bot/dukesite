@@ -29,7 +29,8 @@ class Admin::Blog::ArticlesController < AdminController
   end
 
   def update
-    if !params[:article][:photo_attributes].nil?
+    byebug
+    if !params[:article][:photo_attributes][:image].nil?
       if @article.update(article_params(:update_photo => true))
         flash[:success] = "An Article was successfully updated."
         redirect_to admin_blog_index_path

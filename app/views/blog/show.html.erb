@@ -13,14 +13,14 @@
         <% if @article.photo.present? && @article.photo.image.url.present?
             image_url = @article.photo.image.url
           else
-            image_url = "http://thedudeminds.de/images/no_image_available.png"
+            image_url = @icon
           end
         %>
         <h2>
           <%= @article.title %><br>
           <small><%= @article.subtitle %></small>
         </h2>
-        <%= image_tag image_url, class: "img-responsive", alt: @article.title %>
+        <%= image_tag image_url, class: "img-responsive", alt: @article.title, width: "800" %>
 
         <div class="caption">
           <p>

@@ -21,21 +21,41 @@ class Admin::CategoriesController < AdminController
   end
 
   def create
-    @category = Category.new(category_params)
-    if @category.save
+    # Don't create photo if no image is uploaded.
+    if !params[:category][:photo_attributes].nil?
+      if Category.create(category_params(:update_photo => true))
+        flash[:success] = "A new category was succefully created."
+        byebug
+        redirect_to admin_categories_path
+      else
+        flash[:danger] = "Please try again."
+        render :index
+      end
+    elsif Category.create(category_params)
       flash[:success] = "A new category was succefully created."
-      redirect_to :admin_categories_products_path
+      redirect_to admin_categories_path
     else
+      flash[:danger] = "Please try again."
       render :index
-    end
+    end 
   end
 
   def update
-    if @category.update(category_params)
-      flash[:success] = "successfully edited."
+    # Don't update photo attributes if no image is uploaded.
+    if !params[:category][:photo_attributes][:image].nil?
+      if @category.update(category_params(:update_photo => true))
+        flash[:success] = "Succefully updated."
+        redirect_to admin_category_products_path(@category)
+      else
+        flash[:danger] = "Please try again."
+        render :edit
+      end
+    elsif @category.update(category_params)
+      flash[:success] = "A new category was succefully updated."
       redirect_to admin_category_products_path(@category)
     else
-      render :edit
+      flash[:danger] = "Please try again."
+      render :index
     end
   end
 
@@ -73,8 +93,12 @@ class Admin::CategoriesController < AdminController
       params.require(:category).permit(:image)
     end
 
-    def category_params
-      params.require(:category).permit(:name, :visible, photo_attributes: [:image])
+    def category_params(options = {:update_photo => false})
+      if options[:update_photo] 
+        params.require(:category).permit(:name, :visible, photo_attributes: [:image])
+      else
+        params.require(:category).permit(:name, :visible)
+      end
     end
     
     def find_category
