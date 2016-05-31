@@ -3,16 +3,18 @@
 </div>
 
 <div class="row">
-  <p>
-  <%= link_to new_admin_blog_article_path do %>
-    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Write a new article
-  <% end %>
-  </p>
+  <div class="col-xs-12">
+    <p>
+    <%= link_to new_admin_blog_article_path do %>
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Write a new article
+    <% end %>
+    </p>
+  </div>
 </div>
 
 <div class="row">
   <% @articles.each do |p| %>
-    <div class="col-sm-4 col-md-3">
+    <div class="col-xs-12 col-sm-4 col-md-3">
       <div class="thumbnail admin-article-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
         <%  
           if !p.photo.nil? && p.photo.image.thumb.url.present?
@@ -25,11 +27,11 @@
           <%= image_tag thumb_img_url %>
         <% end %>
         <div class="caption">
-          <h4><%= link_to p.title, edit_admin_blog_article_path(p) %><br/ >
-            <small><%= p.subtitle %></small>
+          <h4><%= link_to p.title.truncate(50, :separator => " ",omission: '...'), edit_admin_blog_article_path(p) %><br/ >
+            <small><%= p.subtitle.truncate(70, :separator => " ",omission: '...') %></small>
           </h4>
           <p> 
-            <%= sanitize p.content %>
+            <%= strip_tags p.content.truncate(150, :separator => " ",omission: '...') %>
           </p>
           <p>
             <button type="button" class="btn <%= p.published? ? "btn-primary" : "btn-default" %> btn-sm" id="article-status" data-edit=<%= admin_blog_article_publish_switch_path(p) %> data-visible=<%= p.published? %>><%= p.published? ? "Published" : "Unpublished" %></button>

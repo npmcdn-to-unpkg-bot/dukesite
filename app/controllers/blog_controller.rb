@@ -21,6 +21,7 @@ class BlogController < ApplicationController
                              description: subtitle,
                              image:       image
                            }
+
   end
 
   private
