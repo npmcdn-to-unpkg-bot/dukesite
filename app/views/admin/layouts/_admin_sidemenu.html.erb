@@ -27,7 +27,7 @@
   </li>
   <li class="panel second-layer">
     <a data-toggle="collapse" data-parent="#adminSideMenu" aria-expanded="false" href="#sideMenu-4">Image</a>
-    <ul id="sideMenu-4" class="collapse">
+    <ul id="sideMenu-4" class="collapse <%= collapse_class(admin_quotes_path, admin_carousels_path) %>">
       <li><%= link_to "Quotes", admin_quotes_path %></li>
       <li><%= link_to "Carousels", admin_carousels_path %></li>
     </ul>
