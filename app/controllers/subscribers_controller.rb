@@ -20,11 +20,10 @@ class SubscribersController < ApplicationController
     if subscriber.present?
       subscriber.update_attributes(:confirm_token => nil, :confirmed=> true)
       UserMailer.confirm_subscription(subscriber).deliver_later
-      @message =  "Your Newsletter subscription is confirmed."
+      @message =  "<p><em>Your Newsletter subscription is confirmed.</em></p>"
     else
-      @message =  "Sorry. Subscriber does not exist."
+      @message =  "<p><em>Sorry. Subscriber does not exist. <br />Feel free to contact us.</em></p>"
       redirect_to root_path
     end
   end
-
 end
