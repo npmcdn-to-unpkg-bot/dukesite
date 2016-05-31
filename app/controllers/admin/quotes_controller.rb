@@ -11,7 +11,7 @@ class Admin::QuotesController < AdminController
   def create
     # Don't create photo if no image is uploaded.
     if !params[:quote][:photo_attributes].nil? 
-      if Quote.Create(quote_params(:update_photo => true))
+      if Quote.create(quote_params(:update_photo => true))
         flash[:success] = "A quote was successfully created."
         redirect_to admin_quotes_path
       else
@@ -37,7 +37,7 @@ class Admin::QuotesController < AdminController
 
   def update
     # Don't update photo attributes if no image is uploaded.
-    if !params[:quote][:photo_attributes].nil?
+    if !params[:quote][:photo_attributes][:image].nil?
       if @caroquoteusel.update(quote_params(:update_photo => true))
         flash[:success] = "Successfully updated."
         redirect_to admin_quotes_path
@@ -101,7 +101,7 @@ class Admin::QuotesController < AdminController
       if options[:update_photo]
         params.require(:quote).permit(:title, :description, photo_attributes: [:image])
       else
-        params.require(:carousel).permit(:title, :description)
+        params.require(:quote).permit(:title, :description)
       end
     end
 

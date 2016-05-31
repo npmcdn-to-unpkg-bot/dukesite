@@ -14,7 +14,7 @@
             <% if p.photo.present? && p.photo.image.thumb.url.present?
                 image_url = p.photo.image.thumb.url
               else
-                image_url = "http://thedudeminds.de/images/no_image_available.png"
+                image_url = @icon
               end
             %>
             <%= link_to blog_path(p), class:"thumbnail" do %>
