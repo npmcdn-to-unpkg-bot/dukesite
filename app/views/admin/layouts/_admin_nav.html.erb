@@ -35,11 +35,32 @@
             Image <span class="caret"></span>
           <% end %>
           <ul class="dropdown-menu">
-            <li><%= link_to 'Products', admin_quotes_path %></li>
+            <li><%= link_to "Quotes", admin_quotes_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Add Product", admin_carousels_path %></li>
+            <li><%= link_to "Carousels", admin_carousels_path %></li>
           </ul>
         </li>
+        <li class="dropdown <%= collapse_class(admin_newsletters_path, new_admin_newsletter_path) %> %>">
+          <%= link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"}, 'aria-haspopup': 'true', 'aria-expanded': "false" do %>
+            Marketing <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Newsletter", admin_newsletters_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "New Newsletter", new_admin_newsletter_path %></li>
+          </ul>
+        </li>
+        <li class="dropdown <%= collapse_class(admin_blog_index_path, new_admin_blog_article_path) %>">
+          <%= link_to '#', class: "dropdown-toggle", data: {toggle: "dropdown"}, 'aria-haspopup': 'true', 'aria-expanded': "false" do %>
+            Blog <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Articles", admin_blog_index_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "New Article", new_admin_blog_article_path %></li>
+          </ul>
+        </li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown <%= active_class(admin_site_configs_path, admin_social_network_accounts_path) %>">
@@ -61,6 +82,7 @@
           </ul>
         </li>
         <li><%= link_to "Duke Girls Shop", root_path %></li>
+        <li><%= link_to "Duke Girls Blog", blog_index_path %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

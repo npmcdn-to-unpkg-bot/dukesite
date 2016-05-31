@@ -60,6 +60,12 @@
     <% end %>
   </li>
   <li class="panel first-layer">
+    <%= link_to blog_index_path do %>
+      <span class="glyphicon glyphicon-bold" aria-hidden="true"> </span>
+      Duke Girls Blog
+    <% end %>
+  </li>
+  <li class="panel first-layer">
     <%= link_to destroy_admin_session_path, :method => :delete do %>
       <span class="glyphicon glyphicon-log-out" aria-hidden="true"> </span>
       Log out
