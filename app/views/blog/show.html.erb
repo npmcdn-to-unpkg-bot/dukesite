@@ -20,8 +20,8 @@
           <%= @article.title %><br>
           <small><%= @article.subtitle %></small>
         </h2>
+        <p class="pull-right"><%= @article.published_at.to_formatted_s(:long) %></p>
         <%= image_tag image_url, class: "img-responsive", alt: @article.title, width: "800" %>
-
         <div class="caption">
           <p>
             <%= sanitize @article.content %>
