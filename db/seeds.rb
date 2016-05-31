@@ -111,3 +111,9 @@ SiteConfig.create([{
                     },{
                     key: "Join Us"
                     }])
+
+Article.create([{
+                  title: "Hello, Duke Girl.",
+                  subtitle: "Share your passion with other Duke Girls",
+                  content: "Only published article will be shown on the Duke Girls Blog."
+                  }])

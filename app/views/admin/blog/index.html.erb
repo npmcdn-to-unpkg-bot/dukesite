@@ -1,0 +1,49 @@
+<div class="page-header">
+  <h1>Articles <span class="badge"><%= @articles.length %></span></h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+    <%= link_to new_admin_blog_article_path do %>
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Write a new article
+    <% end %>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <% @articles.each do |p| %>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <div class="thumbnail admin-article-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
+        <%  
+          if !p.photo.nil? && p.photo.image.thumb.url.present?
+            thumb_img_url = p.photo.image.thumb.url
+          else
+            thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
+          end
+        %>
+        <%= link_to edit_admin_blog_article_path(p) do %>
+          <%= image_tag thumb_img_url %>
+        <% end %>
+        <div class="caption">
+          <h4><%= link_to p.title.truncate(50, :separator => " ",omission: '...'), edit_admin_blog_article_path(p) %><br/ >
+            <small><%= p.subtitle.truncate(70, :separator => " ",omission: '...') %></small>
+          </h4>
+          <p> 
+            <%= strip_tags p.content.truncate(150, :separator => " ",omission: '...') %>
+          </p>
+          <p>
+            <button type="button" class="btn <%= p.published? ? "btn-primary" : "btn-default" %> btn-sm" id="article-status" data-edit=<%= admin_blog_article_publish_switch_path(p) %> data-visible=<%= p.published? %>><%= p.published? ? "Published" : "Unpublished" %></button>
+          <p>
+          <div>
+            <%= link_to "Delete", admin_blog_article_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+            <%= link_to "Edit", edit_admin_blog_article_path(p), class: "btn btn-info btn-sm" %>
+            <%= link_to "View in Blog", blog_path(p), class: "pull-right" if p.published %>
+          </div>
+          <small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

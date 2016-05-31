@@ -1,0 +1,52 @@
+@import "admin/admin_sidemenu";
+@import "admin/admin_nav";
+
+// Phone
+@media (max-width: 767px) {
+  body {
+    @include margin-top-bottom(70px);
+
+    .adminSideMenu {
+      display: none;
+    }
+    .admin_main {
+      width: auto;
+      @include margin-left-right(2.5%);
+      float: none;
+    }
+  }
+}
+// Tablet ~ Desktop
+@media (min-width: 768px) {
+  body {
+    .navbar {
+      display: none;
+    }
+    .admin_main {
+      width: 80%;
+      @include margin-left-right(2.5%);
+      margin-bottom: 10%;
+      float: right;
+    }
+  }
+}
+
+// General layout
+.invisible_thumbnail {
+  -webkit-filter: opacity(50%);
+  filter: opacity(50%);
+}
+
+.admin-product-thumbnail > p.tags {
+  min-height: 40px;
+  max-height: 60px;
+  border-bottom: $border-solid-gray-lighter;
+}
+
+ul, menu, dir {
+  -webkit-padding-start: 0;
+}
+
+.article_info_box {
+  margin-top: 3%;
+}

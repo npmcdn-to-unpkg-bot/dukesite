@@ -1,0 +1,23 @@
+<%= render "shared/error", object: @article %>
+<%= form_for [:admin, :blog, @article] do |f| %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-9">
+      <div class="page-header">
+        <div class="form-group">
+          <%= f.text_field :title, class: "form-control input-lg", placeholder: "Enter title"%>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :subtitle, class: "form-control", placeholder: "Enter subtitle"%>
+        </div>
+      </div>
+      <%= f.text_area :content, class: 'tinymce', rows: 20, cols: 120 %>
+    </div>
+    <%= render 'info_box', object: @article, f: f %>
+  </div>
+  
+<% end %>
+  
+<%= tinymce :alternate %>
+
+<%= tinymce_assets %>
+

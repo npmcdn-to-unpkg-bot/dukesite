@@ -1,29 +1,28 @@
 <%= render "shared/error", object: newsletter %>
 <%= form_for [:admin, newsletter] do |f| %>
-  <% newsletter.id.nil? ? subject = "Enter Subject" : subject = newsletter.subject %>
   <div class="row">
     <div class="col-xs-12 col-sm-9">
       <div class="page-header">
-        <h1><%= f.text_field :subject, class: "form-control input-lg", placeholder: subject %></h1>
+        <h1><%= f.text_field :subject, class: "form-control input-lg", placeholder: "Enter Subject" %></h1>
       </div>
       <%= f.text_area :content, class: 'tinymce', rows: 20, cols: 120 %>
     </div>
-    <div class="col-xs-12 col-sm-3 newsletter_info">
+    <div class="col-xs-12 col-sm-3 article_info_box">
       <div class="panel panel-default">
         <div class="panel-heading">Information</div>
         <div class="panel-body">
           <table>
             <tr>
-              <td class="col-xs-5 text-right">Created time</td>
+              <th class="col-xs-5 text-right">Status</td>
+              <td class="col-xs-7"><%= newsletter.sent? ? "Sent" : "Draft" %></td>
+            </tr>
+            <tr>
+              <th class="col-xs-5 text-right">Created</td>
               <td class="col-xs-7"><%= newsletter.created_at.nil? ? 'Not Saved Yet' : newsletter.created_at.to_formatted_s(:long) %></td>
             </tr>
             <tr>
-              <td class="col-xs-5 text-right">Last updated</td>
+              <th class="col-xs-5 text-right">Updated</td>
               <td class="col-xs-7"><%= newsletter.updated_at.nil? ? 'Not Saved Yet' : newsletter.updated_at.to_formatted_s(:long) %></td>
-            </tr>
-            <tr>
-              <td class="col-xs-5 text-right">Status</td>
-              <td class="col-xs-7"><%= newsletter.sent? ? "Sent" : "Draft" %></td>
             </tr>
           </table>
           <hr>

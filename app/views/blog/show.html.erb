@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">  
+    <p>
+      <%= link_to blog_index_path do %>
+        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+        Back to Blog
+      <% end %>
+    </p>
+  </div>
+  <div class="row"> 
+    <div class="col-xs-12 col-sm-9 article-body">
+      <div class="panel-body">
+        <% if @article.photo.present? && @article.photo.image.url.present?
+            image_url = @article.photo.image.url
+          else
+            image_url = "http://thedudeminds.de/images/no_image_available.png"
+          end
+        %>
+        <h2>
+          <%= @article.title %><br>
+          <small><%= @article.subtitle %></small>
+        </h2>
+        <%= image_tag image_url, class: "img-responsive", alt: @article.title %>
+
+        <div class="caption">
+          <p>
+            <%= sanitize @article.content %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <p class="pull-left">
+          <% if @article.previous_article.present? %>
+            <%= link_to blog_path(@article.previous_article) do %>
+              <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+              <%= @article.previous_article.title %>
+            <% end %>
+          <% end %>
+        </p>
+        <p class="pull-right">
+          <% if @article.next_article.present? %>
+            <%= link_to blog_path(@article.next_article) do %>
+              <%= @article.next_article.title %>
+              <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <%= render 'blog_side_nav' %>
+  </div>
+</div>

@@ -15,7 +15,7 @@
               <div class="form-group">
                 <%= hidden_field_tag config.slug %>
                 <%= f.label :key, config.key.titleize, class: "control-label" %>
-                <%= f.text_field :value, class: "form-control", placeholder: config.value, maxlength: config.maxlength %>
+                <%= f.text_area :value, class: "form-control", placeholder: config.value, maxlength: config.maxlength %>
                 <p class="help-block"><%= config.note %></p>
               </div>
             <% end %>

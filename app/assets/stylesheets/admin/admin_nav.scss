@@ -1,28 +1,5 @@
-body {
-  padding-top: 70px;
-  margin-bottom: 70px;
-  background-color: white;
-}
-
-// General layout
-.invisible_thumbnail {
-  -webkit-filter: opacity(50%);
-  filter: opacity(50%);
-}
-
-.admin-product-thumbnail > p.tags {
-  min-height: 40px;
-  max-height: 60px;
-  // border-top: $border-solid-gray-lighter;
-  border-bottom: $border-solid-gray-lighter;
-  // @include padding-top-bottom(1%);
-}
-
-ul, menu, dir {
-  -webkit-padding-start: 0;
-}
-
 // Top Navbar
+.navbar { margin-bottom: 0; }
 .navbar-default {
   opacity: 0.8;
   background: #E91E63;

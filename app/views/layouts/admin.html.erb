@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admin - Duke Girls</title>
-  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'admin/application', 'data-turbolinks-track' => true %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= render 'layouts/admin_nav' %>  
-  <div class="container-fluid">
-    <div class="hidden-xs col-sm-2">
-      <%= render 'admin/shared/admin_sidemenu' %>
-    </div>
-
-    <div class="col-xs-12 col-sm-10">
+  <head>
+    <title>Admin - Duke Girls</title>
+    <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'admin/application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render 'admin/layouts/admin_nav' %>
+    <%= render 'admin/layouts/admin_sidemenu' %>  
+    <div class="admin_main">
       <%= render 'shared/alert' %>
       <%= yield %>
     </div>
-  </div>
-</body>
+  </body>
+  <footer></footer>
 </html>

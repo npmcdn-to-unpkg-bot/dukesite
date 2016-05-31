@@ -1,0 +1,52 @@
+.adminSideMenu {
+  // margin-top: 35%;
+  // margin-right: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  height: 100%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto;
+  opacity: 0.8;
+  background: #E91E63;
+  
+  ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li > a { display: block; }
+
+  // General
+  .panel { 
+    border: none;
+    a {
+      color: white;
+      line-height: 3em;
+      background: #E91E63;
+      @include padding-top-bottom(2%);
+      padding-left: 15%;
+    }
+    a:hover {
+      color: white;
+      text-decoration: none;
+      background: #42A5F5;
+    }
+  }
+
+  // Second Layer
+  .panel.second-layer > ul > li {
+    a {
+      background: #F8BBD0;
+      padding-left: 15%;
+      color: #424242;
+      padding: 0 0 0 25%;
+    }
+    a:hover {
+      color: white;
+      background: #42A5F5;
+    }
+  }
+}

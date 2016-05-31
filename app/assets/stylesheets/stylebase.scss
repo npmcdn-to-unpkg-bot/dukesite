@@ -9,6 +9,7 @@ $border-solid: 1px solid #e5e5e5;
 $border-solid-white: 1px solid white;
 $border-solid-gray-light: 1px solid $gray-light;
 $border-solid-gray-lighter: 1px solid $gray-lighter;
+$border-dotted-gray-lighter: 1px dotted $gray-lighter;
 $border-dotted-gray-light: 1px dotted $gray-light;
 $border-dotted-white: 1px dotted white;
 
@@ -61,7 +62,7 @@ $border-dotted-white: 1px dotted white;
   }
   .product > .thumbnail > img {
     width: auto;
-    max-height: 171px;
+    max-height: 200px;
   }
 }
 

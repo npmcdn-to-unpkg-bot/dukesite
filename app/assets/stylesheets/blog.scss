@@ -1,0 +1,39 @@
+// Tablet
+@media (min-width: 768px) {
+  .blog-article-thumbnail-title {
+    min-height: 80px;
+  }
+  .blog-article-thumbnail > .thumbnail > img {
+    height: 200px;
+  }
+}
+
+.blog-side-nav {
+  border-left: $border-solid-gray-light;
+  ul {
+    @include padding-left-right(4%);
+    border-top: $border-solid-gray-light;
+    @include padding-top-bottom(3%);
+    h4 {
+      text-transform: uppercase;
+    }
+    li {
+      list-style-type: none;
+      @include padding-top-bottom(2%);
+      font-size: 15px;
+      a { color: $base-pink; }
+      a:hover { color: $gray-light; }
+      }
+  }
+  ul:first-child {
+    border-top: none;
+  }
+}
+
+.article-body {
+  .panel-body {
+    border-bottom: $border-solid-gray-lighter;
+    margin-bottom: 5%;
+    padding-bottom: 5%
+  }
+}
