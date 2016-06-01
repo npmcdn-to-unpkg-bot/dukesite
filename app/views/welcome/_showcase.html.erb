@@ -1,7 +1,5 @@
 <div class="row showcase">
   <% @showcases.each do |showcase| %>
-    <% showcase_products = showcase.products.where(published: true).order("updated_at DESC")
-       %>
     <div class="row showcase-header">
       <div class="col-xs-12 col-sm-4">
         <p>
@@ -12,12 +10,12 @@
         </p>
       </div>
       <div class="col-xs-12 col-sm-3 hidden-xs pull-right more-button">
-        <p><%= link_to "View All #{showcase_products.size} Products", showcase_path(showcase) %></p>
+        <p><%= link_to "View All #{showcase.published_products.size} Products", showcase_path(showcase) %></p>
       </div>
     </div>
     
     <div class="row showcase-body">
-      <% showcase_products[0..7].each do |p| %>
+      <% showcase.published_products[0..7].each do |p| %>
         <div class="col-xs-12 col-sm-3">
           <%= link_to product_path(p), class:"thumbnail" do %>
             <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>

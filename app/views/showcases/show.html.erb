@@ -6,7 +6,7 @@
     <p><%= @showcase.subtitle %></p>
   </div>
   <div class="col-xs-12 col-sm-10 product-box">
-    <% @products.each do |p| %>
+    <% @showcase.published_products.each do |p| %>
       <div class="col-xs-12 col-sm-3 product">
       <%= link_to product_path(p), class:"thumbnail" do %>
           <%= image_tag p.image_url,  class: "img-responsive", alt: p.title %>

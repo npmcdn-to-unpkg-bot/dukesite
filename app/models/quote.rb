@@ -10,7 +10,7 @@ class Quote < ActiveRecord::Base
     if self.photo.image.thumb.url.nil?
       return "http://thedudeminds.de/images/no_image_available.png"
     else
-      return self.photo.image.thumb.url
+      self.photo.image.thumb.url
     end
   end
 end

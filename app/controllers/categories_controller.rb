@@ -16,9 +16,7 @@ class CategoriesController < ApplicationController
                              image:       image
                            }
   end
-
   private
-
     def find_category
       @category = Category.find_by(slug: params[:id], visible: true)
     end

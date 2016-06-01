@@ -24,4 +24,32 @@ class Article < ActiveRecord::Base
   def next_article
     self.class.where(["published_at > ?", self.published_at]).where(:published => true).order("published_at DESC").last
   end
+
+  def thumb_img_url(options = { :icon => false  })
+    if self.photo.present?
+      self.photo.image.thumb.url 
+    elsif !options[:icon]
+      return "http://thedudeminds.de/images/no_image_available.png"
+    else
+      icon = SiteConfig.find_by(slug: "icon").photo.image.url
+      if icon.present?
+        return icon
+      else
+        return "http://thedudeminds.de/images/thedukegirls.png"
+      end
+    end
+  end
+
+  def img_url
+    if self.photo.present?
+      self.photo.image.url 
+    else
+      icon = SiteConfig.find_by(slug: "icon").photo.image.url 
+      if icon.present?
+        return icon
+      else
+        return "http://thedudeminds.de/images/thedukegirls.png"
+      end
+    end
+  end
 end

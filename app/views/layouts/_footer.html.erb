@@ -26,8 +26,8 @@
       <!-- iterate through social network account items and display icon, if account is marked as 'visible' -->
       <% @visible_snas.each do |p| %>
         <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
-          <% if p.photo.present? && p.photo.image.url.present? %>
-            <%= image_tag p.photo.image.thumb.url, size: "32x32" %>
+          <% if p.img_thumb_url.present? %>
+            <%= image_tag p.img_thumb_url, size: "32x32" %>
           <% else %>
             <%= p.platform_name %>
           <% end %>

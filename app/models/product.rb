@@ -13,4 +13,12 @@ class Product < ActiveRecord::Base
   has_many :keywords, :as => :keywordable, dependent: :destroy
 
   sluggable_column :title
+
+  def visible_categories
+    self.categories.where(visible: true)
+  end
+
+  def visible_showcases
+    self.showcases.where(visible: true)
+  end
 end

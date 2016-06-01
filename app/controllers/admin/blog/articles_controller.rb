@@ -26,10 +26,10 @@ class Admin::Blog::ArticlesController < AdminController
 
   def edit
     @article.photo = Photo.new if @article.photo.nil?
+    @thumb_img_url = @article.thumb_img_url
   end
 
   def update
-    byebug
     if !params[:article][:photo_attributes][:image].nil?
       if @article.update(article_params(:update_photo => true))
         flash[:success] = "An Article was successfully updated."

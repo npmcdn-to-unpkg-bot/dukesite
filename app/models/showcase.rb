@@ -12,4 +12,8 @@ class Showcase < ActiveRecord::Base
 
   accepts_nested_attributes_for :photo
   sluggable_column :title
+
+  def published_products
+    self.products.where(published: true).order("updated_at DESC")
+  end
 end
