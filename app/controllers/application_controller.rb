@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 
       # # keywords
       # # ------------------------------------------------------------------------------
-      byebug
       keywords    = SiteConfig.find_by(slug: "seo").keywords_value
 
       # # og
