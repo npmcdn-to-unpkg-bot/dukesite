@@ -10,7 +10,7 @@ class SocialNetworkAccount < ActiveRecord::Base
   sluggable_column :platform_name
 
   def img_thumb_url
-    if self.photo.image.thumb.url.present?
+    if self.photo.present? && self.photo.image.thumb.url.present?
       self.photo.image.thumb.url
     else
       "http://thedudeminds.de/images/no_image_available.png"
