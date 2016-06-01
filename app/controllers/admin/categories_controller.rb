@@ -6,6 +6,7 @@ class Admin::CategoriesController < AdminController
   def index
     @category = Category.new
     @category.photo = Photo.new
+    @thumb_img_url = @category.thumb_img_url 
   end
 
   def product_list
@@ -25,7 +26,6 @@ class Admin::CategoriesController < AdminController
     if !params[:category][:photo_attributes].nil?
       if Category.create(category_params(:update_photo => true))
         flash[:success] = "A new category was succefully created."
-        byebug
         redirect_to admin_categories_path
       else
         flash[:danger] = "Please try again."
