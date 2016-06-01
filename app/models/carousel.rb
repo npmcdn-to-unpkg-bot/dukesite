@@ -15,4 +15,8 @@ class Carousel < ActiveRecord::Base
       self.photo.image.thumb.url
     end
   end
+
+  def self.visible_carousel_img_urls
+    self.visible.map(&:photo).map(&:image).map(&:url)
+  end
 end
