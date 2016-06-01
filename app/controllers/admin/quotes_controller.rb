@@ -31,14 +31,14 @@ class Admin::QuotesController < AdminController
     if @quote.photo.nil?
       @quote.photo = Photo.new
     else
-      @thumb_img_url = @quote.photo.image.thumb.url
+      @thumb_img_url = @quote.thumb_img_url
     end
   end
 
   def update
     # Don't update photo attributes if no image is uploaded.
     if !params[:quote][:photo_attributes][:image].nil?
-      if @caroquoteusel.update(quote_params(:update_photo => true))
+      if @quote.update(quote_params(:update_photo => true))
         flash[:success] = "Successfully updated."
         redirect_to admin_quotes_path
       else

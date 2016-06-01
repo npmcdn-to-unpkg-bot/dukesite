@@ -10,7 +10,7 @@ class Admin::CategoriesController < AdminController
 
   def product_list
     if @category.photo.present?
-      @thumb_img_url = @category.photo.image.thumb.url 
+      @thumb_img_url = @category.thumb_img_url 
     else
       @category.photo = Photo.new
     end

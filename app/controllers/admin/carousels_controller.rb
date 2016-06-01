@@ -31,7 +31,7 @@ class Admin::CarouselsController < AdminController
     if @carousel.photo.nil?
       @carousel.photo = Photo.new
     else
-      @thumb_img_url = @carousel.photo.image.thumb.url
+      @thumb_img_url = @carousel.thumb_img_url
     end
   end
 
