@@ -1,5 +1,5 @@
 class Admin::Blog::ArticlesController < AdminController
-  before_action :find_article, only: [:show, :edit, :update, :delete, :publish_switch]
+  before_action :find_article, only: [:edit, :update, :delete, :publish_switch]
 
   def new
     @article = Article.new
@@ -52,7 +52,7 @@ class Admin::Blog::ArticlesController < AdminController
       flash[:success] = "An Article was successfully deleted."
       redirect_to admin_blog_index_path
     else
-      render :show
+      render :admin_blog_index_path
     end
   end
 
