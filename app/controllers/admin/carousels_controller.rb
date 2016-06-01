@@ -6,6 +6,7 @@ class Admin::CarouselsController < AdminController
   def index
     @carousel = Carousel.new
     @carousel.photo = Photo.new
+    @thumb_img_url = @carousel.thumb_img_url
   end
 
   def create

@@ -6,6 +6,7 @@ class Admin::QuotesController < AdminController
   def index
     @quote = Quote.new
     @quote.photo = Photo.new
+    @thumb_img_url = @quote.thumb_img_url
   end
 
   def create
