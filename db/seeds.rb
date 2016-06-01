@@ -84,7 +84,7 @@ SocialNetworkAccount.create([{
 
 SiteConfig.create([{ 
                     key: "Site Name", 
-                    value: "Duke Girls", 
+                    value: "The Duke Girls", 
                     maxlength: 70,
                     note: ""
                     },{ 
