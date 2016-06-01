@@ -38,7 +38,7 @@ class Admin::Blog::ArticlesController < AdminController
         flash[:danger] = "Please try again."
         render :edit
       end
-    elsif @article.update(article_param)
+    elsif @article.update(article_params)
       flash[:success] = "An Article was successfully updated."
       redirect_to admin_blog_index_path
     else
