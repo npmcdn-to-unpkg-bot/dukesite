@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     title       = @product.title
     description = @product.description
     image       = @product.image_url
-    keywords = @product.keywords.map(&:value) if @product.keywords.present?
+    keywords = @product.valid_keywords
 
     prepare_meta_tags title:       title,
                       description: description,

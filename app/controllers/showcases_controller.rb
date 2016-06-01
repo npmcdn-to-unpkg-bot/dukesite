@@ -6,8 +6,8 @@ class ShowcasesController < ApplicationController
     title       = @showcase.title
     description = @showcase.subtitle
     image       = @showcase.published_products[0..5].map(&:image_url)
-    image       << @showcase.photo.image.thumb.url if (@showcase.photo.present? && !@showcase.photo.image.url.nil?)
-    keywords    = @showcase.keywords.map(&:value) if @showcase.keywords.present?
+    image       << @showcase.thumb_img_url
+    keywords    = @showcase.valid_keywords
 
     prepare_meta_tags  title:       title,
                        keywords:    keywords,

@@ -1,4 +1,5 @@
 class Carousel < ActiveRecord::Base
+  default_scope { order(updated_at: :desc) }
   scope :visible, -> { where(visible: true) }
 
   include SlugGenerator
@@ -14,5 +15,9 @@ class Carousel < ActiveRecord::Base
     else
       self.photo.image.thumb.url
     end
+  end
+
+  def self.visible_carousel_img_urls
+    self.visible.map(&:photo).map(&:image).map(&:url)
   end
 end

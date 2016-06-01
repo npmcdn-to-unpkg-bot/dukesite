@@ -12,16 +12,14 @@ class ApplicationController < ActionController::Base
       site_name   = SiteConfig.find_by(slug: "site-name").value
       title       = options[:title] || SiteConfig.find_by(slug: "site-name").value
       description = SiteConfig.find_by(slug: "description").value
-      carousel    = Carousel.visible
-      image       = carousel.map(&:photo).map(&:image).map(&:url)
-      icon        = SiteConfig.find_by(slug: "icon").photo
-      image << icon.image.thumb.url if (icon.image.present? && !icon.image.url.nil?)
+      carousels   = Carousel.visible_carousel_img_urls
+      image       = carousels 
+      image      << SiteConfig.find_by(slug: "icon").img_url
       current_url = request.url
 
       # # keywords
       # # ------------------------------------------------------------------------------
-      keyword_entries = SiteConfig.find_by(slug: "seo").keywords
-      keywords = keyword_entries.map(&:value) if keyword_entries.present?
+      keywords    = SiteConfig.find_by(slug: "seo").keywords_value
 
       # # og
       # # ------------------------------------------------------------------------------
@@ -33,8 +31,7 @@ class ApplicationController < ActionController::Base
 
       # # favicon
       # ------------------------------------------------------------------------------# favicon
-      favicon = SiteConfig.find_by(slug: "favorite-icon").photo
-      favicon = favicon.image.url if (favicon.image.present? && !favicon.image.url.nil?)
+      favicon = SiteConfig.find_by(slug: "favorite-icon").img_url
 
       defaults = {
         site:        site_name,
@@ -59,8 +56,7 @@ class ApplicationController < ActionController::Base
       @our_belief = SiteConfig.find_by(key: "Our Belief").value
       # icon
       # ------------------------------------------------------------------------------
-      icon = SiteConfig.find_by(slug: "icon").photo
-      icon.nil? ? @icon = "http://thedudeminds.de/images/thedukegirls.png" : @icon = icon.image.url
+      @icon = SiteConfig.find_by(slug: "icon").img_url
 
       @categories = Category.visible
       @showcases = Showcase.visible_on_landing_page
