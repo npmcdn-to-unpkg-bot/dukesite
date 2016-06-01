@@ -1,13 +1,13 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show]
   def show
-    @products = @category.products.where(published: true).order("updated_at DESC")
+    @products = @category.published_products_desc
     # meta-tags
     # ------------------------------------------------------------------------------
     title       = @category.name
-    image       = @category.products.where(published: true).order("updated_at DESC")[0..5].map(&:image_url)
-    image       << @category.photo.image.thumb.url if (@category.photo.present? && !@category.photo.image.url.nil?)
-    keywords    = @category.keywords.map(&:value) if @category.keywords.present?
+    image       = @category.published_products_desc[0..5].map(&:image_url)
+    image       << @category.thumb_img_url(:show_no_image_available => false)
+    keywords    = @category.valid_keywords
     
     prepare_meta_tags  title:       title,
                        keywords:    keywords,

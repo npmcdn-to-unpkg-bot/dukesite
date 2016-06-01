@@ -21,4 +21,8 @@ class Product < ActiveRecord::Base
   def visible_showcases
     self.showcases.where(visible: true)
   end
+  
+  def valid_keywords
+    self.keywords.where.not(value: nil).order("updated_at DESC").map(&:value) if self.keywords.present?
+  end
 end

@@ -1,4 +1,5 @@
 class Carousel < ActiveRecord::Base
+  default_scope { order(updated_at: :desc) }
   scope :visible, -> { where(visible: true) }
 
   include SlugGenerator

@@ -1,5 +1,4 @@
 class SubscribersController < ApplicationController
-
   def create
     status   = 200
     response = ""

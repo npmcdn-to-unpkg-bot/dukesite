@@ -6,7 +6,7 @@ class Admin::NewslettersController < AdminController
 
     @sent_newsletter = Newsletter.sent
     @unsent_newsletter = Newsletter.unsent
-    @newsletters = Newsletter.all.order("updated_at DESC")
+    @newsletters = Newsletter.all
   end
 
   def new
