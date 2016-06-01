@@ -5,14 +5,17 @@
     <% end %>
   </div>
   <div class="col-xs-12 col-sm-6">
+    <% @product.visible_showcases.each do |s| %>
+      <%= link_to s.title, showcase_path(s) %> |
+    <% end %>
     <dl class="dl-horizontal">
       <h3><%= @product.title %></h3>
       <dt>Description</dt>
       <dd><%= @product.description %></dd>
       <dt>Category</dt>
       <dd>
-        <% @product.categories.each do |s| %>
-          <%= link_to s.name, category_path(s) if s.visible? %> | 
+        <% @product.visible_categories.each do |s| %>
+          <%= link_to s.name, category_path(s) %> | 
         <% end %>
       </dd>
       <dt>Price</dt>

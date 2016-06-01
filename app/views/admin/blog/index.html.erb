@@ -16,15 +16,8 @@
   <% @articles.each do |p| %>
     <div class="col-xs-12 col-sm-4 col-md-3">
       <div class="thumbnail admin-article-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
-        <%  
-          if !p.photo.nil? && p.photo.image.thumb.url.present?
-            thumb_img_url = p.photo.image.thumb.url
-          else
-            thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
-          end
-        %>
         <%= link_to edit_admin_blog_article_path(p) do %>
-          <%= image_tag thumb_img_url %>
+          <%= image_tag p.thumb_img_url %>
         <% end %>
         <div class="caption">
           <h4><%= link_to p.title.truncate(50, :separator => " ",omission: '...'), edit_admin_blog_article_path(p) %><br/ >

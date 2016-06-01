@@ -23,4 +23,9 @@ $(function(){
       });// end of ajax
     });// end of click
   });
+  // Trigger Image Preview
+  $("#article_photo_attributes_image").change(function(){
+    var $img_preview = $('#article-form-img-preview');
+    readURL(this, $img_preview);
+  });
 });

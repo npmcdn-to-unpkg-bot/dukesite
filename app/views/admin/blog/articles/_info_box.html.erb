@@ -27,14 +27,14 @@
         </tr>
       </table>
       <hr>
-      <% unless @thumb_img_url.present? %>
-        <div class="form-group">
-          <%= f.label "Upload Image", class: "control-label" %><br />
-          <%= f.fields_for :photo do |c| %>
-            <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
-          <% end %>
-        </div>
-      <% end %>
+      <%= image_tag @thumb_img_url, class: "img-responsive thumbnail", id: "article-form-img-preview" %>
+      <th>
+      <div class="form-group">
+        <%= f.label "Upload Image", class: "control-label" %><br />
+        <%= f.fields_for :photo do |c| %>
+          <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+        <% end %>
+      </div>
       <%= link_to "Cancel", admin_blog_articles_path, class: "btn btn-warning" %>
       <%= f.submit "Save", class: "btn btn-primary" %>
     </div>

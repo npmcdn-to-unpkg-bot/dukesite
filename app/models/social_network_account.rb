@@ -8,4 +8,12 @@ class SocialNetworkAccount < ActiveRecord::Base
 
   accepts_nested_attributes_for :photo
   sluggable_column :platform_name
+
+  def img_thumb_url
+    if self.photo.image.thumb.url.present?
+      self.photo.image.thumb.url
+    else
+      "http://thedudeminds.de/images/no_image_available.png"
+    end
+  end
 end
