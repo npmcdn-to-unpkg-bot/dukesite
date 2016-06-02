@@ -58,6 +58,12 @@ gem 'tinymce-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry', '~> 0.10.3'
+  gem 'rspec-rails', '~> 3.4'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -69,6 +75,11 @@ group :development do
   gem 'spring'
   # preview email
   gem "letter_opener"
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
 end
 
 group :production do

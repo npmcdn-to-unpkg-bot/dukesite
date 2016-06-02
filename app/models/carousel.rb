@@ -18,8 +18,6 @@ class Carousel < ActiveRecord::Base
   end
 
   def self.visible_carousel_img_urls
-    if self.visible.present? 
-      self.visible.map(&:photo).compact.map(&:image).map(&:url) 
-    end
+    self.visible.map(&:photo).compact.map(&:image).map(&:url) if self.visible.present?
   end
 end

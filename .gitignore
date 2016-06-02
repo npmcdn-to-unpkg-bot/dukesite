@@ -25,6 +25,7 @@ database.yml
 public/uploads
 
 #Add these files if you are running any rspec or capybara tests on your application.
-#capybara-*.html
-#.rspec
-#/spec/tmp
+capybara-*.html
+.rspec
+/spec/tmp
+/spec/examples.txt
