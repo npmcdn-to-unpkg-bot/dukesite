@@ -20,14 +20,14 @@ class SiteConfig< ActiveRecord::Base
   end
 
   def self.get_value(key)
-    self.find_by(slug: key).value
+    self.find_by(slug: key).value if self.find_by(slug: key).present?
   end
 
   def self.get_img_url(key)
-    self.find_by(slug: key).img_url
+    self.find_by(slug: key).img_url if self.find_by(slug: key).present?
   end
 
   def self.default_keywords
-    self.find_by(slug: "seo").keywords.where.not(value: nil).order("created_at DESC").map(&:value)
+    self.find_by(slug: "seo").keywords.where.not(value: nil).order("created_at DESC").map(&:value) if self.find_by(slug: "seo").present?
   end
 end
