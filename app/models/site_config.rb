@@ -19,7 +19,15 @@ class SiteConfig< ActiveRecord::Base
     end
   end
 
-  def keywords_value
-    self.keywords.map(&:value) if self.keywords.present?
+  def self.get_value(key)
+    self.find_by(slug: key).value
+  end
+
+  def self.get_img_url(key)
+    self.find_by(slug: key).img_url
+  end
+
+  def self.default_keywords
+    self.find_by(slug: "seo").keywords.where.not(value: nil).order("created_at DESC").map(&:value)
   end
 end
