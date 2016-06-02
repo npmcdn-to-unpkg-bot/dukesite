@@ -1,6 +1,7 @@
 class ShowcasesController < ApplicationController
   before_action :find_showcase, only: [:show]
   def show
+    @products = @showcase.published_products
     # meta-tags
     # ------------------------------------------------------------------------------
     title       = @showcase.title
