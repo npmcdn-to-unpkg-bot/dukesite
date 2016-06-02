@@ -10,7 +10,7 @@ class BlogController < ApplicationController
     # ------------------------------------------------------------------------------
     title       = @article.title
     subtitle    = @article.subtitle
-    image       = @article.photo.image.url if (!@article.photo.nil? && !@article.photo.image.url.nil?)
+    image       = @article.img_url
     keywords    = @article.keywords.map(&:value) if @article.keywords.present?
     
     prepare_meta_tags  title:       title,

@@ -31,7 +31,7 @@ class Article < ActiveRecord::Base
     elsif !options[:icon]
       return "http://thedudeminds.de/images/no_image_available.png"
     else
-      icon = SiteConfig.find_by(slug: "icon").photo.image.url
+      icon = SiteConfig.find_by(slug: "icon").photo.image.url if SiteConfig.find_by(slug: "icon").present?
       if icon.present?
         return icon
       else
@@ -41,10 +41,10 @@ class Article < ActiveRecord::Base
   end
 
   def img_url
-    if self.photo.present?
+    if self.photo.present? && !self.photo.image.url.nil?
       self.photo.image.url 
     else
-      icon = SiteConfig.find_by(slug: "icon").photo.image.url 
+      icon = SiteConfig.find_by(slug: "icon").photo.image.url if SiteConfig.find_by(slug: "icon").present?
       if icon.present?
         return icon
       else
