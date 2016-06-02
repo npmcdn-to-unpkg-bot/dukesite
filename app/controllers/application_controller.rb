@@ -9,17 +9,17 @@ class ApplicationController < ActionController::Base
 
   private
     def prepare_meta_tags( options = {} )
-      site_name   = SiteConfig.find_by(slug: "site-name").value
-      title       = options[:title] || SiteConfig.find_by(slug: "site-name").value
-      description = SiteConfig.find_by(slug: "description").value
+      site_name   = SiteConfig.get_value("site-name")
+      title       = options[:title] || SiteConfig.get_value("site-name")
+      description = SiteConfig.get_value("description")
       carousels   = Carousel.visible_carousel_img_urls
       image       = carousels 
-      image      << SiteConfig.find_by(slug: "icon").img_url
+      image.nil? ? image = SiteConfig.get_img_url("icon") : image << SiteConfig.get_img_url("icon")
       current_url = request.url
 
       # # keywords
       # # ------------------------------------------------------------------------------
-      keywords    = SiteConfig.find_by(slug: "seo").keywords_value
+      keywords    = SiteConfig.default_keywords
 
       # # og
       # # ------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
       # # favicon
       # ------------------------------------------------------------------------------# favicon
-      favicon = SiteConfig.find_by(slug: "favorite-icon").img_url
+      favicon = SiteConfig.get_img_url("favorite-icon")
 
       defaults = {
         site:        site_name,
@@ -53,10 +53,10 @@ class ApplicationController < ActionController::Base
     end
 
     def get_default_variables
-      @our_belief = SiteConfig.find_by(key: "Our Belief").value
+      @our_belief = SiteConfig.get_value("our-belief")
       # icon
       # ------------------------------------------------------------------------------
-      @icon = SiteConfig.find_by(slug: "icon").img_url
+      @icon = SiteConfig.get_img_url("icon")
 
       @categories = Category.visible
       @showcases = Showcase.visible_on_landing_page
