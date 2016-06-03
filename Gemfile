@@ -62,6 +62,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'guard-rspec', require: false
+  gem 'guard-spork'
   gem 'capybara'
   gem 'database_cleaner'
 end
