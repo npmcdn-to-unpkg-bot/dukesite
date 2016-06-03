@@ -10,5 +10,4 @@ RSpec.describe ShowcasesController, type: :controller do
       expect(assigns(:products)).to eq( showcase_published_products)
     end 
   end
-
 end
