@@ -48,7 +48,7 @@ Product.create([{
                  url: "http://www.amazon.com/Yang-Womens-Devils-Basketball-Sleeve/dp/B0181P6WNY%3Fpsc%3D1%26SubscriptionId%3DAKIAJ65NRQ7WQJUWTDDA%26tag%3Dgermanpudding-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB0181P6WNY",
                  published: true
                  }, {
-                 asin: "B019RIOJNY",
+                 asin: "B018JOC402",
                  title: "Test 4", 
                  description: 'Lorem ipsum Adipisicing aute Ut aliquip velit laborum officia reprehenderit eiusmod deserunt occaecat deserunt occaecat.',
                  image_url: 'http://ecx.images-amazon.com/images/I/41TmUAV92OL.jpg',
