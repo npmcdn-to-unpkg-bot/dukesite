@@ -9,7 +9,7 @@ group :backend do
     watch('spec/spec_helper.rb')
   end
 
-  guard :rspec, :cmd => "rspec --drb" do
+  guard :rspec, :cmd => 'bundle exec rspec' do
     watch('spec/spec_helper.rb')                                               { "spec" }
     watch('app/controllers/application_controller.rb')                         { "spec/controllers" }
     watch('config/routes.rb')                                                  { "spec/routing" }
