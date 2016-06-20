@@ -19,42 +19,26 @@
         <div class="carousel-inner">
           <div class="item active">       
             <% showcase.published_products[0..3].each do |p| %>
-              <div class="col-xs-12 col-sm-3">
-                <%= link_to product_path(p), class:"thumbnail" do %>
-                  <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
-                <% end %>
-                  <div class="caption">
-                    <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
-                  </div>
-              </div>
+              <%= render "showcase_carousel", p: p %>
             <% end %>
           </div>
-
+          
+          <% if showcase.published_products.size > 4 %>
           <div class="item">
             <% showcase.published_products[4..7].each do |p| %>
-              <div class="col-xs-12 col-sm-3">
-                <%= link_to product_path(p), class:"thumbnail" do %>
-                  <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
-                <% end %>
-                  <div class="caption">
-                    <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
-                  </div>
-              </div>
+              <%= render "showcase_carousel", p: p %>
             <% end %>  
           </div>
+          <% end %>
 
+          <% if showcase.published_products.size > 8 %>
           <div class="item">
             <% showcase.published_products[8..11].each do |p| %>
-              <div class="col-xs-12 col-sm-3">
-                <%= link_to product_path(p), class:"thumbnail" do %>
-                  <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
-                <% end %>
-                  <div class="caption">
-                    <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
-                  </div>
-              </div>
+              <%= render "showcase_carousel", p: p %>
             <% end %>
           </div>
+          <% end %>
+
         </div>
       
         <!-- Carousel Control Arrows -->
