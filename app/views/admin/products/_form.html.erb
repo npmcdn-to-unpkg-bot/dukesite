@@ -1,4 +1,3 @@
-<%= render "shared/error", object: @product %>
 <%= render "look_up_form" %>
 
 <% if @product.id.present? %>
@@ -14,6 +13,7 @@
     </p>
   </div>
 <% end %>
+<%= render "shared/error", object: @product %>
 <div class="col-sm-9">
   <%= form_for [:admin, @product], :html => {:class => "form-horizontal"} do |p| %>
     <div class="form-group">
