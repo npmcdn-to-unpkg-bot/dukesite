@@ -37,7 +37,7 @@ class Admin::QuotesController < AdminController
 
   def update
     # Don't update photo attributes if no image is uploaded.
-    if !params[:quote][:photo_attributes][:image].nil?
+    if !params[:quote][:photo_attributes].nil?
       if @quote.update(quote_params(:update_photo => true))
         flash[:success] = "Successfully updated."
         redirect_to admin_quotes_path

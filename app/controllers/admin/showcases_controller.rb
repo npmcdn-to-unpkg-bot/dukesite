@@ -44,7 +44,7 @@ class Admin::ShowcasesController < AdminController
 
   def update
     # Don't update photo attributes if no image is uploaded.
-    if !params[:showcase][:photo_attributes][:image].nil?
+    if !params[:showcase][:photo_attributes].nil?
       if @showcase.update(showcase_params(:update_photo => true))
         flash[:success] = "Successfully updated."
         redirect_to admin_showcase_products_path(@showcase)
