@@ -56,7 +56,7 @@
       <% end %>
 
       <div class="col-sm-10">
-        <%= p.collection_select(:category_ids, @categories, :id, :name, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(Ctrl + Mouse Click = Multiple Select</em></small>
+        <%= p.collection_select(:category_ids, @all_categories, :id, :name, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(Ctrl + Mouse Click = Multiple Select</em></small>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
       <% end %>
 
       <div class="col-sm-10">
-        <%= p.collection_select(:showcase_ids, @showcases, :id, :title, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(Ctrl + Mouse Click = Multiple Select</em></small>
+        <%= p.collection_select(:showcase_ids, @all_showcases, :id, :title, {:multiple => true}, {:multiple => true, class: "form-control"}) %><small><em>(Ctrl + Mouse Click = Multiple Select</em></small>
       </div>
     </div>
 
@@ -92,9 +92,9 @@
     <%= image_tag img_url, class: "img-responsive thumbnail", id: "product-img-url" %> 
   </div>
   <div class="row">
-    <%= render 'admin/shared/keyword_form', object: @product if @product.id.present?%>
+    <%#= render 'admin/shared/keyword_form', object: @product if @product.id.present?%>
   </div>
   <div class="row">
-    <%= render 'admin/shared/keyword_list' if @product.id.present? %>
+    <%#= render 'admin/shared/keyword_list' if @product.id.present? %>
   </div>
 </div>
