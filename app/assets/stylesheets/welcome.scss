@@ -72,11 +72,28 @@
 
 .showcase-body {
   @include margin-top-bottom(5%);
-  div {
-    margin-bottom: 4%;
+  .carousel-inner {
     img:hover {
       opacity: 0.5;
     }
     p { min-height: 60px;}
+  }
+  .carousel-control {
+    border-bottom: none;
+    width: 0;
+    background-image: none;
+    color: white;
+    text-shadow: none;
+  }
+  .glyphicon-chevron-left, .glyphicon-chevron-right {
+    top: 35%;
+    right: 18px;
+    opacity: 1;
+  }
+  .glyphicon-chevron-left::before, .glyphicon-chevron-right:before {
+    border: $border-solid;
+    background: $header-pink;
+    padding: 3px 8px 3px 8px;
+    border-radius: 5px;
   }
 }

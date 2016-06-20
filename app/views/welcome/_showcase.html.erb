@@ -9,22 +9,63 @@
           <% end %>
         </p>
       </div>
-      <div class="col-xs-12 col-sm-3 hidden-xs pull-right more-button">
+      <div class="col-xs-12 col-sm-5 hidden-xs pull-right more-button">
         <p><%= link_to "View All #{showcase.published_products.size} Products", showcase_path(showcase) %></p>
       </div>
     </div>
     
     <div class="row showcase-body">
-      <% showcase.published_products[0..7].each do |p| %>
-        <div class="col-xs-12 col-sm-3">
-          <%= link_to product_path(p), class:"thumbnail" do %>
-            <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
-          <% end %>
-            <div class="caption">
-              <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
-            </div>
+      <div class="carousel slide" id=<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>>
+        <div class="carousel-inner">
+          <div class="item active">       
+            <% showcase.published_products[0..3].each do |p| %>
+              <div class="col-xs-12 col-sm-3">
+                <%= link_to product_path(p), class:"thumbnail" do %>
+                  <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
+                <% end %>
+                  <div class="caption">
+                    <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
+                  </div>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="item">
+            <% showcase.published_products[4..7].each do |p| %>
+              <div class="col-xs-12 col-sm-3">
+                <%= link_to product_path(p), class:"thumbnail" do %>
+                  <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
+                <% end %>
+                  <div class="caption">
+                    <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
+                  </div>
+              </div>
+            <% end %>  
+          </div>
+
+          <div class="item">
+            <% showcase.published_products[8..11].each do |p| %>
+              <div class="col-xs-12 col-sm-3">
+                <%= link_to product_path(p), class:"thumbnail" do %>
+                  <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
+                <% end %>
+                  <div class="caption">
+                    <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
+                  </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+      
+        <!-- Carousel Control Arrows -->
+        <a class="left carousel-control" data-slide="prev" href="#<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+          
+        <a class="right carousel-control" data-slide="next" href="#<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div><!-- End of Slide -->
     </div>
   <% end %>
 </div>
