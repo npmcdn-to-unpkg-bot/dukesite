@@ -6,6 +6,7 @@ class Admin::ShowcasesController < AdminController
   def index
     @showcase = Showcase.new
     @showcase.photo = Photo.new
+    @thumb_img_url = @showcase.photo.image.thumb.url
   end
 
   def product_list
@@ -23,18 +24,17 @@ class Admin::ShowcasesController < AdminController
   def create
     # Don't create photo if no image is uploaded.
     if !params[:showcase][:photo_attributes].nil?
-      if Showcase.create(showcaseparams(:update_photo => true))
-        flash[:success] = "A showcase was successfully created."
-        redirect_to admin_showcases_path
-      else
-        flash[:danger] = "Please try again."
-        render :index
-      end
-    elsif Showcase.create(showcase_params)
+      @showcase = Showcase.new(showcase_params(:update_photo => true))
+    else
+      @showcase = Showcase.new(showcase_params)
+    end
+    if @showcase.save
       flash[:success] = "A showcase was successfully created."
       redirect_to admin_showcases_path
     else
       flash[:danger] = "Please try again."
+      @showcase.photo = Photo.new
+      @thumb_img_url = @showcase.photo.image.thumb.url
       render :index
     end
   end

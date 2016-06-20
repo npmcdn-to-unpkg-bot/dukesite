@@ -7,23 +7,26 @@ class Admin::ProductsController < AdminController
 
   def new
     @product = Product.new
-    @showcases = Showcase.all
+    @all_showcases = Showcase.all
+    @all_categories = Category.all
   end
 
   def create
     @product = Product.new(product_params)
-
     if @product.save
       flash[:success] = "A product was successfully created."
       redirect_to admin_products_path
     else
+      @all_showcases = Showcase.all
+      @all_categories = Category.all
       render :new
     end
   end
 
   def edit
-    @showcases = Showcase.all
-    @keywords = @product.keywords.where.not(value: nil).order("created_at DESC")
+    @all_categories = Category.all
+    @all_showcases = Showcase.all
+    @keywords = @product.keywords
   end
 
   def update
@@ -31,6 +34,8 @@ class Admin::ProductsController < AdminController
       flash[:success] = "A product was successfully edited."
       redirect_to admin_products_path
     else
+      @all_showcases = Showcase.all
+      @all_categories = Category.all
       render :edit
     end
   end

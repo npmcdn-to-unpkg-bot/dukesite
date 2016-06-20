@@ -23,6 +23,6 @@ class Product < ActiveRecord::Base
   end
   
   def valid_keywords
-    self.keywords.where.not(value: nil).order("updated_at DESC").map(&:value) if self.keywords.present?
+    self.keywords.map(&:value) if self.keywords.present?
   end
 end

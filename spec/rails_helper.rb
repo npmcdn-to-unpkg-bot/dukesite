@@ -8,7 +8,8 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'pry'
-
+require 'factory_girl_rails'
+require 'faker'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
