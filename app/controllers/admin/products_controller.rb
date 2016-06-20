@@ -12,10 +12,13 @@ class Admin::ProductsController < AdminController
   end
 
   def create
-    if Product.create(product_params)
+    @product = Product.new(product_params)
+    if @product.save
       flash[:success] = "A product was successfully created."
       redirect_to admin_products_path
     else
+      @all_showcases = Showcase.all
+      @all_categories = Category.all
       render :new
     end
   end
@@ -31,6 +34,8 @@ class Admin::ProductsController < AdminController
       flash[:success] = "A product was successfully edited."
       redirect_to admin_products_path
     else
+      @all_showcases = Showcase.all
+      @all_categories = Category.all
       render :edit
     end
   end
