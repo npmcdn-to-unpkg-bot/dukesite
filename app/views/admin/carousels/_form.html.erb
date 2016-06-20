@@ -1,4 +1,4 @@
-<%= render "shared/error", object: @carousel %>
+<%#= render "shared/error", object: @carousel %>
 
 <div class="col-xs-12 col-sm-2">
   <div class="row">
@@ -9,7 +9,7 @@
 <div class="col-xs-12 col-sm-9 col-sm-offset-1">
   <%= form_for [:admin, @carousel], html: {class: "form-horizontal"} do |s| %>
     <div class="form-group">
-      <%= s.label "Title", class: "control-label" %>
+      <%= s.label "Title*", class: "control-label" %>
       <div class="row">
         <div class="col-xs-8">
           <%= s.text_field :title, class: "form-control", placeholder: "Enter title" %>
