@@ -1,12 +1,11 @@
 FactoryGirl.define do
   factory :category do
     name Faker::Name.title
+  end
 
-    after(:create) do |c|
-      c.products << FactoryGirl.create(:product, published: true)
-      c.products << FactoryGirl.create(:product, published: true, asin: "B019RIOJNY")
-      c.products << FactoryGirl.create(:product, published: false, asin: "B0181P6WNY")
-      c.products << FactoryGirl.create(:product, published: false, asin: "B019RIOJNY")
-    end
+  factory :category_with_product do
+    title Faker::Name.title
+    association :product, factory: :published_product_with_asin_1
+    association :product, factory: :unpublished_product_with_asin_3
   end
 end
