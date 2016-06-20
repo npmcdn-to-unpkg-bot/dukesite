@@ -24,18 +24,17 @@ class Admin::CategoriesController < AdminController
   def create
     # Don't create photo if no image is uploaded.
     if !params[:category][:photo_attributes].nil?
-      if Category.create(category_params(:update_photo => true))
-        flash[:success] = "A new category was succefully created."
-        redirect_to admin_categories_path
-      else
-        flash[:danger] = "Please try again."
-        render :index
-      end
-    elsif Category.create(category_params)
+      @category = Category.new(category_params(:update_photo => true))
+    else
+      @category = Category.new(category_params)
+    end
+    if @category.save
       flash[:success] = "A new category was succefully created."
       redirect_to admin_categories_path
     else
       flash[:danger] = "Please try again."
+      @category.photo = Photo.new
+      @thumb_img_url = @category.thumb_img_url 
       render :index
     end 
   end

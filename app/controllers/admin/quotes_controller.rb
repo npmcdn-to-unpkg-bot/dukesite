@@ -11,19 +11,18 @@ class Admin::QuotesController < AdminController
 
   def create
     # Don't create photo if no image is uploaded.
-    if !params[:quote][:photo_attributes].nil? 
-      if Quote.create(quote_params(:update_photo => true))
-        flash[:success] = "A quote was successfully created."
-        redirect_to admin_quotes_path
-      else
-        flash[:danger] = "Please try again."
-        render :index
-      end
-    elsif Quote.create(quote_params)
+    if !params[:quote][:photo_attributes].nil?
+      @quote = Quote.new(quote_params(:update_photo => true))
+    else
+      @quote = Quote.new(quote_params)
+    end # Don't create photo if no image is uploaded.
+
+    if @quote.save
       flash[:success] = "A quote was successfully created."
       redirect_to admin_quotes_path
     else
-      flash[:danger] = "Please try again."
+      @quote.photo = Photo.new
+      @thumb_img_url = @quote.thumb_img_url
       render :index
     end
   end

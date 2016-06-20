@@ -13,24 +13,16 @@ class Admin::CarouselsController < AdminController
     # Create photo when an image is uploaded.
     if !params[:carousel][:photo_attributes].nil?
       @carousel = Carousel.new(carousel_params(:update_photo => true))
-      if @carousel.save
-        flash[:success] = "successfully updated."
-        redirect_to admin_carousels_path
-      else
-        @carousel.photo = Photo.new
-        @thumb_img_url = @carousel.thumb_img_url
-        render :index
-      end
     else # Don't create photo if no image is uploaded.
       @carousel = Carousel.new(carousel_params)
-      if @carousel.save
-        flash[:success] = "A carousel was successfully created."
-        redirect_to admin_carousels_path
-      else
-        @carousel.photo = Photo.new
-        @thumb_img_url = @carousel.thumb_img_url
-        render :index
-      end
+    end
+    if @carousel.save
+      flash[:success] = "successfully updated."
+      redirect_to admin_carousels_path
+    else
+      @carousel.photo = Photo.new
+      @thumb_img_url = @carousel.thumb_img_url
+      render :index
     end
   end
 
