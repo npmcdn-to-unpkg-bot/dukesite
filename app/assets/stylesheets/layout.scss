@@ -31,7 +31,7 @@ body {
       }
       .nav-link-bar {
         @include padding-top-bottom(1%);
-        margin-bottom: 2%;
+        // margin-bottom: 2%;
         border-bottom: $border-solid-gray-light;
         ul {
           text-align: center;
