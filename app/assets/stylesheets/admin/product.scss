@@ -1,6 +1,25 @@
-.asin-lookup-bar{
+.asin-lookup-bar {
   // border-bottom: 1px solid $gray-lighter;
   min-height: 60px;
   margin: 20px;
   padding: 10px;
+}
+
+ul.admin-product-controls {
+  li { 
+    display: inline-block;
+    .glyphicon-refresh.loading {
+      animation: spin 4s linear infinite;
+    }
+  }
+  li:first-child {
+    margin-right: 10px;
+  }
+}
+
+@keyframes spin {
+  100% { 
+    -webkit-transform: rotate(360deg);
+    transform:rotate(360deg); 
+  } 
 }

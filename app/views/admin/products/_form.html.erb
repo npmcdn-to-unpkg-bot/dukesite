@@ -44,6 +44,13 @@
     </div>
 
     <div class="form-group">
+      <%= p.label "Product Image Url (small)*", :class=>"col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= p.url_field :image_url_small, class: "form-control", placeholder: "Enter the url of the product's image (small)" %>
+      </div>
+    </div>
+
+    <div class="form-group">
       <%= p.label "Description", :class=>"col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= p.text_area :description, class: "form-control", placeholder: "Describe the product", rows: 3 %>
