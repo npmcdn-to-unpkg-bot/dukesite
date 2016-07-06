@@ -82,9 +82,21 @@ class Admin::ProductsController < AdminController
            status: status
   end
 
+  def update_imgs
+    @products = Product.all
+    esponse = ""
+    if Amazon::EcsWrapper.update_imgs(@products)
+      status = 200
+    else
+      status = 400
+      response = "Please try again."
+    end
+    render json: { response: response }, status: status
+  end
+
   private
     def product_params
-      params.require(:product).permit(:asin, :title, :description, :image_url, :url, :published, :category_ids => [], :showcase_ids => [])
+      params.require(:product).permit(:asin, :title, :description, :image_url, :image_url_small, :url, :published, :category_ids => [], :showcase_ids => [])
     end
 
     def find_product

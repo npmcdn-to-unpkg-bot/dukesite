@@ -6,13 +6,14 @@ $(function(){
         returned_items_num = returned_items.length;
 
     $.each(returned_items, function(index, value){
-      var item       = value,
-          asin       = item.asin,
-          title = item.title,
+      var item             = value,
+          asin             = item.asin,
+          title            = item.title,
           product_page_url = item.detail_page_url,
-          img_url = item.image_url_large,
-          desc = item.description,
-          id = 'item-' + asin;
+          img_url          = item.image_url_large,
+          img_url_sm    = item.image_url_small,
+          desc             = item.description,
+          id               = 'item-' + asin;
       // Thumbmail for each item
       $col = $('<div></div>').addClass("col-xs-12 col-sm-3 col-md-2").attr('id', id);
       $thumbnail = $('<div></div>').addClass("thumbnail").appendTo($col);
@@ -28,6 +29,7 @@ $(function(){
         $('#product_title').val(title);
         $('#product_url').val(product_page_url);
         $('#product_image_url').val(img_url);
+        $('#product_image_url_small').val(img_url_sm);
         $('#product_description').val(desc);
         $('#product-img-url').attr('src', img_url);
         // $(this).parent().children().remove();
@@ -79,5 +81,24 @@ $(function(){
         $this.find('.caption').toggleClass('hide');
       })
   });
+
+  // Update imgs of products
+  $('#admin-update-imgs').click(function(){
+    var updateUrl = $( this ).attr( "data-update-url");
+    $.ajax({
+      url: updateUrl,
+      method: "PUT",
+      beforeSend: function(){
+        $("#admin-update-imgs .glyphicon-refresh").addClass('loading');
+      },
+      success: function(){
+        $("#admin-update-imgs .glyphicon-refresh").toggleClass('glyphicon-refresh').removeClass('loading').toggleClass('glyphicon-ok');
+        setTimeout(function(){
+          $("#admin-update-imgs .glyphicon-ok").toggleClass('glyphicon-refresh').toggleClass('glyphicon-ok');
+        }, 3000);
+      }
+    })
+  });
+
 });
 

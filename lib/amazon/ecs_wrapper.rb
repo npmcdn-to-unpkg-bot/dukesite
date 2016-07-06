@@ -71,7 +71,7 @@ module Amazon
         items[item_asin].brand = node_item.get("ItemAttributes/Brand")
         items[item_asin].detail_page_url = node_item.get("DetailPageURL")
         items[item_asin].image_url_large = node_item.get("LargeImage/URL")
-        items[item_asin].image_url_small = node_item.get("SmallImage/URL")
+        items[item_asin].image_url_small = node_item.get("MediumImage/URL")
       end
     end
   end
@@ -96,6 +96,19 @@ module Amazon
     end
   end
 
+  def self.update_imgs(items)
+    items.each do |item| 
+      asin = item.asin
+      res_imgs_amazon = request_amazon({:response_group => "Images"}, asin) 
+
+      res_imgs_amazon.items.each do |return_item|
+        item.image_url       = return_item.get("LargeImage/URL")
+        item.image_url_small = return_item.get("MediumImage/URL")
+        return false unless item.save
+      end
+    end
+  end
+
   private
     # sends a request to Amazon Web Service using configured AWS credentials
     # returns: the corresponding Amazon::Ecs response
@@ -106,7 +119,20 @@ module Amazon
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
 
-      result = Amazon::Ecs.item_lookup(asin, parameters)
+      # Retry for 3 times if request error (503) exists
+      request_times = 0
+      begin
+       result = Amazon::Ecs.item_lookup(asin, parameters)
+      rescue Amazon::RequestError => error
+        if /503/ =~ error.message && request_times < 3
+          sleep 3
+          request_times += 1
+          puts asin + " => Request times: " + request_times.to_s
+          retry
+        else
+          raise error
+        end
+      end
 
       return result
     end

@@ -54,6 +54,9 @@ Rails.application.routes.draw do
     # Look up product via Amazon API
     # ------------------------------------------------------------------------------
     get '/look_up_item', to: 'products#lookup_item_on_amazon'
+    # Update products attributes via Amazon API
+    # ------------------------------------------------------------------------------
+    put '/update_imgs', to: 'products#update_imgs', as: 'update_imgs_via_amazon'
     
     # Visible/Publish Switch
     # ------------------------------------------------------------------------------

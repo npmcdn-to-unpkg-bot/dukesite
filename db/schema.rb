@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530121143) do
+ActiveRecord::Schema.define(version: 20160706171622) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -116,15 +116,16 @@ ActiveRecord::Schema.define(version: 20160530121143) do
   add_index "product_showcases", ["showcase_id"], name: "index_product_showcases_on_showcase_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.text     "url",         limit: 65535
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.boolean  "published",                 default: false
-    t.text     "image_url",   limit: 65535
-    t.string   "slug",        limit: 255
-    t.string   "asin",        limit: 255
+    t.string   "title",           limit: 255
+    t.text     "description",     limit: 65535
+    t.text     "url",             limit: 65535
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "published",                     default: false
+    t.text     "image_url",       limit: 65535
+    t.string   "slug",            limit: 255
+    t.string   "asin",            limit: 255
+    t.string   "image_url_small", limit: 255
   end
 
   create_table "quotes", force: :cascade do |t|
