@@ -84,7 +84,7 @@ class Admin::ProductsController < AdminController
 
   def update_imgs
     @products = Product.all
-    esponse = ""
+    response = ""
     if Amazon::EcsWrapper.update_imgs(@products)
       status = 200
     else
