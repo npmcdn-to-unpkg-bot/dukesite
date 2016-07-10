@@ -11,14 +11,12 @@ Rails.application.routes.draw do
     resources :products, except: [:show] do
       resources :keywords, only: [:create]
     end
-    resources :showcases, except: [:show, :new, :edit] do
+    resources :showcases, except: [:new, :edit] do
       resources :keywords, only: [:create]
-      get :product_list, as: 'products'
       put :update_image, as: 'update_image'
     end
-    resources :categories, except: [:show, :new, :edit] do
+    resources :categories, except: [:new, :edit] do
       resources :keywords, only: [:create]
-      get :product_list, as: 'products'
       put :update_image, as: 'update_image'
     end
     resources :social_network_accounts, except: [:show] do

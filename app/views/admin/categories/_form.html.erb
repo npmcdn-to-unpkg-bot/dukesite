@@ -28,7 +28,7 @@
       <% end %>
     </div>
     <div class="form-group">
-      <%= link_to "Cancel", admin_category_products_path(@category), class: "btn btn-warning" if @category.id.present? %>
+      <%= link_to "Cancel", admin_category_path(@category), class: "btn btn-warning" if @category.id.present? %>
       <%= p.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>

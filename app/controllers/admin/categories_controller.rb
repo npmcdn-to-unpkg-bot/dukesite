@@ -1,6 +1,6 @@
 class Admin::CategoriesController < AdminController
-  before_action :find_category, only: [:edit, :update, :destroy, :visible_switch]
-  before_action :find_category_by_category_id, only: [:product_list, :update_image]
+  before_action :find_category, only: [:show, :edit, :update, :destroy, :visible_switch]
+  before_action :find_category_by_category_id, only: [:update_image]
   before_action :find_all_categories, only: [:index, :create]
   
   def index
@@ -9,7 +9,7 @@ class Admin::CategoriesController < AdminController
     @thumb_img_url = @category.thumb_img_url 
   end
 
-  def product_list
+  def show
     if @category.photo.present?
       @thumb_img_url = @category.thumb_img_url 
     else
@@ -44,14 +44,14 @@ class Admin::CategoriesController < AdminController
     if !params[:category][:photo_attributes][:image].nil?
       if @category.update(category_params(:update_photo => true))
         flash[:success] = "Succefully updated."
-        redirect_to admin_category_products_path(@category)
+        redirect_to admin_category_path(@category)
       else
         flash[:danger] = "Please try again."
         render :edit
       end
     elsif @category.update(category_params)
       flash[:success] = "A new category was succefully updated."
-      redirect_to admin_category_products_path(@category)
+      redirect_to admin_category_path(@category)
     else
       flash[:danger] = "Please try again."
       render :index
@@ -74,7 +74,7 @@ class Admin::CategoriesController < AdminController
   def update_image
     if params[:category].present? && @category.photo.update(photo_params)
       flash[:success] = "A new image was succefully uploaded."
-      redirect_to admin_category_products_path(@category)
+      redirect_to admin_category_path(@category)
     else
       flash[:danger] = "Please try again."
       render :product_list

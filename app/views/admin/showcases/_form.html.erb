@@ -1,15 +1,13 @@
 <%= render "shared/error", object: @showcase %>
 
 <div class="col-sm-2">
-  <div class="row">
-    <% @thumb_img_url.present? ? thumb_img_url = @thumb_img_url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" %>
-    <% if @thumb_img_url.present? %>
-      <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview", data: {toggle: "modal", target: "#imageUploaderModal"} %>
-      <p class="help-block text-center">Click image to edit</p>
-    <% else %>
-      <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview" %>
-    <% end %>
-  </div>
+  <% @thumb_img_url.present? ? thumb_img_url = @thumb_img_url : thumb_img_url = "http://thedudeminds.de/images/no_image_available.png" %>
+  <% if @thumb_img_url.present? %>
+    <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview", data: {toggle: "modal", target: "#imageUploaderModal"} %>
+    <p class="help-block text-center">Click image to edit</p>
+  <% else %>
+    <%= image_tag thumb_img_url, class: "img-responsive thumbnail", id: "showcase_form_img_preview" %>
+  <% end %>
 </div>
 
 <div class="col-sm-9 col-sm-offset-1">
@@ -45,7 +43,7 @@
       <%= s.radio_button :show_on_landing_page, false %> No <br>
       <%= s.radio_button :show_on_landing_page, true %> Yes
     </div>
-    <%= link_to "Cancel", admin_showcase_products_path(@showcase) , class: "btn btn-warning" if @showcase.id.present? %>
+    <%= link_to "Cancel", admin_showcase_path(@showcase) , class: "btn btn-warning" if @showcase.id.present? %>
     <%= s.submit "Save", class: "btn btn-primary" %>
   <% end %>
 </div>
@@ -55,4 +53,4 @@
 <% end %>
 
 <!-- Modal -->
-<%= render 'admin/shared/image_uploader_modal', object: @showcase, img_url: @thumb_img_url, image_update_url: admin_showcase_update_image_path(@showcase), return_path: admin_showcase_products_path(@showcase), preview_id: "showcase-form-img-preview" if @thumb_img_url.present? %>
+<%= render 'admin/shared/image_uploader_modal', object: @showcase, img_url: @thumb_img_url, image_update_url: admin_showcase_update_image_path(@showcase), return_path: admin_showcase_path(@showcase), preview_id: "showcase-form-img-preview" if @thumb_img_url.present? %>

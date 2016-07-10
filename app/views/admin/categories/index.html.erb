@@ -10,10 +10,8 @@
 </p>
 
 <div class="collapse" id="collapseCatForm">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 well">
-      <%= render "form" %>
-    </div>
+  <div class="col-xs-12 col-sm-12 well">
+    <%= render "form" %>
   </div>
 </div>
 
@@ -28,12 +26,12 @@
             thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
           end
         %>
-        <%= link_to admin_category_products_path(p) do %>
+        <%= link_to admin_category_path(p) do %>
           <%= image_tag thumb_img_url %>
         <% end %>
         <div class="caption">
           <h4>
-            <%= link_to p.name, admin_category_products_path(p)%>
+            <%= link_to p.name, admin_category_path(p)%>
           </h4>
           <p> 
             <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="cat-status" data-edit=<%= admin_category_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "visible" : "hidden" %></button>
