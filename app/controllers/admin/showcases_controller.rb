@@ -1,12 +1,13 @@
 class Admin::ShowcasesController < AdminController
   before_action :find_showcase, only: [:show, :edit, :update, :destroy, :visible_switch]
   before_action :find_showcase_by_showcase_id, only: [:update_image]
-
   before_action :find_all_showcases, only: [:index, :create]
+
   def index
     @showcase = Showcase.new
     @showcase.photo = Photo.new
     @thumb_img_url = @showcase.photo.image.thumb.url
+    @showcases_amount = Showcase.all.length
   end
 
   def show

@@ -6,7 +6,8 @@ class Admin::CategoriesController < AdminController
   def index
     @category = Category.new
     @category.photo = Photo.new
-    @thumb_img_url = @category.thumb_img_url 
+    @thumb_img_url = @category.thumb_img_url
+    @categories_amount = Category.all.length
   end
 
   def show

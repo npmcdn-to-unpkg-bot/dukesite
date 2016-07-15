@@ -7,6 +7,7 @@ class Admin::QuotesController < AdminController
     @quote = Quote.new
     @quote.photo = Photo.new
     @thumb_img_url = @quote.thumb_img_url
+    @quotes_amount = Quote.all.length
   end
 
   def create

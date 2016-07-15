@@ -4,6 +4,7 @@ class Admin::CarouselsController < AdminController
   before_action :find_all_carousels, only: [:index, :create]
 
   def index
+    @carousels_amount = Carousel.all.length
     @carousel = Carousel.new
     @carousel.photo = Photo.new
     @thumb_img_url = @carousel.thumb_img_url
