@@ -25,4 +25,12 @@ class Product < ActiveRecord::Base
   def valid_keywords
     self.keywords.map(&:value) if self.keywords.present?
   end
+
+  def last_update
+    if self.updated_at == nil 
+      self.updated_at.to_formatted_s(:long)
+    else 
+      self.created_at.to_formatted_s(:long)
+    end
+  end
 end

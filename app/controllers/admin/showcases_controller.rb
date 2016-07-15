@@ -1,15 +1,16 @@
 class Admin::ShowcasesController < AdminController
-  before_action :find_showcase, only: [:product_list, :edit, :update, :destroy, :visible_switch]
-  before_action :find_showcase_by_showcase_id, only: [:product_list, :update_image]
-
+  before_action :find_showcase, only: [:show, :edit, :update, :destroy, :visible_switch]
+  before_action :find_showcase_by_showcase_id, only: [:update_image]
   before_action :find_all_showcases, only: [:index, :create]
+
   def index
     @showcase = Showcase.new
     @showcase.photo = Photo.new
     @thumb_img_url = @showcase.photo.image.thumb.url
+    @showcases_amount = Showcase.all.length
   end
 
-  def product_list
+  def show
     if @showcase.photo.present?
       @thumb_img_url = @showcase.photo.image.thumb.url 
     else
@@ -18,7 +19,7 @@ class Admin::ShowcasesController < AdminController
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
     @keywords = @showcase.keywords.where.not(value: nil).order("created_at DESC")
-    @products = @showcase.products.paginate(:page => params[:page], :per_page => 20)
+    @products = @showcase.products.paginate(:page => params[:page], :per_page => 12)
   end
 
   def create
@@ -47,14 +48,14 @@ class Admin::ShowcasesController < AdminController
     if !params[:showcase][:photo_attributes].nil?
       if @showcase.update(showcase_params(:update_photo => true))
         flash[:success] = "Successfully updated."
-        redirect_to admin_showcase_products_path(@showcase)
+        redirect_to admin_showcase_path(@showcase)
       else
         flash[:danger] = "Please try again."
         render :edit
       end
     elsif @showcase.update(showcase_params)
       flash[:success] = "Successfully updated."
-      redirect_to admin_showcase_products_path(@showcase)
+      redirect_to admin_showcase_path(@showcase)
     else
       flash[:danger] = "Please try again."
       render :edit
@@ -78,7 +79,7 @@ class Admin::ShowcasesController < AdminController
   def update_image
     if params[:showcase].present? && @showcase.photo.update(photo_params)
       flash[:success] = "A new image was succefully uploaded."
-      redirect_to admin_showcase_products_path(@showcase)
+      redirect_to admin_showcase_path(@showcase)
     else
       flash[:danger] = "Please try again."
       render :product_list

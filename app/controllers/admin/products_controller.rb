@@ -2,7 +2,8 @@ class Admin::ProductsController < AdminController
   before_action :find_product, only: [:edit, :update, :destroy, :publish_switch]
 
   def index
-    @products = Product.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 20)
+    @products_amount = Product.all.length
+    @products = Product.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 12)
   end
 
   def new

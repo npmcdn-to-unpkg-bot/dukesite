@@ -1,15 +1,16 @@
 class Admin::CategoriesController < AdminController
-  before_action :find_category, only: [:edit, :update, :destroy, :visible_switch]
-  before_action :find_category_by_category_id, only: [:product_list, :update_image]
+  before_action :find_category, only: [:show, :edit, :update, :destroy, :visible_switch]
+  before_action :find_category_by_category_id, only: [:update_image]
   before_action :find_all_categories, only: [:index, :create]
   
   def index
     @category = Category.new
     @category.photo = Photo.new
-    @thumb_img_url = @category.thumb_img_url 
+    @thumb_img_url = @category.thumb_img_url
+    @categories_amount = Category.all.length
   end
 
-  def product_list
+  def show
     if @category.photo.present?
       @thumb_img_url = @category.thumb_img_url 
     else
@@ -18,7 +19,7 @@ class Admin::CategoriesController < AdminController
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
     @keywords = @category.keywords.where.not(value: nil).order("created_at DESC")
-    @products = @category.products.paginate(:page => params[:page], :per_page => 20)
+    @products = @category.products.paginate(:page => params[:page], :per_page => 12)
   end
 
   def create
@@ -44,14 +45,14 @@ class Admin::CategoriesController < AdminController
     if !params[:category][:photo_attributes][:image].nil?
       if @category.update(category_params(:update_photo => true))
         flash[:success] = "Succefully updated."
-        redirect_to admin_category_products_path(@category)
+        redirect_to admin_category_path(@category)
       else
         flash[:danger] = "Please try again."
         render :edit
       end
     elsif @category.update(category_params)
       flash[:success] = "A new category was succefully updated."
-      redirect_to admin_category_products_path(@category)
+      redirect_to admin_category_path(@category)
     else
       flash[:danger] = "Please try again."
       render :index
@@ -74,7 +75,7 @@ class Admin::CategoriesController < AdminController
   def update_image
     if params[:category].present? && @category.photo.update(photo_params)
       flash[:success] = "A new image was succefully uploaded."
-      redirect_to admin_category_products_path(@category)
+      redirect_to admin_category_path(@category)
     else
       flash[:danger] = "Please try again."
       render :product_list

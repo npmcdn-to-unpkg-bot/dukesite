@@ -1,6 +1,6 @@
 .apple_pagination {
-  background: #F8BBD0;
-  border: 1px solid #e5e5e5;
+  // background: #F8BBD0;
+  // border: 1px solid #e5e5e5;
   text-align: center;
   padding: 1em;
   cursor: default; 
@@ -9,7 +9,7 @@
   padding: 0.2em 0.3em; 
 }
 .apple_pagination .disabled {
-  color: #F8BBD0; 
+  // color: $light-pink;
 }
 .apple_pagination .current {
   font-style: normal;
@@ -26,7 +26,8 @@
 }
 .apple_pagination a {
   text-decoration: none;
-  color: white; 
+  // color: white; 
+  color: $light-pink; 
 }
 .apple_pagination a:hover, .apple_pagination a:focus {
   text-decoration: underline; 

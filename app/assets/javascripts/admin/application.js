@@ -17,3 +17,13 @@ function readURL(input, preview){
     reader.readAsDataURL(input.files[0]);
   };
 }
+
+$(function(){
+  // Masonry for Grids
+  var $grid = $('.grid');
+  $grid.imagesLoaded( function () {
+    $('.grid').masonry({
+      itemSelector: ".grid-item"
+    });
+  });
+});
