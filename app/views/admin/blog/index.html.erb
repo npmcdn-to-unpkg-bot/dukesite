@@ -14,7 +14,7 @@
 
 <div class="row grid">
   <% @articles.each do |p| %>
-    <div class="col-xs-12 col-sm-3 grid-item">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-item">
       <div class="thumbnail admin-article-thumbnail <%= 'invisible_thumbnail' if !p.published %>">
         <%= link_to edit_admin_blog_article_path(p) do %>
           <%= image_tag p.thumb_img_url %>
