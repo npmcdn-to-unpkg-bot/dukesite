@@ -32,18 +32,7 @@
   <%# Don't change @products to @showcase.products. 
       Otherwise, pagination won't work %>
 
-<div class="row">
-  <% if @showcase.id.present? %>
-  <div class="panel panel-default">
-    <div class="panel-heading">Add SEO</div>
-    <div class="panel-body">
-      <div class="row">
-        <%= render 'admin/shared/keyword_form', object: @showcase %>
-      </div>
-      <div class="row">
-        <%= render 'admin/shared/keyword_list' %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
+<% if @showcase.id.present? %>
+  <hr>
+  <%= render "admin/shared/seo_box", object: @showcase %>
+<% end %>
