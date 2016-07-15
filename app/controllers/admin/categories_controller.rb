@@ -18,7 +18,7 @@ class Admin::CategoriesController < AdminController
     # Here, we must use paginate method to create @products,
     # so the front end can get data for the pagination.
     @keywords = @category.keywords.where.not(value: nil).order("created_at DESC")
-    @products = @category.products.paginate(:page => params[:page], :per_page => 20)
+    @products = @category.products.paginate(:page => params[:page], :per_page => 12)
   end
 
   def create
