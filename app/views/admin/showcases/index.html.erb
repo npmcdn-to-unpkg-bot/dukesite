@@ -15,9 +15,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row grid">
   <% @showcases.order("updated_at DESC").each do |p| %>
-    <div class="col-xs-12 col-sm-4 col-md-3">
+    <div class="col-xs-12 col-sm-3 grid-item">
       <div class="thumbnail admin-showcase-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
         <%  
           if !p.photo.nil? && p.photo.image.thumb.url.present?
@@ -35,7 +35,7 @@
           </h4>
           <p><%= p.subtitle %></p>
           <p> 
-            <button type="button" class="btn <%= p.visible? ? "btn-primary" : "btn-default" %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
+            <button type="button" class="btn <%= visible_status_btn(p) %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(p) %> data-visible=<%= p.visible? %>><%= p.visible? ? "Visible" : "Hidden" %></button>
             <%= link_to "Delete", admin_showcase_path(p), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
             <%= link_to "Shop", showcase_path(p), class: "pull-right" %>
           </p>
