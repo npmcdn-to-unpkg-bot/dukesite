@@ -74,14 +74,6 @@ $(function(){
     });// end of click
   });
 
-  $(".admin-product-thumbnail").each(function(){
-    var $this    = $( this );
-    $this.hover(
-      function(){
-        $this.find('.caption').toggleClass('hide');
-      })
-  });
-
   // Update imgs of products
   $('#admin-update-imgs').click(function(){
     var updateUrl = $( this ).attr( "data-update-url");
@@ -99,6 +91,4 @@ $(function(){
       }
     })
   });
-
 });
-
