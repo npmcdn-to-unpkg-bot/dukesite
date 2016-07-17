@@ -27,7 +27,7 @@
           <%= display_photo_image_tag(p) %>
         <% end %>
         <div class="caption">
-          <small><span class="label label-success pull-right"><%= p.show_on_landing_page ? "Landing Page" : "" %></span></small>
+          <%= display_on_landing_page?(p) %>
           <h4><%= link_to p.title, admin_showcase_path(p) %>
           </h4>
           <p><%= p.subtitle %></p>
