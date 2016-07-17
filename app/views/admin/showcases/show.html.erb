@@ -7,8 +7,8 @@
       </a>
     </small>
   </h1>
-  <% @showcase.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Invisible") && (label = "label-default")) %>
-    <span class="label <%= label %>"><%= status %></span>
+
+    <span class="label <%= visibility_label(@showcase) %>"><%= visibility_status(@showcase) %></span>
   <%= link_to showcase_path(@showcase), target: "_blank" do %>
     <span class="pull-right">Go to Shop <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></span>
   <% end %>

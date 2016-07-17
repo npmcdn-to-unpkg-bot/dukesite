@@ -7,8 +7,9 @@
       </a>
     </small>
   </h1>
-  <% @category.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Invisible") && (label = "label-default")) %>
-    <span class="label <%= label %>"><%= status %></span>
+
+  <span class="label <%= visibility_label(@category) %>"><%= visibility_status(@category) %></span>
+  
   <%= link_to category_path(@category), target: "_blank" do %>
     <span class="pull-right">Go to Shop <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></span>
   <% end %>
