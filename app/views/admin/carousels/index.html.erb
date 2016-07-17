@@ -22,6 +22,6 @@
 
 <%= render 'shared/pagination', objects: @carousels %>
 <div class="row grid">
-  <% render partial: "carousel_thumbnail", collection: @carousels, as: :carousel %>
+  <%= render partial: "carousel_thumbnail", collection: @carousels, as: :carousel %>
 </div>
 <%= render 'shared/pagination', objects: @carousels %>
