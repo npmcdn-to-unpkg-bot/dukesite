@@ -2,7 +2,7 @@ class Admin::SocialNetworkAccountsController < AdminController
   before_action :find_sna, only: [:edit, :update, :destroy]
   before_action :find_sna_by_sna_id, only: [:update_image]
   def index
-    @all_snas = SocialNetworkAccount.all
+    @accounts = SocialNetworkAccount.all
     @sna = SocialNetworkAccount.new
     @sna.photo = Photo.new
   end
