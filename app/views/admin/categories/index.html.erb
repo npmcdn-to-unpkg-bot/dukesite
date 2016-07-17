@@ -24,15 +24,9 @@
   <% @categories.each do |p| %>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-item">
       <div class="thumbnail admin-category-thumbnail <%= 'invisible_thumbnail' if !p.visible %>">
-        <%  
-          if !p.photo.nil? && p.photo.image.thumb.url.present?
-            thumb_img_url = p.photo.image.thumb.url
-          else
-            thumb_img_url = "http://thedudeminds.de/images/no_image_available.png"
-          end
-        %>
+
         <%= link_to admin_category_path(p) do %>
-          <%= image_tag thumb_img_url %>
+          <%= display_photo_image_tag(p) %>
         <% end %>
         <div class="caption">
           <h4>
