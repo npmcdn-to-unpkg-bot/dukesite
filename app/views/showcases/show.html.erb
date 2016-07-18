@@ -5,14 +5,16 @@
     </div>
     <p><%= @showcase.subtitle %></p>
   </div>
-  <div class="col-xs-12 col-sm-10 product-box">
-    <% @products.each do |p| %>
-      <div class="col-xs-12 col-sm-3 product">
-      <%= link_to product_path(p), class:"thumbnail" do %>
-          <%= image_tag p.image_url,  class: "img-responsive", alt: p.title %>
+  <div class="col-xs-12 col-sm-10 product-box grid">
+    <div class="row grid">
+      <% @products.each do |p| %>
+        <div class="col-xs-6 col-sm-4 col-md-3 product grid-item">
+        <%= link_to product_path(p), class:"thumbnail" do %>
+            <%= image_tag p.image_url,  class: "img-responsive", alt: p.title %>
+        <% end %>
+        </div>
       <% end %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>
 
