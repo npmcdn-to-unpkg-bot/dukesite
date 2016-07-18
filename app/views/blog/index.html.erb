@@ -3,24 +3,7 @@
 <% else %>
   <div class="container">
     <div class="col-xs-12 col-sm-12">
-      <% @articles.each do |p| %>
-        <%= link_to blog_path(p) do %>
-          <div class="col-xs-12 col-sm-4 blog-article-thumbnail">
-            <div class="blog-article-thumbnail-title">
-              <h3>
-                <%= truncate(p.title, length: 55, omission: '...') %><br><small> <%= truncate p.subtitle, length: 55, omission: '...' %></small>
-              </h3>
-            </div>
-            <%= link_to blog_path(p), class:"thumbnail" do %>
-              <%= image_tag p.thumb_img_url(:icon => true), class: "img-responsive", alt: p.title %>
-            <% end %>
-
-            <div class="caption">
-              <p><%= strip_tags p.content.truncate(347, :separator => " ",omission: '...') %></p>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+      <%= render partial: "article_thumbnail", collection: @articles, as: :article %>
     </div>
   </div>
 <% end %>
