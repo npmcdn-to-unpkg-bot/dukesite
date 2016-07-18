@@ -9,13 +9,12 @@
       </h4>
       <p><%= showcase.subtitle %></p>
       <p> 
-        <button type="button" class="btn <%= visible_status_btn(showcase) %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(showcase) %> data-visible=<%= showcase.visible? %>><%= showcase.visible? ? "Visible" : "Hidden" %></button>
+        <button type="button" class="btn <%= visible_status_btn(showcase) %> btn-sm" id="showcase-status" data-edit=<%= admin_showcase_visible_switch_path(showcase) %> data-visible=<%= showcase.visible? %>><%= visibility_status(showcase) %></button>
         <%= link_to "Delete", admin_showcase_path(showcase), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
         <%= link_to "Shop", showcase_path(showcase), class: "pull-right" %>
       </p>
       <small>
-      <% showcase.updated_at.nil? ? update_time = showcase.created_at.to_formatted_s(:db) : update_time = showcase.updated_at.to_formatted_s(:db) %>
-      <%= update_time %> <em>(last updated)</em></small>
+      <%= showcase.last_update %> <em>(last updated)</em></small>
       <span class="badge pull-right"><%= showcase.products.size %></span>
     </div>
   </div>

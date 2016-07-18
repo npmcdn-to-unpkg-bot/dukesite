@@ -18,11 +18,8 @@ class SocialNetworkAccount < ActiveRecord::Base
   end
 
   def last_update
-    if self.updated_at == nil 
-      self.updated_at.to_formatted_s(:long)
-    else 
-      self.created_at.to_formatted_s(:long)
-    end
+    self.updated_at.nil? ? time = self.updated_at : time = self.created_at
+    return time.to_formatted_s(:long)
   end
 
   def image_exist?
