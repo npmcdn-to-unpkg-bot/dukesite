@@ -21,7 +21,7 @@ module WelcomeHelper
 
   def display_showcase_carousels(obj)
     # First item must be "active"
-    groups = obj.published_products.in_groups_of(4, false)
+    groups = obj.published_products[0..11].in_groups_of(4, false)
     first_group = groups.first
 
     groups.collect do |group|
