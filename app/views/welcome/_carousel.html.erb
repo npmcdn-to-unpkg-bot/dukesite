@@ -3,7 +3,7 @@
     <!-- Indicators -->
     <% num = @visible_carousels.size
        i = 0 %>
-       
+
     <ol class="carousel-indicators">
       <% while i < num %>
         <%= display_carousel_indicator(i , num) %>
@@ -15,7 +15,7 @@
     <div class="carousel-inner" role="listbox">
       <% @visible_carousels.each do |carousel| %>
         <div class="item <%= active_carousel?(carousel, @visible_carousels) %>">
-          <%= image_tag carousel.photo.image.url, alt: carousel.title if carousel.photo.present? %>
+          <%= display_photo_image_tag(carousel, carousel.title) %>
         </div>
       <% end %>
     </div>

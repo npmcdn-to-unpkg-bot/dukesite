@@ -15,28 +15,7 @@
 <div class="row showcase-body">
   <div class="carousel slide" id=<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>>
     <div class="carousel-inner">
-      <div class="item active">       
-        <% showcase.published_products[0..3].each do |p| %>
-          <%= render "showcase_carousel", p: p %>
-        <% end %>
-      </div>
-      
-      <% if showcase.published_products.size > 4 %>
-      <div class="item">
-        <% showcase.published_products[4..7].each do |p| %>
-          <%= render "showcase_carousel", p: p %>
-        <% end %>  
-      </div>
-      <% end %>
-
-      <% if showcase.published_products.size > 8 %>
-      <div class="item">
-        <% showcase.published_products[8..11].each do |p| %>
-          <%= render "showcase_carousel", p: p %>
-        <% end %>
-      </div>
-      <% end %>
-
+      <%= sanitize display_showcase_carousels(showcase) %>
     </div>
   
     <!-- Carousel Control Arrows -->
