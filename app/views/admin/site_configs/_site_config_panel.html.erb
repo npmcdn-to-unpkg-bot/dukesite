@@ -11,9 +11,8 @@
           <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
               <%= sanitize s.value.nil? ? "No Content" : s.value %>
-              <% s.updated_at.nil? ? updated_time = s.created_at : updated_time = s.updated_at %>
               <hr>
-              <%= link_to 'Edit', edit_admin_site_config_path(s), class: 'btn btn-default' %><small class="help-block"><em><%= "Last updated: #{updated_time.to_formatted_s(:long)}" %></em></small>
+              <%= link_to 'Edit', edit_admin_site_config_path(s), class: 'btn btn-default' %><small class="help-block"><em><%= "Last updated: #{s.last_update}" %></em></small>
             </div>
           </div>
         </div>

@@ -30,4 +30,9 @@ class SiteConfig< ActiveRecord::Base
   def self.default_keywords
     self.find_by(slug: "seo").keywords.where.not(value: nil).order("created_at DESC").map(&:value) if self.find_by(slug: "seo").present?
   end
+
+  def last_update
+    self.updated_at.nil? ? time = self.updated_at : time = self.created_at
+    return time.to_formatted_s(:long)
+  end
 end
