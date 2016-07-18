@@ -2,7 +2,7 @@
   <%= render "shared/info_box", msg: "<p><em>A Blog for Our Duke Girls is Coming Soon...</em></p>" %>
 <% else %>
   <div class="container">
-    <div class="col-xs-12 col-sm-12">
+    <div class="row grid">
       <%= render partial: "article_thumbnail", collection: @articles, as: :article %>
     </div>
   </div>

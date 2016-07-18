@@ -42,6 +42,10 @@
   border-bottom: $border-solid-gray-lighter;
 }
 
+.thumbnail > img, .thumbnail a > img {
+  width: 100%
+}
+
 ul, menu, dir {
   -webkit-padding-start: 0;
 }

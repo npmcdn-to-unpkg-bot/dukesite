@@ -1,5 +1,5 @@
 <%= link_to blog_path(article) do %>
-  <div class="col-xs-12 col-sm-4 blog-article-thumbnail">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 blog-article-thumbnail grid-item">
     <div class="blog-article-thumbnail-title">
       <h3>
         <%= truncate(article.title, length: 55, omission: '...') %><br><small> <%= truncate article.subtitle, length: 55, omission: '...' %></small>
