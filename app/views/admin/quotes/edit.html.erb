@@ -1,7 +1,6 @@
 <div class="page-header">
   <h1><%= @quote.title %></h1>
-  <% @quote.visible? ? ((status = "Visible") && (label = "label-success")) : ((status = "Hidden") && (label = "label-default")) %>
-  <span class="label <%= label %>"><%= status %></span>
+  <span class="label <%= visibility_label(@quote) %>"><%= visibility_status(@quotes) %></span>
 </div>
 
 <ol class="breadcrumb">

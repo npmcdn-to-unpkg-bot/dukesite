@@ -12,37 +12,5 @@
 
 <%# Links list %>
 <div id="snaThumbnails">
-  <% if @all_snas.present? %>
-    <% @all_snas.each do |p| %>
-      <% p.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
-         p.updated_at? ? time = p.updated_at : time = p.created_at
-         p.photo.present? && !p.photo.image.url.nil? ? sna_image = p.photo.image.url : sna_image = "http://thedudeminds.de/images/no_image_available.png"
-        %>
-      <div class="panel panel-default">
-        <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#editSnaForm-<%= p.slug %>">
-          <div class="media-left">
-            <%= link_to url_with_protocol(p.platform_url), :target => "_blank" do %>
-              <%= image_tag sna_image,  size: "32x32" %>
-            <% end %>
-          </div>
-          <div class="media-body">
-            <h3 class="panel-title"><%= p.platform_name %><small> <span class="label label-<%= label %>"><%= status %></span><span class="pull-right"><%= time.to_formatted_s(:long) %></span></small></h3>
-
-            <%= link_to url_with_protocol(p.platform_url), p.platform_url, :target => "_blank" %>
-            <small class="pull-right">
-              <%# collapse trigger%>
-              <%= link_to admin_social_network_account_path(p), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-              <% end %>
-            </small>
-          </div>
-        </div>   
-        <div class="panel-body collapse" id="editSnaForm-<%= p.slug %>">
-          <%= render "form", object: p %>
-        </div>
-      </div>
-      <!-- Modal -->
-      <%= render 'admin/shared/image_uploader_modal', object: p, img_url: sna_image, image_update_url: admin_social_network_account_update_image_path(p), return_path: admin_social_network_accounts_path, preview_id: "sna_form_img_preview" if sna_image.present? %>
-    <% end %>
-  <% end %>
+  <%= render partial: "account_panel", collection: @accounts, as: :account if @accounts.present? %>
 </div>

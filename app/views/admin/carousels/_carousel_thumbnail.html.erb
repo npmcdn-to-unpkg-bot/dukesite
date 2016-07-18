@@ -1,0 +1,20 @@
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-item">
+  <div class="thumbnail admin-carousel-thumbnail <%= 'invisible_thumbnail' if !carousel.visible %>">
+
+    <%= display_photo_image_tag(carousel) %>
+    <div class="caption">
+      <h4><%= carousel.title %></h4>
+      <p><%= carousel.description %></p>
+      <p> 
+        <button type="button" class="btn <%= visible_status_btn(carousel) %> btn-sm" id="carousel-status" data-edit=<%= admin_carousel_visible_switch_path(carousel) %> data-visible=<%= carousel.visible? %>><%= carousel.visible? ? "Visible" : "Hidden" %></button>
+      </p>
+      <p>
+          <%= link_to "Delete", admin_carousel_path(carousel), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "When you delete this carousel, the images related to this carousel will also be deleted. Are you sure?" } %>
+          <%= link_to "Edit", edit_admin_carousel_path(carousel), class: "btn btn-info btn-sm" %>
+      </p>
+      <small>
+      <% carousel.updated_at.nil? ? update_time = carousel.created_at.to_formatted_s(:db) : update_time = carousel.updated_at.to_formatted_s(:db) %>
+      <%= update_time %> <em>(last updated)</em></small>
+    </div>
+  </div>
+</div>
