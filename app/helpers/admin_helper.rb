@@ -27,8 +27,4 @@ module AdminHelper
   def visibility_label(obj)
     obj.visible? ? "label-success" : "label-default"
   end
-
-  def image_exist?(obj)
-    (!obj.photo.nil? && obj.photo.image.url.present?) ? true : false
-  end
 end

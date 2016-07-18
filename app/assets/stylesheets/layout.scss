@@ -49,6 +49,7 @@ body {
         }
       }
     }
+    // Responsive Navigation
     @media (min-width: 768px) {
       .nav-link-bar {
         @include margin-left-right;
