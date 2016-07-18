@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading" data-toggle="collapse" aria-expanded="true" href="#site_intros-<%= site_intro.id %>">
+    <h4 class="panel-title"><%= site_intro.key %></h4>
+  </div>
+
+  <div class="panel-collapse collapse" id="site_intros-<%= site_intro.id %>">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <%= sanitize site_intro.value.nil? ? "No Content" : site_intro.value %>
+          <hr>
+          <%= link_to 'Edit', edit_admin_site_config_path(site_intro), class: 'btn btn-default' %><small class="help-block"><em><%= "Last updated: #{site_intro.last_update}" %></em></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
