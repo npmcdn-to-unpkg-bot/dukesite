@@ -1,15 +1,12 @@
 <div class="row landing-carousel" >
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
     <!-- Indicators -->
-    <% 
-        first_carousel = @visible_carousels.first
-        num = @visible_carousels.size
-        i = 0
-    %>
+    <% num = @visible_carousels.size
+       i = 0 %>
+       
     <ol class="carousel-indicators">
       <% while i < num %>
-        <li data-target="#carousel-example-generic" data-slide-to="<%= i %>" class="<%= 'active' if i == 0 %>">
-        </li>
+        <%= display_carousel_indicator(i , num) %>
         <% i += 1 %>
       <% end %>
     </ol>
@@ -17,7 +14,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <% @visible_carousels.each do |carousel| %>
-        <div class="item <%= "active" if carousel.id == first_carousel.id %>">
+        <div class="item <%= active_carousel?(carousel, @visible_carousels) %>">
           <%= image_tag carousel.photo.image.url, alt: carousel.title if carousel.photo.present? %>
         </div>
       <% end %>
