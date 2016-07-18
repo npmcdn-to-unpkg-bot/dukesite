@@ -1,16 +1,12 @@
-<% account.visible? ? ((label = "success") && (status = "Visible")) : ((label = "default") && (status = "Inisible")) 
-   account.updated_at? ? time = account.updated_at : time = account.created_at
-   account.photo.present? && !account.photo.image.url.nil? ? sna_image = account.photo.image.url : sna_image = "http://thedudeminds.de/images/no_image_available.png"
-  %>
 <div class="panel panel-default">
   <div class="panel-heading" data-toggle="collapse" data-parent="#snaThumbnails" aria-expanded="true" href="#editSnaForm-<%= account.slug %>">
     <div class="media-left">
       <%= link_to url_with_protocol(account.platform_url), :target => "_blank" do %>
-        <%= image_tag sna_image,  size: "32x32" %>
+        <%= image_tag(image_url(account),  size: "32x32") %>
       <% end %>
     </div>
     <div class="media-body">
-      <h3 class="panel-title"><%= account.platform_name %><small> <span class="label label-<%= label %>"><%= status %></span><span class="pull-right"><%= time.to_formatted_s(:long) %></span></small></h3>
+      <h3 class="panel-title"><%= account.platform_name %><small> <span class="label <%= visibility_label(account) %>"><%= visibility_status(account) %></span><span class="pull-right"><%= account.last_update %></span></small></h3>
 
       <%= link_to url_with_protocol(account.platform_url), account.platform_url, :target => "_blank" %>
       <small class="pull-right">
@@ -26,4 +22,4 @@
   </div>
 </div>
 <!-- Modal -->
-<%= render 'admin/shared/image_uploader_modal', object: account, img_url: sna_image, image_update_url: admin_social_network_account_update_image_path(account), return_path: admin_social_network_accounts_path, preview_id: "sna_form_img_preview" if sna_image.present? %>
+<%= render 'admin/shared/image_uploader_modal', object: account, img_url: image_url(account), image_update_url: admin_social_network_account_update_image_path(account), return_path: admin_social_network_accounts_path, preview_id: "sna_form_img_preview" if image_exist?(account) %>
