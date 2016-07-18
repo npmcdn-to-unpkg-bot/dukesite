@@ -9,13 +9,7 @@
   </div>
   <div class="col-xs-12 col-sm-10 product-box">
     <div class="row grid">
-      <% @products.each do |p| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 product grid-item">
-        <%= link_to product_path(p), class:"thumbnail" do %>
-            <%= image_tag p.image_url,  class: "img-responsive", alt: p.title %>
-        <% end %>
-        </div>
-      <% end %>
+      <%= render partial: "products/product_thumbnail", collection: @products, as: :product %>
     </div>
   </div>
 </div>
