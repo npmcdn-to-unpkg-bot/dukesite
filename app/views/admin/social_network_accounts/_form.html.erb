@@ -1,43 +1,43 @@
 <%= form_for [:admin, object] do |s| %>
-<div class="row">
-  <div class="col-xs-12 col-sm-2 col-sm-offset-1">
-    <div class="form-group">
-      <% if object.photo.present? %>
-        <%= image_tag object.photo.image.url, size: "64x64", class: "text-center", data: {toggle: "modal", target: "#imageUploaderModal"} %>
-        <p class="help-block">Click image to edit</p>
-      <% else %>
-        <%= s.label "Upload an Image*" %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-2 col-sm-offset-1">
+      <div class="form-group">
+        <% if image_exist?(object) %>
+          <%= image_tag object.photo.image.url, size: "64x64", class: "text-center", data: {toggle: "modal", target: "#imageUploaderModal"} %>
+          <p class="help-block">Click image to edit</p>
+        <% else %>
+          <%= s.label "Upload an Image*" %>
           <%= s.fields_for :photo do |c| %>
-          <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+            <%= c.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <div class="form-group">
+        <%= s.label "Name*" %>
+        <%= s.text_field :platform_name, class: "form-control", placeholder: "Give this a link name" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="form-group">
+        <%= s.label "Url*" %>
+        <%= s.text_field :platform_url, class: "form-control", placeholder: "Link Url" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-2 ">
+      <div class="form-group">
+        <%= s.label "Visible?" %> <br />
+        <%= s.radio_button :visible, false %> No
+        <%= s.radio_button :visible, true %> Yes
+      </div>
     </div>
   </div>
-  <div class="col-xs-12 col-sm-3">
-    <div class="form-group">
-      <%= s.label "Name*" %>
-      <%= s.text_field :platform_name, class: "form-control", placeholder: "Give this a link name" %>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-2 pull-right">
+      <%= link_to "Cancel", admin_social_network_accounts_path, class: "btn btn-warning" %>
+      <%= s.submit "Save", class: "btn btn-primary" %>
     </div>
   </div>
-  <div class="col-xs-12 col-sm-4">
-    <div class="form-group">
-      <%= s.label "Url*" %>
-      <%= s.text_field :platform_url, class: "form-control", placeholder: "Link Url" %>
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-2 ">
-    <div class="form-group">
-      <%= s.label "Visible?" %> <br />
-      <%= s.radio_button :visible, false %> No
-      <%= s.radio_button :visible, true %> Yes
-    </div>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-xs-12 col-sm-2 pull-right">
-    <%= link_to "Cancel", admin_social_network_accounts_path, class: "btn btn-warning" %>
-    <%= s.submit "Save", class: "btn btn-primary" %>
-  </div>
-</div>
 <% end %>

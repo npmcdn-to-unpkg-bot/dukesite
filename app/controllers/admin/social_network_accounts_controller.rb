@@ -3,6 +3,9 @@ class Admin::SocialNetworkAccountsController < AdminController
   before_action :find_sna_by_sna_id, only: [:update_image]
   def index
     @accounts = SocialNetworkAccount.all
+    @accounts.each do |account|
+      account.photo = Photo.new if !account.image_exist?
+    end
     @sna = SocialNetworkAccount.new
     @sna.photo = Photo.new
   end

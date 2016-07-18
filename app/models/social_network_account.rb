@@ -16,4 +16,17 @@ class SocialNetworkAccount < ActiveRecord::Base
       "http://thedudeminds.de/images/no_image_available.png"
     end
   end
+
+  def last_update
+    if self.updated_at == nil 
+      self.updated_at.to_formatted_s(:long)
+    else 
+      self.created_at.to_formatted_s(:long)
+    end
+  end
+
+  def image_exist?
+    (!self.photo.nil? && self.photo.image.url.present?) ? true : false
+  end
+
 end
