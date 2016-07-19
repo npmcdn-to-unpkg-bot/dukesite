@@ -114,8 +114,8 @@ module Amazon
     # returns: the corresponding Amazon::Ecs response
     def self.request_amazon(parameters, asin)
       Amazon::Ecs.configure do |options|
-        options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID_2"]
-        options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY_2"]
+        options[:AWS_access_key_id] = ENV["AWS_ACCESS_KEY_ID"]
+        options[:AWS_secret_key] = ENV["AWS_SECRET_ACCESS_KEY"]
         options[:associate_tag] = ENV["ASSOCIATE_TAG"]
       end
 
