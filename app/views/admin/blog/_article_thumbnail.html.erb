@@ -4,11 +4,11 @@
       <%= display_photo_image_tag(article) %>
     <% end %>
     <div class="caption">
-      <h4><%= link_to article.title.truncate(50, :separator => " ",omission: '...'), edit_admin_blog_article_path(article) %><br/ >
-        <small><%= article.subtitle.truncate(70, :separator => " ",omission: '...') %></small>
+      <h4><%= link_to text_truncate(article.title, 50), edit_admin_blog_article_path(article) %><br/ >
+        <small><%= text_truncate(article.subtitle, 70) %></small>
       </h4>
       <p> 
-        <%= strip_tags article.content.truncate(150, :separator => " ",omission: '...') %>
+        <%= strip_tags text_truncate(article.content, 150) %>
       </p>
       <p>
         <button type="button" class="btn <%= article.published? ? "btn-primary" : "btn-default" %> btn-sm" id="article-status" data-edit=<%= admin_blog_article_publish_switch_path(article) %> data-visible=<%= article.published? %>><%= article.published? ? "Published" : "Unpublished" %></button>

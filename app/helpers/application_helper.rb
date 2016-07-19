@@ -28,4 +28,18 @@ module ApplicationHelper
     return image_tag img_url, alt: alt if img_url.present?
   end
 
+  def display_article_image(obj, alt=nil)
+    img_url = obj.thumb_img_url
+    if img_url.nil?
+      # Use icon image if the article has no image
+      icon = SiteConfig.find_by(slug: "icon")
+      img_url = image_url(icon)
+    end
+    return image_tag img_url, alt: alt if img_url.present?
+  end
+
+  def text_truncate(obj, len)
+    obj.truncate(len, :separator => " ",omission: '...')
+  end
+
 end
