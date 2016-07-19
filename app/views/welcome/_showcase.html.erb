@@ -1,55 +1,30 @@
-<div class="row showcase">
-  <% @showcases.each do |showcase| %>
-    <div class="row showcase-header">
-      <div class="col-xs-12 col-sm-4">
-        <p>
-          <%= link_to showcase_path(showcase) do %>
-          <strong class="title"><%= showcase.title %></strong><br/ >
-          <small><em><%= showcase.subtitle %></em></small>
-          <% end %>
-        </p>
-      </div>
-      <div class="col-xs-12 col-sm-5 hidden-xs pull-right more-button">
-        <p><%= link_to "View All #{showcase.published_products.size} Products", showcase_path(showcase) %></p>
-      </div>
+<div class="row showcase-header">
+  <div class="col-xs-12 col-sm-4">
+    <p>
+      <%= link_to showcase_path(showcase) do %>
+      <strong class="title"><%= showcase.title %></strong><br/ >
+      <small><em><%= showcase.subtitle %></em></small>
+      <% end %>
+    </p>
+  </div>
+  <div class="col-xs-12 col-sm-5 hidden-xs pull-right more-button">
+    <p><%= link_to "View All #{showcase.published_products.size} Products", showcase_path(showcase) %></p>
+  </div>
+</div>
+
+<div class="row showcase-body">
+  <div class="carousel slide" id=<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>>
+    <div class="carousel-inner">
+      <%= sanitize display_showcase_carousels(showcase) %>
     </div>
-    
-    <div class="row showcase-body">
-      <div class="carousel slide" id=<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>>
-        <div class="carousel-inner">
-          <div class="item active">       
-            <% showcase.published_products[0..3].each do |p| %>
-              <%= render "showcase_carousel", p: p %>
-            <% end %>
-          </div>
-          
-          <% if showcase.published_products.size > 4 %>
-          <div class="item">
-            <% showcase.published_products[4..7].each do |p| %>
-              <%= render "showcase_carousel", p: p %>
-            <% end %>  
-          </div>
-          <% end %>
-
-          <% if showcase.published_products.size > 8 %>
-          <div class="item">
-            <% showcase.published_products[8..11].each do |p| %>
-              <%= render "showcase_carousel", p: p %>
-            <% end %>
-          </div>
-          <% end %>
-
-        </div>
+  
+    <!-- Carousel Control Arrows -->
+    <a class="left carousel-control" data-slide="prev" href="#<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
       
-        <!-- Carousel Control Arrows -->
-        <a class="left carousel-control" data-slide="prev" href="#<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-          
-        <a class="right carousel-control" data-slide="next" href="#<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-      </div><!-- End of Slide -->
-    </div>
-  <% end %>
+    <a class="right carousel-control" data-slide="next" href="#<%= "#{showcase.title.gsub(/\s+/, '')}" + "Carousel" %>">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div><!-- End of Slide -->
 </div>

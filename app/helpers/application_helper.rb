@@ -14,4 +14,8 @@ module ApplicationHelper
   def url_with_protocol(url)
     /^http/i.match(url) ? url : "http://#{url}"
   end
+
+  def image_exist?(obj)
+    (!obj.photo.nil? && obj.photo.image.url.present?) ? true : false
+  end
 end

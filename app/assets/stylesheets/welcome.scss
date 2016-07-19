@@ -96,4 +96,54 @@
     padding: 3px 8px 3px 8px;
     border-radius: 5px;
   }
+  // Thumbnails Image
+  // LG Desktop
+  @media (min-width: 1200px) {
+    .thumbnail > img, .thumbnail a > img {
+      width: auto;
+      max-height: 230px;
+    }
+    .product > .thumbnail > img {
+      width: auto;
+      max-height: 200px;
+    }
+  }
+
+  // MD Desktop
+  @media (min-width: 992px) and (max-width: 1199px){
+    .thumbnail > img, .thumbnail a > img {
+      width: auto;
+      max-height: 183px;
+    }
+    .product > .thumbnail > img {
+      width: auto;
+      max-height: 132px;
+    }
+
+  }
+  // Tablet
+  @media (min-width: 768px) and (max-width: 991px) {
+    // Thumbnails
+    .thumbnail > img, .thumbnail a > img {
+      width: auto;
+      max-height: 133px;
+    }
+    .product > .thumbnail > img {
+      width: auto;
+      max-height: 76px;
+    }
+  }
+
+  // Phone
+  @media (max-width: 767px) {
+    // Thumbnails
+    .thumbnail > img, .thumbnail a > img {
+      max-width: 100%;
+      height: auto;
+    }
+    .product > .thumbnail > img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 }

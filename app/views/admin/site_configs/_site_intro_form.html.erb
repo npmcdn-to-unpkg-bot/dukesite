@@ -11,8 +11,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Information</div>
           <div class="panel-body">
-            <p>Last Updated:<br/>
-              <%= site_intro.updated_at.to_formatted_s(:long) %></p>
+            <p><%= site_intro.last_update %> <em><small>(last updated)</small></em></p>
             <hr>
             <%= link_to "Cancel", :back, class: "btn btn-warning" %>
             <%= f.submit "Save", class: "btn btn-primary" %>

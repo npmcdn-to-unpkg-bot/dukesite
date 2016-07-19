@@ -1,3 +1,5 @@
 <%= render "carousel" %>
 
-<%= render "showcase" %>
+<div class="row showcase">
+  <%= render partial: "showcase", collection: @showcases, as: :showcase %>
+</div>
