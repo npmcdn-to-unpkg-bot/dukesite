@@ -10,15 +10,6 @@ module WelcomeHelper
     content_tag :li, nil, :data=> {target: target, 'slide-to' => slide_to}, class: status
   end
 
-  def display_photo_image_tag(obj, alt = nil)
-    img_url = image_url(obj)
-    return image_tag img_url, alt: alt
-  end
-
-  def image_url(obj)
-    return obj.photo.image.url if image_exist?(obj)
-  end
-
   def display_showcase_carousels(obj)
     # First item must be "active"
     groups = obj.published_products[0..11].in_groups_of(4, false)

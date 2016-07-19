@@ -7,19 +7,6 @@ module AdminHelper
     obj.visible? ? "btn-primary" : "btn-default"
   end
 
-  def display_photo_image_tag(obj)
-    img_url = image_url(obj)
-    return image_tag img_url
-  end
-
-  def image_url(obj)
-    if image_exist?(obj)
-      return obj.photo.image.url
-    else
-      return "http://thedudeminds.de/images/no_image_available.png"
-    end
-  end
-
   def visibility_status(obj)
     obj.visible? ? "Visible" : "Hidden"
   end
