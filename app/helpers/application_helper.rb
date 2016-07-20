@@ -23,9 +23,13 @@ module ApplicationHelper
     return obj.photo.image.url if image_exist?(obj)
   end
 
-  def display_photo_image_tag(obj, alt = nil)
+  def display_photo_image_tag(obj, alt=nil)
     img_url = image_url(obj)
     return image_tag img_url, alt: alt if img_url.present?
+  end
+
+  def link_to_display_article_image_tag(obj, alt=nil, link_path)
+    link_to display_article_image(obj, alt=nil), link_path
   end
 
   def display_article_image(obj, alt=nil)
@@ -42,4 +46,7 @@ module ApplicationHelper
     obj.truncate(len, :separator => " ",omission: '...')
   end
 
+  def link_to_text_truncate(obj, len, link_path)
+    link_to text_truncate(obj, len), link_path
+  end
 end
