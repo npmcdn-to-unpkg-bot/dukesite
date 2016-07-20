@@ -1,23 +1,19 @@
 <div class="row landing-carousel" >
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <!-- Indicators -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <% @visible_carousels.each do |carousel| %>
+        <%= display_carousel_collection(carousel, @visible_carousels) %>
+      <% end %>
+    </div>
+        <!-- Indicators -->
     <% num = @visible_carousels.size
        i = 0 %>
-
     <ol class="carousel-indicators">
       <% while i < num %>
         <%= display_carousel_indicator(i , num) %>
         <% i += 1 %>
       <% end %>
     </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <% @visible_carousels.each do |carousel| %>
-        <div class="item <%= active_carousel?(carousel, @visible_carousels) %>">
-          <%= display_photo_image_tag(carousel, carousel.title) %>
-        </div>
-      <% end %>
-    </div>
   </div>
 </div>

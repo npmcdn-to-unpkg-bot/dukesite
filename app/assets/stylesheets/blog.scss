@@ -3,8 +3,10 @@
   .blog-article-thumbnail-title {
     min-height: 80px;
   }
-  .blog-article-thumbnail > .thumbnail > img {
-    width: 100%;
+  .blog-article-thumbnail {
+    .thumbnail > img, .thumbnail a > img {
+      width: 100%;
+    }
   }
 }
 
