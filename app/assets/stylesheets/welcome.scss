@@ -1,16 +1,77 @@
 .landing-carousel {
   @include margin-top-bottom(2%);
-  .carousel-inner { 
-  max-height: 480px;
+
+  // Tablet up
+  @media (min-width: 768px) {
+    .carousel-inner { 
+      .item {
+        .item-inner {
+          height: 600px;
+        }
+        .carousel-caption {
+          position: relative;
+          right: 0;
+          bottom: 0;
+          width: 20%;
+          .btn-carousel {
+            margin-top: 50px
+          }
+        }
+      }
+    }
   }
-  .carousel img {
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height:auto;
-    vertical-align : middle;
+  // Phone
+  @media (max-width: 767px) {
+    .carousel-inner { 
+      .item-inner {
+        height: 280px;
+      }
+    }
+    .carousel-caption {
+      padding-top: 0;
+      padding-bottom: 0;
+      bottom: 20%;
+      left: 0;
+      .btn-carousel {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .carousel-caption {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    color: $gray;
+    text-shadow: none;
+    @include padding-left-right(12px);
+    .btn-carousel {
+      @include button-pink;
+      border-radius: 2px;
+      border: none;
+      position: absolute;
+    }
+    .btn-carousel:hover {
+      color: $gray;
+      opacity: 0.8;
+      background-color: white;
+    }
+  }
+  .carousel-indicators {
+    position: relative;
+    bottom: 0;
+    top: 10px;
+  }
+  .carousel-indicators li {
+    margin: 4px;
+    background-color: $gray-lighter-2;
+    border: none;
+  }
+  .carousel-indicators .active {
+    margin: 4px;
+    background-color: $base-pink;
   }
 }
+
 
 .showcase, .category {
   @include margin-top-bottom(30px);
@@ -96,6 +157,7 @@
     padding: 3px 8px 3px 8px;
     border-radius: 5px;
   }
+
   // Thumbnails Image
   // LG Desktop
   @media (min-width: 1200px) {
