@@ -5,7 +5,7 @@
     <p class="pull-left">Created at: <em><%= @product.created_at.to_formatted_s(:db) %></em></br>Last updated at: <em><%= @product.updated_at.to_formatted_s(:db) %></em></br>
     </p>
     <p class="pull-right">
-      <span class="label <%= visibility_label(@product) %>"><%= visibility_status(@product) %></span><br>
+      <span class="label <%= publish_label(@product) %>"><%= publish_label(@product) %></span><br>
       <%= link_to product_path(@product), target: "_blank" do %>
         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Product<br>
       <% end %>
