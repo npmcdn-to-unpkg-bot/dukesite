@@ -7,6 +7,14 @@ module AdminHelper
     obj.visible? ? "btn-primary" : "btn-default"
   end
 
+  def publish_status(obj)
+    obj.published? ? "Published" : "Unpublished"
+  end
+
+  def publish_label(obj)
+    obj.published? ? "label-success" : "label-default"
+  end
+
   def visibility_status(obj)
     obj.visible? ? "Visible" : "Hidden"
   end
