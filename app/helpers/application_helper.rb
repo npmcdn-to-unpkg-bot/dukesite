@@ -19,9 +19,9 @@ module ApplicationHelper
     (!obj.photo.nil? && obj.photo.image.url.present?) ? true : false
   end
 
-  def image_url(obj, options={})
+  def image_url(obj, options={:thumb => nil})
     if image_exist?(obj)
-      options[:thumb] == true ? obj.photo.image.url : obj.photo.image.thumb.url
+      options[:thumb].nil? ? obj.photo.image.url : obj.photo.image.thumb.url
     end
   end
 
