@@ -1,35 +1,78 @@
-.blog-article {
-  .img, a > img {
+// index
+.blog {
+  @include padding-left-right(2%);
+  text-align: center;
+  .blog-article {
+    .grid { @include margin-left-right(2%);}
+    .grid-item {
+      @include padding-left-right(2%);
+      @include padding-top-bottom(2%);
+      border-bottom: $border-solid-gray-lighter;
+    }
+    .grid-item:hover { background-color: $bg-pink;}
+  }
+  .blog-side-nav {
+    @include padding-left-right(2%);
+    a {
+      border-bottom: none;
+      color: $gray-darker;
+    }
+    text-align: center;
+    border-left: $border-solid-gray-light;
+    .nav-row {
+      @include padding-top-bottom(20px);
+      .heading {
+        @include heading;
+      }
+      .article-link {
+        @include padding-top-bottom(12px);
+        p { 
+          @include text;
+          margin-top: 16px;
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .nav-row:not(:last-child) { border-bottom: $border-solid-gray-light;}
+    .article-link:not(:last-child) {border-bottom: $border-dotted-gray-lighter;}
+  }
+}
+.blog, .article-frame {
+  @include padding-top-bottom(2%);
+  img, a > img {
     width: 100%;
   }
 }
 
-.blog-side-nav {
-  border-left: $border-solid-gray-light;
-  ul {
-    @include padding-left-right(4%);
-    border-top: $border-solid-gray-light;
-    @include padding-top-bottom(3%);
-    h4 {
-      text-transform: uppercase;
-    }
-    li {
-      list-style-type: none;
-      @include padding-top-bottom(2%);
-      font-size: 15px;
-      a { color: $base-pink; }
-      a:hover { color: $gray-light; }
-      }
-  }
-  ul:first-child {
-    border-top: none;
+// Show
+// 
+@media (min-width: 768px) {
+  .article-content-frame .article figure {
+    float: left;
+    width: 60%;
   }
 }
 
-.article-body {
-  .panel-body {
-    border-bottom: $border-solid-gray-lighter;
-    margin-bottom: 5%;
-    padding-bottom: 5%
+.article-heading {
+  text-align: center;
+  @include padding-left-right(2%);
+}
+
+.article {
+  @include padding-top-bottom(5%);
+  border-bottom: $border-solid-gray-lighter;
+  figure {
+    padding-right: 3%;
+    @include padding-top-bottom(2%);
+  }
+  .content {
+    @include padding-top-bottom(2%);
+    font-size: 16px;
   }
 }
+.pre-next-arror {
+  padding-top: 5%;
+}
+

@@ -15,7 +15,7 @@ body {
     border-left: 1px solid $gray-lighter;
     border-right: 1px solid $gray-lighter;
     background-color: white;
-    .admin_link {
+    .admin-link {
       margin: 15px;
       li { display: inline-block; }
     }
@@ -26,19 +26,19 @@ body {
           display: block;
           margin-left: auto;
           margin-right: auto;
-          border-bottom: $border-dotted-gray-lighter;
         }
       }
       .nav-link-bar {
-        @include padding-top-bottom(1%);
-        // margin-bottom: 2%;
+        padding-bottom: 1%;
         border-bottom: $border-solid-gray-light;
         ul {
-          text-align: center;
-          margin:0;
+          @include margin-top-bottom(0);
           @include padding-top-bottom(1%);
+          margin-left: -40px;
+          text-align: center;
         }
         li {
+          font-size: 16px;
           list-style-type: none;
           text-transform: uppercase;
           letter-spacing: 2px;
@@ -58,9 +58,6 @@ body {
       .nav-link-bar li {
         display: inline;
       }
-      .nav-link-bar a.home-link, a.blog-link{
-        display: none;
-      }
     }
     @media (max-width: 767px) {
       .navbar-collapse {
@@ -72,14 +69,8 @@ body {
         @include padding-left-right(0);
       }
       .nav-link-bar {
-        ul {
-          -webkit-margin-before: 0;
-          -webkit-padding-start: 0;
-          -webkit-margin-after: 0;
-        }
-        a, a.home-link {
+        a {
           display: block;
-          text-align: left;
           background-color: $bg-pink;
           @include padding-left-right(4%);
           @include padding-top-bottom(15px);
@@ -177,17 +168,17 @@ footer {
     }
   }
   p {
-    text-transform: uppercase;
+    @include heading;
   }
   li {
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    font-family: $font-family-base;
-    font-weight: $headings-font-weight;
+    @include text;
     list-style-type: none;
   }
   .copy-right {
     padding-bottom: 4%;
-    p { padding-top: 2%; }
+    p { 
+      padding-top: 2%;
+      font-size: 14px;
+    }
   }
 }
