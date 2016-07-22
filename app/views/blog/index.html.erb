@@ -1,9 +1,12 @@
 <% if @articles.size == 0 %>
   <%= render "shared/info_box", msg: "<p><em>A Blog for Our Duke Girls is Coming Soon...</em></p>" %>
 <% else %>
-  <div class="container">
-    <div class="row grid">
-      <%= render partial: "article_thumbnail", collection: @articles, as: :article %>
+  <div class="row blog">
+    <div class="col-xs-12 col-sm-9 blog-article">
+      <div class="row grid">
+        <%= render partial: "article_thumbnail", collection: @articles, as: :article %>
+      </div>
     </div>
+    <%= render 'blog_side_nav' %>
   </div>
 <% end %>

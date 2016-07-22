@@ -1,46 +1,41 @@
-<div class="container">
-  <div class="row">  
-    <p>
-      <%= link_to blog_index_path do %>
-        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-        Back to Blog
-      <% end %>
-    </p>
+<div class="container article-frame">
+  <%= link_to blog_index_path do %>
+    <p><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back to Blog</p>
+  <% end %>
+  <div class="row article-heading">
+    <h1 class="title"><%= @article.title %></h1>
+    <h3><%= @article.subtitle %></h3>
+    <p class="time"><%= @article.published_at.to_formatted_s(:long).upcase %></p>
   </div>
-  <div class="row"> 
-    <div class="col-xs-12 col-sm-9 article-body">
-      <div class="panel-body">
-        <h2>
-          <%= @article.title %><br>
-          <small><%= @article.subtitle %></small>
-        </h2>
-        <p class="pull-right"><%= @article.published_at.to_formatted_s(:long) %></p>
-        <%= image_tag @article.img_url, class: "img-responsive", alt: @article.title, width: "800" %>
-        <div class="caption">
-          <p>
-            <%= sanitize @article.content %>
-          </p>
-        </div>
+
+  <div class="row article-content-frame">
+    <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+      <div class="row article">
+        <figure>
+          <%= image_tag @article.img_url, alt: @article.title %>
+        </figure>
+        <div class="content">
+          <%= sanitize @article.content %>
+        </div> 
       </div>
-      <div class="row">
-        <p class="pull-left">
-          <% if @article.previous_article.present? %>
+      <div class=" row pre-next-arror">
+        <% if @article.previous_article.present? %>
+          <p class="pull-left">
             <%= link_to blog_path(@article.previous_article) do %>
               <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
               <%= @article.previous_article.title %>
             <% end %>
-          <% end %>
-        </p>
-        <p class="pull-right">
-          <% if @article.next_article.present? %>
+          </p>
+        <% end %>
+        <% if @article.next_article.present? %>
+          <p class="pull-right">
             <%= link_to blog_path(@article.next_article) do %>
               <%= @article.next_article.title %>
               <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
             <% end %>
-          <% end %>
-        </p>
+          </p>
+        <% end %>
       </div>
     </div>
-    <%= render 'blog_side_nav' %>
   </div>
 </div>

@@ -68,3 +68,15 @@ $border-dotted-white: 1px dotted white;
   padding-left: $width;
   padding-right: $width;
 }
+
+@mixin heading($size: 18px) {
+  font-size: $size;
+  text-transform: uppercase;
+}
+
+@mixin text($size: 16px) {
+  font-size: $size;
+  letter-spacing: 0.5px;
+  font-family: $font-family-base;
+  font-weight: $headings-font-weight;
+}

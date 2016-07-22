@@ -12,7 +12,7 @@ class Article < ActiveRecord::Base
   sluggable_column :title
 
   def self.latest_articles
-    self.where(:published => true).order("published_at DESC").where(:published => true).order("published_at DESC").select(:title, :slug)[0..9]
+    self.where(:published => true).order("published_at DESC").where(:published => true).order("published_at DESC").select(:id, :title, :subtitle, :slug)[0..9]
   end
 
   def previous_article
