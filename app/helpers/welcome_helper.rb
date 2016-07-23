@@ -60,4 +60,8 @@ module WelcomeHelper
       render partial: "product_thumbnail", locals: { p: p }
     end.join
   end
+
+  def showcase_title_carousel(showcase)
+    showcase.title.gsub(/\s+/, '') + "Carousel"
+  end
 end

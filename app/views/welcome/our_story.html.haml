@@ -1,0 +1,11 @@
+.container
+  .row
+    .col-md-10.col-md-offset-1
+      .page-header
+        %h1 We are Duke Girls
+      - if @our_story.nil?
+        %dl.dl-horizontal
+          %dt Lorem ipsum Laboris eu Duis.
+          %dd Lorem ipsum Id tempor ad ut non Ut amet magna Ut eu adipisicing consectetur occaecat dolore nulla elit elit ut qui nostrud do Excepteur aliquip sint velit do consectetur Ut amet mollit sed amet aliquip Excepteur dolore sunt ut dolore sed eiusmod enim occaecat sed deserunt adipisicing occaecat exercitation dolor est magna ex aute Ut Duis cillum tempor labore eu Ut deserunt ad est aliquip fugiat qui et irure velit aliqua dolore quis consectetur ullamco cillum enim consectetur cillum occaecat ea amet sit laboris in eiusmod minim deserunt esse anim est id ullamco amet nisi Duis voluptate amet amet ea dolor occaecat ea voluptate deserunt nostrud ad laboris dolor voluptate nostrud esse in consectetur Duis est exercitation consectetur qui dolor esse aliquip proident fugiat deserunt labore est tempor occaecat elit occaecat ut enim fugiat eu aliquip.
+      - else
+        = sanitize @our_story
