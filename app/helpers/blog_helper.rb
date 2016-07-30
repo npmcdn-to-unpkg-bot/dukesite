@@ -8,7 +8,7 @@ module BlogHelper
   end
 
   def next_article?(article)
-    previous_article(article).present? ? true : false
+    next_article(article).present? ? true : false
   end
 
   def previous_article_title(article)
