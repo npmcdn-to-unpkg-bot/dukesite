@@ -13,4 +13,9 @@ class Quote < ActiveRecord::Base
       self.photo.image.thumb.url
     end
   end
+
+  def last_update
+    self.updated_at.nil? ? time = self.updated_at : time = self.created_at
+    return time.to_formatted_s(:long)
+  end
 end
