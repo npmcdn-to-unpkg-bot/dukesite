@@ -4,4 +4,4 @@
   </div>
   <%= submit_tag "Add", class: "btn btn-default" %>
 <% end %>
-<p class="help-block"><%= object.note %></p>
+<p class="help-block"><%= object.note if object == @seo %></p>
