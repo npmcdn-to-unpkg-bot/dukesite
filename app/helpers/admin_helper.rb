@@ -22,4 +22,8 @@ module AdminHelper
   def visibility_label(obj)
     obj.visible? ? "label-success" : "label-default"
   end
+
+  def published_thumb?(obj)
+    'invisible_thumbnail' if !obj.published
+  end
 end

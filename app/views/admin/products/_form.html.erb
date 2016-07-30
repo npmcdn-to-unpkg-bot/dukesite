@@ -1,8 +1,8 @@
 <%= render "look_up_form" %>
 
-<% if @product.id.present? %>
+<% if existed?(@product) %>
   <div class="row well">
-    <p class="pull-left">Created at: <em><%= @product.created_at.to_formatted_s(:db) %></em></br>Last updated at: <em><%= @product.updated_at.to_formatted_s(:db) %></em></br>
+    <p class="pull-left">Created at: <em><%= @product.created_at.to_formatted_s(:long) %></em></br>Last updated at: <em><%= @product.updated_at.to_formatted_s(:long) %></em></br>
     </p>
     <p class="pull-right">
       <span class="label <%= publish_label(@product) %>"><%= publish_label(@product) %></span><br>
@@ -94,8 +94,7 @@
 
 <div class="col-sm-2">
   <div class="row">
-    <% @product.image_url.blank? ? img_url = 'http://thedudeminds.de/images/no_image_available.png' : img_url = @product.image_url %>
-    <%= image_tag img_url, class: "img-responsive thumbnail", id: "product-img-url" %> 
+    <%= product_image_tag(@product) %> 
   </div>
   <div class="row">
     <%#= render 'admin/shared/keyword_form', object: @product if @product.id.present?%>
