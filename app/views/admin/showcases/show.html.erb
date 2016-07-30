@@ -37,7 +37,7 @@
   <%# Don't change @products to @showcase.products. 
       Otherwise, pagination won't work %>
 
-<% if @showcase.id.present? %>
+<% if existed?(@showcase) %>
   <hr>
   <%= render "admin/shared/seo_box", object: @showcase %>
 <% end %>

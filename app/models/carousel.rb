@@ -20,4 +20,9 @@ class Carousel < ActiveRecord::Base
   def self.visible_carousel_img_urls
     self.visible.map(&:photo).compact.map(&:image).map(&:url) if self.visible.present?
   end
+  
+  def last_update
+    self.updated_at.nil? ? time = self.updated_at : time = self.created_at
+    return time.to_formatted_s(:long)
+  end
 end

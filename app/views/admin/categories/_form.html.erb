@@ -34,6 +34,6 @@
   <% end %>
 </div>
 
-<% if !@category.id.nil? %>
+<% if existed?(@category) %>
   <small class="text-right help-block"><em><%= @category.created_at.to_formatted_s(:db) %> (created)</em></small>
 <% end %>

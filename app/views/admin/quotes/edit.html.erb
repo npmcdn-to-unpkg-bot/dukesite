@@ -13,8 +13,8 @@
     <%= render "form" %>
     <p class="text-right">
       <small class="help-block"><em>
-        Last updated: <%= @quote.updated_at.to_formatted_s(:db) %><br>
-        Created: <%= @quote.updated_at.to_formatted_s(:db) %>
+        Last updated: <%= @quote.updated_at.to_formatted_s(:long) %><br>
+        Created: <%= @quote.updated_at.to_formatted_s(:long) %>
       </em></small>
     </p>
   </div>
