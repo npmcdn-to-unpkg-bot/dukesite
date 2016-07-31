@@ -6,7 +6,7 @@
       <h4><%= carousel.title %></h4>
       <p><%= carousel.description %></p>
       <p> 
-        <button type="button" class="btn <%= visible_status_btn(carousel) %> btn-sm" id="carousel-status" data-edit=<%= admin_carousel_visible_switch_path(carousel) %> data-visible=<%= carousel.visible? %>><%= visibility_status(carousel) %></button>
+        <button type="button" class="btn <%= visibility_status_btn(carousel) %> btn-sm" id="carousel-status" data-edit=<%= admin_carousel_visible_switch_path(carousel) %> data-visible=<%= carousel.visible? %>><%= visibility_status(carousel) %></button>
       </p>
       <p>
           <%= link_to "Delete", admin_carousel_path(carousel), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "When you delete this carousel, the images related to this carousel will also be deleted. Are you sure?" } %>

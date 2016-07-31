@@ -7,7 +7,7 @@
         <%= link_to category.name, admin_category_path(category)%>
       </h4>
       <p> 
-        <button type="button" class="btn <%= visible_status_btn(category) %> btn-sm" id="cat-status" data-edit=<%= admin_category_visible_switch_path(category) %> data-visible=<%= category.visible? %>><%= visibility_status(category) %></button>
+        <button type="button" class="btn <%= visibility_status_btn(category) %> btn-sm" id="cat-status" data-edit=<%= admin_category_visible_switch_path(category) %> data-visible=<%= category.visible? %>><%= visibility_status(category) %></button>
         <%= link_to "Delete", admin_category_path(category), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
         <%= link_to "Shop", category_path(category), class: "pull-right" %>
       </p>

@@ -5,7 +5,7 @@
       <h4><%= quote.title %></h4>
       <p><%= quote.description %></p>
       <p> 
-        <button type="button" class="btn <%= visible_status_btn(quote) %> btn-sm" id="quote-status" data-edit=<%= admin_quote_visible_switch_path(quote) %> data-visible=<%= quote.visible? %>><%= visibility_status(quote) %></button>
+        <button type="button" class="btn <%= visibility_status_btn(quote) %> btn-sm" id="quote-status" data-edit=<%= admin_quote_visible_switch_path(quote) %> data-visible=<%= quote.visible? %>><%= visibility_status(quote) %></button>
       </p>
       <p>
           <%= link_to "Delete", admin_quote_path(quote), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "When you delete this quote, the images related to this quote will also be deleted. Are you sure?" } %>
