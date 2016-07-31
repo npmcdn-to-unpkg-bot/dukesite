@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe WelcomeController, type: :controller do
   describe "GET index" do
     it "gets @visible_carousels" do
-      visible_carousels = FactoryGirl.create_list(:carousel, 2, visible: true)
-      FactoryGirl.create_list(:carousel, 1, visible: false)
+      visible_carousels = FactoryGirl.create_list(:carousel, 2, :visible)
+      FactoryGirl.create_list(:carousel, 1, :invisible)
       get :index
       expect(assigns(:visible_carousels)).to eq( visible_carousels )
     end
