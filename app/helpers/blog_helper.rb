@@ -26,4 +26,12 @@ module BlogHelper
   def next_article(article)
     article.next_article
   end
+  
+  def text_truncate(obj, len)
+    obj.truncate(len, :separator => " ",omission: '...') if !obj.nil?
+  end
+
+  def link_to_text_truncate(obj, len, link_path)
+    link_to text_truncate(obj, len), link_path
+  end
 end
