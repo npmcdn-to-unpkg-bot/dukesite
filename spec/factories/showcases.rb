@@ -1,6 +1,13 @@
 FactoryGirl.define do
   factory :showcase do
     title Faker::Name.title
+
+    trait :visible do
+      visible    true
+    end
+    trait :invisible do
+      visible    false
+    end
   end
 
   factory :showcase_with_product do

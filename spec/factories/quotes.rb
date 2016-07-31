@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :carousel do
+  factory :quote do
     title Faker::Name.title
 
     trait :visible do
