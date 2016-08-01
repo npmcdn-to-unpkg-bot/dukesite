@@ -19,18 +19,18 @@
         </div> 
       </div>
       <div class=" row pre-next-arror">
-        <% if @article.previous_article.present? %>
+        <% if previous_article?(@article) %>
           <p class="pull-left">
             <%= link_to blog_path(@article.previous_article) do %>
               <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-              <%= @article.previous_article.title %>
+              <%= previous_article_title(@article) %>
             <% end %>
           </p>
         <% end %>
-        <% if @article.next_article.present? %>
+        <% if next_article?(@article) %>
           <p class="pull-right">
             <%= link_to blog_path(@article.next_article) do %>
-              <%= @article.next_article.title %>
+              <%= next_article_title(@article) %>
               <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
             <% end %>
           </p>

@@ -43,12 +43,4 @@ module ApplicationHelper
     end
     return image_tag img_url
   end
-
-  def text_truncate(obj, len)
-    obj.truncate(len, :separator => " ",omission: '...')
-  end
-
-  def link_to_text_truncate(obj, len, link_path)
-    link_to text_truncate(obj, len), link_path
-  end
 end

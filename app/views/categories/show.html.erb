@@ -3,7 +3,7 @@
     <div class="page-header">
       <h4><%= @category.name %></h4>
     </div>
-    <% if @products.size == 0 %>
+    <% if no_products?(@products) %>
       <p>No products</p>
     <% end %>
   </div>

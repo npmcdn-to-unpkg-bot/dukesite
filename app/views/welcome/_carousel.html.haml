@@ -1,0 +1,14 @@
+.row.landing-carousel
+  #carousel-example-generic.carousel.slide{:data => {:ride => "carousel", :interval => "5000"}}
+    -# Wrapper for slides
+    .carousel-inner
+      - @visible_carousels.each do |carousel|
+        = display_carousel_collection(carousel, @visible_carousels)
+    -# Indicators
+    - num = @visible_carousels.size
+    - i = 0
+    
+    %ol.carousel-indicators
+      - while i < num
+        = display_carousel_indicator(i , num)
+        - i += 1

@@ -1,7 +1,8 @@
 FactoryGirl.define do
-  factory :carousel do
-    title Faker::Name.title
-
+  factory :social_network_account do
+    platform_name Faker::Name.title
+    platform_url Faker::Internet.url('example.com')
+    
     trait :visible do
       visible    true
     end

@@ -1,0 +1,22 @@
+.row.showcase-header
+  .col-xs-12.col-sm-4
+    %p
+      = link_to showcase_path(showcase) do
+        %strong.title= showcase.title
+        %br
+        %small
+          %em= showcase.subtitle
+  .col-xs-12.col-sm-5.hidden-xs.pull-right.more-button
+    %p
+      = link_to "View All #{showcase.published_products.size} Products", showcase_path(showcase)
+
+.row.showcase-body
+  .carousel.slide{:id => "#{showcase_title_carousel(showcase)}"}
+    .carousel-inner
+      = sanitize display_showcase_carousels(showcase)
+    
+    -# Carousel Control Arrows
+    %a.left.carousel-control{:data => {:slide => "prev"}, href: "##{showcase_title_carousel(showcase)}" }
+      %span.glyphicon.glyphicon-chevron-left
+    %a.right.carousel-control{:data => {:slide => "next"}, href: "##{showcase_title_carousel(showcase)}" }
+      %span.glyphicon.glyphicon-chevron-right

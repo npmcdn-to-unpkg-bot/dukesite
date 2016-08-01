@@ -48,7 +48,7 @@
   <% end %>
 </div>
 
-<% if !@showcase.id.nil? %>
+<% if existed?(@showcase) %>
   <small class="text-right help-block"><em><%= @showcase.created_at.to_formatted_s(:db) %> (created)</em></small>
 <% end %>
 

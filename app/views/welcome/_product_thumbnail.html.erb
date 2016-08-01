@@ -1,8 +1,0 @@
-<div class="col-xs-12 col-sm-3">
-  <%= link_to product_path(p), class:"thumbnail" do %>
-    <%= image_tag p.image_url, class: "img-responsive", alt: p.title %>
-  <% end %>
-    <div class="caption">
-      <p class="text-center"><%= truncate p.title, length: 55, omission: '...' %></p>
-    </div>
-</div>

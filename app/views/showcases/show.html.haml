@@ -1,0 +1,8 @@
+.row.showcase
+  .col-xs-12.col-sm-2
+    .page-header
+      %h4= @showcase.title
+    %p= @showcase.subtitle
+  .col-xs-12.col-sm-10.product-box
+    .row.grid
+      = render partial: "products/product_thumbnail", collection: @products, as: :product

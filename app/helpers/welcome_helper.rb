@@ -4,10 +4,12 @@ module WelcomeHelper
   end
 
   def carousel_bg_image(obj)
-    image_url = "(" + image_url(obj) + ")"
-    cover = " center no-repeat; background-size:cover"
-    bg_url = "background:url"
-    return bg_url + image_url + cover
+    if image_url(obj) != nil
+      image_url = "(" + image_url(obj) + ")"
+      cover = " center no-repeat; background-size:cover"
+      bg_url = "background:url"
+      return bg_url + image_url + cover
+    end
   end
 
   def display_carousel_collection(carousel, visible_carousels)
@@ -59,5 +61,9 @@ module WelcomeHelper
     array.collect do |p|
       render partial: "product_thumbnail", locals: { p: p }
     end.join
+  end
+
+  def showcase_title_carousel(showcase)
+    showcase.title.gsub(/\s+/, '') + "Carousel"
   end
 end
