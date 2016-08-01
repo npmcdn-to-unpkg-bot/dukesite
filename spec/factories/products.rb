@@ -4,6 +4,7 @@ FactoryGirl.define do
     trait :valid_attributes do
       url       Faker::Internet.url('example.com')
       image_url Faker::Avatar.image
+      image_url_small Faker::Avatar.image
     end
     
     trait :published do
