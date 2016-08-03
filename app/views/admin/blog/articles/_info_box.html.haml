@@ -1,0 +1,31 @@
+.col-xs-12.col-sm-3.article-info-box
+  .panel.panel-default
+    .panel-heading
+      Information
+    .panel-body
+      %table
+        %tr
+          %th.col-xs-5.text-right
+            Status
+          %td.col-xs-7= publish_status(object)
+      - if object.published?
+        %tr
+          %th.col-xs-5.text-right
+            Published
+          %td.col-xs-7= object.published_at.to_formatted_s(:long)
+        %tf
+          %th.col-xs-5.text-right
+          %td.col-xs-7= create_time(object)
+        %tf
+          %th.col-xs-5.text-right
+            Updated
+          %td.col-xs-7= update_time(object)
+      %hr
+      = image_tag @thumb_img_url, class: "img-responsive thumbnail", id: "article-form-img-preview"
+      .form-group
+        = f.label "Upload Image", class: "control-label"
+        %br
+        = f.fields_for :photo do |c|
+          = c.file_field :image, accept: 'image/png,image/gif,image/jpeg'
+      = link_to "Cancel", admin_blog_articles_path, class: "btn btn-warning"
+      = f.submit "Save", class: "btn btn-primary"

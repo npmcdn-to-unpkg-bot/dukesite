@@ -4,7 +4,7 @@
     .caption
       %h4
         = link_to text_truncate(article.title, 50), edit_admin_blog_article_path(article)
-        %br/
+        %br
         %small= text_truncate(article.subtitle, 70)
       %p= strip_tags text_truncate(article.content, 150)
       %p
