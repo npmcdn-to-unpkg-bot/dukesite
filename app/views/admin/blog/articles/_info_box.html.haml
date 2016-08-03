@@ -3,23 +3,23 @@
     .panel-heading
       Information
     .panel-body
-      %table
-        %tr
-          %th.col-xs-5.text-right
-            Status
-          %td.col-xs-7= publish_status(object)
-      - if object.published?
-        %tr
-          %th.col-xs-5.text-right
-            Published
-          %td.col-xs-7= object.published_at.to_formatted_s(:long)
-        %tf
-          %th.col-xs-5.text-right
-          %td.col-xs-7= create_time(object)
-        %tf
-          %th.col-xs-5.text-right
-            Updated
-          %td.col-xs-7= update_time(object)
+      %dl
+        %dt
+          Status
+        %dd
+          %u= publish_status(object)
+        - if object.published?
+          %dt
+            Published at
+          %dd= object.published_at.to_formatted_s(:long)
+          
+        %dt
+          Created at
+        %dd= article_create_time(object)
+        
+        %dt
+          Updated at
+        %dd= article_update_time(object)
       %hr
       = image_tag @thumb_img_url, class: "img-responsive thumbnail", id: "article-form-img-preview"
       .form-group
