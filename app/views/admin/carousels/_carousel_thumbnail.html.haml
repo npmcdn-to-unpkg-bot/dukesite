@@ -1,0 +1,16 @@
+.col-xs-12.col-sm-6.col-md-4.col-lg-3.grid-item
+  %div{:class => ['thumbnail', 'admin-carousel-thumbnail', invisible_thumb?(carousel)]}
+    = display_photo_image_tag(carousel)
+    .caption
+      %h4= carousel.title
+      %p= carousel.description
+      %p
+        %button#carousel-status{ :type => "button", :class => ['btn', 'btn-sm', visibility_status_btn(carousel)], :data => { :edit => admin_carousel_visible_switch_path(carousel), :visible => carousel.visible? } }
+          = visibility_status(carousel)
+      %p
+        = link_to "Delete", admin_carousel_path(carousel), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "When you delete this carousel, the images related to this carousel will also be deleted. Are you sure?" }
+       
+        = link_to "Edit", edit_admin_carousel_path(carousel), class: "btn btn-info btn-sm"
+      
+      %span= carousel.last_update
+      %span (last updated)

@@ -1,0 +1,23 @@
+.page-header
+  %h1 
+    Carousels
+    %span.badge= @carousels_amount
+%p
+  %a{ :data => { :toggle => "collapse"}, :href => "#collapseAddCarouselForm", :aria => { :expanded => "false"}}
+    %span.glyphicon.glyphicon-plus-sign{ :aria => { :hidden => "true"}}
+    Add Carousel
+
+= render "shared/error", object: @carousel
+
+.container
+  .row
+    .collapse#collapseAddCarouselForm
+      .col-xs-12.col-sm-12.well
+        = render "form"
+
+= render 'shared/pagination', objects: @carousels 
+
+.row.grid
+  = render partial: "carousel_thumbnail", collection: @carousels, as: :carousel
+
+= render 'shared/pagination', objects: @carousels
