@@ -8,7 +8,6 @@ describe AdminHelper do
 
   let(:visible_carousel) { FactoryGirl.build(:carousel, :visible)}
   let(:invisible_carousel) { FactoryGirl.build(:carousel, :invisible)}
-
   let(:visible_category) { FactoryGirl.build(:category, :visible)}
   let(:invisible_category) { FactoryGirl.build(:category, :invisible)}
   let(:visible_showcase) { FactoryGirl.build(:showcase, :visible)}
