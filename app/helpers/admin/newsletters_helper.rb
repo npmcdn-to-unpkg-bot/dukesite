@@ -7,4 +7,7 @@ module Admin::NewslettersHelper
         "Sent at: " + time.to_formatted_s(:long)
       end
   end
+  def newsletter_status(newsletter)
+    newsletter.sent? ? "Sent" : "Draft"
+  end
 end
