@@ -12,7 +12,7 @@
         <%= link_to "Shop", category_path(category), class: "pull-right" %>
       </p>
       <small>
-      <%= category.last_update %> <em>(last updated)</em></small>
+      <%= update_time(category) %> <em>(last updated)</em></small>
       <span class="badge pull-right"><%= category.products.size %></span>
     </div>
   </div>

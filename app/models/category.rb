@@ -32,9 +32,4 @@ class Category < ActiveRecord::Base
   def valid_keywords
     self.keywords.where.not(value: nil).order("updated_at DESC").map(&:value) if self.keywords.present?
   end
-  
-  def last_update
-    self.updated_at.nil? ? time = self.updated_at : time = self.created_at
-    return time.to_formatted_s(:long)
-  end
 end

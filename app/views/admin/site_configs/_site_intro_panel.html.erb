@@ -9,7 +9,7 @@
         <div class="col-sm-10 col-sm-offset-1">
           <%= sanitize site_intro.value.nil? ? "No Content" : site_intro.value %>
           <hr>
-          <%= link_to 'Edit', edit_admin_site_config_path(site_intro), class: 'btn btn-default' %><small class="help-block"><em><%= "Last updated: #{site_intro.last_update}" %></em></small>
+          <%= link_to 'Edit', edit_admin_site_config_path(site_intro), class: 'btn btn-default' %><small class="help-block"><em><%= "Last updated: #{update_time(site_intro)}" %></em></small>
         </div>
       </div>
     </div>
