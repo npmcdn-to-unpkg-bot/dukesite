@@ -5,21 +5,21 @@
     .panel-body
       %dl
         %dt
-          Status
+          Status:
         %dd
           %u= publish_status(object)
         - if object.published?
           %dt
-            Published at
+            Published:
           %dd= object.published_at.to_formatted_s(:long)
           
         %dt
-          Created at
-        %dd= article_create_time(object)
+          Created:
+        %dd= create_time(object)
         
         %dt
-          Updated at
-        %dd= article_update_time(object)
+          Updated:
+        %dd= update_time(object)
       %hr
       = image_tag @thumb_img_url, class: "img-responsive thumbnail", id: "article-form-img-preview"
       .form-group

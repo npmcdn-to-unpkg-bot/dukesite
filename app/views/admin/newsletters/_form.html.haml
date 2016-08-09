@@ -10,24 +10,22 @@
         .panel-heading 
           Information
         .panel-body
-          %table
-            %tr
-              %th.col-xs-5.text-right
-                Status
-              %td.col-xs-7= newsletter_status(newsletter)
-            %tr
-              %th.col-xs-5.text-right
-                Created
-              %td.col-xs-7= create_time(newsletter)
-            %tr
-              %th.col-xs-5.text-right
-                Updated
-              %td.col-xs-7= update_time(newsletter)
+          %dl
+            %dt
+              Status
+            %dd
+              %u= newsletter_status(newsletter)
+            
+            %dt
+              Created
+            %dd= create_time(newsletter)
 
+            %dt
+              Updated
+            %dd= update_time(newsletter)
           %hr
           = link_to "Cancel", admin_newsletters_path, class: "btn btn-warning"
           = f.submit "Save", class: "btn btn-primary"
-  
   
 = tinymce :alternate
 
