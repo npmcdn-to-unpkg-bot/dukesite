@@ -1,0 +1,20 @@
+.panel-group#accordion
+  - newsletters.each do |n|
+    .panel.panel-default
+      .panel-heading{ :data => { :toggle => "collapse", :expanded => "true" }, :href => "#newsletters-#{n.id}"}
+        %h4.panel-title
+          = n.subject
+        = newsletter_sent_time(n)
+      .panel-collapse.collapse{ :id => "newsletters-#{n.id}"}
+        .panel-body
+          = sanitize n.content
+          %hr
+          = link_to 'Edit', edit_admin_newsletter_path(n), class: 'btn btn-info'
+          = link_to 'Send Newsletter', admin_newsletter_send_newsletter_path(n), :method => :put, class: 'btn btn-danger'
+          = link_to 'Delete', admin_newsletter_path(n), method: :delete, data: { confirm: "Are you sure?" }
+          %p.help-block
+            Created time:
+            = create_time(n)
+            %br
+            Last updated: 
+            = update_time(n)

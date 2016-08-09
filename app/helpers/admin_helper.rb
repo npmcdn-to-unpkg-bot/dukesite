@@ -32,6 +32,13 @@ module AdminHelper
   end
 
   def update_time(obj)
-    obj.updated_at.nil? ? 'Not Saved Yet' : obj.updated_at.to_formatted_s(:long)
+    if obj.created_at.nil?
+      'Not Saved Yet'
+    else
+      create_time = obj.created_at
+      update_time = obj.updated_at
+      obj.updated_at.nil? ? time = create_time : time = update_time
+      time.to_formatted_s(:long)
+    end
   end
 end
