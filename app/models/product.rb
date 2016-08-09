@@ -25,9 +25,4 @@ class Product < ActiveRecord::Base
   def valid_keywords
     self.keywords.map(&:value) if self.keywords.present?
   end
-
-  def last_update
-    self.updated_at.nil? ? time = self.updated_at : time = self.created_at
-    return time.to_formatted_s(:long)
-  end
 end

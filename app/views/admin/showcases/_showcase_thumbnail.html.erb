@@ -14,7 +14,7 @@
         <%= link_to "Shop", showcase_path(showcase), class: "pull-right" %>
       </p>
       <small>
-      <%= showcase.last_update %> <em>(last updated)</em></small>
+      <%= update_time(showcase) %> <em>(last updated)</em></small>
       <span class="badge pull-right"><%= showcase.products.size %></span>
     </div>
   </div>

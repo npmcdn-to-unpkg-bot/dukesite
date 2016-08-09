@@ -16,7 +16,7 @@
           <% end %>
         </p>
 
-        <small class="pull-right"><%= p.last_update %></small>
+        <small class="pull-right"><%= update_time(p) %></small>
 
         <%= link_to product_path(p), target: "_blank" do %>
           <%= image_tag p.image_url %>

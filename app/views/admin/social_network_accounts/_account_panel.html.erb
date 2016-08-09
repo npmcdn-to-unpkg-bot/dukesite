@@ -6,7 +6,7 @@
       <% end %>
     </div>
     <div class="media-body">
-      <h3 class="panel-title"><%= account.platform_name %><small> <span class="label <%= visibility_label(account) %>"><%= visibility_status(account) %></span><span class="pull-right"><%= account.last_update %></span></small></h3>
+      <h3 class="panel-title"><%= account.platform_name %><small> <span class="label <%= visibility_label(account) %>"><%= visibility_status(account) %></span><span class="pull-right"><%= update_time(account) %></span></small></h3>
 
       <%= link_to url_with_protocol(account.platform_url), account.platform_url, :target => "_blank" %>
       <small class="pull-right">

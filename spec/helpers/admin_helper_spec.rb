@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe AdminHelper do
   let(:published_article) { FactoryGirl.build(:article, :published) }
+  let(:published_article) { FactoryGirl.build(:article, :published) }
   let(:unpublished_article) { FactoryGirl.build(:article, :unpublished) }
   let(:published_product) { FactoryGirl.build(:product, :published) }
   let(:unpublished_product) { FactoryGirl.build(:product, :unpublished) }
 
   let(:visible_carousel) { FactoryGirl.build(:carousel, :visible)}
   let(:invisible_carousel) { FactoryGirl.build(:carousel, :invisible)}
-
   let(:visible_category) { FactoryGirl.build(:category, :visible)}
   let(:invisible_category) { FactoryGirl.build(:category, :invisible)}
   let(:visible_showcase) { FactoryGirl.build(:showcase, :visible)}
@@ -20,293 +20,127 @@ describe AdminHelper do
 
 
   describe "#publish_status_btn" do
-    context "when the article is published" do
-      it "returns 'btn-primary'" do
-        expect(helper.publish_status_btn(published_article)).to eq("btn-primary")
-      end
-    end
+    it "returns different color depending on object's publish status" do
+      expect(helper.publish_status_btn(published_article)).to eq("btn-primary")
+      expect(helper.publish_status_btn(unpublished_article)).to eq("btn-default")
 
-    context "when the article is not published" do
-      it "returns 'btn-default'" do
-        expect(helper.publish_status_btn(unpublished_article)).to eq("btn-default")
-      end
-    end  
-
-    context "when the product is published" do
-      it "returns 'btn-primary'" do
-        expect(helper.publish_status_btn(published_product)).to eq("btn-primary")
-      end
-    end
-
-    context "when the product is not published" do
-      it "returns 'btn-default'" do
-        expect(helper.publish_status_btn(unpublished_product)).to eq("btn-default")
-      end
+      expect(helper.publish_status_btn(published_product)).to eq("btn-primary")
+      expect(helper.publish_status_btn(unpublished_product)).to eq("btn-default")
     end
   end
 
   describe "#publish_status" do
-    context "when the article is published" do
-      it "returns 'Published'" do
-        expect(helper.publish_status(published_article)).to eq("Published")
-      end
-    end
+    it "returns object's publish status" do
+      expect(helper.publish_status(published_article)).to eq("Published")
+      expect(helper.publish_status(unpublished_article)).to eq("Unpublished")
 
-    context "when the article is not published" do
-      it "returns 'Unpublished'" do
-        expect(helper.publish_status(unpublished_article)).to eq("Unpublished")
-      end
-    end  
-
-    context "when the product is published" do
-      it "returns 'Published'" do
-        expect(helper.publish_status(published_product)).to eq("Published")
-      end
-    end
-
-    context "when the product is not published" do
-      it "returns 'Unpublished'" do
-        expect(helper.publish_status(unpublished_product)).to eq("Unpublished")
-      end
+      expect(helper.publish_status(published_product)).to eq("Published")
+      expect(helper.publish_status(unpublished_product)).to eq("Unpublished")
     end
   end
 
   describe "#publish_label" do
-    context "when the article is published" do
-      it "returns 'label-success'" do
-        expect(helper.publish_label(published_article)).to eq("label-success")
-      end
-    end
+    it "returns different color depending on object's publish status" do
+      expect(helper.publish_label(published_article)).to eq("label-success")
+      expect(helper.publish_label(unpublished_article)).to eq("label-default")
 
-    context "when the article is not published" do
-      it "returns 'label-default'" do
-        expect(helper.publish_label(unpublished_article)).to eq("label-default")
-      end
-    end  
-
-    context "when the product is published" do
-      it "returns 'label-success'" do
-        expect(helper.publish_label(published_product)).to eq("label-success")
-      end
-    end
-
-    context "when the product is not published" do
-      it "returns 'label-default'" do
-        expect(helper.publish_label(unpublished_product)).to eq("label-default")
-      end
+      expect(helper.publish_label(published_product)).to eq("label-success")
+      expect(helper.publish_label(unpublished_product)).to eq("label-default")
     end
   end
 
   describe "#published_thumb?" do
-    context "when the article is not published" do
-      it "returns 'invisible_thumbnail'" do
-        expect(helper.published_thumb?(unpublished_article)).to eq('invisible_thumbnail')
-      end
-    end
-    
-    context "when the article is published" do
-      it "returns nil" do
-        expect(helper.published_thumb?(published_article)).to eq(nil)
-      end
-    end
+    it "returns 'invisible_thumbnail' for unpublished object" do
+      expect(helper.published_thumb?(published_article)).to eq(nil)
+      expect(helper.published_thumb?(unpublished_article)).to eq('invisible_thumbnail')
 
-    context "when the product is not published" do
-      it "returns 'invisible_thumbnail'" do
-        expect(helper.published_thumb?(unpublished_product)).to eq('invisible_thumbnail')
-      end
-    end
-    
-    context "when the product is published" do
-      it "returns nil" do
-        expect(helper.published_thumb?(published_product)).to eq(nil)
-      end
+      expect(helper.published_thumb?(published_product)).to eq(nil)
+      expect(helper.published_thumb?(unpublished_product)).to eq('invisible_thumbnail')
     end
   end
 
   describe "#visibility_status_btn" do
-    context "when the carousel is visible" do
-      it "returns 'btn-primary'" do
-        expect(helper.visibility_status_btn(visible_carousel)).to eq("btn-primary")
-      end
-    end
+    it "has different color depending on object's visibility" do
+      expect(helper.visibility_status_btn(visible_carousel)).to eq("btn-primary")
+      expect(helper.visibility_status_btn(invisible_carousel)).to eq("btn-default")
 
-    context "when the carousel is invisible" do
-      it "returns 'btn-default'" do
-        expect(helper.visibility_status_btn(invisible_carousel)).to eq("btn-default")
-      end
-    end  
+      expect(helper.visibility_status_btn(visible_category)).to eq("btn-primary")
+      expect(helper.visibility_status_btn(invisible_category)).to eq("btn-default")
 
-    context "when the category is visible" do
-      it "returns 'btn-primary'" do
-        expect(helper.visibility_status_btn(visible_category)).to eq("btn-primary")
-      end
-    end
+      expect(helper.visibility_status_btn(visible_showcase)).to eq("btn-primary")
+      expect(helper.visibility_status_btn(invisible_showcase)).to eq("btn-default")
 
-    context "when the category is invisible" do
-      it "returns 'btn-default'" do
-        expect(helper.visibility_status_btn(invisible_category)).to eq("btn-default")
-      end
-    end
-    
-    context "when the showcase is visible" do
-      it "returns 'btn-primary'" do
-        expect(helper.visibility_status_btn(visible_showcase)).to eq("btn-primary")
-      end
-    end
+      expect(helper.visibility_status_btn(visible_quote)).to eq("btn-primary")
+      expect(helper.visibility_status_btn(invisible_quote)).to eq("btn-default")
 
-    context "when the showcase is invisible" do
-      it "returns 'btn-default'" do
-        expect(helper.visibility_status_btn(invisible_showcase)).to eq("btn-default")
-      end
-    end
-        
-    context "when the quote is visible" do
-      it "returns 'btn-primary'" do
-        expect(helper.visibility_status_btn(visible_quote)).to eq("btn-primary")
-      end
-    end
-
-    context "when the quote is invisible" do
-      it "returns 'btn-default'" do
-        expect(helper.visibility_status_btn(invisible_quote)).to eq("btn-default")
-      end
-    end
-
-    context "when the social_network_account is visible" do
-      it "returns 'btn-primary'" do
-        expect(helper.visibility_status_btn(visible_sna)).to eq("btn-primary")
-      end
-    end
-
-    context "when the social_network_account is invisible" do
-      it "returns 'btn-default'" do
-        expect(helper.visibility_status_btn(invisible_sna)).to eq("btn-default")
-      end
+      expect(helper.visibility_status_btn(visible_sna)).to eq("btn-primary")
+      expect(helper.visibility_status_btn(invisible_sna)).to eq("btn-default")
     end
   end
 
   describe "#visibility_status" do
-    context "when the carousel is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_status(visible_carousel)).to eq("Visible")
-      end
-    end
+    it "shows object's visibility status" do
+      expect(helper.visibility_status(visible_carousel)).to eq("Visible")
+      expect(helper.visibility_status(invisible_carousel)).to eq("Hidden")
 
-    context "when the carousel is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_status(invisible_carousel)).to eq("Hidden")
-      end
-    end  
+      expect(helper.visibility_status(visible_category)).to eq("Visible")
+      expect(helper.visibility_status(invisible_category)).to eq("Hidden")
 
-    context "when the category is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_status(visible_category)).to eq("Visible")
-      end
-    end
+      expect(helper.visibility_status(visible_showcase)).to eq("Visible")
+      expect(helper.visibility_status(invisible_showcase)).to eq("Hidden")
 
-    context "when the category is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_status(invisible_category)).to eq("Hidden")
-      end
-    end
-    
-    context "when the showcase is visible" do
-      it "returns 'Visible" do
-        expect(helper.visibility_status(visible_showcase)).to eq("Visible")
-      end
-    end
+      expect(helper.visibility_status(visible_quote)).to eq("Visible")
+      expect(helper.visibility_status(invisible_quote)).to eq("Hidden")
 
-    context "when the showcase is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_status(invisible_showcase)).to eq("Hidden")
-      end
-    end
-        
-    context "when the quote is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_status(visible_quote)).to eq("Visible")
-      end
-    end
-
-    context "when the quote is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_status(invisible_quote)).to eq("Hidden")
-      end
-    end
-
-    context "when the social_network_account is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_status(visible_sna)).to eq("Visible")
-      end
-    end
-
-    context "when the social_network_account is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_status(invisible_sna)).to eq("Hidden")
-      end
+      expect(helper.visibility_status(visible_sna)).to eq("Visible")
+      expect(helper.visibility_status(invisible_sna)).to eq("Hidden")
     end
   end
   
   describe "#visibility_label" do
-    context "when the carousel is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_label(visible_carousel)).to eq("label-success")
-      end
+    it "returns different color depending on object's visiblility status" do
+      expect(helper.visibility_label(visible_carousel)).to eq("label-success")
+      expect(helper.visibility_label(invisible_carousel)).to eq("label-default")
+
+      expect(helper.visibility_label(visible_category)).to eq("label-success")
+      expect(helper.visibility_label(invisible_category)).to eq("label-default")
+
+      expect(helper.visibility_label(visible_showcase)).to eq("label-success")
+      expect(helper.visibility_label(invisible_showcase)).to eq("label-default")
+
+      expect(helper.visibility_label(visible_quote)).to eq("label-success")
+      expect(helper.visibility_label(invisible_quote)).to eq("label-default")
+
+      expect(helper.visibility_label(visible_sna)).to eq("label-success")
+      expect(helper.visibility_label(invisible_sna)).to eq("label-default")
+    end
+  end
+
+  describe "#create_time" do
+    it "returns formated create time of a saved object" do
+      saved_article = FactoryGirl.create(:article)
+      create_time = saved_article.created_at.to_formatted_s(:long)
+
+      expect(helper.create_time(saved_article)).to eq(create_time)
     end
 
-    context "when the carousel is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_label(invisible_carousel)).to eq("label-default")
-      end
-    end  
-
-    context "when the category is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_label(visible_category)).to eq("label-success")
-      end
+    it "returns 'Not Saved Yet' when the object is not created in Database" do
+      not_saved_article = FactoryGirl.build(:article)
+      expect(helper.create_time(not_saved_article)).to eq('Not Saved Yet')
     end
+  end
 
-    context "when the category is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_label(invisible_category)).to eq("label-default")
-      end
-    end
-    
-    context "when the showcase is visible" do
-      it "returns 'Visible" do
-        expect(helper.visibility_label(visible_showcase)).to eq("label-success")
-      end
+  describe "#update_time" do
+    it "returns formated update time of a saved object" do
+      saved_article = FactoryGirl.create(:article)
+      update_time = saved_article.updated_at.to_formatted_s(:long)
+
+      expect(helper.update_time(saved_article)).to eq(update_time)
     end
 
-    context "when the showcase is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_label(invisible_showcase)).to eq("label-default")
-      end
-    end
-        
-    context "when the quote is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_label(visible_quote)).to eq("label-success")
-      end
-    end
-
-    context "when the quote is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_label(invisible_quote)).to eq("label-default")
-      end
-    end
-
-    context "when the social_network_account is visible" do
-      it "returns 'Visible'" do
-        expect(helper.visibility_label(visible_sna)).to eq("label-success")
-      end
-    end
-
-    context "when the social_network_account is invisible" do
-      it "returns 'Hidden'" do
-        expect(helper.visibility_label(invisible_sna)).to eq("label-default")
-      end
+    it "returns 'Not Saved Yet' when the object is not created in Database" do
+      not_saved_article = FactoryGirl.build(:article)
+      expect(helper.update_time(not_saved_article)).to eq('Not Saved Yet')
     end
   end
 end
-

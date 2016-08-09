@@ -1,0 +1,32 @@
+= render "shared/error", object: newsletter
+= form_for [:admin, newsletter] do |f|
+  .row
+    .col-xs-12.col-sm-9
+      .page-header
+        %h1= f.text_field :subject, class: "form-control input-lg", placeholder: "Enter Subject"
+      = f.text_area :content, class: 'tinymce', rows: 20, cols: 120
+    .col-xs-12.col-sm-3.article-info-box
+      .panel.panel-default
+        .panel-heading 
+          Information
+        .panel-body
+          %dl
+            %dt
+              Status
+            %dd
+              %u= newsletter_status(newsletter)
+            
+            %dt
+              Created
+            %dd= create_time(newsletter)
+
+            %dt
+              Updated
+            %dd= update_time(newsletter)
+          %hr
+          = link_to "Cancel", admin_newsletters_path, class: "btn btn-warning"
+          = f.submit "Save", class: "btn btn-primary"
+  
+= tinymce :alternate
+
+= tinymce_assets

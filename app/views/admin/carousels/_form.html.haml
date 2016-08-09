@@ -1,0 +1,22 @@
+= render "shared/error", object: @carousel
+
+.col-xs-12.col-sm-2
+  .row
+    = image_tag @thumb_img_url, class: "img-responsive thumbnail", id: "carousel-form-img-preview"
+
+.col-xs-12.col-sm-9.col-sm-offset-1
+  = form_for [:admin, @carousel], html: {class: "form-horizontal"} do |s|
+    .form-group
+      = s.label "Title*", class: "control-label"
+      .row
+        .col-xs-8
+          = s.text_field :title, class: "form-control", placeholder: "Enter title"
+
+    .form-group
+      = s.label "Description"
+      .row
+        .col-xs-8
+          = s.text_area :description, class: "form-control", placeholder: "Describe the carousel", rows: 2
+
+    = link_to "Cancel", :back, class: "btn btn-warning" if existed?(@carousel)
+    = s.submit "Save", class: "btn btn-primary"

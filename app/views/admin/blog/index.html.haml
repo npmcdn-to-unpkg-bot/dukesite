@@ -1,0 +1,18 @@
+.page-header
+  %h1
+    Articles
+    %span.badge= @articles_amount
+
+.row
+  .col-xs-12
+    %p
+      =link_to new_admin_blog_article_path do
+        %span.glyphicon.glyphicon-plus-sign{:aria => { :hidden => "true" }}
+        Write a new article
+
+= render 'shared/pagination', objects: @articles
+
+.row.grid
+  = render partial: "article_thumbnail", collection: @articles, as: :article
+
+= render 'shared/pagination', objects: @articles
