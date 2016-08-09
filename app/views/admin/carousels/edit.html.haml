@@ -1,0 +1,16 @@
+.page-header
+  %h1= @carousel.title
+  %span{ :class => ['label', visibility_label(@carousel)] }= visibility_status(@carousel)
+
+%ol.breadcrumb
+  %li= link_to "Admin", admin_index_path
+  %li= link_to "Carousels", admin_carousels_path
+  %li.active= @carousel.title
+
+.panel.panel-default
+  .panel-body
+    = render "form"
+    %p.text-right
+      %small.help-block
+        Last updated: 
+        = @carousel.last_update

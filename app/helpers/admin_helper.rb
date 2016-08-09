@@ -26,4 +26,19 @@ module AdminHelper
   def visibility_label(obj)
     obj.visible? ? "label-success" : "label-default"
   end
+
+  def create_time(obj)
+    obj.created_at.nil? ? 'Not Saved Yet' : obj.created_at.to_formatted_s(:long)
+  end
+
+  def update_time(obj)
+    if obj.created_at.nil?
+      'Not Saved Yet'
+    else
+      create_time = obj.created_at
+      update_time = obj.updated_at
+      obj.updated_at.nil? ? time = create_time : time = update_time
+      time.to_formatted_s(:long)
+    end
+  end
 end
