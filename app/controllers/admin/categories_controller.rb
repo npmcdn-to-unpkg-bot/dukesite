@@ -33,7 +33,7 @@ class Admin::CategoriesController < AdminController
       flash[:success] = "A new category was succefully created."
       redirect_to admin_categories_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       @category.photo = Photo.new
       @thumb_img_url = @category.thumb_img_url 
       render :index
@@ -47,14 +47,14 @@ class Admin::CategoriesController < AdminController
         flash[:success] = "Succefully updated."
         redirect_to admin_category_path(@category)
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :edit
       end
     elsif @category.update(category_params)
       flash[:success] = "A new category was succefully updated."
       redirect_to admin_category_path(@category)
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :index
     end
   end
@@ -66,7 +66,7 @@ class Admin::CategoriesController < AdminController
       cat_status = @category.visible.to_s
     else
       status = 404
-      response = "Please try again"
+      response = "Please try again."
     end
     render json: { response: response, cat_status: cat_status },
            status: status
@@ -77,7 +77,7 @@ class Admin::CategoriesController < AdminController
       flash[:success] = "A new image was succefully uploaded."
       redirect_to admin_category_path(@category)
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :product_list
     end
   end

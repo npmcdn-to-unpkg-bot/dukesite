@@ -33,7 +33,7 @@ class Admin::ShowcasesController < AdminController
       flash[:success] = "A showcase was successfully created."
       redirect_to admin_showcases_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       @showcase.photo = Photo.new
       @thumb_img_url = @showcase.photo.image.thumb.url
       render :index
@@ -50,14 +50,14 @@ class Admin::ShowcasesController < AdminController
         flash[:success] = "Successfully updated."
         redirect_to admin_showcase_path(@showcase)
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :edit
       end
     elsif @showcase.update(showcase_params)
       flash[:success] = "Successfully updated."
       redirect_to admin_showcase_path(@showcase)
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :edit
     end
   end
@@ -81,7 +81,7 @@ class Admin::ShowcasesController < AdminController
       flash[:success] = "A new image was succefully uploaded."
       redirect_to admin_showcase_path(@showcase)
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :product_list
     end
   end

@@ -12,14 +12,14 @@ class Admin::Blog::ArticlesController < AdminController
         flash[:success] = "An article was successfully created."
         redirect_to admin_blog_index_path
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :new
       end
     elsif Article.create(article_params)
       flash[:success] = "An article was successfully created."
       redirect_to admin_blog_index_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :new
     end
   end
@@ -35,14 +35,14 @@ class Admin::Blog::ArticlesController < AdminController
         flash[:success] = "An Article was successfully updated."
         redirect_to admin_blog_index_path
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :edit
       end
     elsif @article.update(article_params)
       flash[:success] = "An Article was successfully updated."
       redirect_to admin_blog_index_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :edit
     end
   end

@@ -45,14 +45,14 @@ class Admin::SiteConfigsController < AdminController
           flash[:success] = "Successfully updated."
           redirect_to admin_site_configs_path
         else
-          flash[:danger] = "Please try again."
+          flash[:error] = "Please try again."
           render :back
         end
       elsif @site_config.update(site_config_params(:update_photo => true))
         flash[:success] = "Successfully updated."
         redirect_to admin_site_configs_path
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :back
       end
     end

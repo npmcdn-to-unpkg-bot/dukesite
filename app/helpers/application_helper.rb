@@ -43,4 +43,17 @@ module ApplicationHelper
     end
     return image_tag img_url
   end
+
+  def flash_class(key)
+    case key
+    when "success"
+      "alert alert-success alert-dismissible"
+    when "error"
+      "alert alert-danger alert-dismissible"
+    when "alert"
+      "alert alert-warning alert-dismissible"
+    else "notice"
+      "alert alert-info alert-dismissible"
+    end
+  end
 end
