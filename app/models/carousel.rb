@@ -12,8 +12,6 @@ class Carousel < ActiveRecord::Base
   def thumb_img_url
     if self.photo.image.present? && !self.photo.image.thumb.url.nil?
       self.photo.image.thumb.url
-    else
-      return "http://thedudeminds.de/images/no_image_available.png"
     end
   end
 
