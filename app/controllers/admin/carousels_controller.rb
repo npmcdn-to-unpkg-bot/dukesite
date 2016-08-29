@@ -42,14 +42,14 @@ class Admin::CarouselsController < AdminController
         flash[:success] = "Successfully updated."
         redirect_to admin_carousels_path
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :edit
       end
     elsif @carousel.update(carousel_params)
       flash[:success] = "Successfully updated."
       redirect_to admin_carousels_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :edit
     end
   end
@@ -73,7 +73,7 @@ class Admin::CarouselsController < AdminController
       flash[:success] = "A new image was succefully uploaded."
       redirect_to edit_admin_carousel_path(@carousel)
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :edit
     end
   end

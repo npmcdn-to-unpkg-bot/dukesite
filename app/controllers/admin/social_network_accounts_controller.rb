@@ -42,7 +42,7 @@ class Admin::SocialNetworkAccountsController < AdminController
       flash[:success] = "A new image was succefully uploaded."
       redirect_to admin_social_network_accounts_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :index
     end
   end

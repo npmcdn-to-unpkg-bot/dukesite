@@ -43,14 +43,14 @@ class Admin::QuotesController < AdminController
         flash[:success] = "Successfully updated."
         redirect_to admin_quotes_path
       else
-        flash[:danger] = "Please try again."
+        flash[:error] = "Please try again."
         render :edit
       end
     elsif @quote.update(quote_params)
       flash[:success] = "Successfully updated."
       redirect_to admin_quotes_path
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :edit
     end
   end
@@ -63,7 +63,7 @@ class Admin::QuotesController < AdminController
       quote_status = @quote.visible
     else
       status = 404
-      response = "Please try again"
+      response = "Please try again."
     end
     render json: { response: response, quote_status: quote_status },
            status: status
@@ -74,7 +74,7 @@ class Admin::QuotesController < AdminController
       flash[:success] = "A new image was succefully uploaded."
       redirect_to edit_admin_quote_path(@quote)
     else
-      flash[:danger] = "Please try again."
+      flash[:error] = "Please try again."
       render :edit
     end
   end
