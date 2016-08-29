@@ -4,7 +4,7 @@
 //= require jquery-fileupload/basic-plus
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require_tree .
+//= require_directory .
 
 
 // Image Preview
