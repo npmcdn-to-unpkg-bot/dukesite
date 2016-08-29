@@ -7,7 +7,6 @@
     .grid-item {
       @include padding-left-right(2%);
       @include padding-top-bottom(2%);
-      border-bottom: $border-solid-gray-lighter;
     }
     .article-image {
       border-bottom: none;
