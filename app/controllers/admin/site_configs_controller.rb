@@ -38,6 +38,7 @@ class Admin::SiteConfigsController < AdminController
         site_config = SiteConfig.find_by(slug: key)
         site_config.update(value.permit(:value))
       end
+      redirect_to admin_site_configs_path
     else
       find_site_config
       if params[:id] == ("our-story" || "join-us")
