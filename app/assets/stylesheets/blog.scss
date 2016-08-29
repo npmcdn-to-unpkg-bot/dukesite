@@ -9,16 +9,20 @@
       @include padding-top-bottom(2%);
       border-bottom: $border-solid-gray-lighter;
     }
-    .grid-item:hover { background-color: $bg-pink;}
+    .article-image {
+      border-bottom: none;
+    }
+    .grid-item:hover {
+      opacity: 0.6;
+    }
   }
   .blog-side-nav {
     @include padding-left-right(2%);
-    a {
-      border-bottom: none;
-      color: $gray-darker;
-    }
     text-align: center;
     border-left: $border-solid-gray-light;
+    .article-image {
+      border-bottom: none;
+    }
     .nav-row {
       @include padding-top-bottom(20px);
       .heading {
@@ -29,10 +33,10 @@
         p { 
           @include text;
           margin-top: 16px;
-          a:hover {
-            text-decoration: underline;
-          }
         }
+      }
+      .article-link:hover {
+        opacity: 0.6;
       }
     }
     .nav-row:not(:last-child) { border-bottom: $border-solid-gray-light;}

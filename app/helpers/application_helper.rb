@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def link_to_display_image_tag(obj, link_path, options = {})
-    link_to display_image(obj, options), link_path
+    link_to display_image(obj, options), link_path, class: options[:class], id: options[:id]
   end
 
   def display_image(obj, options={})
