@@ -12,15 +12,15 @@ class Article < ActiveRecord::Base
   sluggable_column :title
 
   def self.recent_articles
-    self.where(:published => true).order("published_at DESC").where(:published => true).order("published_at DESC").select(:id, :title, :subtitle, :slug)[0..9]
+    self.published.select(:id, :title, :subtitle, :slug)[0..9]
   end
 
   def previous_article
-    self.class.where(["published_at < ?", self.published_at]).where(:published => true).order("published_at DESC").first
+    self.class.where(["published_at < ?", self.published_at]).published.first
   end
 
   def next_article
-    self.class.where(["published_at > ?", self.published_at]).where(:published => true).order("published_at DESC").last
+    self.class.where(["published_at > ?", self.published_at]).published.last
   end
 
   def thumb_img_url
