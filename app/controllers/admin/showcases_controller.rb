@@ -6,13 +6,13 @@ class Admin::ShowcasesController < AdminController
   def index
     @showcase = Showcase.new
     @showcase.photo = Photo.new
-    @thumb_img_url = @showcase.photo.image.thumb.url
+    @thumb_img_url = @showcase.thumb_img_url
     @showcases_amount = Showcase.all.length
   end
 
   def show
     if @showcase.photo.present?
-      @thumb_img_url = @showcase.photo.image.thumb.url 
+      @thumb_img_url = @showcase.thumb_img_url
     else
       @showcase.photo = Photo.new
     end
@@ -35,7 +35,7 @@ class Admin::ShowcasesController < AdminController
     else
       flash[:error] = "Please try again."
       @showcase.photo = Photo.new
-      @thumb_img_url = @showcase.photo.image.thumb.url
+      @thumb_img_url = @showcase.thumb_img_url
       render :index
     end
   end
