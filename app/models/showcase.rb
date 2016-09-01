@@ -21,14 +21,8 @@ class Showcase < ActiveRecord::Base
     self.keywords.where.not(value: nil).order("updated_at DESC").map(&:value) if self.keywords.present?
   end
 
-  def thumb_img_url(options = {:show_no_image_available => true})
-    if self.photo.nil? || self.photo.image.thumb.url.nil? 
-      if options[:show_no_image_available]
-        return "http://thedudeminds.de/images/no_image_available.png"
-      else
-        nil
-      end
-    else
+  def thumb_img_url
+    if self.photo.present? && self.photo.image.thumb.url.present? 
       self.photo.image.thumb.url
     end
   end

@@ -3,7 +3,7 @@ class BlogController < ApplicationController
   def index
     # only published articles can be shown in the blog
     # ------------------------------------------------------------------------------
-    @articles = Article.published.order("published_at DESC")
+    @articles = Article.published
   end
   def show
     # meta-tags

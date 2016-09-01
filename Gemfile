@@ -44,10 +44,9 @@ gem 'amazon-ecs'
 # Pagination
 gem 'will_paginate', '~> 3.1.0'
 
-# File Uploader
+# Image Uploader
 gem 'carrierwave'
 gem 'mini_magick'
-gem "jquery-fileupload-rails"
 # Use fog for Amazon S3 storage
 gem "fog"
 
