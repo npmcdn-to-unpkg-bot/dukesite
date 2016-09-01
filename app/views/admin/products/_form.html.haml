@@ -1,0 +1,79 @@
+= render "look_up_form"
+- if existed?(@product)
+  .row.well
+    %p.pull-left
+      Created at:
+      = succeed "Last" do
+        %em= create_time(@product)
+      %em= update_time(@product)
+    %p.pull-right
+      %span{:class => "label #{publish_label(@product)}"}= publish_label(@product)
+      %br/
+      = link_to product_path(@product), target: "_blank" do
+        %span.glyphicon.glyphicon-eye-open{"aria-hidden" => "true"}
+        View Product
+        %br/
+
+= render "shared/error", object: @product
+
+.col-sm-9
+  = form_for [:admin, @product], :html => {:class => "form-horizontal"} do |p|
+    .form-group
+      = p.label "ASIN*", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.text_field :asin, class: "form-control"
+    .form-group
+      = p.label "Title*", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.text_field :title, class: "form-control", placeholder: "Enter title"
+    .form-group
+      = p.label "Purchase Link*", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.url_field :url, class: "form-control", placeholder: "Enter the url of the purchase page"
+    .form-group
+      = p.label "Product Image Url*", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.url_field :image_url, class: "form-control", placeholder: "Enter the url of the product's image"
+    .form-group
+      = p.label "Product Image Url (small)*", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.url_field :image_url_small, class: "form-control", placeholder: "Enter the url of the product's image (small)"
+    .form-group
+      = p.label "Description", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.text_area :description, class: "form-control", placeholder: "Describe the product", rows: 3
+    .form-group
+      = p.label "Categories", :class=>"col-sm-2 control-label" do
+        Categories
+      .col-sm-10
+        = p.collection_select(:category_ids, @all_categories, :id, :name, {:multiple => true}, {:multiple => true, class: "form-control"})
+        %small
+          %em (Ctrl + Mouse Click = Multiple Select
+    .form-group
+      = p.label "Showcase", :class=>"col-sm-2 control-label" do
+        Showcases
+      .col-sm-10
+        = p.collection_select(:showcase_ids, @all_showcases, :id, :title, {:multiple => true}, {:multiple => true, class: "form-control"})
+        %small
+          %em (Ctrl + Mouse Click = Multiple Select
+    .ratio
+      = p.label "Publish?", :class=>"col-sm-2 control-label"
+      .col-sm-10
+        = p.radio_button :published, false
+        No
+        %br/
+        = p.radio_button :published, true
+        Yes
+    .pull-right
+      = link_to "Cancel", admin_products_path, class: "btn btn-danger"
+      = p.submit "Save", class: "btn btn-primary"
+
+
+.col-sm-2
+  .row
+    = product_image_tag(@product)
+  .row
+    -#= render 'admin/shared/keyword_form', object: @product if @product.id.present?
+  .row
+    -#= render 'admin/shared/keyword_list' if @product.id.present?
+

@@ -37,9 +37,14 @@
   filter: opacity(50%);
 }
 
-.admin-product-thumbnail > p.tags {
-  padding-bottom: 10px;
-  border-bottom: $border-solid-gray-lighter;
+.admin-product-thumbnail {
+  p.tags {
+    padding-bottom: 10px;
+  }
+  .caption .product-update-time {
+    color: $gray-light;
+    font-size: 90%
+  }
 }
 
 .thumbnail > img, .thumbnail a > img {

@@ -1,0 +1,18 @@
+.page-header
+  %h1
+    Products
+    %span.badge= @products_amount
+.row
+  %p.pull-left
+    %span.label.label-warning category
+    %span.label.label-info showcase
+  %ul.pull-right.admin-product-controls
+    %li#admin-update-imgs{"data-update-url" => "#{admin_update_imgs_via_amazon_path}"}
+      %a
+        %span.glyphicon.glyphicon-refresh{"aria-hidden" => "true"}
+        Update images
+    = link_to new_admin_product_path do
+      %li
+        %span.glyphicon.glyphicon-plus-sign{"aria-hidden" => "true"}
+        Add a product
+= render 'product_list', products: @products

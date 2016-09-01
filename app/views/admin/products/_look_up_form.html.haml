@@ -1,0 +1,7 @@
+.row.asin-lookup-bar
+  = form_tag("/admin/look_up_item", method: "get", class: "form-inline col-xs-12 col-sm-4 pull-right", id: "lookup-item-on-amazon-form", remote: true) do
+    .form-group
+      = search_field_tag(:asin, nil, placeholder: "Enter ASIN", class: "form-control")
+      = submit_tag "Search", class: "btn btn-default"
+      %p#lookup-item-on-amazon-msg.hide
+#returned_items.row

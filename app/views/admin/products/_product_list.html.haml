@@ -1,0 +1,26 @@
+= render 'shared/pagination', objects: products
+.row.grid
+  - products.each do |p|
+    .col-xs-12.col-sm-6.col-md-4.col-lg-3.grid-item
+      %div{:class => "thumbnail admin-product-thumbnail #{published_thumb?(p)}"}
+        %p.tags
+          - p.categories.each do |pc|
+            = link_to admin_category_path(pc) do
+              %span.label.label-warning= pc.name
+          - p.showcases.each do |s|
+            = link_to admin_showcase_path(s) do
+              %span.label.label-info= s.title
+        = link_to product_path(p), target: "_blank" do
+          = image_tag p.image_url
+        .caption
+          %h4= p.title
+          %p= truncate(p.description, length: 90, omission: '...')
+          %ul.list-inline
+            %li= link_to "Delete", admin_product_path(p), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" }
+            %li= link_to "Edit", edit_admin_product_path(p), class: "btn btn-info btn-sm"
+            %li
+              %button#product-status{ :class => "btn btn-sm #{publish_status_btn(p)}", :type => "button", "data-edit" => "#{admin_product_publish_switch_path(p)}", "data-visible" => "#{p.published?}" }
+                = product_publish_status(p)
+          %p
+            %em.product-update-time Last udpated: #{update_time(p)}
+= render 'shared/pagination', objects: products
