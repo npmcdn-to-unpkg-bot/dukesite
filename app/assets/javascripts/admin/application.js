@@ -25,4 +25,11 @@ $(function(){
       itemSelector: ".grid-item"
     });
   });
+  
+  // Flash Alert Fade out
+  setTimeout(function() {
+     $(".alert").delay(2000).slideUp(500, function(){
+      $(this).alert('close');
+    });
+  }, 5000);
 });
