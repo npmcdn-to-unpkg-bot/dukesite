@@ -15,7 +15,6 @@ module WelcomeHelper
   def display_carousel_collection(carousel, visible_carousels)
     carousel_class = ["item ", active_carousel?(carousel, visible_carousels)]
     carousel_style = carousel_bg_image(carousel)
-    # content_tag :div, nil, class: carousel_class, style: carousel_style do
     content_tag :div, nil, class: carousel_class do
       content_tag :div, nil, class: "item-inner", style: carousel_style do
         display_carousel_caption(carousel, "carousel-caption")
