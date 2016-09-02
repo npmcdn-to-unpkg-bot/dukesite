@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  default_scope { order(updated_at: :desc) }
   include SlugGenerator
 
   validates_presence_of :title, :url, :image_url, :asin, :image_url_small
@@ -24,5 +25,9 @@ class Product < ActiveRecord::Base
   
   def valid_keywords
     self.keywords.map(&:value) if self.keywords.present?
+  end
+
+  def self.all_products_amount
+    self.all.length
   end
 end

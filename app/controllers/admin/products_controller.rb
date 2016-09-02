@@ -2,8 +2,7 @@ class Admin::ProductsController < AdminController
   before_action :find_product, only: [:edit, :update, :destroy, :publish_switch]
 
   def index
-    @products_amount = Product.all.length
-    @products = Product.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 12)
+    @products = Product.all.paginate(:page => params[:page], :per_page => 12)
   end
 
   def new
@@ -42,13 +41,13 @@ class Admin::ProductsController < AdminController
   end
 
   def publish_switch
-    status = 200
-    response = ""
-    if @product.update_attribute(:published, params[:published])
+    if !!params[:published] == params[:published] && @product.update_attribute(:published, params[:published])
+      status = 200
+      response = ""
       flash[:success] = "Successfully updated."
       product_status = @product.published
     else
-      status = 404
+      status = 400
       response = "Please try again"
     end
     render json: { response: response, product_status: product_status },
@@ -70,7 +69,7 @@ class Admin::ProductsController < AdminController
     else
       asin = params[:asin].strip
       res = Amazon::EcsWrapper.get_item_group(asin)
-      if res.respond_to? ('error')
+      if res.respond_to?('error')
         status   = 400
         response = res.error
       else
@@ -84,9 +83,9 @@ class Admin::ProductsController < AdminController
   end
 
   def update_imgs
-    @products = Product.all
+    products = Product.all
     response = ""
-    if Amazon::EcsWrapper.update_imgs(@products)
+    if Amazon::EcsWrapper.update_imgs(products)
       status = 200
     else
       status = 400
