@@ -41,7 +41,7 @@ class Admin::ProductsController < AdminController
   end
 
   def publish_switch
-    if !!params[:published] == params[:published] && @product.update_attribute(:published, params[:published])
+    if @product.update_attribute(:published, params[:published])
       status = 200
       response = ""
       flash[:success] = "Successfully updated."

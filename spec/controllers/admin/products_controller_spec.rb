@@ -161,16 +161,6 @@ RSpec.describe Admin::ProductsController, type: :controller do
         expect(response.body).to eq(res)
       end
     end
-    context "with invalid params" do
-      before { get :publish_switch, id: published_product_with_asin_1, published: "test" }
-      it "has a 400 status code" do
-        expect(response.status).to eq(400)
-      end
-      it "responses with JSON" do
-        res = {response: "Please try again", product_status: nil}.to_json
-        expect(response.body).to eq(res)
-      end
-    end
   end
   describe "PUT lookup_item_on_amazon" do
     include ProductHelpers
