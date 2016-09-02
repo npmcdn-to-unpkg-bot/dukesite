@@ -1,44 +1,42 @@
 require 'rails_helper'
-require 'admin/products_controller'
 
 RSpec.describe Admin::ProductsController, type: :controller do
-  let(:admin) { FactoryGirl.create(:admin) }
-  before :each do
-    sign_in admin
-  end
+  let!(:published_product_with_asin_1) { FactoryGirl.create(:published_product_with_asin_1) }
+  let!(:unpublished_product_with_asin_3) { FactoryGirl.create(:unpublished_product_with_asin_3) }
+  let!(:showcases) { FactoryGirl.create_list(:showcase, 2) }
+  let!(:categories) { FactoryGirl.create_list(:category, 2) }
+  before { sign_in }
 
-  describe "Get index" do
+  describe "GET index" do
     it "gets all @products" do
       products = []
-      products << FactoryGirl.create(:published_product_with_asin_1)
-      products << FactoryGirl.create(:published_product_with_asin_2)
+      products << published_product_with_asin_1
+      products << unpublished_product_with_asin_3
 
       get :index
       expect(assigns(:products)).to eq( products )
     end
   end
 
-  describe "Get new" do
+  describe "GET new" do
     it 'assigns a new product to @product' do
       get :new
       expect(assigns(:product)).to be_a_new(Product)
     end
 
     it 'assigns all @showcases' do
-      showcases = FactoryGirl.create_list(:showcase, 2)
       get :new
       expect(assigns(:all_showcases)).to eq(showcases)
     end
     it 'assigns all @categories' do
-      categories = FactoryGirl.create_list(:category, 2)
       get :new
       expect(assigns(:all_categories)).to eq(categories)
     end
   end
 
-  describe "Post create" do
+  describe "POST create" do
     context "with valid attributes" do
-      subject { post :create, product: FactoryGirl.attributes_for(:published_product_with_asin_1) }
+      subject { post :create, product: FactoryGirl.attributes_for(:unpublished_product_with_asin_4) }
 
       it "creates a new product" do
         expect{ subject }.to change { Product.count }.by(1)
@@ -49,97 +47,155 @@ RSpec.describe Admin::ProductsController, type: :controller do
       end
     end
 
-    context "without valid attributes" do
+    context "with invalid attributes" do
       subject { post :create, product: FactoryGirl.attributes_for(:invalid_product) }
       
       it "does not save the new product" do
         expect { subject }.to_not change { Product.count }
       end
 
-      it "renders the :new" do
+      it "renders the new template & assigns all_showcases + all_categories" do
         expect(subject).to render_template(:new)
+        expect(assigns(:all_showcases)).to eq(showcases)
+        expect(assigns(:all_categories)).to eq(categories)
       end
     end
   end
 
-  describe "Get edit" do
-    let(:product) { FactoryGirl.create(:published_product_with_asin_1) }
+  describe "GET edit" do
+    before { get :edit, id: published_product_with_asin_1 }
 
-    before(:each) do
-      get :edit, id: product
-    end
-    it 'finds a specific @product' do
-      expect(assigns(:product)).to eq(product)
+    it 'assigns @product' do
+      expect(assigns(:product)).to eq(published_product_with_asin_1)
     end
 
-    it 'assigns all @showcases' do
-      showcases = FactoryGirl.create_list(:showcase, 2)
-      get :new
+    it 'assigns @all_showcases' do
       expect(assigns(:all_showcases)).to eq(showcases)
     end
 
-    it 'assigns all @categories' do
-      categories = FactoryGirl.create_list(:category, 2)
-      get :new
+    it 'assigns @all_categories' do
       expect(assigns(:all_categories)).to eq(categories)
     end
-    it 'assigns all the keywords of a specific @product' do
+    it 'assigns @keywords' do
       keywords = FactoryGirl.create_list(:keyword, 2)
-      product.keywords = keywords
-      expect(assigns(:keywords)).to eq(product.keywords)
+      published_product_with_asin_1.keywords << keywords
+      expect(assigns(:keywords)).to eq(keywords)
     end
   end
 
-  describe "Put update" do
-    let(:product) { FactoryGirl.create(:published_product_with_asin_1) }
-    context "with valid attributes" do
-      let(:attr) do
-        { :asin        => 'B00VQKC86W', 
-          :title       => Faker::Name.title,
-          :description => 'new description',
-          :url         => Faker::Internet.url('example.com'),
-          :image_url   => Faker::Avatar.image }
+  describe "PUT update" do
+    context "with valid params" do
+      before do
+        put :update, 
+        id: unpublished_product_with_asin_3, 
+        product: FactoryGirl.attributes_for(:unpublished_product_with_asin_4)
       end
-      before(:each) do
-        put :update, id: product, :product => attr
-        product.reload
+
+      it "redirects to admin_products_path" do
+        expect(response).to redirect_to( admin_products_path )
       end
-      it { product.asin.should eq attr[:asin] }
-      it { product.title.should eq attr[:title] }
-      it { product.description.should eq attr[:description] }
-      it { product.url.should eq attr[:url] }
-      it { product.image_url.should eq attr[:image_url] }
-      it { response.should redirect_to admin_products_path }
+      it "will set flash[:success]" do
+        is_expected.to set_flash[:success].to("A product was successfully edited.")
+      end
     end
 
-    context "without valid attributes" do
-      let(:attr) do
-        { :asin        => nil, 
-          :title       => nil,
-          :url         => nil,
-          :image_url   => nil }
+    context "with invalid params" do
+      before { put :update, id: unpublished_product_with_asin_3, :product => { asin: ""} }
+
+      it "renders the edit template & assigns all_showcases + all_categories" do
+        expect(response).to render_template(:edit)
+        expect(assigns(:all_showcases)).to eq(showcases)
+        expect(assigns(:all_categories)).to eq(categories)
       end
-
-      subject {
-        put :update, id: product, :product => attr
-        product.reload
-      }
-
-      it "does not save the new product" do
-        subject
-        expect(product.asin).to_not eq attr[:asin]
-        expect(product.title).to_not eq attr[:title]
-        expect(product.url).to_not eq attr[:url]
-        expect(product.image_url).to_not eq attr[:image_url]
-      end
-
-      it "renders the :edit" do
-        expect(subject).to render_template(:edit)
-      end
-
     end
   end
-  describe "Put publish_switch" do
-    
+
+  describe "DELETE destroy" do
+    it "deletes the product" do
+      expect{
+        delete :destroy, :id => unpublished_product_with_asin_3        
+      }.to change(Product,:count).by(-1)
+    end
+    it "will redirect to admin_products_path" do
+      delete :destroy, :id => unpublished_product_with_asin_3
+      expect(response).to redirect_to admin_products_path
+    end  
+    it "will set flash[:success]" do
+      delete :destroy, :id => unpublished_product_with_asin_3
+      expect(flash[:success]).to eq("A product was successfully deleted.")
+    end
+  end
+  describe "PUT publish_switch" do
+    context "to publish a product" do
+      before do
+        put :publish_switch, id: unpublished_product_with_asin_3, published: true
+        unpublished_product_with_asin_3.reload
+      end 
+      it "publishes product" do
+        expect(unpublished_product_with_asin_3.published).to be_truthy
+      end
+      it "will set flash[:success]" do
+        expect(flash[:success]).to eq("Successfully updated.")
+      end
+      it "responses with JSON" do
+        res = {response: "", product_status: true}.to_json
+        expect(response.body).to eq(res)
+      end
+    end
+    context "unpublish a product" do
+      before do
+        get :publish_switch, id: published_product_with_asin_1, published: false
+        published_product_with_asin_1.reload
+      end 
+      it "publishes product" do
+        expect(published_product_with_asin_1.published).to be_falsy
+      end
+      it "will set flash[:success]" do
+        expect(flash[:success]).to eq("Successfully updated.")
+      end
+      it "has a 200 status code" do
+        expect(response.status).to eq(200)
+      end
+      it "responses with JSON" do
+        res = {response: "", product_status: false}.to_json
+        expect(response.body).to eq(res)
+      end
+    end
+    context "with invalid params" do
+      before { get :publish_switch, id: published_product_with_asin_1, published: "test" }
+      it "has a 400 status code" do
+        expect(response.status).to eq(400)
+      end
+      it "responses with JSON" do
+        res = {response: "Please try again", product_status: nil}.to_json
+        expect(response.body).to eq(res)
+      end
+    end
+  end
+  describe "PUT lookup_item_on_amazon" do
+    include ProductHelpers
+    context "with invalid params" do
+      before { get :lookup_item_on_amazon, asin: "" }
+      it "has a 400 status code" do
+        expect(response.status).to eq(400)
+      end
+      it "responses with JSON" do
+        res = {response: "Please enter ASIN", data: nil}.to_json
+        expect(response.body).to eq(res)
+      end
+    end
+    context "with valid params" do
+      before do
+        @asin = "B01BY3PEUM"
+        get :lookup_item_on_amazon, asin: @asin
+      end
+      it "has a 200 status code" do
+        expect(response.status).to eq(200)
+      end
+      it "responses with JSON" do
+        res = {response: res_text(@asin), data: return_items(@asin) }.to_json
+        expect(response.body).to eq(res)
+      end
+    end
   end
 end
