@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :product do
-    title     Faker::Name.title
+    title     { Faker::Name.title }
     trait :valid_attributes do
-      url       Faker::Internet.url('example.com')
-      image_url Faker::Avatar.image
-      image_url_small Faker::Avatar.image
+      url             { Faker::Internet.url('example.com') }
+      image_url       { Faker::Avatar.image }
+      image_url_small { Faker::Avatar.image }
     end
     
     trait :published do

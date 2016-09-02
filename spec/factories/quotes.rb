@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :quote do
-    title Faker::Name.title
+    title { Faker::Name.title }
 
     trait :visible do
       visible    true
