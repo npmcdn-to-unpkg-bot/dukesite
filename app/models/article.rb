@@ -24,9 +24,7 @@ class Article < ActiveRecord::Base
   end
 
   def thumb_img_url
-    if self.photo.present?
-      self.photo.image.thumb.url 
-    end
+    self.photo.image.thumb.url if self.photo.present?
   end
 
   def img_url

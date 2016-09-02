@@ -39,9 +39,13 @@ module ApplicationHelper
     # Use icon image if the article has no image
     if img_url.nil?
       icon = SiteConfig.find_by(slug: "icon")
-      img_url = image_url(icon, options)
+      if icon.present?
+        img_url = image_url(icon, options)
+        return image_tag img_url
+      else
+        return "No Image"
+      end
     end
-    return image_tag img_url
   end
 
   def flash_class(key)
